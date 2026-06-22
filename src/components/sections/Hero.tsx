@@ -64,15 +64,7 @@ export default function Hero() {
           style={{ maxWidth: "640px" }}
         >
           {/* Eyebrow */}
-          <div
-            className="anim inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-7"
-            style={{ background: "#F59E0B", color: "#0F2D52" }}
-          >
-            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-            </svg>
-            India&apos;s Premier SME IPO Advisory
-          </div>
+        {/*  */}
 
           {/* Headline */}
           <h1
