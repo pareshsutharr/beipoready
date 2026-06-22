@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
+@theme {
+  /* ── Brand tokens ── */
+  --color-brand-gold:       #F59E0B;
+  --color-brand-gold-light: #FCD34D;
+  --color-brand-navy:       #0F2D52;
+  --color-brand-navy-dark:  #070F1E;
+  --color-brand-cream:      #F0F6FF;
+
+  /* ── Fonts ── */
+  --font-sans:  var(--font-inter);
+  --font-serif: var(--font-playfair);
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ─── Floating ambient orbs (hero bg) ─── */
+@keyframes orb-drift {
+  0%,100% { transform: translate(0,0) scale(1); }
+  40%      { transform: translate(40px,-30px) scale(1.06); }
+  70%      { transform: translate(-25px,20px) scale(0.96); }
+}
+@keyframes orb-drift-r {
+  0%,100% { transform: translate(0,0) scale(1); }
+  40%      { transform: translate(-35px,25px) scale(0.97); }
+  70%      { transform: translate(30px,-20px) scale(1.05); }
+}
+.orb-a { animation: orb-drift   14s ease-in-out infinite; }
+.orb-b { animation: orb-drift-r 18s ease-in-out infinite; }
+
+/* ─── Shimmer text ─── */
+@keyframes shimmer-x {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #F59E0B 0%, #FCD34D 30%, #F59E0B 50%, #FCD34D 70%, #F59E0B 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-x 3s linear infinite;
+}
+
+/* ─── Scroll-reveal helper (GSAP sets opacity/transform directly) ─── */
+.sr { opacity: 0; }
+
+/* ─── Respect reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .text-shimmer { animation: none; -webkit-text-fill-color: #F59E0B; }
 }
