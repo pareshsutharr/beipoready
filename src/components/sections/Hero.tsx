@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { UserAvatars } from "@/components/ui/user-avatars";
+import { Boxes } from "@/components/ui/background-boxes";
 
 const STATS = [
   { num: "50+",      label: "SME IPOs Successfully Advised" },
@@ -51,14 +52,19 @@ export default function Hero() {
       style={{ minHeight: "calc(100vh - 96px)" }}
       aria-label="Hero"
     >
-      {/* ── LEFT: amber/gold content panel ── */}
+      {/* ── LEFT: navy content panel ── */}
       <div
-        className="flex items-center w-full lg:w-[54%] shrink-0"
+        className="relative overflow-hidden flex items-center w-full lg:w-[54%] shrink-0"
         style={{ background: "linear-gradient(135deg,#0F2D52 0%,#1B4F8A 100%)" }}
       >
+        {/* Animated grid background */}
+        <div className="absolute inset-0 w-full h-full z-0 [mask-image:radial-gradient(ellipse_60%_70%_at_30%_50%,transparent_30%,black_100%)]">
+          <Boxes />
+        </div>
+
         <div
           ref={leftRef}
-          className="w-full px-6 sm:px-10 lg:px-14 xl:px-20 py-16 lg:py-20"
+          className="relative z-10 w-full px-6 sm:px-10 lg:px-14 xl:px-20 py-16 lg:py-20"
           style={{ maxWidth: "640px" }}
         >
           {/* Headline */}
