@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { Shield, Award, CheckCircle2, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { UserAvatars } from "@/components/ui/user-avatars";
 
 const STATS = [
   { num: "50+",      label: "SME IPOs Successfully Advised" },
@@ -11,14 +12,11 @@ const STATS = [
   { num: "10+",      label: "Years of Capital Markets Experience" },
 ];
 
-function TrustBadge({ icon, label }: { icon: React.ReactNode; label: string }) {
-  return (
-    <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold text-slate-700 bg-white border border-slate-200 shadow-sm whitespace-nowrap">
-      <span className="text-yellow-500">{icon}</span>
-      {label}
-    </div>
-  );
-}
+const FOUNDER_USERS = [
+  { id: 1, name: "Rajesh Kumar", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" },
+  { id: 2, name: "Priya Mehta",  image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face" },
+  { id: 3, name: "Amit Shah",    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" },
+];
 
 export default function Hero() {
   const leftRef = useRef<HTMLDivElement>(null);
@@ -53,7 +51,7 @@ export default function Hero() {
       style={{ minHeight: "calc(100vh - 96px)" }}
       aria-label="Hero"
     >
-      {/* ── LEFT: navy content panel ── */}
+      {/* ── LEFT: amber/gold content panel ── */}
       <div
         className="flex items-center w-full lg:w-[54%] shrink-0"
         style={{ background: "linear-gradient(135deg,#0F2D52 0%,#1B4F8A 100%)" }}
@@ -63,58 +61,49 @@ export default function Hero() {
           className="w-full px-6 sm:px-10 lg:px-14 xl:px-20 py-16 lg:py-20"
           style={{ maxWidth: "640px" }}
         >
-          {/* Eyebrow */}
-        {/*  */}
-
           {/* Headline */}
           <h1
-            className="anim font-serif font-bold text-white leading-[1.13] tracking-tight mb-5"
-            style={{ fontSize: "clamp(1.9rem, 3.2vw, 3.25rem)" }}
+            className="anim font-serif font-bold leading-[1.13] tracking-tight mb-5"
+            style={{ fontSize: "clamp(1.9rem, 3.2vw, 3.25rem)", color: "#ffffff" }}
           >
-            Your Trusted Partner in{" "}
+            Your Architectural Path to the{" "}
             <span className="relative inline-block">
-              IPO Readiness
+              Public Markets
               <span
                 className="absolute left-0 -bottom-0.5 right-0 h-[3px] rounded-full"
                 style={{ background: "#F59E0B" }}
                 aria-hidden="true"
               />
             </span>
-            {" "}&amp;{" "}
-            <span style={{ color: "#F59E0B" }}>Pre&#8209;IPO</span>{" "}
-            Value Creation
+            .
           </h1>
 
           {/* Sub */}
-          <p className="anim text-base sm:text-lg text-white/70 leading-relaxed mb-9 max-w-[500px]">
-            We guide growth-stage SMEs through every stage of the public listing journey —
-            from pre-IPO fundraising and valuation to readiness assessments, documentation,
-            and a confident market debut.
+          <p className="anim text-base sm:text-lg leading-relaxed mb-9 max-w-[500px]" style={{ color: "rgba(255,255,255,0.70)" }}>
+            We don&apos;t just consult; we architect the structural integrity of your equity
+            for a seamless IPO transition.
           </p>
 
-          {/* CTAs */}
-          <div className="anim flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-9">
-            <Link
-              href="/contact-us"
-              className="inline-flex items-center justify-center px-7 py-3.5 rounded-xl font-bold text-[#0F2D52] hover:opacity-90 active:scale-[.98] transition-all duration-150 cursor-pointer text-[15px] whitespace-nowrap"
-              style={{ background: "#F59E0B", boxShadow: "0 4px 22px rgba(245,158,11,0.45)" }}
-            >
-              Book a Free Call
-            </Link>
+          {/* CTA + Trusted by Founders */}
+          <div className="anim flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-3">
             <Link
               href="/ipo-readiness-tool"
-              className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-white border-2 border-white/30 hover:border-white/70 hover:bg-white/10 transition-all duration-200 cursor-pointer text-[15px] whitespace-nowrap"
+              className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold hover:opacity-90 active:scale-[.98] transition-all duration-150 cursor-pointer text-[15px] whitespace-nowrap"
+              style={{ background: "#F59E0B", color: "#0F2D52", boxShadow: "0 4px 22px rgba(245,158,11,0.45)" }}
             >
-              Check IPO Readiness
+              Start Assessment
               <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
-          </div>
-
-          {/* Trust badges */}
-          <div className="anim flex flex-wrap gap-2">
-            <TrustBadge icon={<Shield className="w-3.5 h-3.5" />} label="SEBI Registered" />
-            <TrustBadge icon={<Award className="w-3.5 h-3.5" />} label="ICAI Member" />
-            <TrustBadge icon={<CheckCircle2 className="w-3.5 h-3.5" />} label="50+ SMEs Advised" />
+            <div className="flex items-center gap-3">
+                <UserAvatars
+                  users={FOUNDER_USERS}
+                  size={40}
+                  overlap={55}
+                  maxVisible={3}
+                  tooltipPlacement="top"
+                />
+                <span className="text-sm font-semibold text-white">Trusted by Founders</span>
+              </div>
           </div>
         </div>
       </div>
