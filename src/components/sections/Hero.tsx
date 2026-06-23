@@ -165,7 +165,9 @@ export default function Hero() {
             <ArrowRight className="w-5 h-5 text-yellow-400 shrink-0 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
           </Link>
         </div>
+        {/* erdgtdyg */}
       </div>
     </section>
+
   );
 }
