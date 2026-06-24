@@ -20,13 +20,25 @@ const CATEGORY_COLORS: Record<string, string> = {
   Compliance: "bg-rose-50 text-rose-700 border-rose-200",
 };
 
+const CATEGORY_IMAGES: Record<string, string> = {
+  Regulation:    "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=320&fit=crop&q=80",
+  Documentation: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=320&fit=crop&q=80",
+  Fundraising:   "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=320&fit=crop&q=80",
+  Valuation:     "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=320&fit=crop&q=80",
+  Governance:    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=320&fit=crop&q=80",
+  Compliance:    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=320&fit=crop&q=80",
+};
+const DEFAULT_ARTICLE_IMAGE = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=320&fit=crop&q=80";
+
 export default async function KnowledgeCenterPage() {
   const articles = await getPublishedArticles();
 
   return (
     <>
-      <section className="bg-brand-navy py-20 sm:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative bg-brand-navy py-20 sm:py-24 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1600&h=700&fit=crop&q=85" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-4">
             Insights &amp; Guides
           </p>
@@ -50,14 +62,12 @@ export default async function KnowledgeCenterPage() {
                 href={`/knowledge-center/${article.slug}`}
                 className="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-brand-gold hover:shadow-md transition-all duration-200"
               >
-                {article.coverImageUrl && (
-                  <div
-                    className="h-40 bg-slate-200 bg-cover bg-center"
-                    style={{ backgroundImage: `url("${article.coverImageUrl}")` }}
-                    role="img"
-                    aria-label={`${article.title} cover image`}
-                  />
-                )}
+                <div
+                  className="h-44 bg-slate-200 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 origin-center"
+                  style={{ backgroundImage: `url("${article.coverImageUrl ?? CATEGORY_IMAGES[article.category] ?? DEFAULT_ARTICLE_IMAGE}")` }}
+                  role="img"
+                  aria-label={`${article.title} cover image`}
+                />
                 <div className="px-6 pt-6 pb-4 flex items-center justify-between">
                   <span
                     className={`font-sans text-xs font-semibold border rounded-full px-3 py-1 ${

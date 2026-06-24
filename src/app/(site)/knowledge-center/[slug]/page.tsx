@@ -4,6 +4,16 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getArticleBySlug } from "@/lib/cms";
 
+const CATEGORY_IMAGES: Record<string, string> = {
+  Regulation:    "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&h=600&fit=crop&q=85",
+  Documentation: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&h=600&fit=crop&q=85",
+  Fundraising:   "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1600&h=600&fit=crop&q=85",
+  Valuation:     "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=600&fit=crop&q=85",
+  Governance:    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&h=600&fit=crop&q=85",
+  Compliance:    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=600&fit=crop&q=85",
+};
+const DEFAULT_ARTICLE_IMAGE = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&h=600&fit=crop&q=85";
+
 type Props = { params: Promise<{ slug: string }> };
 
 export const dynamic = "force-dynamic";
@@ -62,8 +72,10 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <main>
-      <section className="bg-brand-navy py-20 sm:py-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-brand-navy py-20 sm:py-24 overflow-hidden">
+        <img src={article.coverImageUrl ?? CATEGORY_IMAGES[article.category] ?? DEFAULT_ARTICLE_IMAGE} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/knowledge-center"
             className="inline-flex items-center gap-1.5 font-sans text-sm text-white/50 hover:text-white/80 transition-colors mb-8"

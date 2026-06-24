@@ -10,8 +10,10 @@ export const metadata: Metadata = {
 export default function IpoReadinessToolPage() {
   return (
     <main>
-      <section className="bg-brand-navy py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative bg-brand-navy py-16 sm:py-20 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&h=600&fit=crop&q=85" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Free Tool
           </p>

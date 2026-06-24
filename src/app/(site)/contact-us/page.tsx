@@ -11,8 +11,10 @@ export default function ContactUsPage() {
   return (
     <>
       {/* ── Page hero ─────────────────────────────────────────────────── */}
-      <section className="bg-brand-navy py-16 sm:py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative bg-brand-navy py-16 sm:py-20 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1600&h=600&fit=crop&q=85" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Get in Touch
           </p>
@@ -74,6 +76,13 @@ export default function ContactUsPage() {
                   Saturday: 10:00 AM – 2:00 PM IST<br />
                   Sunday: Closed
                 </p>
+              </div>
+
+              {/* Office photo */}
+              <div className="relative rounded-xl overflow-hidden h-40 shadow-sm">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=320&fit=crop&q=85" alt="Be IPO Ready office" className="w-full h-full object-cover" />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(15,45,82,0.6))" }} aria-hidden="true" />
+                <span className="absolute bottom-3 left-4 text-xs font-semibold text-white/90">Mumbai &amp; Jaipur offices</span>
               </div>
 
               <div className="bg-brand-navy/5 border border-brand-navy/10 rounded-xl p-5">

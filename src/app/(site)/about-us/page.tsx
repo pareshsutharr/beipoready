@@ -51,8 +51,16 @@ export default function AboutUsPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="bg-brand-navy py-20 sm:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative bg-brand-navy py-20 sm:py-28 overflow-hidden">
+        {/* Background photo with dark overlay */}
+        <img
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=700&fit=crop&q=85"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.6) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-4">
             Our Story
           </p>
@@ -94,8 +102,17 @@ export default function AboutUsPage() {
               </p>
             </div>
 
-            {/* Credentials */}
+            {/* Photo + Credentials */}
             <div className="flex flex-col gap-4">
+              {/* Team / office photo */}
+              <div className="relative w-full h-52 rounded-2xl overflow-hidden shadow-lg mb-2">
+                <img
+                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&h=420&fit=crop&q=85"
+                  alt="Be IPO Ready advisory team in a strategy meeting"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 55%, rgba(15,45,82,0.45))" }} aria-hidden="true" />
+              </div>
               {CREDENTIALS.map((cred) => (
                 <div
                   key={cred.label}
@@ -150,11 +167,26 @@ export default function AboutUsPage() {
           <h2 className="font-serif text-3xl font-bold text-brand-navy mb-4 leading-tight">
             Experienced Capital Market Professionals
           </h2>
-          <p className="font-sans text-base text-slate-600 max-w-xl mx-auto leading-relaxed mb-10">
+          <p className="font-sans text-base text-slate-600 max-w-xl mx-auto leading-relaxed mb-8">
             Our core team combines deep expertise in investment banking, chartered
             accountancy, company secretarial practice, and regulatory compliance —
             all focused exclusively on the SME IPO space.
           </p>
+
+          {/* Team photo strip */}
+          <div className="relative w-full max-w-3xl mx-auto h-56 rounded-2xl overflow-hidden shadow-xl mb-10">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1000&h=450&fit=crop&q=85"
+              alt="Capital market professionals collaborating"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(15,45,82,0.45) 0%, transparent 60%)" }} aria-hidden="true" />
+            <div className="absolute bottom-5 left-6">
+              <p className="font-serif text-lg font-bold text-white leading-snug">15+ Years Combined Experience</p>
+              <p className="text-sm text-white/70">in SME capital markets &amp; regulatory advisory</p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {TEAM_EXPERTISE.map((item) => (
               <div key={item.title} className="bg-white rounded-xl border border-slate-200 p-6 text-center shadow-sm">

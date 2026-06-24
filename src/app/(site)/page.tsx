@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import TrustStats from "@/components/sections/TrustStats";
 import { Case } from "@/components/ui/cases-with-infinite-scroll";
+import VisualQuote from "@/components/sections/VisualQuote";
 import ServicesOverview from "@/components/sections/ServicesOverview";
 import ReadinessJourney from "@/components/sections/ReadinessJourney";
 import CaseStudiesHighlights from "@/components/sections/CaseStudiesHighlights";
@@ -21,6 +22,7 @@ export default async function Home() {
       <Hero />
       <TrustStats stats={stats} />
       <Case clients={clients} />
+      <VisualQuote />
       <ServicesOverview />
       <ReadinessJourney />
       <CaseStudiesHighlights testimonials={testimonials} />

@@ -3,6 +3,15 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCaseStudyBySlug } from "@/lib/cms";
 
+const SECTOR_IMAGES: Record<string, string> = {
+  "Agro Processing":         "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&h=700&fit=crop&q=85",
+  "Engineering / B2B Tech":  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600&h=700&fit=crop&q=85",
+  "Healthcare / Diagnostics":"https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=1600&h=700&fit=crop&q=85",
+  "Manufacturing":           "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1600&h=700&fit=crop&q=85",
+  "Finance":                 "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&h=700&fit=crop&q=85",
+};
+const DEFAULT_SECTOR_IMAGE = "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&h=700&fit=crop&q=85";
+
 type Props = { params: Promise<{ slug: string }> };
 
 export const dynamic = "force-dynamic";
@@ -25,8 +34,10 @@ export default async function CaseStudyDetailPage({ params }: Props) {
   return (
     <main>
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="bg-brand-navy py-20 sm:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-brand-navy py-20 sm:py-24 overflow-hidden">
+        <img src={cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.7) 0%,rgba(15,45,82,0.6) 100%)" }} aria-hidden="true" />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/case-studies"
             className="inline-flex items-center gap-1.5 font-sans text-sm text-white/50 hover:text-white/80 transition-colors mb-8"
@@ -36,6 +47,17 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             </svg>
             All Case Studies
           </Link>
+
+          {/* Company monogram + name row */}
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 shadow-xl"
+              style={{ background: "rgba(15,45,82,0.9)", border: "1.5px solid rgba(245,158,11,0.5)", backdropFilter: "blur(8px)" }}>
+              <span className="font-serif text-base font-bold" style={{ color: "#F59E0B" }}>
+                {cs.company.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join("")}
+              </span>
+            </div>
+            <span className="font-sans text-xs font-bold uppercase tracking-widest text-brand-gold bg-brand-gold/10 border border-brand-gold/20 px-3 py-1 rounded-full">{cs.sector}</span>
+          </div>
 
           {/* Stats row */}
           <div className="flex flex-wrap gap-4 mb-8">
@@ -62,14 +84,12 @@ export default async function CaseStudyDetailPage({ params }: Props) {
       {/* ── Body ─────────────────────────────────────────────────────── */}
       <section className="bg-brand-cream py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-          {cs.coverImageUrl && (
-            <div
-              className="h-72 rounded-2xl border border-slate-200 bg-slate-200 bg-cover bg-center shadow-sm"
-              style={{ backgroundImage: `url("${cs.coverImageUrl}")` }}
-              role="img"
-              aria-label={`${cs.company} cover image`}
-            />
-          )}
+          <div
+            className="h-72 rounded-2xl border border-slate-200 bg-slate-200 bg-cover bg-center shadow-sm overflow-hidden"
+            style={{ backgroundImage: `url("${cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}")` }}
+            role="img"
+            aria-label={`${cs.company} cover image`}
+          />
 
           <div>
             <h2 className="font-serif text-xl font-bold text-brand-navy mb-3">Overview</h2>

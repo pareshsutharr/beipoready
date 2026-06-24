@@ -5,46 +5,72 @@ import Link from "next/link";
 import { ClipboardCheck, Calculator, ArrowRight } from "lucide-react";
 
 const TOOLS = [
-  { icon: ClipboardCheck, eyebrow: "Free Assessment", title: "IPO Readiness Tool", description: "Answer 20 structured questions across financials, governance, operations, and compliance. Get an instant readiness score with a prioritised action plan tailored to your company.", cta: "Check Your Readiness", href: "/ipo-readiness-tool", accent: "#F59E0B" },
-  { icon: Calculator,     eyebrow: "Free Calculator",  title: "Issue Size Calculator", description: "Input your revenue, PAT, and growth metrics to estimate a defensible IPO issue size and indicative price band — helping you plan the raise before you engage a merchant banker.", cta: "Calculate Now",       href: "/issue-size-calculator",  accent: "#3B82F6" },
-] as const;
+  {
+    icon: ClipboardCheck,
+    eyebrow: "Free Assessment",
+    title: "IPO Readiness Tool",
+    description: "Answer 20 structured questions across financials, governance, operations, and compliance. Get an instant readiness score with a prioritised action plan tailored to your company.",
+    cta: "Check Your Readiness",
+    href: "/ipo-readiness-tool",
+    accent: "#F59E0B",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&h=320&fit=crop&q=80",
+  },
+  {
+    icon: Calculator,
+    eyebrow: "Free Calculator",
+    title: "Issue Size Calculator",
+    description: "Input your revenue, PAT, and growth metrics to estimate a defensible IPO issue size and indicative price band — helping you plan the raise before you engage a merchant banker.",
+    cta: "Calculate Now",
+    href: "/issue-size-calculator",
+    accent: "#3B82F6",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&h=320&fit=crop&q=80",
+  },
+];
 
-function ToolCard({ icon: Icon, eyebrow, title, description, cta, href, accent }: { icon: React.ElementType; eyebrow: string; title: string; description: string; cta: string; href: string; accent: string }) {
+function ToolCard({ icon: Icon, eyebrow, title, description, cta, href, accent, image }: { icon: React.ElementType; eyebrow: string; title: string; description: string; cta: string; href: string; accent: string; image: string }) {
   return (
     <div
-      className="tool-card group relative flex flex-col rounded-2xl p-8 overflow-hidden h-full"
-      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", transition: "background 0.3s, border-color 0.3s, box-shadow 0.3s" }}
+      className="tool-card group relative flex flex-col rounded-2xl overflow-hidden h-full"
+      style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", transition: "border-color 0.3s, box-shadow 0.3s" }}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLDivElement;
-        el.style.background = `rgba(255,255,255,0.08)`;
         el.style.borderColor = `${accent}40`;
         el.style.boxShadow = `0 20px 60px ${accent}18`;
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget as HTMLDivElement;
-        el.style.background = "rgba(255,255,255,0.05)";
         el.style.borderColor = "rgba(255,255,255,0.1)";
         el.style.boxShadow = "none";
       }}
     >
-      {/* Corner glow */}
-      <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-2xl"
-        style={{ background: `radial-gradient(circle, ${accent}30 0%, transparent 70%)` }} aria-hidden="true" />
-      <div className="absolute top-0 inset-x-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} aria-hidden="true" />
-
-      <span className="inline-flex self-start text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-5 border"
-        style={{ color: accent, background: `${accent}15`, borderColor: `${accent}30` }}>
-        {eyebrow}
-      </span>
-
-      <div className="mb-5 w-12 h-12 flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110"
-        style={{ background: `${accent}18`, boxShadow: `0 0 24px ${accent}20` }}>
-        <Icon className="w-6 h-6" style={{ color: accent }} aria-hidden="true" />
+      {/* Tool preview image */}
+      <div className="relative w-full h-48 overflow-hidden shrink-0">
+        <img
+          src={image}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(7,15,30,0.3) 0%, rgba(7,15,30,0.75) 100%)" }} />
+        {/* Eyebrow badge over image */}
+        <span className="absolute top-4 left-4 inline-flex text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border"
+          style={{ color: accent, background: `${accent}25`, borderColor: `${accent}50` }}>
+          {eyebrow}
+        </span>
+        {/* Icon over image */}
+        <div className="absolute bottom-4 left-4 w-11 h-11 flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110"
+          style={{ background: `${accent}25`, boxShadow: `0 0 24px ${accent}30`, border: `1px solid ${accent}40` }}>
+          <Icon className="w-5 h-5" style={{ color: accent }} aria-hidden="true" />
+        </div>
       </div>
 
-      <h3 className="font-serif text-2xl font-bold text-white mb-3 leading-snug">{title}</h3>
-      <p className="text-sm sm:text-base text-white/60 leading-relaxed flex-1 mb-8">{description}</p>
+      {/* Card body */}
+      <div className="flex flex-col flex-1 p-7">
+        <div className="absolute top-0 inset-x-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} aria-hidden="true" />
+
+        <h3 className="font-serif text-2xl font-bold text-white mb-3 leading-snug">{title}</h3>
+        <p className="text-sm sm:text-base text-white/60 leading-relaxed flex-1 mb-8">{description}</p>
 
       <Link
         href={href}
@@ -56,6 +82,7 @@ function ToolCard({ icon: Icon, eyebrow, title, description, cta, href, accent }
         {cta}
         <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-0.5" aria-hidden="true" />
       </Link>
+      </div>
     </div>
   );
 }

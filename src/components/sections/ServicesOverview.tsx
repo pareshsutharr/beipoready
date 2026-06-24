@@ -5,18 +5,55 @@ import Link from "next/link";
 import { Building2, ClipboardList, TrendingUp, FileCheck, BarChart3, ArrowUpRight } from "lucide-react";
 
 const SERVICES = [
-  { icon: Building2,    title: "SME IPO Advisory",                description: "End-to-end strategic guidance for growth-stage companies navigating the SME Exchange listing process — from eligibility checks to post-listing compliance.",                                              href: "/services/sme-ipo-advisory",              accent: "#F59E0B" },
-  { icon: ClipboardList, title: "IPO Readiness Assessment",        description: "A structured diagnostic that benchmarks your financials, governance, and operations against exchange listing norms so you know exactly where you stand.",                                                      href: "/services/ipo-readiness-assessment",       accent: "#3B82F6" },
-  { icon: TrendingUp,   title: "Pre-IPO Fundraising",             description: "Connecting promoters with the right angel investors, family offices, and PE funds to build a credible capital story ahead of the public offering.",                                                          href: "/services/pre-ipo-fundraising",            accent: "#10B981" },
-  { icon: FileCheck,    title: "IPO Documentation & Compliance",  description: "Preparation and review of Draft Red Herring Prospectus, legal disclosures, and ongoing SEBI filings — ensuring nothing slips through the regulatory net.",                                               href: "/services/ipo-documentation-compliance",   accent: "#8B5CF6" },
-  { icon: BarChart3,    title: "Valuation & Capital Structuring", description: "Independent business valuations and optimal capital mix advice that position your company attractively for institutional investors and retail subscribers alike.", href: "/services/valuation-capital-structuring",  accent: "#F59E0B" },
-] as const;
+  {
+    icon: Building2,
+    title: "SME IPO Advisory",
+    description: "End-to-end strategic guidance for growth-stage companies navigating the SME Exchange listing process — from eligibility checks to post-listing compliance.",
+    href: "/services/sme-ipo-advisory",
+    accent: "#F59E0B",
+    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=280&fit=crop&q=80",
+  },
+  {
+    icon: ClipboardList,
+    title: "IPO Readiness Assessment",
+    description: "A structured diagnostic that benchmarks your financials, governance, and operations against exchange listing norms so you know exactly where you stand.",
+    href: "/services/ipo-readiness-assessment",
+    accent: "#3B82F6",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=280&fit=crop&q=80",
+  },
+  {
+    icon: TrendingUp,
+    title: "Pre-IPO Fundraising",
+    description: "Connecting promoters with the right angel investors, family offices, and PE funds to build a credible capital story ahead of the public offering.",
+    href: "/services/pre-ipo-fundraising",
+    accent: "#10B981",
+    image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=280&fit=crop&q=80",
+  },
+  {
+    icon: FileCheck,
+    title: "IPO Documentation & Compliance",
+    description: "Preparation and review of Draft Red Herring Prospectus, legal disclosures, and ongoing SEBI filings — ensuring nothing slips through the regulatory net.",
+    href: "/services/ipo-documentation-compliance",
+    accent: "#8B5CF6",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=280&fit=crop&q=80",
+  },
+  {
+    icon: BarChart3,
+    title: "Valuation & Capital Structuring",
+    description: "Independent business valuations and optimal capital mix advice that position your company attractively for institutional investors and retail subscribers alike.",
+    href: "/services/valuation-capital-structuring",
+    accent: "#F59E0B",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=280&fit=crop&q=80",
+  },
+];
 
-function ServiceCard({ icon: Icon, title, description, href, accent }: { icon: React.ElementType; title: string; description: string; href: string; accent: string }) {
+function ServiceCard({ icon: Icon, title, description, href, accent, image }: {
+  icon: React.ElementType; title: string; description: string; href: string; accent: string; image: string;
+}) {
   return (
     <div
-      className="service-card group relative flex flex-col rounded-2xl p-7 h-full overflow-hidden cursor-pointer"
-      style={{ background: "#fff", border: "1px solid #e2e8f0", transition: "box-shadow 0.3s, border-color 0.3s, transform 0.3s" }}
+      className="service-card group relative flex flex-col rounded-2xl h-full overflow-hidden cursor-pointer bg-white"
+      style={{ border: "1px solid #e2e8f0", transition: "box-shadow 0.3s, border-color 0.3s, transform 0.3s" }}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLDivElement;
         el.style.boxShadow = `0 20px 60px -12px ${accent}30, 0 8px 24px rgba(0,0,0,0.1)`;
@@ -30,30 +67,47 @@ function ServiceCard({ icon: Icon, title, description, href, accent }: { icon: R
         el.style.transform = "translateY(0)";
       }}
     >
-      {/* Hover gradient strip */}
-      <div className="absolute top-0 inset-x-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left rounded-full"
-        style={{ background: `linear-gradient(90deg, ${accent}, ${accent}80)` }} aria-hidden="true" />
-
-      {/* Icon */}
-      <div
-        className="mb-5 w-12 h-12 flex items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110"
-        style={{ background: `${accent}14` }}
-      >
-        <Icon className="w-6 h-6 transition-colors duration-300" style={{ color: accent }} aria-hidden="true" />
+      {/* Card image */}
+      <div className="relative w-full h-44 overflow-hidden shrink-0">
+        <img
+          src={image}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        {/* Accent tint overlay on hover */}
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300"
+          style={{ background: accent }}
+          aria-hidden="true"
+        />
+        {/* Bottom fade into white card */}
+        <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-white to-transparent" aria-hidden="true" />
       </div>
 
-      <h3 className="font-serif text-lg font-bold text-slate-900 mb-2.5 leading-snug">{title}</h3>
-      <p className="text-sm text-slate-500 leading-relaxed flex-1 mb-6">{description}</p>
+      {/* Content */}
+      <div className="flex flex-col flex-1 px-6 pb-6 pt-3">
+        {/* Icon */}
+        <div
+          className="mb-4 w-11 h-11 flex items-center justify-center rounded-xl transition-all duration-300 group-hover:scale-110"
+          style={{ background: `${accent}14` }}
+        >
+          <Icon className="w-5 h-5 transition-colors duration-300" style={{ color: accent }} aria-hidden="true" />
+        </div>
 
-      <Link
-        href={href}
-        className="inline-flex items-center gap-1.5 text-sm font-bold transition-all duration-200 group/link"
-        style={{ color: accent }}
-        aria-label={`Learn more about ${title}`}
-      >
-        Learn More
-        <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" aria-hidden="true" />
-      </Link>
+        <h3 className="font-serif text-lg font-bold text-slate-900 mb-2 leading-snug">{title}</h3>
+        <p className="text-sm text-slate-500 leading-relaxed flex-1 mb-5">{description}</p>
+
+        <Link
+          href={href}
+          className="inline-flex items-center gap-1.5 text-sm font-bold transition-all duration-200 group/link"
+          style={{ color: accent }}
+          aria-label={`Learn more about ${title}`}
+        >
+          Learn More
+          <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" aria-hidden="true" />
+        </Link>
+      </div>
     </div>
   );
 }

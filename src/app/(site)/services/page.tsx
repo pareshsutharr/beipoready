@@ -12,6 +12,7 @@ const SERVICES = [
     slug: "sme-ipo-advisory",
     title: "SME IPO Advisory",
     tagline: "End-to-end guidance from decision to listing day",
+    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=320&h=200&fit=crop&q=80",
     description:
       "Our flagship service covers the entire IPO lifecycle — structuring, SEBI filings, merchant banker coordination, road show preparation, and post-listing compliance — all from a single point of accountability.",
     icon: (
@@ -24,6 +25,7 @@ const SERVICES = [
     slug: "ipo-readiness-assessment",
     title: "IPO Readiness Assessment",
     tagline: "Know your real IPO score before you engage a banker",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=320&h=200&fit=crop&q=80",
     description:
       "A structured diagnostic across financial reporting, corporate governance, compliance history, and business fundamentals — with a written roadmap of gaps to close and a realistic listing timeline.",
     icon: (
@@ -36,6 +38,7 @@ const SERVICES = [
     slug: "pre-ipo-fundraising",
     title: "Pre-IPO Fundraising",
     tagline: "Bridge capital from the right investors before you list",
+    image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=320&h=200&fit=crop&q=80",
     description:
       "We connect growth-stage companies with high-net-worth individuals, family offices, and institutional investors for pre-IPO placements — structured to preserve listing optionality and meet SEBI lock-in requirements.",
     icon: (
@@ -48,6 +51,7 @@ const SERVICES = [
     slug: "ipo-documentation-compliance",
     title: "IPO Documentation & Compliance",
     tagline: "SEBI-grade documentation that passes scrutiny",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=320&h=200&fit=crop&q=80",
     description:
       "We draft and review DRHP, RHP, and all regulatory filings — ensuring SEBI ICDR compliance, accurate financial disclosures, and on-time submissions to NSE Emerge or BSE SME.",
     icon: (
@@ -60,6 +64,7 @@ const SERVICES = [
     slug: "valuation-capital-structuring",
     title: "Valuation & Capital Structuring",
     tagline: "Price your IPO to succeed — not just to list",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=320&h=200&fit=crop&q=80",
     description:
       "We build defensible valuation models using sector P/E benchmarks, DCF, and comparable company analysis — then advise on optimal offer price, dilution percentage, and share capital structure to attract institutional interest.",
     icon: (
@@ -74,8 +79,10 @@ export default function ServicesPage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <section className="bg-brand-navy py-20 sm:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative bg-brand-navy py-20 sm:py-24 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=700&fit=crop&q=85" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-4">
             What We Do
           </p>
@@ -97,32 +104,43 @@ export default function ServicesPage() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group flex flex-col sm:flex-row items-start gap-6 bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm hover:border-brand-gold hover:shadow-md transition-all duration-200"
+                className="group flex flex-col sm:flex-row items-start gap-0 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-brand-gold hover:shadow-md transition-all duration-200"
               >
-                {/* Number + icon */}
-                <div className="flex items-center gap-4 shrink-0">
-                  <span className="font-serif text-3xl font-bold text-brand-gold/30 leading-none w-8 text-right">
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
-                  <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-brand-navy/8 text-brand-navy group-hover:bg-brand-gold/15 group-hover:text-brand-gold transition-colors">
-                    {service.icon}
+                {/* Thumbnail image */}
+                <div className="relative w-full sm:w-48 h-44 sm:h-auto shrink-0 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt=""
+                    aria-hidden="true"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to right, transparent 60%, rgba(255,255,255,0.08))" }} aria-hidden="true" />
+                </div>
+
+                {/* Number + icon + content */}
+                <div className="flex flex-col sm:flex-row items-start gap-6 flex-1 p-6 sm:p-8">
+                  <div className="flex items-center gap-4 shrink-0">
+                    <span className="font-serif text-3xl font-bold text-brand-gold/30 leading-none w-8 text-right">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-brand-navy/8 text-brand-navy group-hover:bg-brand-gold/15 group-hover:text-brand-gold transition-colors">
+                      {service.icon}
+                    </div>
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="flex-1">
-                  <h2 className="font-serif text-xl font-bold text-brand-navy mb-1 group-hover:text-brand-gold transition-colors">
-                    {service.title}
-                  </h2>
-                  <p className="font-sans text-sm font-semibold text-brand-gold mb-3">{service.tagline}</p>
-                  <p className="font-sans text-sm text-slate-600 leading-relaxed">{service.description}</p>
-                </div>
+                  <div className="flex-1">
+                    <h2 className="font-serif text-xl font-bold text-brand-navy mb-1 group-hover:text-brand-gold transition-colors">
+                      {service.title}
+                    </h2>
+                    <p className="font-sans text-sm font-semibold text-brand-gold mb-3">{service.tagline}</p>
+                    <p className="font-sans text-sm text-slate-600 leading-relaxed">{service.description}</p>
+                  </div>
 
-                {/* Arrow */}
-                <div className="shrink-0 self-center text-slate-300 group-hover:text-brand-gold transition-colors">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  <div className="shrink-0 self-center text-slate-300 group-hover:text-brand-gold transition-colors">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
                 </div>
               </Link>
             ))}

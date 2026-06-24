@@ -5,9 +5,19 @@ import Link from "next/link";
 import { Quote, ArrowRight } from "lucide-react";
 import type { TestimonialCard as TestimonialCardType } from "@/lib/cms";
 
+const INDUSTRY_COVER: Record<string, string> = {
+  "Agro Processing":       "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=260&fit=crop&q=80",
+  "Engineering / B2B Tech":"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=260&fit=crop&q=80",
+  "Healthcare / Diagnostics":"https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&h=260&fit=crop&q=80",
+  "Finance":               "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=260&fit=crop&q=80",
+  "Manufacturing":         "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&h=260&fit=crop&q=80",
+};
+const DEFAULT_COVER = "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=260&fit=crop&q=80";
+
 interface CardProps { company: string; industry: string; outcome: string; quote: string; attribution: string; slug: string; imageUrl: string | null; }
 
 function CaseStudyCard({ company, industry, outcome, quote, attribution, slug, imageUrl }: CardProps) {
+  const coverImage = INDUSTRY_COVER[industry] ?? DEFAULT_COVER;
   return (
     <div
       className="case-card group flex flex-col rounded-2xl overflow-hidden h-full"
@@ -25,19 +35,27 @@ function CaseStudyCard({ company, industry, outcome, quote, attribution, slug, i
         el.style.transform = "translateY(0)";
       }}
     >
-      {/* Top gradient stripe */}
-      <div className="h-1 w-full group-hover:h-1.5 transition-all duration-300"
-        style={{ background: "linear-gradient(90deg, #F59E0B, #0F2D52)" }} aria-hidden="true" />
-
-      <div className="flex flex-col flex-1 p-7">
-        {imageUrl && (
-          <div className="mb-5 h-16 w-16 rounded-xl border border-slate-100 bg-slate-50 bg-cover bg-center shadow-sm"
-            style={{ backgroundImage: `url("${imageUrl}")` }} role="img" aria-label={`${company} logo`} />
-        )}
-
-        <span className="inline-block self-start text-xs font-bold uppercase tracking-wider text-brand-gold bg-brand-gold/10 px-2.5 py-1 rounded-full mb-4">
+      {/* Cover image */}
+      <div className="relative w-full h-40 overflow-hidden shrink-0">
+        <img
+          src={coverImage}
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(15,45,82,0.55))" }} />
+        {/* Industry badge pinned over image */}
+        <span className="absolute bottom-3 left-4 text-xs font-bold uppercase tracking-wider text-white bg-brand-gold/90 px-2.5 py-1 rounded-full">
           {industry}
         </span>
+        {/* Company logo if provided */}
+        {imageUrl && (
+          <div className="absolute top-3 right-3 h-10 w-10 rounded-lg border border-white/30 bg-white/90 bg-cover bg-center shadow-sm"
+            style={{ backgroundImage: `url("${imageUrl}")` }} role="img" aria-label={`${company} logo`} />
+        )}
+      </div>
+
+      <div className="flex flex-col flex-1 p-6">
 
         <h3 className="font-serif text-lg font-bold text-brand-navy mb-2 leading-snug">{company}</h3>
 
