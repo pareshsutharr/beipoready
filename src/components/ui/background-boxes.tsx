@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 const LOGOS = [
-  "/svgs/ADANIENSOL.NS_BIG.png",
+  "/svgs/ADANIENSOL.NS_BIG-hq.png",
   "/svgs/ADANIGREEN.NS.png",
   "/svgs/AXISBANK.BO.svg",
   "/svgs/BAJFINANCE.NS.svg",

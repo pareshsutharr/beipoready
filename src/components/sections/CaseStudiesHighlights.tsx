@@ -36,7 +36,7 @@ function CaseStudyCard({ company, industry, outcome, quote, attribution, slug, i
       }}
     >
       {/* Cover image */}
-      <div className="relative w-full h-40 overflow-hidden shrink-0">
+      <div className="relative h-44 w-full shrink-0 overflow-hidden">
         <img
           src={coverImage}
           alt=""
@@ -55,17 +55,17 @@ function CaseStudyCard({ company, industry, outcome, quote, attribution, slug, i
         )}
       </div>
 
-      <div className="flex flex-col flex-1 p-6">
+      <div className="flex flex-1 flex-col p-7">
 
-        <h3 className="font-serif text-lg font-bold text-brand-navy mb-2 leading-snug">{company}</h3>
+        <h3 className="mb-3 font-serif text-xl font-bold leading-snug text-brand-navy">{company}</h3>
 
-        <p className="text-sm font-semibold text-brand-navy/70 bg-brand-cream rounded-lg px-3 py-2 mb-5 leading-snug border border-brand-navy/8">
+        <p className="mb-5 rounded-lg border border-brand-navy/8 bg-brand-cream px-3.5 py-2.5 text-[0.95rem] font-semibold leading-snug text-brand-navy/70">
           {outcome}
         </p>
 
         <blockquote className="flex-1 mb-5">
           <Quote className="w-5 h-5 text-brand-gold/50 mb-2" aria-hidden="true" />
-          <p className="text-sm text-slate-500 leading-relaxed italic">&ldquo;{quote}&rdquo;</p>
+          <p className="text-[0.95rem] italic leading-relaxed text-slate-500">&ldquo;{quote}&rdquo;</p>
           <footer className="mt-2 text-xs text-slate-400 font-medium not-italic">— {attribution}</footer>
         </blockquote>
 
@@ -98,15 +98,15 @@ export default function CaseStudiesHighlights({ testimonials }: { testimonials: 
   }, []);
 
   return (
-    <section ref={secRef} className="w-full py-24 sm:py-32 bg-white" aria-labelledby="case-studies-heading">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={secRef} className="flex h-[55vh] max-h-[55vh] w-full items-center overflow-hidden bg-white" aria-labelledby="case-studies-heading">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="cs-head text-center mb-16">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">Client Outcomes</p>
           <h2 id="case-studies-heading" className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mb-4">Success Stories</h2>
           <p className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">Real companies that went from pre-IPO uncertainty to successful listings with our advisory support.</p>
         </div>
 
-        <ul className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-12" role="list">
+        <ul className="mb-12 grid grid-cols-1 gap-6 lg:grid-cols-3" role="list">
           {testimonials.map((t) => (
             <li key={`${t.client_name}-${t.company_name ?? t.case_study_slug ?? "t"}`} className="flex">
               <CaseStudyCard

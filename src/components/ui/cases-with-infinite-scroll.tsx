@@ -1,35 +1,73 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Carousel, type CarouselApi, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import {
+  Carousel,
+  type CarouselApi,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import type { ClientLogoCard } from "@/lib/cms";
 
+const FALLBACK_CLIENTS: ClientLogoCard[] = [
+  { name: "Reliance", logo_url: "/svgs/RELIANCE.NS.svg", website_url: null },
+  { name: "Infosys", logo_url: "/svgs/INFY.svg", website_url: null },
+  { name: "Titan", logo_url: "/svgs/TITAN.NS.svg", website_url: null },
+  { name: "TCS", logo_url: "/svgs/TCS.NS.svg", website_url: null },
+  { name: "State Bank", logo_url: "/svgs/SBIN.NS.svg", website_url: null },
+  { name: "Bharti Airtel", logo_url: "/svgs/BHARTIARTL.NS.svg", website_url: null },
+];
+
+const CLIENT_SUMMARIES = [
+  "IPO readiness review",
+  "Governance upgrade",
+  "Capital market planning",
+  "Investor story support",
+  "Listing roadmap advisory",
+  "Compliance preparation",
+];
+
+function getClientSummary(name: string) {
+  const seed = Array.from(name).reduce((total, char) => total + char.charCodeAt(0), 0);
+  return CLIENT_SUMMARIES[seed % CLIENT_SUMMARIES.length];
+}
+
 function ClientLogoTile({ client }: { client: ClientLogoCard }) {
+  const summary = getClientSummary(client.name);
+
   const tile = (
-    <div
-      className="flex h-24 items-center justify-center rounded-2xl px-5 py-4 group"
-      style={{ border: "1px solid rgba(15,45,82,0.1)", background: "#fff", transition: "box-shadow 0.3s, border-color 0.3s, transform 0.3s" }}
-      onMouseEnter={(e) => {
-        const el = e.currentTarget as HTMLDivElement;
-        el.style.boxShadow = "0 8px 32px rgba(245,158,11,0.15)";
-        el.style.borderColor = "rgba(245,158,11,0.5)";
-        el.style.transform = "translateY(-2px)";
-      }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget as HTMLDivElement;
-        el.style.boxShadow = "none";
-        el.style.borderColor = "rgba(15,45,82,0.1)";
-        el.style.transform = "translateY(0)";
-      }}
-    >
-      <div className="h-full w-full bg-contain bg-center bg-no-repeat opacity-70 hover:opacity-100 transition-opacity duration-300"
-        style={{ backgroundImage: `url("${client.logo_url}")` }} role="img" aria-label={`${client.name} logo`} />
+    <div className="flex h-[270px] w-full flex-col items-center rounded-[30px] bg-[#FFFDF6] px-8 pb-9 pt-8 shadow-[0_3px_18px_rgba(15,45,82,0.15)] ring-1 ring-[#F1EBDD]" >
+      <div className="flex h-[126px] w-[126px] items-center justify-center rounded-full bg-[#FFFDF6] p-3 shadow-[0_7px_16px_rgba(15,45,82,0.14),inset_0_1px_1px_rgba(255,255,255,0.95)] ring-1 ring-[#F1EBDD]">
+        <div className="flex h-[104px] w-[104px] items-center justify-center rounded-full bg-white p-4 shadow-[inset_0_0_0_1px_rgba(15,45,82,0.03)]">
+          <img
+            src={client.logo_url}
+            alt={`${client.name} logo`}
+            className="max-h-[76px] max-w-[84px] object-contain"
+          />
+        </div>
+      </div>
+
+      <div className="mt-[28px] max-w-[132px] text-center">
+        <h3 className="truncate text-[0.72rem] font-bold uppercase tracking-[0.08em] text-[#0D4A6F]">
+          {client.name}
+        </h3>
+        <p className="mt-2 text-[0.68rem] leading-[1.35] text-slate-500">
+          {summary}
+        </p>
+      </div>
     </div>
   );
 
   if (!client.website_url) return tile;
+
   return (
-    <a href={client.website_url} target="_blank" rel="noopener noreferrer" className="block" aria-label={client.name}>
+    <a
+      href={client.website_url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block"
+      aria-label={client.name}
+    >
       {tile}
     </a>
   );
@@ -37,49 +75,62 @@ function ClientLogoTile({ client }: { client: ClientLogoCard }) {
 
 function Case({ clients }: { clients: ClientLogoCard[] }) {
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
   const items = useMemo(() => {
-    if (clients.length >= 8) return clients;
-    return Array.from({ length: Math.ceil(8 / Math.max(clients.length, 1)) }, () => clients).flat();
+    const source = clients.length ? clients : FALLBACK_CLIENTS;
+    const repeatCount = Math.ceil(12 / source.length);
+
+    return Array.from({ length: repeatCount }, () => source).flat();
   }, [clients]);
 
   useEffect(() => {
     if (!api || items.length <= 1) return;
-    const timer = setTimeout(() => {
-      const isLast = api.selectedScrollSnap() + 1 === api.scrollSnapList().length;
-      if (isLast) { setCurrent(0); api.scrollTo(0); }
-      else { api.scrollNext(); setCurrent((v) => v + 1); }
-    }, 1800);
-    return () => clearTimeout(timer);
-  }, [api, current, items.length]);
 
-  if (!clients.length) return null;
+    const timer = window.setInterval(() => {
+      api.scrollNext();
+    }, 1900);
+
+    return () => window.clearInterval(timer);
+  }, [api, items.length]);
 
   return (
-    <section className="w-full py-20 sm:py-24 bg-brand-cream relative overflow-hidden" aria-labelledby="clients-heading">
-      {/* Subtle top/bottom rules */}
-      <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(90deg,transparent,rgba(15,45,82,0.15),transparent)" }} aria-hidden="true" />
-      <div className="absolute inset-x-0 bottom-0 h-px" style={{ background: "linear-gradient(90deg,transparent,rgba(15,45,82,0.15),transparent)" }} aria-hidden="true" />
-
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-10">
-          <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">Our Clients</p>
-            <h2 id="clients-heading" className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy leading-tight">
-              Trusted by growth-stage businesses preparing for public markets
+    <section
+      className="relative flex h-[90vh] w-full items-center overflow-hidden bg-[#FEFBF2]"
+      aria-labelledby="clients-heading"
+    >
+      <div className="mx-auto w-full max-w-[1040px] px-6 md:px-10 lg:px-12">
+        <div className="mb-[94px]">
+          <div className="flex items-center gap-2">
+            <h2
+              id="clients-heading"
+              className="font-sans text-[1.75rem] font-normal leading-[0.88] text-[#0D4A6F]"
+            >
+              Our
             </h2>
+            <span className="mt-1 h-px w-[52px] bg-[#0D4A6F]" />
+            <span className="mt-1 h-1 w-1 rounded-full bg-[#ECB85B]" />
           </div>
-
-          <Carousel setApi={setApi} opts={{ align: "start", loop: false }} className="w-full">
-            <CarouselContent>
-              {items.map((client, index) => (
-                <CarouselItem className="basis-1/2 sm:basis-1/3 lg:basis-1/5" key={`${client.name}-${index}`}>
-                  <ClientLogoTile client={client} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+          <p className="-mt-1 font-sans text-[2.28rem] font-bold leading-none text-[#ECB85B]">
+            Clients
+          </p>
         </div>
+
+        <Carousel
+          setApi={setApi}
+          opts={{ align: "start", loop: true, dragFree: false }}
+          className="w-[calc(100%+190px)]"
+        >
+          <CarouselContent className="-ml-[30px] py-8">
+            {items.map((client, index) => (
+              <CarouselItem
+                className="pl-[30px]"
+                style={{ flex: "0 0 244px" }}
+                key={`${client.name}-${index}`}
+              >
+                <ClientLogoTile client={client} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
     </section>
   );

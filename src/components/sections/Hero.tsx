@@ -1,173 +1,158 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { UserAvatars } from "@/components/ui/user-avatars";
-import { Boxes } from "@/components/ui/background-boxes";
+import BellAnimation from "@/components/ui/BellAnimation";
 
-const STATS = [
-  { num: "50+",      label: "SME IPOs Successfully Advised" },
-  { num: "₹500Cr+",  label: "Pre-IPO Capital Raised" },
-  { num: "95%",      label: "Client Satisfaction Rate" },
-  { num: "10+",      label: "Years of Capital Markets Experience" },
+const FLOAT_CARDS = [
+  { top: "11%", left: "3%",  right: "auto", delay: "0s" },
+  { top: "13%", left: "auto", right: "1%",  delay: "0.8s" },
+  { top: "46%", left: "6%",  right: "auto", delay: "1.6s" },
 ];
 
-const FOUNDER_USERS = [
-  { id: 1, name: "Rajesh Kumar", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" },
-  { id: 2, name: "Priya Mehta",  image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face" },
-  { id: 3, name: "Amit Shah",    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" },
-];
+const PANEL_H = "calc(100vh - 64px)";
 
 export default function Hero() {
-  const leftRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let ctx: { revert: () => void } | null = null;
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    import("gsap").then(({ gsap }) => {
-      ctx = gsap.context(() => {
-        const els = leftRef.current
-          ? Array.from(leftRef.current.querySelectorAll(".anim"))
-          : [];
-        if (els.length) {
-          gsap.from(els, {
-            y: 28,
-            duration: 0.65,
-            stagger: 0.11,
-            ease: "power3.out",
-            delay: 0.05,
-          });
-        }
-      }, leftRef);
-    });
-    return () => ctx?.revert();
-  }, []);
-
   return (
+    <>
+    <style>{`
+      @keyframes floatCard {
+        0%, 100% { transform: translateY(0px); }
+        50%       { transform: translateY(-10px); }
+      }
+    `}</style>
     <section
-      className="w-full flex"
-      style={{ minHeight: "calc(100vh - 96px)" }}
+      className="w-full relative overflow-hidden"
+      style={{
+        height: PANEL_H,
+        minHeight: "560px",
+        background: "linear-gradient(180deg, #ECB85B 0%, #FEFBF2 38%)",
+      }}
       aria-label="Hero"
     >
-      {/* ── LEFT: navy content panel ── */}
       <div
-        className="relative overflow-hidden flex items-center w-full lg:w-[54%] shrink-0"
-        style={{ background: "linear-gradient(135deg,#0F2D52 0%,#1B4F8A 100%)" }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-14 2xl:px-20 flex flex-col lg:flex-row h-full"
       >
-        {/* Animated grid background */}
-        <div className="absolute inset-0 w-full h-full z-0 [mask-image:radial-gradient(ellipse_60%_70%_at_30%_50%,transparent_30%,black_100%)]">
-          <Boxes />
-        </div>
 
-        <div
-          ref={leftRef}
-          className="relative z-10 w-full px-6 sm:px-10 lg:px-14 xl:px-20 py-16 lg:py-20"
-          style={{ maxWidth: "640px" }}
-        >
-          {/* Headline */}
+        {/* ── LEFT: text ── */}
+        <div className="w-full lg:w-[50%] xl:w-[46%] flex flex-col justify-center py-10 sm:py-12 lg:py-0 relative z-10 shrink-0">
           <h1
-            className="anim font-serif font-bold leading-[1.13] tracking-tight mb-5"
-            style={{ fontSize: "clamp(1.9rem, 3.2vw, 3.25rem)", color: "#ffffff" }}
+            className="font-serif font-bold leading-tight tracking-tight mb-4 lg:mb-5"
+            style={{
+              fontSize: "clamp(1.65rem, 2.8vw, 3.2rem)",
+              color: "#0D4A6F",
+            }}
           >
-            Your Architectural Path to the{" "}
-            <span className="relative inline-block">
-              Public Markets
-              <span
-                className="absolute left-0 -bottom-0.5 right-0 h-[3px] rounded-full"
-                style={{ background: "#F59E0B" }}
-                aria-hidden="true"
-              />
-            </span>
-            .
+            Your Architectural<br />
+            Path to the Public Markets.
           </h1>
 
-          {/* Sub */}
-          <p className="anim text-base sm:text-lg leading-relaxed mb-9 max-w-[500px]" style={{ color: "rgba(255,255,255,0.70)" }}>
-            We don&apos;t just consult; we architect the structural integrity of your equity
-            for a seamless IPO transition.
+          <p
+            className="leading-relaxed mb-7 lg:mb-9"
+            style={{
+              color: "#ECB85B",
+              fontSize: "clamp(0.875rem, 1.15vw, 1.05rem)",
+              maxWidth: "440px",
+            }}
+          >
+            As an expert IPO consultant, we handhold companies through every
+            stage of their journey from pre-IPO readiness and fund raising to
+            IPO execution and post-listing support.
           </p>
 
-          {/* CTA + Trusted by Founders */}
-          <div className="anim flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-3">
+          <div>
             <Link
               href="/ipo-readiness-tool"
-              className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-bold hover:opacity-90 active:scale-[.98] transition-all duration-150 cursor-pointer text-[15px] whitespace-nowrap"
-              style={{ background: "#F59E0B", color: "#0F2D52", boxShadow: "0 4px 22px rgba(245,158,11,0.45)" }}
+              className="inline-flex items-center justify-center rounded-lg font-bold text-white hover:opacity-90 active:scale-[.98] transition-all duration-150 cursor-pointer"
+              style={{
+                background: "#0D4A6F",
+                boxShadow: "0 4px 18px rgba(13,74,111,0.28)",
+                padding: "clamp(0.6rem, 0.9vw, 0.875rem) clamp(1.6rem, 2.5vw, 2.25rem)",
+                fontSize: "clamp(0.82rem, 1vw, 0.94rem)",
+              }}
             >
-              Start Assessment
-              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+              Start
             </Link>
-            <div className="flex items-center gap-3">
-                <UserAvatars
-                  users={FOUNDER_USERS}
-                  size={40}
-                  overlap={55}
-                  maxVisible={3}
-                  tooltipPlacement="top"
-                />
-                <span className="text-sm font-semibold text-white">Trusted by Founders</span>
-              </div>
           </div>
         </div>
-      </div>
 
-      {/* ── DIAGONAL SEPARATOR (visual only — never overlaps content) ── */}
-      <div className="hidden lg:block relative w-14 shrink-0 overflow-hidden" aria-hidden="true">
-        {/* Navy fill (left triangle) */}
+        {/* ── RIGHT: Bell + Persons + cards (lg+) ── */}
         <div
-          className="absolute inset-0"
-          style={{ background: "#1B4F8A", clipPath: "polygon(0 0, 55% 0, 0 100%)" }}
-        />
-        {/* Gold stripe */}
-        <div
-          className="absolute inset-0"
-          style={{ background: "#F59E0B", clipPath: "polygon(55% 0, 75% 0, 20% 100%, 0 100%)" }}
-        />
-        {/* White fill (right triangle) */}
-        <div
-          className="absolute inset-0"
-          style={{ background: "#ffffff", clipPath: "polygon(75% 0, 100% 0, 100% 100%, 20% 100%)" }}
-        />
-      </div>
-
-      {/* ── RIGHT: stat cards ── */}
-      <div className="hidden lg:flex flex-1 bg-white items-center justify-center px-10 xl:px-16">
-        <div className="w-full max-w-sm space-y-4">
-          {STATS.map((s) => (
+          className="hidden lg:block flex-1 relative"
+          style={{ height: PANEL_H, minHeight: "560px" }}
+        >
+          {/* Floating stat cards */}
+          {FLOAT_CARDS.map((pos, i) => (
             <div
-              key={s.label}
-              className="flex items-center gap-4 bg-white rounded-2xl px-5 py-4 border border-slate-100"
-              style={{ boxShadow: "0 2px 16px rgba(15,45,82,0.08)" }}
+              key={i}
+              className="absolute bg-white rounded-xl z-20"
+              style={{
+                top: pos.top,
+                left: pos.left,
+                right: pos.right,
+                padding: "clamp(0.45rem, 0.6vh, 0.75rem) clamp(0.7rem, 1vw, 1.25rem)",
+                boxShadow: "0 4px 22px rgba(13,74,111,0.12)",
+                animation: `floatCard 3s ease-in-out infinite`,
+                animationDelay: pos.delay,
+              }}
             >
-              <span
-                className="font-serif text-3xl font-bold shrink-0 leading-none"
-                style={{ color: "#0F2D52" }}
+              <p
+                className="font-bold text-[#0D4A6F] leading-tight"
+                style={{ fontSize: "clamp(0.85rem, 1.4vh, 1.2rem)" }}
               >
-                {s.num}
-              </span>
-              <span className="text-sm text-slate-600 font-medium leading-snug">{s.label}</span>
+                $12B+
+              </p>
+              <p
+                className="text-slate-500 font-medium mt-0.5"
+                style={{ fontSize: "clamp(0.6rem, 0.9vh, 0.72rem)" }}
+              >
+                Capital Raised
+              </p>
             </div>
           ))}
 
-          {/* Bottom CTA card */}
-          <Link
-            href="/ipo-readiness-tool"
-            className="flex items-center justify-between gap-3 rounded-2xl px-5 py-4 group cursor-pointer transition-all duration-200 hover:opacity-95"
-            style={{ background: "linear-gradient(135deg,#0F2D52,#1B4F8A)", boxShadow: "0 4px 20px rgba(15,45,82,0.25)" }}
+          {/* Bell – animated, top 56% of panel height */}
+          <BellAnimation
+            className="absolute left-0 right-0"
+            style={{ top: "-9.4%", height: "56%" }}
+          />
+
+          {/* Persons – bottom 52% of panel height, centered */}
+          <div
+            className="absolute left-0 right-0 flex justify-center bottom-0"
+            style={{ height: "52%" }}
           >
-            <div>
-              <p className="text-white font-bold text-sm leading-snug">Free IPO Readiness Check</p>
-              <p className="text-white/60 text-xs mt-0.5">Answer 20 questions. Get your score instantly.</p>
-            </div>
-            <ArrowRight className="w-5 h-5 text-yellow-400 shrink-0 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
-          </Link>
+            <Image
+              src="/persons-hq.png"
+              alt="Business professionals looking up at IPO bell"
+              width={1929}
+              height={1092}
+              className="h-full w-auto object-contain"
+              style={{ maxWidth: "640px" }}
+            />
+          </div>
         </div>
-        {/* erdgtdyg */}
+
+        {/* ── Mobile / Tablet stacked ── */}
+        <div className="lg:hidden w-full flex flex-col items-center justify-center pb-6 gap-0">
+          <Image
+            src="/bellimage.png"
+            alt="IPO Bell"
+            width={300}
+            height={300}
+            className="w-40 sm:w-52 h-auto object-contain"
+          />
+          <Image
+            src="/persons-hq.png"
+            alt="Business professionals"
+            width={1929}
+            height={1092}
+            className="w-64 sm:w-80 h-auto object-contain -mt-4"
+          />
+        </div>
+
       </div>
     </section>
-
+    </>
   );
 }

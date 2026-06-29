@@ -1,4 +1,6 @@
 import Hero from "@/components/sections/Hero";
+import StatsBanner from "@/components/sections/StatsBanner";
+import PathwaySection from "@/components/sections/PathwaySection";
 import TrustStats from "@/components/sections/TrustStats";
 import { Case } from "@/components/ui/cases-with-infinite-scroll";
 import VisualQuote from "@/components/sections/VisualQuote";
@@ -20,7 +22,9 @@ export default async function Home() {
   return (
     <>
       <Hero />
-      <TrustStats stats={stats} />
+      <StatsBanner />
+      <PathwaySection />
+      {/* <TrustStats stats={stats} /> */}
       <Case clients={clients} />
       <VisualQuote />
       <ServicesOverview />
