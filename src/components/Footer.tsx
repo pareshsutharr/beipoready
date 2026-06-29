@@ -55,6 +55,7 @@ export default function Footer() {
       {/* Top gold line */}
       <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(90deg,transparent,#F59E0B,transparent)" }} aria-hidden="true" />
       {/* Background glow */}
+      {/* testing */}
       <div className="absolute top-0 right-0 w-[500px] h-[300px] pointer-events-none"
         style={{ background: "radial-gradient(ellipse, rgba(245,158,11,0.07) 0%, transparent 70%)" }} aria-hidden="true" />
 
