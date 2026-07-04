@@ -2,23 +2,111 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import BellAnimation from "@/components/ui/BellAnimation";
-
-const FLOAT_CARDS = [
-  { top: "11%", left: "3%",  right: "auto", delay: "0s" },
-  { top: "13%", left: "auto", right: "1%",  delay: "0.8s" },
-  { top: "46%", left: "6%",  right: "auto", delay: "1.6s" },
-];
 
 const PANEL_H = "calc(100vh - 64px)";
+
+const HEADLINE_LINES = [
+  { text: "Your Architectural", accent: false },
+  { text: "Path to the", accent: false },
+  { text: "Public Markets.", accent: true },
+];
+
+const LETTER_STAGGER = 0.032; // seconds per letter
+const HEADLINE_LETTERS = HEADLINE_LINES.reduce(
+  (n, l) => n + l.text.replace(/ /g, "").length,
+  0
+);
+const AFTER_HEADLINE = 0.35 + HEADLINE_LETTERS * LETTER_STAGGER;
+
+const FLOAT_CARDS = [
+  {
+    value: "$12B+",
+    label: "Capital Raised",
+    style: { top: "16%", right: "6%" },
+    delay: "0s",
+  },
+  {
+    value: "120+",
+    label: "IPOs Guided",
+    // straddles the text/image seam so the partition reads as one surface
+    style: { bottom: "18%", left: "-3.5rem" },
+    delay: "1.4s",
+  },
+];
+
+function AnimatedHeadline() {
+  let letterIndex = 0;
+  return (
+    <h1
+      className="font-serif font-bold leading-tight tracking-tight mb-4 lg:mb-5"
+      style={{ fontSize: "clamp(1.75rem, 3vw, 3.3rem)", color: "#0D4A6F" }}
+    >
+      {HEADLINE_LINES.map((line, li) => (
+        <span key={li} className="block">
+          {line.text.split(" ").map((word, wi) => (
+            <span key={wi} className="inline-block whitespace-nowrap">
+              {word.split("").map((ch, ci) => {
+                const delay = 0.35 + letterIndex++ * LETTER_STAGGER;
+                return (
+                  <span
+                    key={ci}
+                    className="hero-letter inline-block"
+                    style={{
+                      animationDelay: `${delay}s`,
+                      color: line.accent ? "#ECB85B" : undefined,
+                    }}
+                  >
+                    {ch}
+                  </span>
+                );
+              })}
+              {wi < line.text.split(" ").length - 1 && " "}
+            </span>
+          ))}
+        </span>
+      ))}
+    </h1>
+  );
+}
 
 export default function Hero() {
   return (
     <>
     <style>{`
+      @keyframes heroLetterIn {
+        from { opacity: 0; transform: translateX(-0.55em); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes heroFadeUp {
+        from { opacity: 0; transform: translateY(14px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
       @keyframes floatCard {
         0%, 100% { transform: translateY(0px); }
-        50%       { transform: translateY(-10px); }
+        50%      { transform: translateY(-10px); }
+      }
+      .hero-letter {
+        opacity: 0;
+        animation: heroLetterIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .hero-fade {
+        opacity: 0;
+        animation: heroFadeUp 0.6s ease-out both;
+      }
+      .hero-img-merge {
+        -webkit-mask-image: linear-gradient(to left, black 55%, transparent 99%);
+                mask-image: linear-gradient(to left, black 55%, transparent 99%);
+      }
+      .hero-img-merge-mobile {
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 28%, black 82%, transparent 100%);
+                mask-image: linear-gradient(to bottom, transparent 0%, black 28%, black 82%, transparent 100%);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-letter, .hero-fade {
+          animation: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
       }
     `}</style>
     <section
@@ -26,33 +114,43 @@ export default function Hero() {
       style={{
         height: PANEL_H,
         minHeight: "560px",
-        background: "linear-gradient(180deg, #ECB85B 0%, #FEFBF2 38%)",
+        background: "#FEFBF2",
       }}
       aria-label="Hero"
     >
-      <div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-14 2xl:px-20 flex flex-col lg:flex-row h-full"
-      >
+      {/* ── RIGHT: team photo, left edge dissolves into the background (lg+) ── */}
+      <div className="hero-img-merge hidden lg:block absolute inset-y-0 right-0 w-[60%]">
+        <Image
+          src="/heroteamimg.JPG"
+          alt="The Be IPO Ready advisory team collaborating in the office"
+          fill
+          preload
+          sizes="(min-width: 1024px) 60vw, 100vw"
+          className="object-cover object-[70%_center]"
+        />
+        {/* warm wash so the photo sits in the brand palette */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(254,251,242,0.55) 0%, rgba(254,251,242,0) 45%)",
+          }}
+        />
+      </div>
 
-        {/* ── LEFT: text ── */}
-        <div className="w-full lg:w-[50%] xl:w-[46%] flex flex-col justify-center py-10 sm:py-12 lg:py-0 relative z-10 shrink-0">
-          <h1
-            className="font-serif font-bold leading-tight tracking-tight mb-4 lg:mb-5"
-            style={{
-              fontSize: "clamp(1.65rem, 2.8vw, 3.2rem)",
-              color: "#0D4A6F",
-            }}
-          >
-            Your Architectural<br />
-            Path to the Public Markets.
-          </h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-14 2xl:px-20 flex flex-col lg:flex-row h-full relative">
+
+        {/* ── LEFT: animated text ── */}
+        <div className="w-full lg:w-[46%] xl:w-[44%] flex flex-col justify-center py-10 sm:py-12 lg:py-0 relative z-10 shrink-0">
+          <AnimatedHeadline />
 
           <p
-            className="leading-relaxed mb-7 lg:mb-9"
+            className="hero-fade leading-relaxed mb-7 lg:mb-9"
             style={{
-              color: "#ECB85B",
-              fontSize: "clamp(0.875rem, 1.15vw, 1.05rem)",
+              color: "#475569",
+              fontSize: "clamp(0.9rem, 1.15vw, 1.05rem)",
               maxWidth: "440px",
+              animationDelay: `${AFTER_HEADLINE}s`,
             }}
           >
             As an expert IPO consultant, we handhold companies through every
@@ -60,7 +158,7 @@ export default function Hero() {
             IPO execution and post-listing support.
           </p>
 
-          <div>
+          <div className="hero-fade" style={{ animationDelay: `${AFTER_HEADLINE + 0.15}s` }}>
             <Link
               href="/ipo-readiness-tool"
               className="inline-flex items-center justify-center rounded-lg font-bold text-white hover:opacity-90 active:scale-[.98] transition-all duration-150 cursor-pointer"
@@ -76,79 +174,47 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── RIGHT: Bell + Persons + cards (lg+) ── */}
-        <div
-          className="hidden lg:block flex-1 relative"
-          style={{ height: PANEL_H, minHeight: "560px" }}
-        >
-          {/* Floating stat cards */}
-          {FLOAT_CARDS.map((pos, i) => (
+        {/* ── Floating stat cards over the photo (lg+) ── */}
+        <div className="hidden lg:block flex-1 relative">
+          {FLOAT_CARDS.map((card, i) => (
             <div
               key={i}
-              className="absolute bg-white rounded-xl z-20"
+              className="hero-fade absolute bg-white rounded-xl z-20"
               style={{
-                top: pos.top,
-                left: pos.left,
-                right: pos.right,
+                ...card.style,
                 padding: "clamp(0.45rem, 0.6vh, 0.75rem) clamp(0.7rem, 1vw, 1.25rem)",
-                boxShadow: "0 4px 22px rgba(13,74,111,0.12)",
-                animation: `floatCard 3s ease-in-out infinite`,
-                animationDelay: pos.delay,
+                boxShadow: "0 4px 22px rgba(13,74,111,0.14)",
+                animation: `heroFadeUp 0.6s ease-out both, floatCard 3.2s ease-in-out ${AFTER_HEADLINE + 0.9}s infinite`,
+                animationDelay: `${AFTER_HEADLINE + 0.3 + i * 0.2}s`,
               }}
             >
               <p
                 className="font-bold text-[#0D4A6F] leading-tight"
                 style={{ fontSize: "clamp(0.85rem, 1.4vh, 1.2rem)" }}
               >
-                $12B+
+                {card.value}
               </p>
               <p
                 className="text-slate-500 font-medium mt-0.5"
                 style={{ fontSize: "clamp(0.6rem, 0.9vh, 0.72rem)" }}
               >
-                Capital Raised
+                {card.label}
               </p>
             </div>
           ))}
-
-          {/* Bell – animated, top 56% of panel height */}
-          <BellAnimation
-            className="absolute left-0 right-0"
-            style={{ top: "-9.4%", height: "56%" }}
-          />
-
-          {/* Persons – bottom 52% of panel height, centered */}
-          <div
-            className="absolute left-0 right-0 flex justify-center bottom-0"
-            style={{ height: "52%" }}
-          >
-            <Image
-              src="/persons-hq.png"
-              alt="Business professionals looking up at IPO bell"
-              width={1929}
-              height={1092}
-              className="h-full w-auto object-contain"
-              style={{ maxWidth: "640px" }}
-            />
-          </div>
         </div>
 
-        {/* ── Mobile / Tablet stacked ── */}
-        <div className="lg:hidden w-full flex flex-col items-center justify-center pb-6 gap-0">
-          <Image
-            src="/bellimage.png"
-            alt="IPO Bell"
-            width={300}
-            height={300}
-            className="w-40 sm:w-52 h-auto object-contain"
-          />
-          <Image
-            src="/persons-hq.png"
-            alt="Business professionals"
-            width={1929}
-            height={1092}
-            className="w-64 sm:w-80 h-auto object-contain -mt-4"
-          />
+        {/* ── Mobile / Tablet: photo below text, soft-blended top & bottom ── */}
+        <div className="lg:hidden relative flex-1 min-h-[240px] -mx-4 sm:-mx-6 w-[calc(100%+2rem)] sm:w-[calc(100%+3rem)]">
+          <div className="hero-img-merge-mobile absolute inset-0">
+            <Image
+              src="/heroteamimg.JPG"
+              alt="The Be IPO Ready advisory team collaborating in the office"
+              fill
+              sizes="100vw"
+              className="object-cover object-[60%_center]"
+            />
+          </div>
         </div>
 
       </div>
