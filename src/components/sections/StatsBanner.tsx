@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { TrendingUp, ShieldCheck, Activity } from "lucide-react";
 
 const STATS = [
@@ -35,41 +34,6 @@ export default function StatsBanner() {
 
       {/* Bounded max-width shell — decoratives + content all constrained here */}
       <div className="relative w-full max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 py-16 sm:py-20 flex flex-col items-center gap-10">
-
-        {/* Opening quote — top left */}
-        <Image
-                 src="/blueshape-hq.png"
-          alt="" aria-hidden="true"
-          width={80} height={66}
-          className="absolute top-8 left-6 pointer-events-none select-none"
-        />
-
-        {/* Blue triangle — upper right */}
-        <Image
-          src="/blueshape-hq.png"
-          alt="" aria-hidden="true"
-          width={190} height={100}
-          className="absolute top-0 right-6 pointer-events-none select-none"
-          // style={{ transform: "scaleX(-1)" }}
-        />
-
-        {/* Closing quote — bottom right */}
-        <Image
-          src="/whitepolo-hq.png"
-          alt="" aria-hidden="true"
-          width={80} height={66}
-          className="absolute bottom-0 right-0 pointer-events-none select-none"
-          style={{ transform: "rotate(180deg)" }}
-        />
-
-        {/* Orange triangle — bottom left */}
-        <Image
-          src="/Polygon 73-hq.png"
-          alt="" aria-hidden="true"
-          width={70} height={60}
-          className="absolute bottom-[-50] left-0 pointer-events-none select-none"
-          style={{ transform: "scaleX(1)" }}
-        />
 
       {/* Content */}
       <div className="relative z-10 w-full flex flex-col items-center gap-10">

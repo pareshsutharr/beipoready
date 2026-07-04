@@ -18,22 +18,6 @@ const HEADLINE_LETTERS = HEADLINE_LINES.reduce(
 );
 const AFTER_HEADLINE = 0.35 + HEADLINE_LETTERS * LETTER_STAGGER;
 
-const FLOAT_CARDS = [
-  {
-    value: "$12B+",
-    label: "Capital Raised",
-    style: { top: "16%", right: "6%" },
-    delay: "0s",
-  },
-  {
-    value: "120+",
-    label: "IPOs Guided",
-    // straddles the text/image seam so the partition reads as one surface
-    style: { bottom: "18%", left: "-3.5rem" },
-    delay: "1.4s",
-  },
-];
-
 function AnimatedHeadline() {
   let letterIndex = 0;
   return (
@@ -80,10 +64,6 @@ export default function Hero() {
       @keyframes heroFadeUp {
         from { opacity: 0; transform: translateY(14px); }
         to   { opacity: 1; transform: translateY(0); }
-      }
-      @keyframes floatCard {
-        0%, 100% { transform: translateY(0px); }
-        50%      { transform: translateY(-10px); }
       }
       .hero-letter {
         opacity: 0;
@@ -172,36 +152,6 @@ export default function Hero() {
               Start
             </Link>
           </div>
-        </div>
-
-        {/* ── Floating stat cards over the photo (lg+) ── */}
-        <div className="hidden lg:block flex-1 relative">
-          {FLOAT_CARDS.map((card, i) => (
-            <div
-              key={i}
-              className="hero-fade absolute bg-white rounded-xl z-20"
-              style={{
-                ...card.style,
-                padding: "clamp(0.45rem, 0.6vh, 0.75rem) clamp(0.7rem, 1vw, 1.25rem)",
-                boxShadow: "0 4px 22px rgba(13,74,111,0.14)",
-                animation: `heroFadeUp 0.6s ease-out both, floatCard 3.2s ease-in-out ${AFTER_HEADLINE + 0.9}s infinite`,
-                animationDelay: `${AFTER_HEADLINE + 0.3 + i * 0.2}s`,
-              }}
-            >
-              <p
-                className="font-bold text-[#0D4A6F] leading-tight"
-                style={{ fontSize: "clamp(0.85rem, 1.4vh, 1.2rem)" }}
-              >
-                {card.value}
-              </p>
-              <p
-                className="text-slate-500 font-medium mt-0.5"
-                style={{ fontSize: "clamp(0.6rem, 0.9vh, 0.72rem)" }}
-              >
-                {card.label}
-              </p>
-            </div>
-          ))}
         </div>
 
         {/* ── Mobile / Tablet: photo below text, soft-blended top & bottom ── */}
