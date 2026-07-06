@@ -53,7 +53,7 @@ export default function Header() {
       <nav ref={navRef} aria-label="Main navigation" className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center h-16 gap-1">
 
         {/* Logo */}
-        <Link href="/" className="shrink-0 mr-6">
+        <Link href="/" className="shrink-0 mr-3 xl:mr-6">
           <Image
             src="/logo1-hq.png"
             alt="Be IPO Ready"
@@ -65,7 +65,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden lg:flex items-center gap-0 text-[13.5px] font-medium flex-1" role="list">
+        <ul className="hidden lg:flex items-center gap-0 text-[12.5px] xl:text-[13.5px] font-medium flex-1" role="list">
           {navLinks.map((link) =>
             link.children ? (
               <li key={link.label} className="relative">
@@ -73,7 +73,7 @@ export default function Header() {
                   aria-haspopup="true"
                   aria-expanded={openDropdown === link.label}
                   onClick={() => setOpenDropdown(openDropdown === link.label ? null : link.label)}
-                  className="flex items-center gap-1 px-3 py-2 rounded-md whitespace-nowrap transition-colors duration-150 cursor-pointer"
+                  className="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-md whitespace-nowrap transition-colors duration-150 cursor-pointer"
                   style={{ color: openDropdown === link.label ? "#0D4A6F" : "#374151" }}
                   onMouseEnter={e => (e.currentTarget.style.color = "#0D4A6F")}
                   onMouseLeave={e => (e.currentTarget.style.color = openDropdown === link.label ? "#0D4A6F" : "#374151")}
@@ -117,7 +117,7 @@ export default function Header() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="block px-3 py-2 rounded-md whitespace-nowrap text-[#374151] hover:text-[#0D4A6F] transition-colors duration-150"
+                  className="block px-2 xl:px-3 py-2 rounded-md whitespace-nowrap text-[#374151] hover:text-[#0D4A6F] transition-colors duration-150"
                 >
                   {link.label}
                 </Link>
@@ -129,7 +129,7 @@ export default function Header() {
         {/* CTA button */}
         <Link
           href="/contact-us"
-          className="hidden lg:inline-flex items-center ml-3 px-5 py-2.5 rounded-lg font-bold whitespace-nowrap text-[13.5px] hover:opacity-90 active:scale-95 transition-all duration-150 cursor-pointer shrink-0"
+          className="hidden lg:inline-flex items-center ml-2 xl:ml-3 px-3 xl:px-5 py-2.5 rounded-lg font-bold whitespace-nowrap text-[12.5px] xl:text-[13.5px] hover:opacity-90 active:scale-95 transition-all duration-150 cursor-pointer shrink-0"
           style={{ background: "#ECB85B", color: "#0D4A6F", boxShadow: "0 2px 12px rgba(236,184,91,0.35)" }}
         >
           Book a Free IPO Readiness Call

@@ -14,7 +14,8 @@
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000 --max-time 15)",
       "Bash(curl -s http://localhost:3000)",
       "Bash(sed -i '' 's|from \"playwright\"|from \"/Users/pareshsuthar/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/index.mjs\"|' /private/tmp/claude-501/-Users-pareshsuthar-Desktop-BEIPOREADY-V2/9705bcac-6621-4e43-a3d2-b5ab0f97286f/scratchpad/shot.mjs)",
-      "Bash(node shot.mjs home-full2.png)"
+      "Bash(node shot.mjs home-full2.png)",
+      "Bash(node -e ' *)"
     ]
   }
 }

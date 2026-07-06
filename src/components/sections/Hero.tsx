@@ -23,7 +23,7 @@ function AnimatedHeadline() {
   return (
     <h1
       className="font-serif font-bold leading-tight tracking-tight mb-4 lg:mb-5"
-      style={{ fontSize: "clamp(1.75rem, 3vw, 3.3rem)", color: "#0D4A6F" }}
+      style={{ fontSize: "clamp(1.75rem, 3vw, 2.85rem)", color: "#0D4A6F" }}
     >
       {HEADLINE_LINES.map((line, li) => (
         <span key={li} className="block">
@@ -73,9 +73,14 @@ export default function Hero() {
         opacity: 0;
         animation: heroFadeUp 0.6s ease-out both;
       }
+      /* 40/60 split: text owns the left 40% of the viewport, the photo the
+         right 60%, at every desktop width. The left ~30% of the photo fades
+         so the seam stays soft without ghosting over the copy. */
       .hero-img-merge {
-        -webkit-mask-image: linear-gradient(to left, black 55%, transparent 99%);
-                mask-image: linear-gradient(to left, black 55%, transparent 99%);
+        -webkit-mask-image: linear-gradient(to left, transparent 0%, black 7%, black 68%, transparent 97%);
+                mask-image: linear-gradient(to left, transparent 0%, black 7%, black 68%, transparent 97%);
+        left: 40%;
+        right: 0;
       }
       .hero-img-merge-mobile {
         -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 28%, black 82%, transparent 100%);
@@ -99,21 +104,24 @@ export default function Hero() {
       aria-label="Hero"
     >
       {/* ── RIGHT: team photo, left edge dissolves into the background (lg+) ── */}
-      <div className="hero-img-merge hidden lg:block absolute inset-y-0 right-0 w-[65%]">
+      {/* Left edge tracks the centered max-w-7xl container (1280px wide, image
+          starts 424px in), so the text/image geometry is identical on every
+          screen width instead of drifting over the copy on large monitors. */}
+      <div className="hero-img-merge hidden lg:block absolute inset-y-0">
         <Image
           src="/heroteamimg.JPG"
           alt="The Be IPO Ready advisory team collaborating in the office"
           fill
           preload
           sizes="(min-width: 1024px) 60vw, 100vw"
-          className="object-cover object-[70%_center]"
+          className="object-cover object-[55%_center]"
         />
         {/* warm wash so the photo sits in the brand palette */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "linear-gradient(to right, rgba(254,251,242,0.55) 0%, rgba(254,251,242,0) 45%)",
+              "linear-gradient(to right, rgba(254,251,242,0.35) 0%, rgba(254,251,242,0) 28%)",
           }}
         />
       </div>
