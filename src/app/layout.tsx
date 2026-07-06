@@ -16,11 +16,11 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Be IPO Ready | SME IPO Advisory Services",
-    template: "%s | Be IPO Ready",
+    default: "BEIPOREADY | India's Leading SME IPO Advisor & Growth Capital Expert",
+    template: "%s | BEIPOREADY",
   },
   description:
-    "Expert SME IPO advisory, pre-IPO fundraising, IPO readiness assessment, documentation support, and valuation & capital structuring services.",
+    "IPO advisory, pre-IPO readiness and growth-capital fundraising for Indian businesses — including NSE Emerge & BSE SME listings. Book a free IPO readiness call with BEIPOREADY.",
 };
 
 export default function RootLayout({

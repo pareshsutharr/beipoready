@@ -12,9 +12,11 @@ export default function FaqAccordion({ categories }: { categories: FaqCategory[]
     <div className="space-y-12">
       {categories.map((cat) => (
         <div key={cat.category}>
-          <h2 className="font-serif text-xl font-bold text-brand-navy mb-4 pb-3 border-b border-slate-200">
-            {cat.category}
-          </h2>
+          {cat.category && (
+            <h2 className="font-serif text-xl font-bold text-brand-navy mb-4 pb-3 border-b border-slate-200">
+              {cat.category}
+            </h2>
+          )}
           <div className="space-y-3">
             {cat.items.map((item) => {
               const id = `${cat.category}::${item.q}`;

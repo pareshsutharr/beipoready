@@ -6,9 +6,9 @@ import Link from "next/link";
 const PANEL_H = "calc(100vh - 64px)";
 
 const HEADLINE_LINES = [
-  { text: "Your Architectural", accent: false },
-  { text: "Path to the", accent: false },
-  { text: "Public Markets.", accent: true },
+  { text: "From Growth Capital", accent: false },
+  { text: "to a Confident", accent: false },
+  { text: "Public Listing", accent: true },
 ];
 
 const LETTER_STAGGER = 0.032; // seconds per letter
@@ -99,7 +99,7 @@ export default function Hero() {
       aria-label="Hero"
     >
       {/* ── RIGHT: team photo, left edge dissolves into the background (lg+) ── */}
-      <div className="hero-img-merge hidden lg:block absolute inset-y-0 right-0 w-[60%]">
+      <div className="hero-img-merge hidden lg:block absolute inset-y-0 right-0 w-[65%]">
         <Image
           src="/heroteamimg.JPG"
           alt="The Be IPO Ready advisory team collaborating in the office"
@@ -122,6 +122,13 @@ export default function Hero() {
 
         {/* ── LEFT: animated text ── */}
         <div className="w-full lg:w-[46%] xl:w-[44%] flex flex-col justify-center py-10 sm:py-12 lg:py-0 relative z-10 shrink-0">
+          <p
+            className="hero-fade text-xs font-bold uppercase tracking-[0.18em] text-[#B9822E] mb-4"
+            style={{ animationDelay: "0.1s" }}
+          >
+            India&rsquo;s Leading IPO Advisor &amp; Growth Capital Expert
+          </p>
+
           <AnimatedHeadline />
 
           <p
@@ -129,27 +136,40 @@ export default function Hero() {
             style={{
               color: "#475569",
               fontSize: "clamp(0.9rem, 1.15vw, 1.05rem)",
-              maxWidth: "440px",
+              maxWidth: "460px",
               animationDelay: `${AFTER_HEADLINE}s`,
             }}
           >
-            As an expert IPO consultant, we handhold companies through every
-            stage of their journey from pre-IPO readiness and fund raising to
-            IPO execution and post-listing support.
+            We help ambitious Indian businesses raise the right capital, get
+            truly IPO-ready, and list successfully on NSE Emerge, BSE SME, and
+            the Main Board.
           </p>
 
-          <div className="hero-fade" style={{ animationDelay: `${AFTER_HEADLINE + 0.15}s` }}>
+          <div
+            className="hero-fade flex flex-col sm:flex-row sm:items-center gap-3"
+            style={{ animationDelay: `${AFTER_HEADLINE + 0.15}s` }}
+          >
             <Link
-              href="/ipo-readiness-tool"
+              href="/contact-us"
               className="inline-flex items-center justify-center rounded-lg font-bold text-white hover:opacity-90 active:scale-[.98] transition-all duration-150 cursor-pointer"
               style={{
                 background: "#0D4A6F",
                 boxShadow: "0 4px 18px rgba(13,74,111,0.28)",
-                padding: "clamp(0.6rem, 0.9vw, 0.875rem) clamp(1.6rem, 2.5vw, 2.25rem)",
+                padding: "clamp(0.6rem, 0.9vw, 0.875rem) clamp(1.4rem, 2vw, 1.9rem)",
                 fontSize: "clamp(0.82rem, 1vw, 0.94rem)",
               }}
             >
-              Start
+              Book a Free IPO Readiness Call
+            </Link>
+            <Link
+              href="/ipo-readiness-tool"
+              className="inline-flex items-center justify-center rounded-lg font-bold text-[#0D4A6F] border border-[#0D4A6F]/30 hover:bg-[#0D4A6F]/5 active:scale-[.98] transition-all duration-150 cursor-pointer"
+              style={{
+                padding: "clamp(0.6rem, 0.9vw, 0.875rem) clamp(1.2rem, 1.8vw, 1.6rem)",
+                fontSize: "clamp(0.82rem, 1vw, 0.94rem)",
+              }}
+            >
+              Are You IPO Ready? — 2-Minute Check
             </Link>
           </div>
         </div>

@@ -5,11 +5,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const STEPS = [
-  { number: 1, label: "Readiness Assessment",      description: "Benchmark your financials, governance, and operations against SME listing norms." },
-  { number: 2, label: "Pre-IPO Preparation",       description: "Strengthen weak areas, restructure if needed, and build institutional-grade processes." },
-  { number: 3, label: "Documentation & Compliance",description: "Prepare DRHP, statutory filings, and SEBI submissions with zero gaps." },
-  { number: 4, label: "Valuation & Fundraising",   description: "Set a defensible price band and secure pre-IPO capital from aligned investors." },
-  { number: 5, label: "Listing",                   description: "Execute a confident market debut with full regulatory clearance and investor readiness." },
+  { number: 1, label: "Discover & Assess",     description: "Understand your business, goals and capital efficiency." },
+  { number: 2, label: "Diagnose & Plan",       description: "Identify gaps; build a roadmap and timeline." },
+  { number: 3, label: "Prepare & Strengthen",  description: "Implement fixes; tighten governance and systems." },
+  { number: 4, label: "Raise & Structure",     description: "Structure the raise; prepare documentation; connect investors and intermediaries." },
+  { number: 5, label: "Execute & List",        description: "Coordinate due diligence, documentation and a successful listing." },
+  { number: 6, label: "Grow Beyond Listing",   description: "Post-listing support so pre-IPO value becomes post-listing wealth." },
 ] as const;
 
 export default function ReadinessJourney() {
@@ -74,11 +75,8 @@ export default function ReadinessJourney() {
 
         {/* Heading */}
         <div className="jrn-head text-center mb-16">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">The Process</p>
-          <h2 id="journey-heading" className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mb-4">Your IPO Readiness Journey</h2>
-          <p className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">
-            A structured, five-stage path that takes you from where you are today to a confident listing on the SME Exchange.
-          </p>
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">How We Work</p>
+          <h2 id="journey-heading" className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mb-4">A clear path from where you are to publicly listed</h2>
         </div>
 
         {/* ── Desktop timeline ── */}

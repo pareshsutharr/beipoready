@@ -40,11 +40,13 @@ export type CaseStudyDetail = CaseStudyCard & {
   quotePerson: string;
 };
 
+// Placeholder values — replace with BEIPOREADY's real, verifiable figures
+// via the admin CMS (site_stats table). Never publish invented numbers.
 export const FALLBACK_STATS: Pick<SiteStat, "label" | "value">[] = [
-  { value: "₹150 Cr+", label: "Capital Raised" },
-  { value: "25+", label: "IPOs Advised" },
-  { value: "15+", label: "Years of Combined Experience" },
-  { value: "90%", label: "Client Success Rate" },
+  { value: "₹[XXX] Cr+", label: "Capital Raised" },
+  { value: "[XX]+", label: "Businesses Advised" },
+  { value: "[XX]", label: "Successful Listings" },
+  { value: "[XX]+", label: "Years of Capital-Market Experience" },
 ];
 
 export const FALLBACK_ARTICLES: Record<string, ArticleCard> = {
@@ -418,30 +420,12 @@ export async function getPublishedTestimonials(): Promise<TestimonialCard[]> {
       .order("sort_order", { ascending: true })
       .limit(3);
 
-    if (error || !data?.length) {
-      return Object.values(FALLBACK_CASE_STUDIES).map((cs) => ({
-        client_name: cs.quotePerson,
-        client_title: null,
-        company_name: cs.company,
-        industry: cs.sector,
-        image_url: null,
-        quote: cs.quote,
-        outcome: cs.outcome,
-        case_study_slug: cs.slug,
-      }));
-    }
+    // No invented fallback testimonials — sections hide until real,
+    // approved quotes are published via the CMS.
+    if (error || !data?.length) return [];
     return data;
   } catch {
-    return Object.values(FALLBACK_CASE_STUDIES).map((cs) => ({
-      client_name: cs.quotePerson,
-      client_title: null,
-      company_name: cs.company,
-      industry: cs.sector,
-      image_url: null,
-      quote: cs.quote,
-      outcome: cs.outcome,
-      case_study_slug: cs.slug,
-    }));
+    return [];
   }
 }
 

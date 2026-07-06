@@ -11,11 +11,11 @@ import SelectField from "./_SelectField";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const SERVICE_OPTIONS = [
-  { value: "SME IPO Advisory",                      label: "SME IPO Advisory" },
-  { value: "IPO Readiness Assessment",               label: "IPO Readiness Assessment" },
-  { value: "Pre-IPO Fundraising",                    label: "Pre-IPO Fundraising" },
-  { value: "IPO Documentation & Compliance Support", label: "IPO Documentation & Compliance Support" },
-  { value: "Valuation & Capital Structuring",        label: "Valuation & Capital Structuring" },
+  { value: "Fundraising & Growth Capital",  label: "Fundraising & Growth Capital" },
+  { value: "Pre-IPO Advisory",              label: "Pre-IPO Advisory" },
+  { value: "IPO Advisory",                  label: "IPO Advisory" },
+  { value: "Corporate Advisory & Valuation", label: "Corporate Advisory & Valuation" },
+  { value: "Not sure yet",                  label: "Not sure yet" },
 ];
 
 interface FormValues {

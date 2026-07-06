@@ -14,7 +14,7 @@ const INDUSTRY_COVER: Record<string, string> = {
 };
 const DEFAULT_COVER = "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=260&fit=crop&q=80";
 
-interface CardProps { company: string; industry: string; outcome: string; quote: string; attribution: string; slug: string; imageUrl: string | null; }
+interface CardProps { company: string; industry: string; outcome: string; quote: string; attribution: string; slug: string | null; imageUrl: string | null; }
 
 function CaseStudyCard({ company, industry, outcome, quote, attribution, slug, imageUrl }: CardProps) {
   const coverImage = INDUSTRY_COVER[industry] ?? DEFAULT_COVER;
@@ -69,10 +69,12 @@ function CaseStudyCard({ company, industry, outcome, quote, attribution, slug, i
           <footer className="mt-2 text-xs text-slate-400 font-medium not-italic">— {attribution}</footer>
         </blockquote>
 
-        <Link href={`/case-studies/${slug}`} className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-gold hover:text-amber-600 transition-colors duration-150 group/link">
-          Read Case Study
-          <ArrowRight className="w-4 h-4 transition-transform duration-150 group-hover/link:translate-x-0.5" aria-hidden="true" />
-        </Link>
+        {slug && (
+          <Link href={`/case-studies/${slug}`} className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-gold hover:text-amber-600 transition-colors duration-150 group/link">
+            Read Case Study
+            <ArrowRight className="w-4 h-4 transition-transform duration-150 group-hover/link:translate-x-0.5" aria-hidden="true" />
+          </Link>
+        )}
       </div>
     </div>
   );
@@ -97,13 +99,14 @@ export default function CaseStudiesHighlights({ testimonials }: { testimonials: 
     return () => ctx?.revert();
   }, []);
 
+  if (!testimonials.length) return null;
+
   return (
-    <section ref={secRef} className="flex h-[55vh] max-h-[55vh] w-full items-center overflow-hidden bg-white" aria-labelledby="case-studies-heading">
+    <section ref={secRef} className="w-full py-20 sm:py-28 bg-white" aria-labelledby="case-studies-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="cs-head text-center mb-16">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">Client Outcomes</p>
-          <h2 id="case-studies-heading" className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mb-4">Success Stories</h2>
-          <p className="text-base sm:text-lg text-slate-500 max-w-xl mx-auto leading-relaxed">Real companies that went from pre-IPO uncertainty to successful listings with our advisory support.</p>
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">What Our Clients Say</p>
+          <h2 id="case-studies-heading" className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mb-4">Results our clients talk about</h2>
         </div>
 
         <ul className="mb-12 grid grid-cols-1 gap-6 lg:grid-cols-3" role="list">
@@ -116,7 +119,7 @@ export default function CaseStudiesHighlights({ testimonials }: { testimonials: 
                 quote={t.quote}
                 imageUrl={t.image_url}
                 attribution={t.client_title ? `${t.client_name}, ${t.client_title}` : t.client_name}
-                slug={t.case_study_slug ?? "rajpur-agro-nse-emerge"}
+                slug={t.case_study_slug}
               />
             </li>
           ))}
