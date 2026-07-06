@@ -15,7 +15,11 @@
       "Bash(curl -s http://localhost:3000)",
       "Bash(sed -i '' 's|from \"playwright\"|from \"/Users/pareshsuthar/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/index.mjs\"|' /private/tmp/claude-501/-Users-pareshsuthar-Desktop-BEIPOREADY-V2/9705bcac-6621-4e43-a3d2-b5ab0f97286f/scratchpad/shot.mjs)",
       "Bash(node shot.mjs home-full2.png)",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g format /Users/pareshsuthar/Desktop/BEIPOREADY-V2/public/heroteamimg.png)",
+      "Bash(sips -Z 2560 -s format jpeg -s formatOptions 85 heroteamimg.png --out heroteamimg-web.jpg)",
+      "Bash(sips -g pixelWidth -g pixelHeight heroteamimg-web.jpg)",
+      "Bash(awk '{print $5\" bytes\"}')"
     ]
   }
 }

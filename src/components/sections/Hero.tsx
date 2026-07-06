@@ -74,12 +74,12 @@ export default function Hero() {
         animation: heroFadeUp 0.6s ease-out both;
       }
       /* 40/60 split: text owns the left 40% of the viewport, the photo the
-         right 60%, at every desktop width. The left ~30% of the photo fades
+         right 55%, at every desktop width. The left ~30% of the photo fades
          so the seam stays soft without ghosting over the copy. */
       .hero-img-merge {
         -webkit-mask-image: linear-gradient(to left, transparent 0%, black 7%, black 68%, transparent 97%);
                 mask-image: linear-gradient(to left, transparent 0%, black 7%, black 68%, transparent 97%);
-        left: 40%;
+        left: 45%;
         right: 0;
       }
       .hero-img-merge-mobile {
@@ -109,12 +109,12 @@ export default function Hero() {
           screen width instead of drifting over the copy on large monitors. */}
       <div className="hero-img-merge hidden lg:block absolute inset-y-0">
         <Image
-          src="/heroteamimg.JPG"
+          src="/heroteamimg2-web.jpg"
           alt="The Be IPO Ready advisory team collaborating in the office"
           fill
           preload
           sizes="(min-width: 1024px) 60vw, 100vw"
-          className="object-cover object-[55%_center]"
+          className="object-cover object-[78%_center]"
         />
         {/* warm wash so the photo sits in the brand palette */}
         <div
@@ -124,12 +124,22 @@ export default function Hero() {
               "linear-gradient(to right, rgba(254,251,242,0.35) 0%, rgba(254,251,242,0) 28%)",
           }}
         />
+        {/* bottom edge melts into the cream so the section below never
+            collides with a hard photo cut */}
+        <div
+          className="absolute inset-x-0 bottom-0 pointer-events-none"
+          style={{
+            height: "18%",
+            background:
+              "linear-gradient(to top, #FEFBF2 0%, rgba(254,251,242,0) 100%)",
+          }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-14 2xl:px-20 flex flex-col lg:flex-row h-full relative">
 
         {/* ── LEFT: animated text ── */}
-        <div className="w-full lg:w-[46%] xl:w-[44%] flex flex-col justify-center py-10 sm:py-12 lg:py-0 relative z-10 shrink-0">
+        <div className="w-full lg:w-[46%] xl:w-[44%] flex flex-col justify-center py-10 sm:py-12 lg:py-8 relative z-10 shrink-0">
           <p
             className="hero-fade text-xs font-bold uppercase tracking-[0.18em] text-[#B9822E] mb-4"
             style={{ animationDelay: "0.1s" }}
@@ -186,7 +196,7 @@ export default function Hero() {
         <div className="lg:hidden relative flex-1 min-h-[240px] -mx-4 sm:-mx-6 w-[calc(100%+2rem)] sm:w-[calc(100%+3rem)]">
           <div className="hero-img-merge-mobile absolute inset-0">
             <Image
-              src="/heroteamimg.JPG"
+              src="/heroteamimg2-web.jpg"
               alt="The Be IPO Ready advisory team collaborating in the office"
               fill
               sizes="100vw"

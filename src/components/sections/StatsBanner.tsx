@@ -16,7 +16,7 @@ export default function StatsBanner({
       style={{ background: "#FEFBF2" }}
       aria-label="Key metrics"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 sm:pb-16 -mt-2">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14 sm:pt-10 sm:pb-16">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {stats.slice(0, 4).map(({ value, label }, i) => {
             const Icon = ICONS[i % ICONS.length];
