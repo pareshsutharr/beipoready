@@ -21,15 +21,15 @@ const TOOLS = [
     icon: Receipt,
     title: "Issue Cost Estimator",
     description: "Understand the cost of going public.",
-    cta: "Coming soon",
-    href: null,
+    cta: "Estimate Your Cost",
+    href: "/issue-cost-estimator",
   },
   {
     icon: ListChecks,
     title: "SME IPO Listing Checklist",
-    description: "Download the step-by-step checklist.",
-    cta: "Coming soon",
-    href: null,
+    description: "Work through the step-by-step checklist.",
+    cta: "Open the Checklist",
+    href: "/sme-ipo-checklist",
   },
 ];
 

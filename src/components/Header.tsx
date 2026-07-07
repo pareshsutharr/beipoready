@@ -15,6 +15,8 @@ const serviceLinks = [
 const toolLinks = [
   { label: "IPO Readiness Tool", href: "/ipo-readiness-tool" },
   { label: "Issue Size Calculator", href: "/issue-size-calculator" },
+  { label: "Issue Cost Estimator", href: "/issue-cost-estimator" },
+  { label: "SME IPO Listing Checklist", href: "/sme-ipo-checklist" },
 ];
 
 type NavItem = { label: string; href: string; children?: { label: string; href: string }[] };

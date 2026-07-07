@@ -15,6 +15,8 @@ const SOURCE_LABELS: Record<LeadSource, string> = {
   "home-cta": "Home CTA",
   "readiness-tool": "Readiness Tool",
   "issue-size-calculator": "Issue Calc",
+  "issue-cost-estimator": "Cost Estimator",
+  "sme-ipo-checklist": "IPO Checklist",
   "services": "Services Page",
   "newsletter": "Newsletter",
   "case-study": "Case Study",

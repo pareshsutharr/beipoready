@@ -27,6 +27,8 @@ export type LeadSource =
   | "contact"
   | "readiness-tool"
   | "issue-size-calculator"
+  | "issue-cost-estimator"
+  | "sme-ipo-checklist"
   | "home-cta"
   | "newsletter"
   | "case-study"
