@@ -174,6 +174,30 @@ export type Lead = {
   updated_at: string;
 };
 
+export type EligibilityStatus = "new" | "reviewed" | "contacted" | "closed";
+
+export type EligibilitySubmission = {
+  id: string;
+  organization_name: string;
+  incorporation_date: string | null;
+  operational_years: number | null;
+  is_three_years_old: boolean | null;
+  has_min_operating_profit: boolean | null;
+  ofs_compliant: boolean | null;
+  net_worth: string | null;
+  paid_up_capital: string | null;
+  net_tangible_assets: string | null;
+  fund_purposes: string[] | null;
+  fund_purpose_other: string | null;
+  financials_file_path: string | null;
+  contact_details: string | null;
+  email: string;
+  website: string | null;
+  status: EligibilityStatus;
+  created_at: string;
+  updated_at: string;
+};
+
 // ──────────────────────────────────────────────────────────────
 // Minimal Database type for the Supabase client generic.
 // Replace with the output of `supabase gen types` once the
@@ -304,6 +328,28 @@ type FaqInsert = {
   updated_at?: string;
 };
 
+type EligibilitySubmissionInsert = {
+  id?: string;
+  organization_name: string;
+  incorporation_date?: string | null;
+  operational_years?: number | null;
+  is_three_years_old?: boolean | null;
+  has_min_operating_profit?: boolean | null;
+  ofs_compliant?: boolean | null;
+  net_worth?: string | null;
+  paid_up_capital?: string | null;
+  net_tangible_assets?: string | null;
+  fund_purposes?: string[] | null;
+  fund_purpose_other?: string | null;
+  financials_file_path?: string | null;
+  contact_details?: string | null;
+  email: string;
+  website?: string | null;
+  status?: EligibilityStatus;
+  created_at?: string;
+  updated_at?: string;
+};
+
 type LeadInsert = {
   id?: string;
   name: string;
@@ -376,6 +422,12 @@ export type Database = {
         Row: Lead;
         Insert: LeadInsert;
         Update: Partial<Omit<Lead, "id" | "created_at">>;
+        Relationships: [];
+      };
+      eligibility_submissions: {
+        Row: EligibilitySubmission;
+        Insert: EligibilitySubmissionInsert;
+        Update: Partial<Omit<EligibilitySubmission, "id" | "created_at">>;
         Relationships: [];
       };
     };

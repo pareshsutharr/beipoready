@@ -22,6 +22,7 @@ const quickLinks = [
   { label: "Issue Size Calculator", href: "/issue-size-calculator" },
   { label: "Issue Cost Estimator", href: "/issue-cost-estimator" },
   { label: "SME IPO Listing Checklist", href: "/sme-ipo-checklist" },
+  { label: "Get Listed — Eligibility Form", href: "/get-listed" },
 ];
 
 const legalLinks = [
