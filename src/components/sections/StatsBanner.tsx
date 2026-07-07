@@ -12,19 +12,19 @@ export default function StatsBanner({
 
   return (
     <section
-      className="relative w-full"
-      style={{ background: "#FEFBF2" }}
+      className="relative w-full bg-white"
+      style={{ borderTop: "1px solid #F2EBDD" }}
       aria-label="Key metrics"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14 sm:pt-10 sm:pb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {stats.slice(0, 4).map(({ value, label }, i) => {
             const Icon = ICONS[i % ICONS.length];
             return (
               <div
                 key={label}
-                className="flex items-center gap-4 bg-white rounded-2xl px-5 py-4"
-                style={{ boxShadow: "0 4px 24px rgba(13,74,111,0.09)" }}
+                className="flex items-center gap-5 bg-white rounded-2xl px-6 py-6 sm:px-7 sm:py-7 border border-slate-200"
+                style={{ boxShadow: "0 4px 24px rgba(13,74,111,0.07)" }}
               >
                 <div
                   className="shrink-0 hidden sm:flex items-center justify-center rounded-xl"

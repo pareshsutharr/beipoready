@@ -177,7 +177,7 @@ export default function Hero() {
                 fontSize: "clamp(0.82rem, 1vw, 0.94rem)",
               }}
             >
-              Book a Free IPO Readiness Call
+              Book a Free <br/> IPO Readiness Call
             </Link>
             <Link
               href="/ipo-readiness-tool"
@@ -187,7 +187,7 @@ export default function Hero() {
                 fontSize: "clamp(0.82rem, 1vw, 0.94rem)",
               }}
             >
-              Are You IPO Ready? — 2-Minute Check
+              Are You IPO Ready?<br/>2-Minute Check
             </Link>
           </div>
         </div>
