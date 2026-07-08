@@ -27,7 +27,8 @@
       "Bash(sips -s format jpeg -s formatOptions 82 public/svgs/heroimg.png --out public/svgs/heroimg.jpg)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(git count-objects *)"
+      "Bash(git count-objects *)",
+      "Bash(git push *)"
     ]
   }
 }
