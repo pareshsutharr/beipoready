@@ -26,10 +26,10 @@ const TOOLS = [
   },
   {
     icon: ListChecks,
-    title: "SME IPO Listing Checklist",
-    description: "Work through the step-by-step checklist.",
-    cta: "Open the Checklist",
-    href: "/sme-ipo-checklist",
+    title: "Eligibility for IPO",
+    description: "Work through the step-by-step Questions.",
+    cta: "Check Eligibility for IPO",
+    href: "/get-listed",
   },
 ];
 

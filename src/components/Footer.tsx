@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import NewsletterForm from "@/components/forms/NewsletterForm";
@@ -38,24 +37,8 @@ const socialLinks = [
 ];
 
 export default function Footer() {
-  const footerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    let ctx: { revert: () => void } | null = null;
-    import("gsap").then(({ gsap }) => {
-      import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger);
-        ctx = gsap.context(() => {
-          const cols = footerRef.current ? Array.from(footerRef.current.querySelectorAll(".ft-col")) : [];
-          if (cols.length) gsap.from(cols, { y: 40, opacity: 0, duration: 0.7, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: footerRef.current, start: "top 85%" } });
-        }, footerRef);
-      });
-    });
-    return () => ctx?.revert();
-  }, []);
-
   return (
-    <footer ref={footerRef} className="relative text-white overflow-hidden" style={{ background: "linear-gradient(180deg,#0F2D52 0%,#070F1E 100%)" }}>
+    <footer className="relative text-white overflow-hidden" style={{ background: "linear-gradient(180deg,#0F2D52 0%,#070F1E 100%)" }}>
       {/* Top gold line */}
       <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(90deg,transparent,#F59E0B,transparent)" }} aria-hidden="true" />
       {/* Background glow */}

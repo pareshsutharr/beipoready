@@ -20,12 +20,10 @@ import {
 } from "lucide-react";
 
 const TEAM_MEMBERS = [
-  "[Founder]",
-  "[Co-founder / Director]",
-  "[Head of IPO Advisory]",
-  "[Head of Fundraising]",
-  "[Analysts / Associates]",
-  "[Advisors / Mentors]",
+  { name: "Rakesh", role: "[Head of Fundraising]", image: "/teamfolder/rakesh.JPG?v=20260708" },
+  { name: "Saurav", role: "[Founder]", image: "/teamfolder/saurav.JPG?v=20260708" },
+  { name: "Vishwa", role: "[Head of IPO Advisory]", image: "/teamfolder/vishwa.JPG?v=20260708" },
+  { name: "Harshita", role: "[Co-founder / Director]", image: "/teamfolder/harshita.JPG?v=20260708" },
 ];
 
 const JOURNEY = [
@@ -180,10 +178,17 @@ export default function AboutContent() {
           aria-hidden="true"
           fill
           priority
-          sizes="50vw"
+          sizes="100vw"
           className="object-cover object-top"
         />
-        <div className="absolute inset-0 " aria-hidden="true" style={{ background: "linear-gradient(135deg,rgba(7, 15, 30, 0.8) 0%,rgba(15,45,82,0.55) 100%)" }}  />
+        <div
+          className="absolute inset-0"
+          aria-hidden="true"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(7,15,30,0.88) 0%, rgba(15,45,82,0.68) 36%, rgba(15,45,82,0.22) 70%, rgba(15,45,82,0.04) 100%)",
+          }}
+        />
         <div className="absolute inset-y-0 right-0 w-1/2 opacity-20" aria-hidden="true" >
           <div className="absolute bottom-10 right-10 flex items-end gap-2">
             {[28, 52, 78, 108, 140].map((height, index) => (
@@ -304,42 +309,55 @@ export default function AboutContent() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-about-stagger>
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6" data-about-stagger>
             {TEAM_MEMBERS.map((member) => (
-              <article key={member} data-about-item className="group overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
-                <div className="aspect-[4/3] bg-brand-navy/8 flex items-center justify-center">
-                  <Users className="w-12 h-12 text-brand-navy/30" aria-hidden="true" />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h3 className="font-serif text-xl font-bold text-brand-navy">[Full Name]</h3>
-                      <p className="mt-1 font-sans text-sm text-slate-600">
-                        [Designation, e.g. Founder &amp; Managing Director] · [Credentials: CA / CFA / MBA]
-                      </p>
-                    </div>
-                    <Link
-                      href="#"
-                      aria-label="LinkedIn profile URL"
-                      className="shrink-0 w-9 h-9 rounded bg-brand-navy text-white flex items-center justify-center font-serif font-bold hover:bg-brand-gold hover:text-brand-navy transition-colors"
-                    >
-                      in
-                    </Link>
+              <article
+                key={member.role}
+                data-about-item
+                className="group overflow-hidden rounded border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold/45 hover:shadow-xl"
+              >
+                <div className="relative aspect-[3/4] overflow-hidden bg-brand-navy">
+                  <div
+                    role="img"
+                    aria-label={member.name}
+                    className="absolute inset-0 bg-cover bg-top transition-transform duration-700 group-hover:scale-105"
+                    style={{ backgroundImage: `url("${member.image}")` }}
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/18 to-transparent opacity-85"
+                    aria-hidden="true"
+                  />
+                  <Link
+                    href="#"
+                    aria-label={`${member.name} LinkedIn profile URL`}
+                    className="absolute right-4 top-4 z-10 w-10 h-10 rounded bg-white/90 text-brand-navy flex items-center justify-center font-serif font-bold shadow-sm hover:bg-brand-gold transition-colors"
+                  >
+                    in
+                  </Link>
+                  <div className="absolute inset-x-0 bottom-0 z-10 p-5">
+                    <h3 className="font-serif text-2xl font-bold text-white leading-tight">
+                      {member.name}
+                    </h3>
+                    <p className="mt-2 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-brand-gold">
+                      {member.role}
+                    </p>
                   </div>
-                  <p className="mt-5 font-sans text-sm text-slate-600 leading-relaxed">
-                    [1–2 line bio: years of experience, area of expertise, notable listings or mandates.]
+                </div>
+                <div className="p-5">
+                  <p className="font-sans text-sm text-slate-600 leading-relaxed">
+                    [Designation, e.g. Founder &amp; Managing Director] · [Credentials: CA / CFA / MBA]
                   </p>
-                  <p className="mt-4 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-brand-gold">
-                    {member}
+                  <p className="mt-4 font-sans text-sm text-slate-600 leading-relaxed">
+                    [1–2 line bio: years of experience, area of expertise, notable listings or mandates.]
                   </p>
                 </div>
               </article>
             ))}
           </div>
 
-          <p className="about-reveal mt-8 font-sans text-sm text-slate-500 leading-relaxed">
+          {/* <p className="about-reveal mt-8 font-sans text-sm text-slate-500 leading-relaxed">
             Send names, titles, credentials, photos and LinkedIn URLs and I&apos;ll write polished profiles. Confirm whether &ldquo;Dr. Rakesh Doshi&rdquo; (your blog author) and your primary contact belong here.
-          </p>
+          </p> */}
         </div>
       </section>
 

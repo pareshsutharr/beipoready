@@ -109,31 +109,13 @@ export default function Hero() {
           screen width instead of drifting over the copy on large monitors. */}
       <div className="hero-img-merge hidden lg:block absolute inset-y-0">
         <Image
-          src="/heroteamimg2-web.jpg"
+          src="/svgs/heroimg.jpg"
             // src="/heroaboutimg.png"
           alt="The Be IPO Ready advisory team collaborating in the office"
           fill
           preload
           sizes="(min-width: 1024px) 60vw, 100vw"
           className="object-cover object-[78%_center]"
-        />
-        {/* warm wash so the photo sits in the brand palette */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(254,251,242,0.35) 0%, rgba(254,251,242,0) 28%)",
-          }}
-        />
-        {/* bottom edge melts into the cream so the section below never
-            collides with a hard photo cut */}
-        <div
-          className="absolute inset-x-0 bottom-0 pointer-events-none"
-          style={{
-            height: "18%",
-            background:
-              "linear-gradient(to top, #FEFBF2 0%, rgba(254,251,242,0) 100%)",
-          }}
         />
       </div>
 
@@ -197,7 +179,7 @@ export default function Hero() {
         <div className="lg:hidden relative flex-1 min-h-[240px] -mx-4 sm:-mx-6 w-[calc(100%+2rem)] sm:w-[calc(100%+3rem)]">
           <div className="hero-img-merge-mobile absolute inset-0">
             <Image
-              src="/heroteamimg2-web.jpg"
+              src="/svgs/heroimg.jpg"
               alt="The Be IPO Ready advisory team collaborating in the office"
               fill
               sizes="100vw"
