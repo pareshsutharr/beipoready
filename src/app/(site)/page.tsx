@@ -3,7 +3,6 @@ import StatsBanner from "@/components/sections/StatsBanner";
 import WhatWeDo from "@/components/sections/WhatWeDo";
 import PositioningBanner from "@/components/sections/PositioningBanner";
 import BeforeAfter from "@/components/sections/BeforeAfter";
-import ServicesOverview from "@/components/sections/ServicesOverview";
 import ToolsPreview from "@/components/sections/ToolsPreview";
 import ReadinessJourney from "@/components/sections/ReadinessJourney";
 import TeamSection from "@/components/sections/TeamSection";
@@ -44,31 +43,28 @@ export default async function Home() {
       {/* 4 — Why go public (before / after) */}
       <BeforeAfter />
 
-      {/* 5 — Services */}
-      <ServicesOverview />
-
-      {/* 6 — Tools & lead magnets */}
+      {/* 5 — Tools & lead magnets */}
       <ToolsPreview />
 
-      {/* 7 — Process */}
+      {/* 6 — Process */}
       <ReadinessJourney />
 
-      {/* 8 — Team */}
+      {/* 7 — Team */}
       <TeamSection />
 
-      {/* 9 — Clients logo wall */}
+      {/* 8 — Clients logo wall */}
       <Case clients={clients} />
 
-      {/* 10 — Testimonials (hidden until real quotes are published) */}
+      {/* 9 — Testimonials (hidden until real quotes are published) */}
       <CaseStudiesHighlights testimonials={testimonials} />
 
-      {/* 11 — Knowledge corner */}
+      {/* 10 — Knowledge corner */}
       <KnowledgeCorner articles={articles} />
 
-      {/* 12 — FAQs (with FAQPage schema) */}
+      {/* 11 — FAQs (with FAQPage schema) */}
       <HomeFaq />
 
-      {/* 13 — Final CTA + lead capture */}
+      {/* 12 — Final CTA + lead capture */}
       <FinalCta />
     </>
   );

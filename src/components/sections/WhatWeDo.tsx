@@ -1,21 +1,25 @@
 import Link from "next/link";
-import { Banknote, ClipboardCheck, LineChart, ArrowRight, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 const PILLARS = [
   {
-    icon: Banknote,
+    image: "/whatwedo-fundraising.jpg",
+    imageAlt: "Two business partners shaking hands after closing a funding deal",
     title: "Fundraising & Growth Capital",
     text: "Raise the right capital, on the right terms, from the right investors.",
     href: "/services/pre-ipo-fundraising",
   },
   {
-    icon: ClipboardCheck,
+    image: "/whatwedo-preipo.jpg",
+    imageAlt: "Advisors reviewing financial documents and plans at a desk",
     title: "Pre-IPO Advisory",
     text: "Get truly IPO-ready before you file: financials, governance, capital efficiency.",
     href: "/services/ipo-readiness-assessment",
   },
   {
-    icon: LineChart,
+    image: "/whatwedo-ipo.jpg",
+    imageAlt: "Rising stock market charts on a trading screen",
     title: "IPO Advisory",
     text: "Go public with confidence, end-to-end, on SME or Main Board.",
     href: "/services/sme-ipo-advisory",
@@ -64,25 +68,30 @@ export default function WhatWeDo() {
         </div>
 
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12" role="list">
-          {PILLARS.map(({ icon: Icon, title, text, href }) => (
+          {PILLARS.map(({ image, imageAlt, title, text, href }) => (
             <li key={title} className="flex">
               <Link
                 href={href}
-                className="group flex flex-col w-full rounded-2xl bg-white p-7 border border-slate-200 hover:border-brand-gold/50 transition-colors duration-200 cursor-pointer"
+                className="group flex flex-col w-full rounded-2xl bg-white overflow-hidden border border-slate-200 hover:border-brand-gold/50 transition-colors duration-200 cursor-pointer"
                 style={{ boxShadow: "0 2px 12px rgba(13,74,111,0.05)" }}
               >
-                <div
-                  className="mb-5 w-12 h-12 flex items-center justify-center rounded-xl"
-                  style={{ background: "rgba(13,74,111,0.07)" }}
-                >
-                  <Icon className="w-6 h-6 text-[#0D4A6F]" aria-hidden="true" />
+                <div className="relative aspect-[16/9] w-full overflow-hidden">
+                  <Image
+                    src={image}
+                    alt={imageAlt}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
                 </div>
-                <h3 className="font-heading text-lg font-bold text-[#0D4A6F] mb-2 leading-snug">{title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed flex-1 mb-4">{text}</p>
-                <span className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-gold">
-                  Learn More
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-                </span>
+                <div className="flex flex-col flex-1 p-7">
+                  <h3 className="font-heading text-lg font-bold text-[#0D4A6F] mb-2 leading-snug">{title}</h3>
+                  <p className="text-sm text-slate-500 leading-relaxed flex-1 mb-4">{text}</p>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-gold">
+                    Learn More
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                  </span>
+                </div>
               </Link>
             </li>
           ))}

@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
 export default function PositioningBanner() {
   return (
     <section
@@ -29,6 +32,19 @@ export default function PositioningBanner() {
           Trusted by promoters across India to raise capital, prepare for the
           public markets, and list successfully.
         </p>
+        <Link
+          href="/get-listed"
+          className="group mt-8 inline-flex items-center justify-center gap-2 rounded-lg font-bold text-[#0D4A6F] hover:opacity-90 active:scale-[.98] transition-all duration-150 cursor-pointer"
+          style={{
+            background: "#ECB85B",
+            boxShadow: "0 4px 18px rgba(236,184,91,0.3)",
+            padding: "clamp(0.6rem, 0.9vw, 0.875rem) clamp(1.4rem, 2vw, 1.9rem)",
+            fontSize: "clamp(0.82rem, 1vw, 0.94rem)",
+          }}
+        >
+          Get Listed — Check Your IPO Eligibility
+          <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
+        </Link>
       </div>
     </section>
   );

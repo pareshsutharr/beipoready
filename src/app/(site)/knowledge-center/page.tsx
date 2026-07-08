@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import NewsletterForm from "@/components/forms/NewsletterForm";
+import SmeVsMainBoard from "@/components/sections/SmeVsMainBoard";
 import { getPublishedArticles } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
@@ -97,6 +98,8 @@ export default async function KnowledgeCenterPage() {
           </div>
         </div>
       </section>
+
+      <SmeVsMainBoard />
 
       <section className="bg-brand-navy py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
