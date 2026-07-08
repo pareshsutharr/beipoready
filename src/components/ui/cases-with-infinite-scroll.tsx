@@ -14,22 +14,25 @@ import type { ClientLogoCard } from "@/lib/cms";
 type ClientTile = Omit<ClientLogoCard, "logo_url"> & { logo_url: string | null };
 
 const FALLBACK_CLIENTS: ClientTile[] = [
-  { name: "Aaron", logo_url: null, website_url: null },
-  { name: "IBL", logo_url: null, website_url: null },
-  { name: "Zorko", logo_url: null, website_url: null },
-  { name: "Rem Electromach", logo_url: null, website_url: null },
-  { name: "Orange", logo_url: null, website_url: null },
-  { name: "Wok on Fire", logo_url: null, website_url: null },
-  { name: "Candor", logo_url: null, website_url: null },
-  { name: "Express", logo_url: null, website_url: null },
-  { name: "Zestika", logo_url: null, website_url: null },
-  { name: "Vijya Finetech", logo_url: null, website_url: null },
-  { name: "Deciml", logo_url: null, website_url: null },
+  { name: "Aaron Industries", nature_of_business: "Capital Goods (Elevators Manufacturers)", logo_url: null, website_url: null },
+  { name: "IBL Finance", nature_of_business: "NBFC", logo_url: null, website_url: null },
+  { name: "Zorko", nature_of_business: "Quick Service Restaurant (QSR)", logo_url: null, website_url: null },
+  { name: "REM Electricals", nature_of_business: "Capital Goods (Automation Panel)", logo_url: null, website_url: null },
+  { name: "Aarya Automobiles", nature_of_business: "EV Motorcycles", logo_url: null, website_url: null },
+  { name: "Cruizine Healthcare", nature_of_business: "Medical Equipments (Surgical Products)", logo_url: null, website_url: null },
+  { name: "Candor IVF Hospital", nature_of_business: "IVF Centres/Hospital", logo_url: null, website_url: null },
+  { name: "Express Electro Elevators", nature_of_business: "Elevator Installers", logo_url: null, website_url: null },
+  { name: "Zestika Spices", nature_of_business: "Black Pepper Manufacturer", logo_url: null, website_url: null },
+  { name: "Paramount Looms Pvt. Ltd.", nature_of_business: "Textile Machine Manufacturer", logo_url: null, website_url: null },
+  { name: "Moonstar Lifecare Pvt. Ltd.", nature_of_business: "Healthcare Marketing company", logo_url: null, website_url: null },
+  { name: "Olpad Aqua Ltd", nature_of_business: "Aqua Products", logo_url: null, website_url: null },
+  { name: "P.P Maniya Hospital", nature_of_business: "Multi Speciality Hospital", logo_url: null, website_url: null },
+  { name: "Arham Wealth Management Private Limited", nature_of_business: "Stock Broker", logo_url: null, website_url: null },
 ];
 
 function ClientLogoTile({ client }: { client: ClientTile }) {
   const tile = (
-    <div className="flex h-[270px] w-full flex-col items-center justify-center rounded-[30px] bg-[#FFFDF6] px-8 pb-9 pt-8 shadow-[0_3px_18px_rgba(15,45,82,0.15)] ring-1 ring-[#F1EBDD]" >
+    <div className="flex h-[300px] w-full flex-col items-center justify-center rounded-[30px] bg-[#FFFDF6] px-7 pb-9 pt-8 shadow-[0_3px_18px_rgba(15,45,82,0.15)] ring-1 ring-[#F1EBDD]" >
       <div className="flex h-[126px] w-[126px] items-center justify-center rounded-full bg-[#FFFDF6] p-3 shadow-[0_7px_16px_rgba(15,45,82,0.14),inset_0_1px_1px_rgba(255,255,255,0.95)] ring-1 ring-[#F1EBDD]">
         <div className="flex h-[104px] w-[104px] items-center justify-center rounded-full bg-white p-4 shadow-[inset_0_0_0_1px_rgba(15,45,82,0.03)]">
           {client.logo_url ? (
@@ -46,10 +49,15 @@ function ClientLogoTile({ client }: { client: ClientTile }) {
         </div>
       </div>
 
-      <div className="mt-[28px] max-w-[150px] text-center">
+      <div className="mt-[24px] max-w-[170px] text-center">
         <h3 className="text-[0.72rem] font-bold uppercase tracking-[0.08em] text-[#0D4A6F] leading-snug">
           {client.name}
         </h3>
+        {client.nature_of_business && (
+          <p className="mt-2 text-[0.68rem] font-semibold leading-snug text-slate-500">
+            {client.nature_of_business}
+          </p>
+        )}
       </div>
     </div>
   );

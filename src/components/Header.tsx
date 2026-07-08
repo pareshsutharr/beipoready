@@ -58,10 +58,10 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="shrink-0 mr-3 xl:mr-6">
           <Image
-            src="/logo1-hq.png"
+            src="/logo-header-hq.png"
             alt="Be IPO Ready"
-            width={741}
-            height={135}
+            width={2017}
+            height={484}
             priority
             className="h-10 w-auto object-contain"
           />

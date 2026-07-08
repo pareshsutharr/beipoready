@@ -17,7 +17,57 @@ export type TestimonialCard = Pick<
   "client_name" | "client_title" | "company_name" | "industry" | "image_url" | "quote" | "outcome" | "case_study_slug"
 >;
 
-export type ClientLogoCard = Pick<ClientLogo, "name" | "logo_url" | "website_url">;
+export type ClientLogoCard = Pick<ClientLogo, "name" | "logo_url" | "website_url" | "nature_of_business">;
+
+const CLIENT_NATURE_BY_NAME: Record<string, string> = {
+  aaron: "Capital Goods (Elevators Manufacturers)",
+  "aaron industries": "Capital Goods (Elevators Manufacturers)",
+  ibl: "NBFC",
+  "ibl finance": "NBFC",
+  zorko: "Quick Service Restaurant (QSR)",
+  rem: "Capital Goods (Automation Panel)",
+  "rem electrical": "Capital Goods (Automation Panel)",
+  "rem electricals": "Capital Goods (Automation Panel)",
+  "rem electromach": "Capital Goods (Automation Panel)",
+  "aarya automobiles": "EV Motorcycles",
+  "cruizine healthcare": "Medical Equipments (Surgical Products)",
+  candor: "IVF Centres/Hospital",
+  "candor ivf hospital": "IVF Centres/Hospital",
+  express: "Elevator Installers",
+  "express electro elevators": "Elevator Installers",
+  zestika: "Black Pepper Manufacturer",
+  "zestika spices": "Black Pepper Manufacturer",
+  paramount: "Textile Machine Manufacturer",
+  "paramount looms": "Textile Machine Manufacturer",
+  "paramount looms pvt. ltd.": "Textile Machine Manufacturer",
+  moonstar: "Healthcare Marketing company",
+  "moonstar lifecare": "Healthcare Marketing company",
+  "moonstar lifecare pvt. ltd.": "Healthcare Marketing company",
+  "olpad aqua ltd": "Aqua Products",
+  "p.p maniya hospital": "Multi Speciality Hospital",
+  "p p maniya hospital": "Multi Speciality Hospital",
+  arham: "Stock Broker",
+  "arham wealth": "Stock Broker",
+  "arham wealth management private limited": "Stock Broker",
+};
+
+function clientNatureForName(name: string) {
+  const normalized = name.trim().toLowerCase();
+  return (
+    CLIENT_NATURE_BY_NAME[normalized] ??
+    Object.entries(CLIENT_NATURE_BY_NAME).find(([key]) => normalized.startsWith(key))?.[1] ??
+    null
+  );
+}
+
+function withClientNature<T extends { name: string; nature_of_business?: string | null }>(
+  client: T
+): T & { nature_of_business: string | null } {
+  return {
+    ...client,
+    nature_of_business: client.nature_of_business ?? clientNatureForName(client.name),
+  };
+}
 
 export type CaseStudyCard = {
   slug: string;
@@ -399,12 +449,20 @@ export async function getPublishedClients(): Promise<ClientLogoCard[]> {
     const supabase = await createClient();
     const { data, error } = await supabase
       .from("clients")
+      .select("name, logo_url, website_url, nature_of_business")
+      .eq("is_published", true)
+      .order("sort_order", { ascending: true });
+
+    if (!error && data?.length) return data.map(withClientNature);
+
+    const fallback = await supabase
+      .from("clients")
       .select("name, logo_url, website_url")
       .eq("is_published", true)
       .order("sort_order", { ascending: true });
 
-    if (error || !data?.length) return [];
-    return data;
+    if (fallback.error || !fallback.data?.length) return [];
+    return fallback.data.map((client) => withClientNature({ ...client, nature_of_business: null }));
   } catch {
     return [];
   }

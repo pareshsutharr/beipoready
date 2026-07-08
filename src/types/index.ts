@@ -116,6 +116,7 @@ export type ClientLogo = {
   name: string;
   logo_url: string;
   website_url: string | null;
+  nature_of_business: string | null;
   sort_order: number;
   is_published: boolean;
   created_at: string;
@@ -287,6 +288,7 @@ type ClientLogoInsert = {
   name: string;
   logo_url: string;
   website_url?: string | null;
+  nature_of_business?: string | null;
   sort_order?: number;
   is_published?: boolean;
   created_at?: string;

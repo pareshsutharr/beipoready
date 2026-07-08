@@ -67,6 +67,7 @@ export default async function ClientsPage() {
           <h2 className="mb-4 font-serif text-lg font-bold text-brand-navy">New Client</h2>
           <div className="grid gap-4">
             <Field label="Client / Company Name" name="name" required />
+            <Field label="Nature of Business" name="nature_of_business" placeholder="e.g. Stock Broker" />
             <label className="block">
               <span className={labelClass}>Logo Image</span>
               <input name="logo_file" type="file" accept="image/*" required className={inputClass} />
@@ -85,6 +86,9 @@ export default async function ClientsPage() {
             <div className="mb-4 flex items-start justify-between gap-4">
               <div>
                 <h2 className="font-serif text-lg font-bold text-brand-navy">{client.name}</h2>
+                {client.nature_of_business && (
+                  <p className="mt-1 text-xs font-semibold text-slate-500">{client.nature_of_business}</p>
+                )}
                 <p className="mt-1 text-xs text-slate-400">{client.website_url ?? "No website link"}</p>
               </div>
               <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -94,6 +98,7 @@ export default async function ClientsPage() {
             <ImagePreview url={client.logo_url} label={`${client.name} logo`} fit="contain" />
             <div className="mt-4 grid gap-4">
               <Field label="Client / Company Name" name="name" defaultValue={client.name} required />
+              <Field label="Nature of Business" name="nature_of_business" defaultValue={client.nature_of_business} />
               <label className="block">
                 <span className={labelClass}>Replace Logo Image</span>
                 <input name="logo_file" type="file" accept="image/*" className={inputClass} />

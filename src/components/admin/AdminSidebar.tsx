@@ -122,8 +122,8 @@ export default function AdminSidebar({ email }: { email: string }) {
           <Image
             src="/logo-transparent.png"
             alt="Be IPO Ready"
-            width={1050}
-            height={275}
+            width={2017}
+            height={484}
             className="h-9 w-auto object-contain drop-shadow-sm"
           />
           <span className="sr-only">Be IPO Ready Admin Portal</span>

@@ -211,6 +211,7 @@ export async function saveClient(formData: FormData) {
     name: text(formData, "name"),
     logo_url: logoUrl,
     website_url: nullableText(formData, "website_url"),
+    nature_of_business: nullableText(formData, "nature_of_business"),
     sort_order: Number(text(formData, "sort_order") || 0),
     is_published: bool(formData, "is_published"),
   };

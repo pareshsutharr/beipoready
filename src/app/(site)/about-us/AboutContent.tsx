@@ -361,7 +361,7 @@ export default function AboutContent() {
         </div>
       </section>
 
-      <section className="bg-white py-20 sm:py-28 overflow-hidden">
+      {/* <section className="bg-white py-20 sm:py-28 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="about-reveal max-w-3xl mb-14">
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
@@ -394,7 +394,7 @@ export default function AboutContent() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="bg-brand-cream py-20 sm:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

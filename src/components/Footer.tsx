@@ -50,7 +50,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="ft-col lg:col-span-1">
           <Link href="/" className="flex items-center gap-2 mb-5">
-            <Image src="/logo-transparent.png" alt="Be IPO Ready" width={1050} height={275} className="h-10 w-auto object-contain brightness-110" />
+            <Image src="/logo-transparent.png" alt="Be IPO Ready" width={2017} height={484} className="h-10 w-auto object-contain brightness-110" />
           </Link>
           <p className="text-white/55 text-sm leading-relaxed mb-6">
             Value creation before IPO, wealth creation post listing.

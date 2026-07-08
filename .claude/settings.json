@@ -28,7 +28,13 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git count-objects *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha public/logo-transparent.png public/logo1.png public/logo-hq.jpeg public/logo.jpeg public/logo1-hq.png)",
+      "Bash(python3 -m venv venv)",
+      "Bash(./venv/bin/pip install *)",
+      "Bash(./venv/bin/python -c \"import PIL, numpy, scipy; print\\('ok'\\)\")",
+      "Bash(./venv/bin/python make_logos.py)",
+      "Bash(./venv/bin/python -c ' *)"
     ]
   }
 }
