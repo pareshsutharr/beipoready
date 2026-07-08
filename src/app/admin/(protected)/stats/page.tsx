@@ -28,7 +28,7 @@ export default async function StatsPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <form action={saveSiteStat} className={cardClass}>
-          <h2 className="mb-4 font-serif text-lg font-bold text-brand-navy">New Stat</h2>
+          <h2 className="mb-4 font-heading text-lg font-bold text-brand-navy">New Stat</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="Value" name="value" required />
             <Field label="Label" name="label" required />

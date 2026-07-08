@@ -86,7 +86,7 @@ export default function ServicesPage() {
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-4">
             What We Do
           </p>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white leading-tight mb-6">
+          <h1 className="font-heading text-4xl sm:text-5xl font-bold text-white leading-tight mb-6">
             Services Built for SME IPO Success
           </h1>
           <p className="font-sans text-lg text-white/65 max-w-2xl mx-auto leading-relaxed">
@@ -120,7 +120,7 @@ export default function ServicesPage() {
                 {/* Number + icon + content */}
                 <div className="flex flex-col sm:flex-row items-start gap-6 flex-1 p-6 sm:p-8">
                   <div className="flex items-center gap-4 shrink-0">
-                    <span className="font-serif text-3xl font-bold text-brand-gold/30 leading-none w-8 text-right">
+                    <span className="font-heading text-3xl font-bold text-brand-gold/30 leading-none w-8 text-right">
                       {String(idx + 1).padStart(2, "0")}
                     </span>
                     <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-brand-navy/8 text-brand-navy group-hover:bg-brand-gold/15 group-hover:text-brand-gold transition-colors">
@@ -129,7 +129,7 @@ export default function ServicesPage() {
                   </div>
 
                   <div className="flex-1">
-                    <h2 className="font-serif text-xl font-bold text-brand-navy mb-1 group-hover:text-brand-gold transition-colors">
+                    <h2 className="font-heading text-xl font-bold text-brand-navy mb-1 group-hover:text-brand-gold transition-colors">
                       {service.title}
                     </h2>
                     <p className="font-sans text-sm font-semibold text-brand-gold mb-3">{service.tagline}</p>
@@ -151,7 +151,7 @@ export default function ServicesPage() {
       {/* ── CTA ──────────────────────────────────────────────────────── */}
       <section className="bg-brand-navy py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="font-serif text-3xl font-bold text-white mb-4">
+          <h2 className="font-heading text-3xl font-bold text-white mb-4">
             Not sure which service you need?
           </h2>
           <p className="font-sans text-base text-white/65 mb-8 leading-relaxed">

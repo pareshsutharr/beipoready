@@ -108,7 +108,7 @@ export default function IssueSizeCalculator() {
 
     return (
       <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-8">
-        <h2 className="font-serif text-xl font-bold text-brand-navy mb-6">
+        <h2 className="font-heading text-xl font-bold text-brand-navy mb-6">
           Enter Your Details
         </h2>
 
@@ -209,7 +209,7 @@ export default function IssueSizeCalculator() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M9 14h.01M12 14h.01M15 14h.01" />
             </svg>
           </div>
-          <h2 className="font-serif text-xl font-bold text-brand-navy mb-1">
+          <h2 className="font-heading text-xl font-bold text-brand-navy mb-1">
             Your estimate is ready
           </h2>
           <p className="font-sans text-sm text-slate-500">
@@ -276,7 +276,7 @@ export default function IssueSizeCalculator() {
           <p className="font-sans text-xs text-white/50 uppercase tracking-widest mb-1">
             Estimated IPO Issue Size
           </p>
-          <p className="font-serif text-3xl sm:text-4xl font-bold text-white">
+          <p className="font-heading text-3xl sm:text-4xl font-bold text-white">
             ₹{result.issueLow} – ₹{result.issueHigh} Crore
           </p>
           <p className="font-sans text-sm text-brand-gold mt-1">
@@ -286,21 +286,21 @@ export default function IssueSizeCalculator() {
         <div className="px-6 sm:px-8 py-6 grid grid-cols-2 gap-6">
           <div>
             <p className="font-sans text-xs text-slate-400 mb-1">Indicative Market Cap Range</p>
-            <p className="font-serif text-xl font-bold text-brand-navy">
+            <p className="font-heading text-xl font-bold text-brand-navy">
               ₹{result.marketCapLow} – ₹{result.marketCapHigh} Cr
             </p>
           </div>
           <div>
             <p className="font-sans text-xs text-slate-400 mb-1">Dilution Assumed</p>
-            <p className="font-serif text-xl font-bold text-brand-navy">20% – 30%</p>
+            <p className="font-heading text-xl font-bold text-brand-navy">20% – 30%</p>
           </div>
           <div>
             <p className="font-sans text-xs text-slate-400 mb-1">PAT Used</p>
-            <p className="font-serif text-xl font-bold text-brand-navy">₹{pat} Crore</p>
+            <p className="font-heading text-xl font-bold text-brand-navy">₹{pat} Crore</p>
           </div>
           <div>
             <p className="font-sans text-xs text-slate-400 mb-1">Adjusted P/E Applied</p>
-            <p className="font-serif text-xl font-bold text-brand-navy">{result.pe}×</p>
+            <p className="font-heading text-xl font-bold text-brand-navy">{result.pe}×</p>
           </div>
         </div>
       </div>
@@ -314,7 +314,7 @@ export default function IssueSizeCalculator() {
 
       {/* CTA */}
       <div className="bg-brand-navy rounded-2xl p-6 sm:p-8 text-center">
-        <h2 className="font-serif text-xl font-bold text-white mb-3">
+        <h2 className="font-heading text-xl font-bold text-white mb-3">
           Want a formal valuation analysis?
         </h2>
         <p className="font-sans text-sm text-white/65 mb-6 leading-relaxed">

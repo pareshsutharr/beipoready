@@ -57,7 +57,7 @@ function CaseStudyCard({ company, industry, outcome, quote, attribution, slug, i
 
       <div className="flex flex-1 flex-col p-7">
 
-        <h3 className="mb-3 font-serif text-xl font-bold leading-snug text-brand-navy">{company}</h3>
+        <h3 className="mb-3 font-heading text-xl font-bold leading-snug text-brand-navy">{company}</h3>
 
         <p className="mb-5 rounded-lg border border-brand-navy/8 bg-brand-cream px-3.5 py-2.5 text-[0.95rem] font-semibold leading-snug text-brand-navy/70">
           {outcome}
@@ -106,7 +106,7 @@ export default function CaseStudiesHighlights({ testimonials }: { testimonials: 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="cs-head text-center mb-16">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">What Our Clients Say</p>
-          <h2 id="case-studies-heading" className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mb-4">Results our clients talk about</h2>
+          <h2 id="case-studies-heading" className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-4">Results our clients talk about</h2>
         </div>
 
         <ul className="mb-12 grid grid-cols-1 gap-6 lg:grid-cols-3" role="list">

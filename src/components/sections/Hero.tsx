@@ -22,7 +22,7 @@ function AnimatedHeadline() {
   let letterIndex = 0;
   return (
     <h1
-      className="font-serif font-bold leading-tight tracking-tight mb-4 lg:mb-5"
+      className="font-heading font-bold leading-tight tracking-tight mb-4 lg:mb-5"
       style={{ fontSize: "clamp(1.75rem, 3vw, 2.85rem)", color: "#0D4A6F" }}
     >
       {HEADLINE_LINES.map((line, li) => (
@@ -109,7 +109,7 @@ export default function Hero() {
           screen width instead of drifting over the copy on large monitors. */}
       <div className="hero-img-merge hidden lg:block absolute inset-y-0">
         <Image
-          src="/svgs/heroimg.jpg"
+          src="/svgs/heroimg.png"
             // src="/heroaboutimg.png"
           alt="The Be IPO Ready advisory team collaborating in the office"
           fill
@@ -179,7 +179,7 @@ export default function Hero() {
         <div className="lg:hidden relative flex-1 min-h-[240px] -mx-4 sm:-mx-6 w-[calc(100%+2rem)] sm:w-[calc(100%+3rem)]">
           <div className="hero-img-merge-mobile absolute inset-0">
             <Image
-              src="/svgs/heroimg.jpg"
+              src="/svgs/heroimg.png"
               alt="The Be IPO Ready advisory team collaborating in the office"
               fill
               sizes="100vw"

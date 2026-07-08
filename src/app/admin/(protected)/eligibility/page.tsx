@@ -41,7 +41,7 @@ export default async function AdminEligibilityPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="font-serif text-2xl font-bold text-brand-navy">Eligibility Forms</h1>
+        <h1 className="font-heading text-2xl font-bold text-brand-navy">Eligibility Forms</h1>
         <p className="font-sans text-sm text-slate-500 mt-1">
           {error
             ? "Error loading submissions."

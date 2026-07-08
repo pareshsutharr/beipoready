@@ -56,7 +56,7 @@ function SuccessCard() {
         </svg>
       </div>
       <div>
-        <p className="font-serif text-lg font-bold text-brand-navy mb-1">
+        <p className="font-heading text-lg font-bold text-brand-navy mb-1">
           We&rsquo;ll be in touch shortly!
         </p>
         <p className="font-sans text-sm text-slate-500 leading-relaxed">
@@ -127,7 +127,7 @@ export default function LeadCaptureForm({
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
       {heading && (
         <div className="mb-1">
-          <h3 className="font-serif text-xl font-bold text-brand-navy">{heading}</h3>
+          <h3 className="font-heading text-xl font-bold text-brand-navy">{heading}</h3>
           {description && (
             <p className="font-sans text-sm text-slate-500 mt-1 leading-relaxed">{description}</p>
           )}

@@ -183,7 +183,7 @@ export function PageHeader({
   return (
     <div className="mb-8">
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold">{eyebrow}</p>
-      <h1 className="mt-2 font-serif text-2xl font-bold text-brand-navy">{title}</h1>
+      <h1 className="mt-2 font-heading text-2xl font-bold text-brand-navy">{title}</h1>
       <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-500">{description}</p>
     </div>
   );

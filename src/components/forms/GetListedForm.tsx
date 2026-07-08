@@ -149,7 +149,7 @@ export default function GetListedForm() {
         <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-gold/15 border border-brand-gold/25 mb-4">
           <Send className="w-6 h-6 text-brand-gold" aria-hidden="true" />
         </div>
-        <h2 className="font-serif text-xl font-bold text-brand-navy mb-2">
+        <h2 className="font-heading text-xl font-bold text-brand-navy mb-2">
           Details received — thank you!
         </h2>
         <p className="font-sans text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
@@ -163,7 +163,7 @@ export default function GetListedForm() {
   return (
     <form onSubmit={handleSubmit} noValidate className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-8">
       <div className="flex items-center justify-between mb-8">
-        <h2 className="font-serif text-2xl font-bold text-brand-navy">Send us your details</h2>
+        <h2 className="font-heading text-2xl font-bold text-brand-navy">Send us your details</h2>
         <Send className="w-7 h-7 text-slate-300 -rotate-12" aria-hidden="true" />
       </div>
 

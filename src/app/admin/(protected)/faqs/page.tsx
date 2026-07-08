@@ -32,7 +32,7 @@ export default async function FaqsPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <form action={saveFaq} className={cardClass}>
-          <h2 className="mb-4 font-serif text-lg font-bold text-brand-navy">New FAQ</h2>
+          <h2 className="mb-4 font-heading text-lg font-bold text-brand-navy">New FAQ</h2>
           <div className="grid gap-4">
             <Field label="Question" name="question" required />
             <TextArea label="Answer" name="answer" rows={4} required />

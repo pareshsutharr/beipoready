@@ -42,7 +42,7 @@ function ClientLogoTile({ client }: { client: ClientTile }) {
               className="max-h-[76px] max-w-[84px] object-contain"
             />
           ) : (
-            <span className="font-serif text-4xl font-bold text-[#0D4A6F]" aria-hidden="true">
+            <span className="font-heading text-4xl font-bold text-[#0D4A6F]" aria-hidden="true">
               {client.name.charAt(0)}
             </span>
           )}
@@ -108,7 +108,7 @@ function Case({ clients }: { clients: ClientLogoCard[] }) {
           </p>
           <h2
             id="clients-heading"
-            className="font-serif text-3xl sm:text-4xl font-bold text-[#0D4A6F]"
+            className="font-heading text-3xl sm:text-4xl font-bold text-[#0D4A6F]"
           >
             Real businesses. Real outcomes.
           </h2>

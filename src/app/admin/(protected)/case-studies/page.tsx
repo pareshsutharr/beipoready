@@ -31,7 +31,7 @@ export default async function CaseStudiesPage() {
 
       <div className="grid gap-6">
         <form action={saveCaseStudy} className={cardClass}>
-          <h2 className="mb-4 font-serif text-lg font-bold text-brand-navy">New Case Study</h2>
+          <h2 className="mb-4 font-heading text-lg font-bold text-brand-navy">New Case Study</h2>
           <div className="grid gap-4 lg:grid-cols-3">
             <Field label="Company" name="company_name" required />
             <Field label="Slug" name="slug" placeholder="auto-created if blank" />
@@ -60,7 +60,7 @@ export default async function CaseStudiesPage() {
             <input type="hidden" name="id" value={cs.id} />
             <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <h2 className="font-serif text-lg font-bold text-brand-navy">{cs.company_name}</h2>
+                <h2 className="font-heading text-lg font-bold text-brand-navy">{cs.company_name}</h2>
                 <p className="mt-1 text-xs text-slate-400">/{cs.slug}</p>
               </div>
               <span className="self-start rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-500">

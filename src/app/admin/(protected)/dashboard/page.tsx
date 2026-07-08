@@ -46,7 +46,7 @@ export default async function AdminDashboardPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="font-serif text-2xl font-bold text-brand-navy">Dashboard</h1>
+        <h1 className="font-heading text-2xl font-bold text-brand-navy">Dashboard</h1>
         <p className="font-sans text-sm text-slate-500 mt-1">Overview of leads and site activity</p>
       </div>
 
@@ -57,14 +57,14 @@ export default async function AdminDashboardPage() {
             <p className="font-sans text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">
               {stat.label}
             </p>
-            <p className={`font-serif text-4xl font-bold ${stat.color}`}>{stat.value}</p>
+            <p className={`font-heading text-4xl font-bold ${stat.color}`}>{stat.value}</p>
           </div>
         ))}
       </div>
 
       {/* Quick links */}
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
-        <h2 className="font-serif text-base font-bold text-brand-navy mb-4">Quick Actions</h2>
+        <h2 className="font-heading text-base font-bold text-brand-navy mb-4">Quick Actions</h2>
         <div className="flex flex-wrap gap-3">
           <a
             href="/admin/leads"

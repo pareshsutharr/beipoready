@@ -13,7 +13,7 @@ export default function FaqAccordion({ categories }: { categories: FaqCategory[]
       {categories.map((cat) => (
         <div key={cat.category}>
           {cat.category && (
-            <h2 className="font-serif text-xl font-bold text-brand-navy mb-4 pb-3 border-b border-slate-200">
+            <h2 className="font-heading text-xl font-bold text-brand-navy mb-4 pb-3 border-b border-slate-200">
               {cat.category}
             </h2>
           )}
@@ -31,7 +31,7 @@ export default function FaqAccordion({ categories }: { categories: FaqCategory[]
                     aria-expanded={isOpen}
                     className="w-full flex items-center justify-between gap-4 px-6 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-inset"
                   >
-                    <span className="font-serif text-sm sm:text-base font-semibold text-brand-navy">
+                    <span className="font-heading text-sm sm:text-base font-semibold text-brand-navy">
                       {item.q}
                     </span>
                     <svg

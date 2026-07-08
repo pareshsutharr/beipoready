@@ -38,9 +38,9 @@ export default function AdminLoginPage() {
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="w-8 h-8 bg-brand-gold rounded-md" />
-            <span className="font-serif text-lg font-bold text-white">Be IPO Ready</span>
+            <span className="font-heading text-lg font-bold text-white">Be IPO Ready</span>
           </div>
-          <h1 className="font-serif text-2xl font-bold text-white mb-1">Admin Portal</h1>
+          <h1 className="font-heading text-2xl font-bold text-white mb-1">Admin Portal</h1>
           <p className="font-sans text-sm text-white/50">Sign in to manage leads and content</p>
         </div>
 

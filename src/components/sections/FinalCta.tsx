@@ -17,7 +17,7 @@ export default function FinalCta() {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
         {/* Left — pitch + contact strip */}
         <div>
-          <h2 id="final-cta-heading" className="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
+          <h2 id="final-cta-heading" className="font-heading text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
             Ready to raise capital or take your company public?
           </h2>
           <p className="text-white/70 text-base sm:text-lg leading-relaxed mb-8 max-w-lg">

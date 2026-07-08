@@ -35,7 +35,7 @@ export default async function CaseStudiesPage() {
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-4">
             Track Record
           </p>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white leading-tight mb-6">
+          <h1 className="font-heading text-4xl sm:text-5xl font-bold text-white leading-tight mb-6">
             Companies We&rsquo;ve Taken Public
           </h1>
           <p className="font-sans text-lg text-white/65 max-w-2xl mx-auto leading-relaxed">
@@ -69,21 +69,21 @@ export default async function CaseStudiesPage() {
                   {/* Company logo monogram */}
                   <div className="absolute top-3 right-3 w-12 h-12 rounded-xl flex items-center justify-center shadow-xl"
                     style={{ background: "rgba(15,45,82,0.92)", border: "1.5px solid rgba(245,158,11,0.45)", backdropFilter: "blur(4px)" }}>
-                    <span className="font-serif text-sm font-bold" style={{ color: "#F59E0B" }}>{getInitials(cs.company)}</span>
+                    <span className="font-heading text-sm font-bold" style={{ color: "#F59E0B" }}>{getInitials(cs.company)}</span>
                   </div>
                   {/* Sector badge */}
                   <span className="absolute bottom-3 left-4 text-xs font-bold uppercase tracking-wide text-white bg-brand-gold/85 px-2.5 py-1 rounded-full">{cs.sector}</span>
                 </div>
                 <div className="bg-brand-navy/5 border-b border-slate-100 px-8 py-4 flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <h2 className="font-serif text-lg font-bold text-brand-navy group-hover:text-brand-gold transition-colors">
+                    <h2 className="font-heading text-lg font-bold text-brand-navy group-hover:text-brand-gold transition-colors">
                       {cs.company}
                     </h2>
                     <p className="font-sans text-xs text-slate-400 mt-0.5">{cs.sector}</p>
                   </div>
                   <div className="text-right">
                     <p className="font-sans text-xs text-slate-500">IPO Readiness Score</p>
-                    <p className="font-serif text-2xl font-bold text-brand-gold">{cs.readinessScore}<span className="text-sm text-slate-400">/100</span></p>
+                    <p className="font-heading text-2xl font-bold text-brand-gold">{cs.readinessScore}<span className="text-sm text-slate-400">/100</span></p>
                   </div>
                 </div>
 
@@ -115,7 +115,7 @@ export default async function CaseStudiesPage() {
 
       <section className="bg-brand-navy py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="font-serif text-3xl font-bold text-white mb-4">
+          <h2 className="font-heading text-3xl font-bold text-white mb-4">
             Could your company be next?
           </h2>
           <p className="font-sans text-base text-white/65 mb-8 leading-relaxed">

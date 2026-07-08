@@ -79,7 +79,7 @@ export default function IssueCostEstimator() {
 
   return (
     <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-8">
-      <h2 className="font-serif text-xl font-bold text-brand-navy mb-6">
+      <h2 className="font-heading text-xl font-bold text-brand-navy mb-6">
         Estimate Your Issue Cost
       </h2>
 
@@ -118,7 +118,7 @@ export default function IssueCostEstimator() {
 
       {showResult && isValid && (
         <div className="mt-8">
-          <h3 className="font-serif text-lg font-bold text-brand-navy mb-4">
+          <h3 className="font-heading text-lg font-bold text-brand-navy mb-4">
             Indicative cost for a ₹{size} Cr SME IPO
           </h3>
 

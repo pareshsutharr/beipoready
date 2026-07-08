@@ -76,7 +76,7 @@ export default function ReadinessJourney() {
         {/* Heading */}
         <div className="jrn-head text-center mb-16">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">How We Work</p>
-          <h2 id="journey-heading" className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mb-4">A clear path from where you are to publicly listed</h2>
+          <h2 id="journey-heading" className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-4">A clear path from where you are to publicly listed</h2>
         </div>
 
         {/* ── Desktop timeline ── */}
@@ -101,12 +101,12 @@ export default function ReadinessJourney() {
                   className="jrn-node relative w-11 h-11 rounded-full flex items-center justify-center mb-4 z-10 border-2 border-brand-gold"
                   style={{ background: "linear-gradient(135deg,#0F2D52,#1E3A5F)", boxShadow: "0 0 0 4px rgba(245,158,11,0.15), 0 4px 16px rgba(245,158,11,0.3)" }}
                 >
-                  <span className="font-serif text-base font-bold text-brand-gold">{step.number}</span>
+                  <span className="font-heading text-base font-bold text-brand-gold">{step.number}</span>
                 </div>
 
                 {/* Text */}
                 <div className="jrn-label text-center px-2">
-                  <p className="font-serif text-sm font-bold text-brand-navy leading-snug mb-1">{step.label}</p>
+                  <p className="font-heading text-sm font-bold text-brand-navy leading-snug mb-1">{step.label}</p>
                   <p className="text-xs text-slate-500 leading-relaxed">{step.description}</p>
                 </div>
               </div>
@@ -123,14 +123,14 @@ export default function ReadinessJourney() {
                   className="w-10 h-10 rounded-full flex items-center justify-center border-2 border-brand-gold shrink-0 z-10"
                   style={{ background: "linear-gradient(135deg,#0F2D52,#1E3A5F)", boxShadow: "0 0 0 3px rgba(245,158,11,0.15)" }}
                 >
-                  <span className="font-serif text-sm font-bold text-brand-gold">{step.number}</span>
+                  <span className="font-heading text-sm font-bold text-brand-gold">{step.number}</span>
                 </div>
                 {i < STEPS.length - 1 && (
                   <div className="w-px flex-1 mt-2" style={{ background: "linear-gradient(to bottom, rgba(245,158,11,0.5), transparent)", minHeight: "32px" }} aria-hidden="true" />
                 )}
               </div>
               <div className="pb-10">
-                <p className="font-serif text-base font-bold text-brand-navy leading-snug mb-1">{step.label}</p>
+                <p className="font-heading text-base font-bold text-brand-navy leading-snug mb-1">{step.label}</p>
                 <p className="text-sm text-slate-500 leading-relaxed">{step.description}</p>
               </div>
             </div>

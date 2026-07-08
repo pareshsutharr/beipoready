@@ -342,7 +342,7 @@ export default function IpoReadinessQuiz() {
 
         {/* Section card */}
         <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-8">
-          <h2 className="font-serif text-xl font-bold text-brand-navy mb-6">{section.title}</h2>
+          <h2 className="font-heading text-xl font-bold text-brand-navy mb-6">{section.title}</h2>
 
           <div className="space-y-8">
             {section.questions.map((q, qi) => (
@@ -404,7 +404,7 @@ export default function IpoReadinessQuiz() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h2 className="font-serif text-2xl font-bold text-brand-navy mb-2">
+          <h2 className="font-heading text-2xl font-bold text-brand-navy mb-2">
             Assessment Complete!
           </h2>
           <p className="font-sans text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
@@ -522,7 +522,7 @@ export default function IpoReadinessQuiz() {
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="font-serif text-4xl font-bold text-brand-navy">{finalScore}</span>
+            <span className="font-heading text-4xl font-bold text-brand-navy">{finalScore}</span>
             <span className="font-sans text-xs text-slate-400">/100</span>
           </div>
         </div>
@@ -536,7 +536,7 @@ export default function IpoReadinessQuiz() {
 
       {/* Section breakdown */}
       <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-8">
-        <h2 className="font-serif text-lg font-bold text-brand-navy mb-5">Score by Domain</h2>
+        <h2 className="font-heading text-lg font-bold text-brand-navy mb-5">Score by Domain</h2>
         <div className="space-y-4">
           {sectionScores.map((s) => {
             const pct = Math.round((s.score / s.max) * 100);
@@ -562,7 +562,7 @@ export default function IpoReadinessQuiz() {
 
       {/* CTA */}
       <div className="bg-brand-navy rounded-2xl p-6 sm:p-8 text-center">
-        <h2 className="font-serif text-xl font-bold text-white mb-3">
+        <h2 className="font-heading text-xl font-bold text-white mb-3">
           Get a Detailed Action Plan
         </h2>
         <p className="font-sans text-sm text-white/65 mb-6 leading-relaxed">

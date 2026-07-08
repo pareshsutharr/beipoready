@@ -51,7 +51,7 @@ export default function ToolsPreview() {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">Plan Before You Commit</p>
-          <h2 id="tools-heading" className="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">
+          <h2 id="tools-heading" className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4">
             See where you stand today — free
           </h2>
           <p className="text-base sm:text-lg text-white/55 max-w-xl mx-auto leading-relaxed">
@@ -75,7 +75,7 @@ export default function ToolsPreview() {
                 >
                   <Icon className="w-5 h-5" style={{ color: "#ECB85B" }} aria-hidden="true" />
                 </div>
-                <h3 className="font-serif text-lg font-bold text-white mb-2 leading-snug">{title}</h3>
+                <h3 className="font-heading text-lg font-bold text-white mb-2 leading-snug">{title}</h3>
                 <p className="text-sm text-white/60 leading-relaxed flex-1 mb-6">{description}</p>
                 {href ? (
                   <Link

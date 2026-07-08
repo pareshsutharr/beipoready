@@ -51,7 +51,7 @@ export default async function BlogsPage() {
 
       <div className="grid gap-6">
         <form action={saveBlogPost} className={cardClass}>
-          <h2 className="mb-4 font-serif text-lg font-bold text-brand-navy">New Blog Post</h2>
+          <h2 className="mb-4 font-heading text-lg font-bold text-brand-navy">New Blog Post</h2>
           <div className="grid gap-4 lg:grid-cols-2">
             <Field label="Title" name="title" required />
             <Field label="Slug" name="slug" placeholder="auto-created if blank" />
@@ -73,7 +73,7 @@ export default async function BlogsPage() {
             <input type="hidden" name="id" value={post.id} />
             <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <h2 className="font-serif text-lg font-bold text-brand-navy">{post.title}</h2>
+                <h2 className="font-heading text-lg font-bold text-brand-navy">{post.title}</h2>
                 <p className="mt-1 text-xs text-slate-400">/{post.slug}</p>
               </div>
               <span className="self-start rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-500">

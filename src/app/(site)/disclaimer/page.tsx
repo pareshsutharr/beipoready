@@ -10,13 +10,13 @@ export default function DisclaimerPage() {
   return (
     <main className="bg-brand-cream py-16 sm:py-20">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mb-2">Disclaimer</h1>
+        <h1 className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-2">Disclaimer</h1>
         <p className="font-sans text-sm text-slate-400 mb-10">Last updated: June 2026</p>
 
         <div className="font-sans text-slate-700 leading-relaxed space-y-8">
 
           <section className="bg-amber-50 border border-amber-200 rounded-xl p-5">
-            <h2 className="font-serif text-lg font-bold text-amber-800 mb-2">Important Notice</h2>
+            <h2 className="font-heading text-lg font-bold text-amber-800 mb-2">Important Notice</h2>
             <p className="text-sm text-amber-700">
               This website and all information contained herein is for informational purposes only and
               does not constitute an offer to buy or sell any security, or a solicitation of any investment.
@@ -25,7 +25,7 @@ export default function DisclaimerPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-bold text-brand-navy mb-3">SEBI Registration</h2>
+            <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">SEBI Registration</h2>
             <p>
               Be IPO Ready / Jainam Capital Advisors is registered with the Securities and Exchange Board
               of India (SEBI) as a Category I Merchant Banker. Our SEBI registration does not constitute
@@ -35,7 +35,7 @@ export default function DisclaimerPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-bold text-brand-navy mb-3">No Investment Advice</h2>
+            <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">No Investment Advice</h2>
             <p>
               Nothing on this website — including the IPO Readiness Tool, Issue Size Calculator, blog
               articles, case studies, and any other content — constitutes financial, investment, tax,
@@ -46,7 +46,7 @@ export default function DisclaimerPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-bold text-brand-navy mb-3">Tool Outputs are Indicative Only</h2>
+            <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">Tool Outputs are Indicative Only</h2>
             <p>
               The IPO Readiness Tool and Issue Size Calculator are designed to provide indicative
               assessments based on the information you input. They are not formal valuations, audits,
@@ -56,7 +56,7 @@ export default function DisclaimerPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-bold text-brand-navy mb-3">Forward-Looking Statements</h2>
+            <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">Forward-Looking Statements</h2>
             <p>
               Certain information on this website may contain forward-looking statements involving
               risks and uncertainties. Actual results, performance, or events may differ materially
@@ -66,7 +66,7 @@ export default function DisclaimerPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-bold text-brand-navy mb-3">Accuracy of Information</h2>
+            <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">Accuracy of Information</h2>
             <p>
               While we make every effort to ensure the accuracy and currency of information on this
               website, we make no representations or warranties of any kind, express or implied, about
@@ -76,7 +76,7 @@ export default function DisclaimerPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-bold text-brand-navy mb-3">SEBI Investor Grievance Redressal</h2>
+            <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">SEBI Investor Grievance Redressal</h2>
             <p>
               For SEBI-related grievances, investors may contact SEBI at sebi.gov.in or call SEBI
               toll-free at 1800 22 7575 / 1800 266 7575. You may also submit grievances on SCORES
@@ -85,7 +85,7 @@ export default function DisclaimerPage() {
           </section>
 
           <section>
-            <h2 className="font-serif text-xl font-bold text-brand-navy mb-3">Contact</h2>
+            <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">Contact</h2>
             <p>
               For any questions or concerns regarding this Disclaimer, please contact us at
               info@beipoready.com.

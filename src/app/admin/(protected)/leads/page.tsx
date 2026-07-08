@@ -47,7 +47,7 @@ export default async function AdminLeadsPage() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="font-serif text-2xl font-bold text-brand-navy">Leads</h1>
+          <h1 className="font-heading text-2xl font-bold text-brand-navy">Leads</h1>
           <p className="font-sans text-sm text-slate-500 mt-1">
             {error ? "Error loading leads." : `${leads?.length ?? 0} leads (most recent 100)`}
           </p>

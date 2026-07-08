@@ -31,7 +31,7 @@ export default function BeforeAfter() {
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">
             The Cost of Staying Where You Are
           </p>
-          <h2 id="before-after-heading" className="font-serif text-3xl sm:text-4xl font-bold text-[#0D4A6F] mb-5 max-w-3xl mx-auto leading-snug">
+          <h2 id="before-after-heading" className="font-heading text-3xl sm:text-4xl font-bold text-[#0D4A6F] mb-5 max-w-3xl mx-auto leading-snug">
             The real question isn&rsquo;t &ldquo;why go public?&rdquo; — it&rsquo;s
             &ldquo;what is staying private costing you?&rdquo;
           </h2>
@@ -45,7 +45,7 @@ export default function BeforeAfter() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
           {/* Before — muted */}
           <div className="rounded-2xl p-7 sm:p-8 border border-slate-200 bg-white">
-            <h3 className="font-serif text-lg font-bold text-slate-500 mb-6">
+            <h3 className="font-heading text-lg font-bold text-slate-500 mb-6">
               Staying as you are
             </h3>
             <ul className="space-y-4" role="list">
@@ -68,7 +68,7 @@ export default function BeforeAfter() {
               boxShadow: "0 16px 48px rgba(13,74,111,0.28)",
             }}
           >
-            <h3 className="font-serif text-lg font-bold mb-6" style={{ color: "#ECB85B" }}>
+            <h3 className="font-heading text-lg font-bold mb-6" style={{ color: "#ECB85B" }}>
               Being IPO Ready
             </h3>
             <ul className="space-y-4" role="list">

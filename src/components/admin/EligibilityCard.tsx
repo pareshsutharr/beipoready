@@ -75,14 +75,15 @@ export default function EligibilityCard({
       `<tr><td class="l">${label}</td><td>${value}</td></tr>`;
     const yn = (v: boolean | null) => (v === null ? "—" : v ? "Yes" : "No");
     w.document.write(`<!doctype html><html><head><title>${row.organization_name} — Eligibility Form</title>
+      <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
       <style>
-        body { font-family: Georgia, serif; color: #0D4A6F; padding: 40px; }
-        h1 { font-size: 22px; margin: 0 0 2px; }
-        .sub { font-family: Arial, sans-serif; color: #64748b; font-size: 12px; margin-bottom: 24px; }
-        table { border-collapse: collapse; width: 100%; font-family: Arial, sans-serif; font-size: 13px; }
+        body { font-family: "Montserrat", sans-serif; color: #0D4A6F; padding: 40px; }
+        h1 { font-family: "Hanken Grotesk", sans-serif; font-size: 22px; margin: 0 0 2px; }
+        .sub { color: #64748b; font-size: 12px; margin-bottom: 24px; }
+        table { border-collapse: collapse; width: 100%; font-size: 13px; }
         td { border: 1px solid #e2e8f0; padding: 9px 12px; color: #334155; }
         td.l { width: 42%; color: #64748b; background: #f8fafc; }
-        .foot { font-family: Arial, sans-serif; color: #94a3b8; font-size: 11px; margin-top: 24px; }
+        .foot { color: #94a3b8; font-size: 11px; margin-top: 24px; }
       </style></head><body>
       <h1>${row.organization_name}</h1>
       <p class="sub">Get Listed — IPO eligibility submission · ${fmtDate(row.created_at)} · status: ${row.status}</p>
@@ -120,7 +121,7 @@ export default function EligibilityCard({
             {row.status}
           </span>
         </div>
-        <h2 className="font-serif text-base font-bold text-brand-navy leading-snug mb-1">
+        <h2 className="font-heading text-base font-bold text-brand-navy leading-snug mb-1">
           {row.organization_name}
         </h2>
         <p className="font-sans text-xs text-slate-400 inline-flex items-center gap-1.5">

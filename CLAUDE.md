@@ -32,3 +32,12 @@ ROLLBACK;
 ```
 
 This applies equally to `blog_posts` and `case_studies` if the anon role ever needs INSERT on those tables.
+
+## Typography — two fonts only
+
+The entire site uses exactly two fonts, loaded via `next/font/google` in `src/app/layout.tsx`:
+
+- **Hanken Grotesk** — all headings/display text. Tailwind class: `font-heading` (token `--font-heading`).
+- **Montserrat** — all body text. Tailwind class: `font-sans` (token `--font-sans`, default on `<body>`).
+
+Never introduce another font family (no `font-serif`, no inline `font-family`, no other Google fonts). Every new component must use only these two classes/tokens. Standalone generated documents (e.g. print popups) must link these same fonts explicitly.

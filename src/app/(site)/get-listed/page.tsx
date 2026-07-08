@@ -21,7 +21,7 @@ export default function GetListedPage() {
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Get Listed
           </p>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
+          <h1 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
             Eligibility for IPO
           </h1>
           <p className="font-sans text-base text-white/65 max-w-xl mx-auto leading-relaxed">

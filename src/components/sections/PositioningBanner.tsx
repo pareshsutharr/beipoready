@@ -20,7 +20,7 @@ export default function PositioningBanner() {
       </svg>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="font-serif font-bold text-white leading-tight tracking-tight mb-4"
+        <h2 className="font-heading font-bold text-white leading-tight tracking-tight mb-4"
           style={{ fontSize: "clamp(1.6rem, 3.4vw, 2.9rem)" }}>
           India&rsquo;s Leading IPO Advisor and{" "}
           <span style={{ color: "#ECB85B" }}>Growth Capital Expert</span>

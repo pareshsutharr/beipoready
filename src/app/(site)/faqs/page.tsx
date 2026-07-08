@@ -23,7 +23,7 @@ export default async function FAQsPage() {
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Knowledge Base
           </p>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
+          <h1 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
             Frequently Asked Questions
           </h1>
           <p className="font-sans text-base text-white/65 max-w-xl mx-auto leading-relaxed">
@@ -41,7 +41,7 @@ export default async function FAQsPage() {
 
       <section className="bg-brand-navy py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="font-serif text-2xl font-bold text-white mb-3">
+          <h2 className="font-heading text-2xl font-bold text-white mb-3">
             Still have questions?
           </h2>
           <p className="font-sans text-base text-white/65 mb-8 leading-relaxed">

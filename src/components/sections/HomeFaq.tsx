@@ -64,7 +64,7 @@ export default function HomeFaq() {
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">
             Frequently Asked Questions
           </p>
-          <h2 id="faq-heading" className="font-serif text-3xl sm:text-4xl font-bold text-[#0D4A6F]">
+          <h2 id="faq-heading" className="font-heading text-3xl sm:text-4xl font-bold text-[#0D4A6F]">
             Questions founders ask us most
           </h2>
         </div>

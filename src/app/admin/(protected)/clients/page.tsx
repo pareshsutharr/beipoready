@@ -64,7 +64,7 @@ export default async function ClientsPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <form action={saveClient} className={cardClass}>
-          <h2 className="mb-4 font-serif text-lg font-bold text-brand-navy">New Client</h2>
+          <h2 className="mb-4 font-heading text-lg font-bold text-brand-navy">New Client</h2>
           <div className="grid gap-4">
             <Field label="Client / Company Name" name="name" required />
             <Field label="Nature of Business" name="nature_of_business" placeholder="e.g. Stock Broker" />
@@ -85,7 +85,7 @@ export default async function ClientsPage() {
             <input type="hidden" name="current_logo_url" value={client.logo_url} />
             <div className="mb-4 flex items-start justify-between gap-4">
               <div>
-                <h2 className="font-serif text-lg font-bold text-brand-navy">{client.name}</h2>
+                <h2 className="font-heading text-lg font-bold text-brand-navy">{client.name}</h2>
                 {client.nature_of_business && (
                   <p className="mt-1 text-xs font-semibold text-slate-500">{client.nature_of_business}</p>
                 )}

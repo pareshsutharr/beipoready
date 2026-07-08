@@ -18,7 +18,7 @@ export default function ContactUsPage() {
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Get in Touch
           </p>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
+          <h1 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
             Talk to an IPO Advisory Expert
           </h1>
           <p className="font-sans text-base sm:text-lg text-white/65 max-w-xl mx-auto leading-relaxed">
@@ -37,7 +37,7 @@ export default function ContactUsPage() {
             {/* Left: contact details */}
             <div className="lg:col-span-2 flex flex-col gap-8">
               <div>
-                <h2 className="font-serif text-xl font-bold text-brand-navy mb-4">
+                <h2 className="font-heading text-xl font-bold text-brand-navy mb-4">
                   Contact Details
                 </h2>
                 <ul className="space-y-4 font-sans text-sm text-slate-600">
@@ -68,7 +68,7 @@ export default function ContactUsPage() {
               </div>
 
               <div>
-                <h2 className="font-serif text-xl font-bold text-brand-navy mb-4">
+                <h2 className="font-heading text-xl font-bold text-brand-navy mb-4">
                   Office Hours
                 </h2>
                 <p className="font-sans text-sm text-slate-600 leading-relaxed">
@@ -86,7 +86,7 @@ export default function ContactUsPage() {
               </div>
 
               <div className="bg-brand-navy/5 border border-brand-navy/10 rounded-xl p-5">
-                <h3 className="font-serif text-base font-bold text-brand-navy mb-2">
+                <h3 className="font-heading text-base font-bold text-brand-navy mb-2">
                   Free First Consultation
                 </h3>
                 <p className="font-sans text-sm text-slate-600 leading-relaxed">
@@ -99,7 +99,7 @@ export default function ContactUsPage() {
 
             {/* Right: form */}
             <div className="lg:col-span-3 bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-              <h2 className="font-serif text-xl font-bold text-brand-navy mb-6">
+              <h2 className="font-heading text-xl font-bold text-brand-navy mb-6">
                 Send Us a Message
               </h2>
               <ContactForm />

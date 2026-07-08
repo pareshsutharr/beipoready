@@ -46,7 +46,7 @@ function SuccessCard() {
         </svg>
       </div>
       <div>
-        <p className="font-serif text-2xl font-bold text-brand-navy mb-2">
+        <p className="font-heading text-2xl font-bold text-brand-navy mb-2">
           Message received!
         </p>
         <p className="font-sans text-base text-slate-500 leading-relaxed max-w-md">

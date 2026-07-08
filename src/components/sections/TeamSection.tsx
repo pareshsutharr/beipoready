@@ -35,7 +35,7 @@ export default function TeamSection() {
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">
             The People Behind Your Listing
           </p>
-          <h2 id="team-heading" className="font-serif text-3xl sm:text-4xl font-bold text-[#0D4A6F]">
+          <h2 id="team-heading" className="font-heading text-3xl sm:text-4xl font-bold text-[#0D4A6F]">
             Advisors who&rsquo;ve done this before
           </h2>
         </div>
@@ -63,7 +63,7 @@ export default function TeamSection() {
                     in
                   </Link>
                   <div className="absolute inset-x-0 bottom-0 z-10 p-7">
-                    <h3 className="font-serif text-4xl font-bold leading-none text-white">
+                    <h3 className="font-heading text-4xl font-bold leading-none text-white">
                       {member.name}
                     </h3>
                     <p className="mt-5 font-sans text-sm font-bold uppercase tracking-[0.22em] text-brand-gold">

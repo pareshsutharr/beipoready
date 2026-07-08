@@ -61,7 +61,7 @@ export default function SiteAlert({
         <div className="fixed inset-0 z-[80] flex items-center justify-center bg-brand-navy/70 px-4">
           <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
             <div className="flex items-start justify-between gap-4 mb-3">
-              <h2 className="font-serif text-2xl font-bold text-brand-navy">{popup.title}</h2>
+              <h2 className="font-heading text-2xl font-bold text-brand-navy">{popup.title}</h2>
               <button
                 type="button"
                 onClick={dismissPopup}

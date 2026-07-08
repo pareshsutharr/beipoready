@@ -145,7 +145,7 @@ export default function SmeIpoChecklist() {
       <div className="space-y-6">
         {PHASES.map(({ phase, items }) => (
           <section key={phase} className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-7">
-            <h2 className="font-serif text-lg font-bold text-brand-navy mb-4">
+            <h2 className="font-heading text-lg font-bold text-brand-navy mb-4">
               Phase {phase}
             </h2>
             <ul className="space-y-3" role="list">
@@ -182,7 +182,7 @@ export default function SmeIpoChecklist() {
       <div className="no-print mt-8">
         {leadStatus === "success" ? (
           <div className="rounded-2xl border border-brand-gold/30 bg-brand-gold/10 px-6 py-6 text-center">
-            <p className="font-serif text-lg font-bold text-brand-navy mb-1">
+            <p className="font-heading text-lg font-bold text-brand-navy mb-1">
               The checklist is on its way!
             </p>
             <p className="font-sans text-sm text-slate-600">
@@ -192,7 +192,7 @@ export default function SmeIpoChecklist() {
           </div>
         ) : (
           <form onSubmit={submitLead} className="rounded-2xl border border-slate-200 bg-white shadow-sm p-6 sm:p-7">
-            <h2 className="font-serif text-lg font-bold text-brand-navy mb-1">
+            <h2 className="font-heading text-lg font-bold text-brand-navy mb-1">
               Get the checklist in your inbox — free
             </h2>
             <p className="font-sans text-sm text-slate-500 mb-4">

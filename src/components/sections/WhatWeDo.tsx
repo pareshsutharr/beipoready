@@ -28,7 +28,7 @@ export default function WhatWeDo() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">What We Do</p>
-          <h2 id="what-we-do-heading" className="font-serif text-3xl sm:text-4xl font-bold text-[#0D4A6F] mb-5">
+          <h2 id="what-we-do-heading" className="font-heading text-3xl sm:text-4xl font-bold text-[#0D4A6F] mb-5">
             One partner across your entire capital journey
           </h2>
           <p className="text-base sm:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
@@ -77,7 +77,7 @@ export default function WhatWeDo() {
                 >
                   <Icon className="w-6 h-6 text-[#0D4A6F]" aria-hidden="true" />
                 </div>
-                <h3 className="font-serif text-lg font-bold text-[#0D4A6F] mb-2 leading-snug">{title}</h3>
+                <h3 className="font-heading text-lg font-bold text-[#0D4A6F] mb-2 leading-snug">{title}</h3>
                 <p className="text-sm text-slate-500 leading-relaxed flex-1 mb-4">{text}</p>
                 <span className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-gold">
                   Learn More
@@ -88,7 +88,7 @@ export default function WhatWeDo() {
           ))}
         </ul>
 
-        <p className="text-center font-serif text-lg sm:text-xl italic text-[#0D4A6F]">
+        <p className="text-center font-heading text-lg sm:text-xl italic text-[#0D4A6F]">
           Value creation before IPO, wealth creation post listing.
         </p>
       </div>

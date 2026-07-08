@@ -77,7 +77,7 @@ function StatCard({ value, label, index }: { value: string; label: string; index
 
       <span
         ref={numRef}
-        className="font-serif text-4xl sm:text-5xl font-bold tracking-tight leading-none mb-3"
+        className="font-heading text-4xl sm:text-5xl font-bold tracking-tight leading-none mb-3"
         style={{
           background: "linear-gradient(135deg, #F59E0B, #FCD34D)",
           WebkitBackgroundClip: "text",
@@ -130,7 +130,7 @@ export default function TrustStats({ stats }: { stats: Stat[] }) {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={headRef} className="text-center mb-14">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">By the Numbers</p>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white">Proven Results Across Every Engagement</h2>
+          <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white">Proven Results Across Every Engagement</h2>
         </div>
 
         <dl className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">

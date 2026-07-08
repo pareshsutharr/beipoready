@@ -97,7 +97,7 @@ export default function ServicesOverview() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">Our Services</p>
-          <h2 id="services-heading" className="font-serif text-3xl sm:text-4xl font-bold text-[#0D4A6F] mb-4">
+          <h2 id="services-heading" className="font-heading text-3xl sm:text-4xl font-bold text-[#0D4A6F] mb-4">
             End-to-end advisory, built around your goals
           </h2>
         </div>
@@ -117,7 +117,7 @@ export default function ServicesOverview() {
                     <Icon className="w-6 h-6 text-[#0D4A6F]" aria-hidden="true" />
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg font-bold text-[#0D4A6F] leading-snug mb-1">{title}</h3>
+                    <h3 className="font-heading text-lg font-bold text-[#0D4A6F] leading-snug mb-1">{title}</h3>
                     <p className="text-sm font-medium text-slate-600">{brief}</p>
                   </div>
                 </div>
@@ -157,7 +157,7 @@ export default function ServicesOverview() {
 
         {/* SME vs Main Board comparison */}
         <div className="max-w-4xl mx-auto">
-          <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0D4A6F] text-center mb-6">
+          <h3 className="font-heading text-xl sm:text-2xl font-bold text-[#0D4A6F] text-center mb-6">
             SME IPO vs Main Board IPO — which path fits you?
           </h3>
           <div className="overflow-x-auto rounded-2xl border border-slate-200">

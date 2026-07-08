@@ -207,7 +207,7 @@ export default function AboutContent() {
               <p className="about-reveal font-sans text-sm font-semibold uppercase tracking-[0.25em] text-white mb-4">
                 About BEIPOREADY
               </p>
-              <h1 className="about-reveal font-serif text-4xl sm:text-5xl lg:text-[3.65rem] font-bold  leading-[1.08] tracking-tight max-w-3xl text-brand-gold">
+              <h1 className="about-reveal font-heading text-4xl sm:text-5xl lg:text-[3.65rem] font-bold  leading-[1.08] tracking-tight max-w-3xl text-brand-gold">
                 We don&apos;t just advise on IPOs. We make companies ready for them.
               </h1>
               <p className="about-reveal mt-6 font-sans text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl text-white">
@@ -219,7 +219,7 @@ export default function AboutContent() {
               <p className="font-sans text-sm font-semibold uppercase tracking-[0.18em] text-brand-gold mb-3">
                 Positioning
               </p>
-              <p className="font-serif text-2xl font-bold text-brand-navy leading-tight">
+              <p className="font-heading text-2xl font-bold text-brand-navy leading-tight">
                 India&apos;s Leading IPO Advisor and Growth Capital Expert
               </p>
             </div>
@@ -234,7 +234,7 @@ export default function AboutContent() {
               <p className="about-reveal font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
                 Our Story
               </p>
-              <h2 className="about-reveal font-serif text-3xl sm:text-4xl font-bold text-brand-navy leading-tight mb-7">
+              <h2 className="about-reveal font-heading text-3xl sm:text-4xl font-bold text-brand-navy leading-tight mb-7">
                 The name is the mission — Be IPO Ready.
               </h2>
               <div className="space-y-5 font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
@@ -248,7 +248,7 @@ export default function AboutContent() {
 
               <figure className="about-reveal my-8 rounded bg-brand-navy p-6 sm:p-8 text-white">
                 <Quote className="w-8 h-8 text-brand-gold mb-4" aria-hidden="true" />
-                <blockquote className="font-serif text-2xl sm:text-3xl font-bold leading-tight">
+                <blockquote className="font-heading text-2xl sm:text-3xl font-bold leading-tight">
                   &ldquo;A successful IPO isn&apos;t an event you attend. It&apos;s a state you reach.&rdquo;
                 </blockquote>
                 <figcaption className="mt-4 font-sans text-sm text-white/70">
@@ -279,7 +279,7 @@ export default function AboutContent() {
                   <div className="w-16 h-16 rounded-full bg-brand-gold text-brand-navy flex items-center justify-center mb-5 shadow-lg">
                     <Play className="w-7 h-7 fill-current" aria-hidden="true" />
                   </div>
-                  <p className="font-serif text-2xl font-bold text-white">
+                  <p className="font-heading text-2xl font-bold text-white">
                     Founder&apos;s message / brand film goes here.
                   </p>
                   <p className="mt-3 font-sans text-sm text-white/65">
@@ -301,7 +301,7 @@ export default function AboutContent() {
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
               The People Behind Your Listing
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mb-5 leading-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-5 leading-tight">
               Advisors who&apos;ve walked this road before
             </h2>
             <p className="font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
@@ -330,12 +330,12 @@ export default function AboutContent() {
                   <Link
                     href="#"
                     aria-label={`${member.name} LinkedIn profile URL`}
-                    className="absolute right-4 top-4 z-10 w-10 h-10 rounded bg-white/90 text-brand-navy flex items-center justify-center font-serif font-bold shadow-sm hover:bg-brand-gold transition-colors"
+                    className="absolute right-4 top-4 z-10 w-10 h-10 rounded bg-white/90 text-brand-navy flex items-center justify-center font-heading font-bold shadow-sm hover:bg-brand-gold transition-colors"
                   >
                     in
                   </Link>
                   <div className="absolute inset-x-0 bottom-0 z-10 p-5">
-                    <h3 className="font-serif text-2xl font-bold text-white leading-tight">
+                    <h3 className="font-heading text-2xl font-bold text-white leading-tight">
                       {member.name}
                     </h3>
                     <p className="mt-2 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-brand-gold">
@@ -367,7 +367,7 @@ export default function AboutContent() {
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
               Our Journey
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mb-5 leading-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-5 leading-tight">
               From a simple conviction to India&apos;s IPO readiness partner
             </h2>
             <p className="font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
@@ -385,7 +385,7 @@ export default function AboutContent() {
                       <CalendarDays className="w-6 h-6" aria-hidden="true" />
                     </div>
                     <div className="lg:mt-5 rounded border border-slate-200 bg-white p-4 shadow-sm">
-                      <p className="font-serif text-lg font-bold text-brand-navy">{item.year}</p>
+                      <p className="font-heading text-lg font-bold text-brand-navy">{item.year}</p>
                       <p className="mt-2 font-sans text-sm text-slate-600 leading-relaxed">{item.text}</p>
                     </div>
                   </div>
@@ -402,7 +402,7 @@ export default function AboutContent() {
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
               Proof in Practice
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy mb-5 leading-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-5 leading-tight">
               What &ldquo;being ready&rdquo; looks like
             </h2>
             <p className="font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
@@ -417,7 +417,7 @@ export default function AboutContent() {
                   <p className="font-sans text-sm font-semibold uppercase tracking-[0.22em] text-brand-gold mb-5">
                     [Client name — Sector]
                   </p>
-                  <p className="font-serif text-4xl font-bold text-brand-gold leading-none">
+                  <p className="font-heading text-4xl font-bold text-brand-gold leading-none">
                     ₹[XX] Cr
                   </p>
                   <p className="mt-3 font-sans text-sm text-white/65">Issue size</p>
@@ -431,7 +431,7 @@ export default function AboutContent() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                   {["₹[XX] Cr", "[X]×", "[+XX]%"].map((metric, index) => (
                     <div key={metric} className="rounded border border-slate-200 bg-brand-cream p-4">
-                      <p className="font-serif text-2xl font-bold text-brand-navy">{metric}</p>
+                      <p className="font-heading text-2xl font-bold text-brand-navy">{metric}</p>
                       <p className="mt-1 font-sans text-xs text-slate-500">
                         {index === 0 ? "Issue size" : index === 1 ? "Subscribed" : "Listing gain"}
                       </p>
@@ -461,7 +461,7 @@ export default function AboutContent() {
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
               Our Advisory Strength
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white leading-tight">
               Experience you can count
             </h2>
           </div>
@@ -469,7 +469,7 @@ export default function AboutContent() {
             {STATS.map(({ value, label, icon: Icon }) => (
               <div key={label} data-about-item className="bg-brand-navy p-6 sm:p-8">
                 <Icon className="w-7 h-7 text-brand-gold mb-5" aria-hidden="true" />
-                <p className="font-serif text-3xl sm:text-4xl font-bold text-brand-gold leading-none">{value}</p>
+                <p className="font-heading text-3xl sm:text-4xl font-bold text-brand-gold leading-none">{value}</p>
                 <p className="mt-3 font-sans text-sm text-white/65 leading-relaxed">{label}</p>
               </div>
             ))}
@@ -483,7 +483,7 @@ export default function AboutContent() {
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
               What Our Clients Say
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy leading-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy leading-tight">
               The people we&apos;ve helped go public
             </h2>
           </div>
@@ -491,7 +491,7 @@ export default function AboutContent() {
             {[1, 2].map((item) => (
               <figure key={item} data-about-item className="rounded border border-slate-200 bg-brand-cream p-7 sm:p-8">
                 <Quote className="w-8 h-8 text-brand-gold mb-5" aria-hidden="true" />
-                <blockquote className="font-serif text-xl sm:text-2xl font-bold text-brand-navy leading-tight">
+                <blockquote className="font-heading text-xl sm:text-2xl font-bold text-brand-navy leading-tight">
                   &ldquo;[Client quote{item === 1 ? " — the experience and outcome of working with BEIPOREADY." : ""}]&rdquo;
                 </blockquote>
                 <figcaption className="mt-6 font-sans text-sm text-slate-600">
@@ -512,7 +512,7 @@ export default function AboutContent() {
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
               About BEIPOREADY — FAQs
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-navy leading-tight">
+            <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy leading-tight">
               What founders ask before they work with us
             </h2>
           </div>
@@ -528,7 +528,7 @@ export default function AboutContent() {
                     aria-expanded={isOpen}
                     className="w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-inset"
                   >
-                    <span className="font-serif text-base sm:text-lg font-bold text-brand-navy">{item.q}</span>
+                    <span className="font-heading text-base sm:text-lg font-bold text-brand-navy">{item.q}</span>
                     <ChevronDown className={`w-5 h-5 shrink-0 text-brand-gold transition-transform ${isOpen ? "rotate-180" : ""}`} aria-hidden="true" />
                   </button>
                   {isOpen && (
@@ -550,7 +550,7 @@ export default function AboutContent() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-start">
             <div className="about-reveal">
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight">
+              <h2 className="font-heading text-3xl sm:text-4xl font-bold text-white leading-tight">
                 Let&apos;s find out how ready you really are.
               </h2>
               <p className="mt-5 font-sans text-base sm:text-lg text-white/65 leading-relaxed">
@@ -591,7 +591,7 @@ export default function AboutContent() {
             <div className="about-reveal rounded border border-white/10 bg-white p-5 sm:p-6 shadow-xl">
               <form className="space-y-4" onSubmit={(event) => event.preventDefault()}>
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-brand-navy">
+                  <h3 className="font-heading text-xl font-bold text-brand-navy">
                     Book a Free IPO Readiness Call
                   </h3>
                 </div>

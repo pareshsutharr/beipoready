@@ -30,7 +30,7 @@ export default async function TestimonialsPage() {
 
       <div className="grid gap-6 lg:grid-cols-2">
         <form action={saveTestimonial} className={cardClass}>
-          <h2 className="mb-4 font-serif text-lg font-bold text-brand-navy">New Testimonial</h2>
+          <h2 className="mb-4 font-heading text-lg font-bold text-brand-navy">New Testimonial</h2>
           <div className="grid gap-4">
             <Field label="Client Name" name="client_name" required />
             <Field label="Client Title" name="client_title" />
@@ -51,7 +51,7 @@ export default async function TestimonialsPage() {
             <input type="hidden" name="id" value={item.id} />
             <div className="mb-4 flex items-start justify-between gap-4">
               <div>
-                <h2 className="font-serif text-lg font-bold text-brand-navy">{item.client_name}</h2>
+                <h2 className="font-heading text-lg font-bold text-brand-navy">{item.client_name}</h2>
                 <p className="mt-1 text-xs text-slate-400">{item.company_name ?? item.client_title ?? "Client testimonial"}</p>
               </div>
               <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-500">

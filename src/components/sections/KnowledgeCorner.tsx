@@ -14,7 +14,7 @@ export default function KnowledgeCorner({ articles }: { articles: ArticleCard[] 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">Knowledge Corner</p>
-          <h2 id="knowledge-heading" className="font-serif text-3xl sm:text-4xl font-bold text-[#0D4A6F]">
+          <h2 id="knowledge-heading" className="font-heading text-3xl sm:text-4xl font-bold text-[#0D4A6F]">
             Insights for founders navigating capital and the markets
           </h2>
         </div>
@@ -42,7 +42,7 @@ export default function KnowledgeCorner({ articles }: { articles: ArticleCard[] 
                   <p className="text-xs font-bold uppercase tracking-wider text-brand-gold mb-2">
                     {article.category}
                   </p>
-                  <h3 className="font-serif text-lg font-bold text-[#0D4A6F] leading-snug mb-2">
+                  <h3 className="font-heading text-lg font-bold text-[#0D4A6F] leading-snug mb-2">
                     {article.title}
                   </h3>
                   <p className="text-sm text-slate-500 leading-relaxed flex-1 mb-4 line-clamp-3">

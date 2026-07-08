@@ -9,9 +9,9 @@
   --color-brand-navy-dark:  #070F1E;
   --color-brand-cream:      #F0F6FF;
 
-  /* ── Fonts ── */
-  --font-sans:  var(--font-inter);
-  --font-serif: var(--font-playfair);
+  /* ── Fonts — Montserrat (body) + Hanken Grotesk (headings) only ── */
+  --font-sans:    var(--font-montserrat);
+  --font-heading: var(--font-hanken);
 }
 
 :root {

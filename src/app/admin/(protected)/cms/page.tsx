@@ -58,7 +58,7 @@ export default function CmsOverviewPage() {
             href={section.href}
             className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-brand-gold hover:shadow-md"
           >
-            <h2 className="font-serif text-lg font-bold text-brand-navy">{section.title}</h2>
+            <h2 className="font-heading text-lg font-bold text-brand-navy">{section.title}</h2>
             <p className="mt-2 text-sm leading-6 text-slate-500">{section.description}</p>
             <span className="mt-4 inline-flex text-sm font-semibold text-brand-gold">Open section →</span>
           </Link>
