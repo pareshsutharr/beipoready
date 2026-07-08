@@ -110,6 +110,7 @@ export default function Hero() {
       <div className="hero-img-merge hidden lg:block absolute inset-y-0">
         <Image
           src="/heroteamimg2-web.jpg"
+            // src="/heroaboutimg.png"
           alt="The Be IPO Ready advisory team collaborating in the office"
           fill
           preload
