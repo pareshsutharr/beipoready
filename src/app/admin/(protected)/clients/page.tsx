@@ -35,7 +35,7 @@ export default async function ClientsPage() {
           <p className="font-semibold">Clients table is not available in Supabase yet.</p>
           <p className="mt-1">{errorMessage}</p>
           <p className="mt-2">
-            Apply the migration in <span className="font-mono">supabase/migrations/20260619010000_cms_content_controls.sql</span>,
+            Apply the migration in <span className="font-semibold">supabase/migrations/20260619010000_cms_content_controls.sql</span>,
             then refresh this page.
           </p>
         </div>
@@ -96,18 +96,35 @@ export default async function ClientsPage() {
               </span>
             </div>
             <ImagePreview url={client.logo_url} label={`${client.name} logo`} fit="contain" />
-            <div className="mt-4 grid gap-4">
-              <Field label="Client / Company Name" name="name" defaultValue={client.name} required />
-              <Field label="Nature of Business" name="nature_of_business" defaultValue={client.nature_of_business} />
-              <label className="block">
-                <span className={labelClass}>Replace Logo Image</span>
-                <input name="logo_file" type="file" accept="image/*" className={inputClass} />
-              </label>
-              <Field label="Website Link" name="website_url" defaultValue={client.website_url} />
-              <Field label="Sort Order" name="sort_order" type="number" defaultValue={client.sort_order} />
-              <Checkbox label="Published" name="is_published" defaultChecked={client.is_published} />
-              <SubmitRow deleteAction={deleteClient} id={client.id} />
-            </div>
+            <details className="group mt-4">
+              <summary className="inline-flex cursor-pointer select-none items-center gap-1.5 rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-brand-navy transition-colors hover:border-brand-gold/60 hover:bg-slate-50 [&::-webkit-details-marker]:hidden">
+                <svg
+                  className="h-4 w-4 transition-transform duration-200 group-open:rotate-90"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+                Edit client
+              </summary>
+              <div className="mt-4 grid gap-4">
+                <Field label="Client / Company Name" name="name" defaultValue={client.name} required />
+                <Field label="Nature of Business" name="nature_of_business" defaultValue={client.nature_of_business} />
+                <label className="block">
+                  <span className={labelClass}>Replace Logo Image</span>
+                  <input name="logo_file" type="file" accept="image/*" className={inputClass} />
+                </label>
+                <Field label="Website Link" name="website_url" defaultValue={client.website_url} />
+                <Field label="Sort Order" name="sort_order" type="number" defaultValue={client.sort_order} />
+                <Checkbox label="Published" name="is_published" defaultChecked={client.is_published} />
+                <SubmitRow deleteAction={deleteClient} id={client.id} />
+              </div>
+            </details>
           </form>
         ))}
       </div>

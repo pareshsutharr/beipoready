@@ -409,7 +409,7 @@ export default function IpoReadinessQuiz() {
           </h2>
           <p className="font-sans text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
             Enter your details to see your personalised IPO Readiness Score and
-            recommendations. We will also follow up with a free consultation offer.
+            recommendations. We will also follow up with a consultation offer.
           </p>
         </div>
 
@@ -575,7 +575,7 @@ export default function IpoReadinessQuiz() {
             href="/contact-us"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-gold text-brand-navy font-semibold rounded-lg text-sm hover:bg-amber-400 transition-colors"
           >
-            Book a Free Consultation
+            Book a Consultation
           </Link>
           <Link
             href="/services/ipo-readiness-assessment"

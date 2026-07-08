@@ -1,35 +1,36 @@
-import Link from "next/link";
-
 const TEAM = [
   {
-    name: "Rakesh",
-    role: "[Head of Fundraising]",
+    name: "Dr. Rakesh Doshi",
+    role: "Founder & Chairman",
     image: "/teamfolder/rakesh.JPG?v=20260708",
-    designation: "[Designation, e.g. Founder & Managing Director]",
-    credentials: "[Credentials: CA / CFA / MBA]",
-    bio: "[1–2 line bio: years of experience, area of expertise, notable listings or mandates.]",
+    linkedin: "https://www.linkedin.com/in/rakeshdoshi11",
+    // designation: "[Designation, e.g. Founder & Managing Director]",
+    // credentials: "[Credentials: CA / CFA / MBA]",
+    // bio: "[1–2 line bio: years of experience, area of expertise, notable listings or mandates.]",
   },
   {
-    name: "Saurav",
-    role: "[Founder]",
+    name: "Saurav Gandhi",
+    role: "Head of IPO advisor",
     image: "/teamfolder/saurav.JPG?v=20260708",
-    designation: "[Designation, e.g. Founder & Managing Director]",
-    credentials: "[Credentials: CA / CFA / MBA]",
-    bio: "[1–2 line bio: years of experience, area of expertise, notable listings or mandates.]",
+    linkedin: "https://www.linkedin.com/in/saurav-gandhi-027012154",
+    // designation: "[Designation, e.g. Founder & Managing Director]",
+    // credentials: "[Credentials: CA / CFA / MBA]",
+    // bio: "[1–2 line bio: years of experience, area of expertise, notable listings or mandates.]",
   },
   {
-    name: "Vishwa",
-    role: "[Head of IPO Advisory]",
+    name: "Vishwa Shah",
+    role: "Head of Private Investments",
     image: "/teamfolder/vishwa.JPG?v=20260708",
-    designation: "[Designation, e.g. Founder & Managing Director]",
-    credentials: "[Credentials: CA / CFA / MBA]",
-    bio: "[1–2 line bio: years of experience, area of expertise, notable listings or mandates.]",
+    linkedin: "https://www.linkedin.com/in/vishwashah23",
+    // designation: "[Designation, e.g. Founder & Managing Director]",
+    // credentials: "[Credentials: CA / CFA / MBA]",
+    // bio: "[1–2 line bio: years of experience, area of expertise, notable listings or mandates.]",
   },
 ];
 
 export default function TeamSection() {
   return (
-    <section className="w-full bg-brand-cream py-20 sm:py-28" aria-labelledby="team-heading">
+    <section className="w-full bg-white py-20 sm:py-28" aria-labelledby="team-heading">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-14 max-w-3xl">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">
@@ -55,13 +56,15 @@ export default function TeamSection() {
                     className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/28 to-transparent opacity-90"
                     aria-hidden="true"
                   />
-                  <Link
-                    href="#"
-                    aria-label={`${member.name} LinkedIn profile URL`}
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${member.name} on LinkedIn (opens in new tab)`}
                     className="absolute right-6 top-6 z-10 flex h-14 w-14 items-center justify-center rounded bg-white text-2xl font-bold text-brand-navy shadow-md transition-colors hover:bg-brand-gold"
                   >
                     in
-                  </Link>
+                  </a>
                   <div className="absolute inset-x-0 bottom-0 z-10 p-7">
                     <h3 className="font-heading text-4xl font-bold leading-none text-white">
                       {member.name}
@@ -72,7 +75,7 @@ export default function TeamSection() {
                   </div>
                 </div>
 
-                <div className="p-7">
+                {/* <div className="p-7">
                   <p className="font-sans text-lg leading-relaxed text-slate-600">
                     {member.designation} · <br />
                     {member.credentials}
@@ -80,7 +83,7 @@ export default function TeamSection() {
                   <p className="mt-7 font-sans text-lg leading-relaxed text-slate-600">
                     {member.bio}
                   </p>
-                </div>
+                </div> */}
               </article>
             </li>
           ))}

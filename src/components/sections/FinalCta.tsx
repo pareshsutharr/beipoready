@@ -54,9 +54,9 @@ export default function FinalCta() {
         <div className="rounded-2xl bg-white p-6 sm:p-8" style={{ boxShadow: "0 24px 64px rgba(0,0,0,0.25)" }}>
           <LeadCaptureForm
             source="home-cta"
-            heading="Book a Free IPO Readiness Call"
+            heading="Book an IPO Readiness Call"
             description="Tell us about your company — an advisor will get back within one business day."
-            submitLabel="Book My Free Call"
+            submitLabel="Book My Call"
           />
         </div>
       </div>

@@ -4,7 +4,7 @@ import SmeIpoChecklist from "@/components/tools/SmeIpoChecklist";
 export const metadata: Metadata = {
   title: "SME IPO Listing Checklist — Step-by-Step Guide",
   description:
-    "The step-by-step SME IPO checklist for NSE Emerge and BSE SME — eligibility, readiness, intermediaries, DRHP filing, listing and post-listing compliance. Free download.",
+    "The step-by-step SME IPO checklist for NSE Emerge and BSE SME — eligibility, readiness, intermediaries, DRHP filing, listing and post-listing compliance.",
 };
 
 export default function SmeIpoChecklistPage() {
@@ -19,7 +19,7 @@ export default function SmeIpoChecklistPage() {
         />
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
-            Free Checklist
+            Checklist
           </p>
           <h1 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
             SME IPO Listing Checklist

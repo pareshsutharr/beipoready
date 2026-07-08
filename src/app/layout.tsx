@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | BEIPOREADY",
   },
   description:
-    "IPO advisory, pre-IPO readiness and growth-capital fundraising for Indian businesses — including NSE Emerge & BSE SME listings. Book a free IPO readiness call with BEIPOREADY.",
+    "IPO advisory, pre-IPO readiness and growth-capital fundraising for Indian businesses — including NSE Emerge & BSE SME listings. Book an IPO readiness call with BEIPOREADY.",
 };
 
 export default function RootLayout({

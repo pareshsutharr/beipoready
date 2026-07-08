@@ -25,7 +25,7 @@ const ROWS = [
 
 export default function BeforeAfter() {
   return (
-    <section className="w-full py-20 sm:py-28" style={{ background: "#FEFBF2" }} aria-labelledby="before-after-heading">
+    <section className="w-full py-20 sm:py-28" style={{ background: "#FFF" }} aria-labelledby="before-after-heading">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">

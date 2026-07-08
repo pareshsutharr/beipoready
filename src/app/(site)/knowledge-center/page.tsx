@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import NewsletterForm from "@/components/forms/NewsletterForm";
 import SmeVsMainBoard from "@/components/sections/SmeVsMainBoard";
+import { articleImageUrl } from "@/lib/article-images";
 import { getPublishedArticles } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
@@ -21,15 +22,6 @@ const CATEGORY_COLORS: Record<string, string> = {
   Compliance: "bg-rose-50 text-rose-700 border-rose-200",
 };
 
-const CATEGORY_IMAGES: Record<string, string> = {
-  Regulation:    "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=320&fit=crop&q=80",
-  Documentation: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=320&fit=crop&q=80",
-  Fundraising:   "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&h=320&fit=crop&q=80",
-  Valuation:     "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=320&fit=crop&q=80",
-  Governance:    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=320&fit=crop&q=80",
-  Compliance:    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=320&fit=crop&q=80",
-};
-const DEFAULT_ARTICLE_IMAGE = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=320&fit=crop&q=80";
 
 export default async function KnowledgeCenterPage() {
   const articles = await getPublishedArticles();
@@ -65,7 +57,7 @@ export default async function KnowledgeCenterPage() {
               >
                 <div
                   className="h-44 bg-slate-200 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 origin-center"
-                  style={{ backgroundImage: `url("${article.coverImageUrl ?? CATEGORY_IMAGES[article.category] ?? DEFAULT_ARTICLE_IMAGE}")` }}
+                  style={{ backgroundImage: `url("${articleImageUrl(article)}")` }}
                   role="img"
                   aria-label={`${article.title} cover image`}
                 />

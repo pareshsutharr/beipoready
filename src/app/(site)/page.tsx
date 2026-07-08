@@ -6,7 +6,7 @@ import BeforeAfter from "@/components/sections/BeforeAfter";
 import ToolsPreview from "@/components/sections/ToolsPreview";
 import ReadinessJourney from "@/components/sections/ReadinessJourney";
 import TeamSection from "@/components/sections/TeamSection";
-import { Case } from "@/components/ui/cases-with-infinite-scroll";
+import ClientsMarquee from "@/components/sections/ClientsMarquee";
 import CaseStudiesHighlights from "@/components/sections/CaseStudiesHighlights";
 import KnowledgeCorner from "@/components/sections/KnowledgeCorner";
 import HomeFaq from "@/components/sections/HomeFaq";
@@ -53,7 +53,7 @@ export default async function Home() {
       <TeamSection />
 
       {/* 8 — Clients logo wall */}
-      <Case clients={clients} />
+      <ClientsMarquee clients={clients} />
 
       {/* 9 — Testimonials (hidden until real quotes are published) */}
       <CaseStudiesHighlights testimonials={testimonials} />

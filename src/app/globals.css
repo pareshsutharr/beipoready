@@ -32,7 +32,7 @@ body {
 }
 
 .retro {
-  font-family: var(--font-sans), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-family: var(--font-sans), sans-serif;
 }
 
 .pixelated {

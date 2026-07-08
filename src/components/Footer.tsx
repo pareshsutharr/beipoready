@@ -116,7 +116,7 @@ export default function Footer() {
             className="inline-flex items-center justify-center px-6 py-2.5 rounded-xl font-bold text-brand-navy-dark text-sm cursor-pointer hover:opacity-90 transition-opacity mb-6"
             style={{ background: "linear-gradient(135deg,#F59E0B,#FCD34D)", boxShadow: "0 0 20px rgba(245,158,11,0.3)" }}
           >
-            Book a Free IPO Readiness Call
+            Book an IPO Readiness Call
           </Link>
 
           <div>

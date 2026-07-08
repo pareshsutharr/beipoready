@@ -193,7 +193,7 @@ export default function SmeIpoChecklist() {
         ) : (
           <form onSubmit={submitLead} className="rounded-2xl border border-slate-200 bg-white shadow-sm p-6 sm:p-7">
             <h2 className="font-heading text-lg font-bold text-brand-navy mb-1">
-              Get the checklist in your inbox — free
+              Get the checklist in your inbox
             </h2>
             <p className="font-sans text-sm text-slate-500 mb-4">
               We&rsquo;ll email you the full checklist so you can work through it

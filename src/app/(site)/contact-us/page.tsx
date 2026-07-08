@@ -4,7 +4,7 @@ import ContactForm from "@/components/forms/ContactForm";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Speak with a Be IPO Ready advisor about SME IPO advisory, pre-IPO fundraising, or IPO readiness. Book a free consultation today.",
+    "Speak with a Be IPO Ready advisor about SME IPO advisory, pre-IPO fundraising, or IPO readiness. Book a consultation today.",
 };
 
 export default function ContactUsPage() {
@@ -87,7 +87,7 @@ export default function ContactUsPage() {
 
               <div className="bg-brand-navy/5 border border-brand-navy/10 rounded-xl p-5">
                 <h3 className="font-heading text-base font-bold text-brand-navy mb-2">
-                  Free First Consultation
+                  Your First Consultation
                 </h3>
                 <p className="font-sans text-sm text-slate-600 leading-relaxed">
                   We offer a complimentary 30-minute call for all first-time

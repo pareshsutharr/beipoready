@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import FaqAccordion from "@/components/sections/FaqAccordion";
 import { getPublishedFaqGroups } from "@/lib/cms";
+import { HOME_FAQS } from "@/lib/home-faqs";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
 };
 
 export default async function FAQsPage() {
-  const faqs = await getPublishedFaqGroups();
+  const publishedGroups = await getPublishedFaqGroups();
+  const faqs = [{ category: "General", items: HOME_FAQS }, ...publishedGroups];
 
   return (
     <>
@@ -34,7 +36,7 @@ export default async function FAQsPage() {
       </section>
 
       <section className="bg-brand-cream py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
           <FaqAccordion categories={faqs} />
         </div>
       </section>

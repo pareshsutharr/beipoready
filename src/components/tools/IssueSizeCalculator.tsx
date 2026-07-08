@@ -327,7 +327,7 @@ export default function IssueSizeCalculator() {
             href="/contact-us"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-gold text-brand-navy font-semibold rounded-lg text-sm hover:bg-amber-400 transition-colors"
           >
-            Book a Free Consultation
+            Book a Consultation
           </Link>
           <Link
             href="/services/valuation-capital-structuring"

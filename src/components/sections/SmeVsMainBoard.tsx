@@ -63,7 +63,7 @@ export default function SmeVsMainBoard() {
         <p className="text-center text-sm text-slate-500 mt-5">
           Not sure which applies to you?{" "}
           <Link href="/contact-us" className="font-bold text-brand-gold hover:underline">
-            Book a Free IPO Readiness Call
+            Book an IPO Readiness Call
           </Link>{" "}
           and we&rsquo;ll help you choose.
         </p>

@@ -126,7 +126,7 @@ export default function ReadinessJourney() {
   }, []);
 
   return (
-    <section ref={secRef} className="w-full py-24 sm:py-32 relative overflow-hidden" style={{ background: "linear-gradient(180deg,#F0F6FF 0%,#ffffff 100%)" }} aria-labelledby="journey-heading">
+    <section ref={secRef} className="w-full py-24 sm:py-32 relative overflow-hidden" style={{ background: "white"}} aria-labelledby="journey-heading">
 
       {/* Decorative blobs */}
       <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full pointer-events-none"
@@ -145,7 +145,7 @@ export default function ReadinessJourney() {
         {/* ── Desktop timeline ── */}
         <div className="jrn-desktop hidden lg:block relative mb-16">
           {/* Animated SVG connecting line */}
-          <svg className="absolute top-[22px] left-[calc(10%-18px)] pointer-events-none" style={{ width: "80%", overflow: "visible" }} viewBox="0 0 800 4" preserveAspectRatio="none" aria-hidden="true">
+          <svg className="absolute top-[22px] left-[8.333%] pointer-events-none" style={{ width: "83.334%", overflow: "visible" }} viewBox="0 0 800 4" preserveAspectRatio="none" aria-hidden="true">
             <path ref={lineRef} d="M0 2 L800 2" fill="none" stroke="url(#lineGrad)" strokeWidth="2.5" strokeLinecap="round" />
             <defs>
               <linearGradient id="lineGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="800" y2="0">

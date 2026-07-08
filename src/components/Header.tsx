@@ -25,7 +25,7 @@ type NavItem = { label: string; href: string; children?: { label: string; href: 
 const navLinks: NavItem[] = [
   { label: "About", href: "/about-us" },
   { label: "Services", href: "/services", children: serviceLinks },
-  { label: "Free Tool", href: "#", children: toolLinks },
+  { label: "Tools", href: "#", children: toolLinks },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Knowledge", href: "/knowledge-center" },
   { label: "FAQ's", href: "/faqs" },
@@ -135,7 +135,7 @@ export default function Header() {
           className="hidden lg:inline-flex items-center ml-2 xl:ml-3 px-3 xl:px-5 py-2.5 rounded-lg font-bold whitespace-nowrap text-[12.5px] xl:text-[13.5px] hover:opacity-90 active:scale-95 transition-all duration-150 cursor-pointer shrink-0"
           style={{ background: "#ECB85B", color: "#0D4A6F", boxShadow: "0 2px 12px rgba(236,184,91,0.35)" }}
         >
-          Book a Free IPO Readiness Call
+          Book an IPO Readiness Call
         </Link>
 
         {/* Mobile burger */}
@@ -221,7 +221,7 @@ export default function Header() {
             className="flex items-center justify-center w-full px-6 py-3.5 rounded-lg font-bold text-[#0D4A6F] text-sm cursor-pointer hover:opacity-90 transition-opacity"
             style={{ background: "#ECB85B" }}
           >
-            Book a Free IPO Readiness Call
+            Book an IPO Readiness Call
           </Link>
         </div>
       </div>

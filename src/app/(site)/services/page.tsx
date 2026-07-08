@@ -155,14 +155,14 @@ export default function ServicesPage() {
             Not sure which service you need?
           </h2>
           <p className="font-sans text-base text-white/65 mb-8 leading-relaxed">
-            Start with a free readiness check — we will recommend exactly what is right for your stage.
+            Start with a readiness check — we will recommend exactly what is right for your stage.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/ipo-readiness-tool"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-gold text-brand-navy font-semibold rounded-lg shadow-md hover:bg-amber-400 transition-colors"
             >
-              Take the Free Readiness Check
+              Take the Readiness Check
             </Link>
             <Link
               href="/contact-us"

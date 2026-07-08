@@ -142,7 +142,7 @@ BSE SME has slightly different criteria:
 
 ## Our Recommendation
 
-Run the eligibility check before signing any mandate letters. Use our free IPO Readiness Tool to get a preliminary assessment, then speak with an advisor for detailed eligibility verification.
+Run the eligibility check before signing any mandate letters. Use our IPO Readiness Tool to get a preliminary assessment, then speak with an advisor for detailed eligibility verification.
     `.trim(),
   },
   "drhp-common-mistakes-sme-ipo": {

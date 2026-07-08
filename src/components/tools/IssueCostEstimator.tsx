@@ -172,7 +172,7 @@ export default function IssueCostEstimator() {
           ) : (
             <form onSubmit={submitLead} className="rounded-xl border border-slate-200 bg-brand-cream/60 p-5">
               <p className="font-sans text-sm font-semibold text-brand-navy mb-3">
-                Want an exact cost plan for your company? Get it by email — free.
+                Want an exact cost plan for your company? Get it by email.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                 <input

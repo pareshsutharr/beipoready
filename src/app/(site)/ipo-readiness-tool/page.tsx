@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import IpoReadinessQuiz from "@/components/tools/IpoReadinessQuiz";
 
 export const metadata: Metadata = {
-  title: "IPO Readiness Tool — Free 20-Question Assessment",
+  title: "IPO Readiness Tool — 20-Question Assessment",
   description:
-    "Find out if your company is ready for an SME IPO. Answer 20 questions across 5 domains and get a personalised readiness score with recommendations — free, in under 10 minutes.",
+    "Find out if your company is ready for an SME IPO. Answer 20 questions across 5 domains and get a personalised readiness score with recommendations — in under 10 minutes.",
 };
 
 export default function IpoReadinessToolPage() {
@@ -15,7 +15,7 @@ export default function IpoReadinessToolPage() {
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
-            Free Tool
+            Online Tool
           </p>
           <h1 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
             IPO Readiness Assessment

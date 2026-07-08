@@ -20,11 +20,33 @@ import {
 } from "lucide-react";
 
 const TEAM_MEMBERS = [
-  { name: "Rakesh", role: "[Head of Fundraising]", image: "/teamfolder/rakesh.JPG?v=20260708" },
-  { name: "Saurav", role: "[Founder]", image: "/teamfolder/saurav.JPG?v=20260708" },
-  { name: "Vishwa", role: "[Head of IPO Advisory]", image: "/teamfolder/vishwa.JPG?v=20260708" },
-  { name: "Harshita", role: "[Co-founder / Director]", image: "/teamfolder/harshita.JPG?v=20260708" },
+  {
+    name: "Dr. Rakesh Doshi",
+    role: "Founder & Chairman",
+    image: "/teamfolder/rakesh.JPG?v=20260708",
+    linkedin: "https://www.linkedin.com/in/rakeshdoshi11",
+  },
+  {
+    name: "Saurav Gandhi",
+    role: "Head of IPO advisor",
+    image: "/teamfolder/saurav.JPG?v=20260708",
+    linkedin: "https://www.linkedin.com/in/saurav-gandhi-027012154",
+  },
+  {
+    name: "Vishwa Shah",
+    role: "Head of Private Investments",
+    image: "/teamfolder/vishwa.JPG?v=20260708",
+    linkedin: "https://www.linkedin.com/in/vishwashah23",
+  },
+  {
+    name: "Harshita Shewani",
+    role: "Financial Analyst",
+    image: "/teamfolder/harshita.JPG?v=20260708",
+    linkedin: "https://www.linkedin.com/in/harshita-shewani-b549a1254",
+  },
 ];
+
+
 
 const JOURNEY = [
   {
@@ -89,7 +111,7 @@ const FAQS = [
   },
   {
     q: "How do we start working with you?",
-    a: "It begins with a free IPO Readiness Call. We'll understand where you are, tell you honestly how ready you are, and map the clearest path forward — no obligation.",
+    a: "It begins with an IPO Readiness Call. We'll understand where you are, tell you honestly how ready you are, and map the clearest path forward — no obligation.",
   },
 ];
 
@@ -171,24 +193,34 @@ export default function AboutContent() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <section className="relative overflow-hidden  border-b border-slate-200">
-        <Image
-          src="/heroaboutimg.png"
-          alt=""
-          aria-hidden="true"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-top"
-        />
-        <div
-          className="absolute inset-0"
-          aria-hidden="true"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(7,15,30,0.88) 0%, rgba(15,45,82,0.68) 36%, rgba(15,45,82,0.22) 70%, rgba(15,45,82,0.04) 100%)",
-          }}
-        />
+      <section className="relative overflow-hidden border-b border-slate-200 bg-[#0F2D52]">
+        {/* Image pinned right: 80% width on desktop, full width on mobile */}
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[80%]" aria-hidden="true">
+          <Image
+            src="/heroaboutimg.png"
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 1024px) 80vw, 100vw"
+            className="object-cover object-top"
+          />
+          {/* Fade the image's left edge into the navy panel (desktop) */}
+          <div
+            className="absolute inset-0 hidden lg:block"
+            style={{
+              background:
+                "linear-gradient(90deg, #0F2D52 0%, rgba(15,45,82,0.82) 18%, rgba(15,45,82,0.38) 45%, rgba(15,45,82,0.08) 75%, rgba(15,45,82,0) 100%)",
+            }}
+          />
+          {/* Stronger uniform tint on mobile for text contrast */}
+          <div
+            className="absolute inset-0 lg:hidden"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(7,15,30,0.82) 0%, rgba(15,45,82,0.72) 55%, rgba(15,45,82,0.45) 100%)",
+            }}
+          />
+        </div>
         <div className="absolute inset-y-0 right-0 w-1/2 opacity-20" aria-hidden="true" >
           <div className="absolute bottom-10 right-10 flex items-end gap-2">
             {[28, 52, 78, 108, 140].map((height, index) => (
@@ -210,11 +242,11 @@ export default function AboutContent() {
               <h1 className="about-reveal font-heading text-4xl sm:text-5xl lg:text-[3.65rem] font-bold  leading-[1.08] tracking-tight max-w-3xl text-brand-gold">
                 We don&apos;t just advise on IPOs. We make companies ready for them.
               </h1>
-              <p className="about-reveal mt-6 font-sans text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl text-white">
+              {/* <p className="about-reveal mt-6 font-sans text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl text-white">
                 BEIPOREADY is India&apos;s IPO advisory and growth-capital specialist — partnering with promoters from their first raise to a confident public listing, and beyond.
-              </p>
+              </p> */}
             </div>
-
+{/* 
             <div className="about-reveal rounded border border-brand-gold/35 bg-white p-6 shadow-sm">
               <p className="font-sans text-sm font-semibold uppercase tracking-[0.18em] text-brand-gold mb-3">
                 Positioning
@@ -222,7 +254,7 @@ export default function AboutContent() {
               <p className="font-heading text-2xl font-bold text-brand-navy leading-tight">
                 India&apos;s Leading IPO Advisor and Growth Capital Expert
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -295,7 +327,7 @@ export default function AboutContent() {
         </div>
       </section>
 
-      <section className="bg-brand-cream py-20 sm:py-28">
+      <section className="bg-white py-20 sm:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="about-reveal max-w-3xl mb-12">
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
@@ -312,11 +344,11 @@ export default function AboutContent() {
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6" data-about-stagger>
             {TEAM_MEMBERS.map((member) => (
               <article
-                key={member.role}
+                key={member.name}
                 data-about-item
-                className="group overflow-hidden rounded border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-gold/45 hover:shadow-xl"
+                className="group h-full overflow-hidden rounded border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="relative aspect-[3/4] overflow-hidden bg-brand-navy">
+                <div className="relative aspect-[4/5] overflow-hidden bg-brand-navy">
                   <div
                     role="img"
                     aria-label={member.name}
@@ -324,32 +356,26 @@ export default function AboutContent() {
                     style={{ backgroundImage: `url("${member.image}")` }}
                   />
                   <div
-                    className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/18 to-transparent opacity-85"
+                    className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/28 to-transparent opacity-90"
                     aria-hidden="true"
                   />
-                  <Link
-                    href="#"
-                    aria-label={`${member.name} LinkedIn profile URL`}
-                    className="absolute right-4 top-4 z-10 w-10 h-10 rounded bg-white/90 text-brand-navy flex items-center justify-center font-heading font-bold shadow-sm hover:bg-brand-gold transition-colors"
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${member.name} on LinkedIn (opens in new tab)`}
+                    className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded bg-white text-xl font-bold text-brand-navy shadow-md transition-colors hover:bg-brand-gold"
                   >
                     in
-                  </Link>
+                  </a>
                   <div className="absolute inset-x-0 bottom-0 z-10 p-5">
-                    <h3 className="font-heading text-2xl font-bold text-white leading-tight">
+                    <h3 className="font-heading text-2xl font-bold leading-none text-white">
                       {member.name}
                     </h3>
-                    <p className="mt-2 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-brand-gold">
+                    <p className="mt-3 font-sans text-xs font-bold uppercase tracking-[0.22em] text-brand-gold">
                       {member.role}
                     </p>
                   </div>
-                </div>
-                <div className="p-5">
-                  <p className="font-sans text-sm text-slate-600 leading-relaxed">
-                    [Designation, e.g. Founder &amp; Managing Director] · [Credentials: CA / CFA / MBA]
-                  </p>
-                  <p className="mt-4 font-sans text-sm text-slate-600 leading-relaxed">
-                    [1–2 line bio: years of experience, area of expertise, notable listings or mandates.]
-                  </p>
                 </div>
               </article>
             ))}
@@ -396,7 +422,7 @@ export default function AboutContent() {
         </div>
       </section> */}
 
-      <section className="bg-brand-cream py-20 sm:py-28">
+      <section className="bg-white py-20 sm:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="about-reveal max-w-3xl mb-10">
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
@@ -506,7 +532,7 @@ export default function AboutContent() {
         </div>
       </section>
 
-      <section className="bg-brand-cream py-20 sm:py-28">
+      <section className="bg-white py-20 sm:py-28">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="about-reveal mb-10">
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
@@ -561,7 +587,7 @@ export default function AboutContent() {
                   href="/contact-us"
                   className="inline-flex items-center justify-center gap-2 rounded bg-brand-gold px-6 py-3 font-sans text-sm font-semibold text-brand-navy hover:bg-brand-gold-light transition-colors"
                 >
-                  Book a Free IPO Readiness Call
+                  Book an IPO Readiness Call
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </Link>
                 <Link
@@ -592,7 +618,7 @@ export default function AboutContent() {
               <form className="space-y-4" onSubmit={(event) => event.preventDefault()}>
                 <div>
                   <h3 className="font-heading text-xl font-bold text-brand-navy">
-                    Book a Free IPO Readiness Call
+                    Book an IPO Readiness Call
                   </h3>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -623,7 +649,7 @@ export default function AboutContent() {
                   type="submit"
                   className="inline-flex items-center justify-center gap-2 rounded bg-brand-gold px-6 py-3 font-sans text-sm font-semibold text-brand-navy hover:bg-brand-gold-light transition-colors"
                 >
-                  Book a Free IPO Readiness Call
+                  Book an IPO Readiness Call
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </button>
               </form>

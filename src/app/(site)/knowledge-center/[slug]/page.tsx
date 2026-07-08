@@ -128,7 +128,7 @@ export default async function ArticlePage({ params }: Props) {
               href="/contact-us"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-gold text-brand-navy font-semibold rounded-lg shadow-md hover:bg-amber-400 transition-colors"
             >
-              Book a Free Consultation
+              Book a Consultation
             </Link>
             <Link
               href="/knowledge-center"

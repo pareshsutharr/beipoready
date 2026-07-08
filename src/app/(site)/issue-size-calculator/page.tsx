@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import IssueSizeCalculator from "@/components/tools/IssueSizeCalculator";
 
 export const metadata: Metadata = {
-  title: "SME IPO Issue Size Calculator — Free Estimate",
+  title: "SME IPO Issue Size Calculator — Instant Estimate",
   description:
-    "Get an indicative IPO issue size estimate based on your PAT, industry sector, and growth rate. Uses sector P/E benchmarks. Free, instant, no sign-up.",
+    "Get an indicative IPO issue size estimate based on your PAT, industry sector, and growth rate. Uses sector P/E benchmarks. Instant, no sign-up.",
 };
 
 export default function IssueSizeCalculatorPage() {
@@ -15,7 +15,7 @@ export default function IssueSizeCalculatorPage() {
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
-            Free Tool
+            Online Tool
           </p>
           <h1 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
             SME IPO Issue Size Calculator

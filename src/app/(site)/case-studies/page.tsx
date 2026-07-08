@@ -119,7 +119,7 @@ export default async function CaseStudiesPage() {
             Could your company be next?
           </h2>
           <p className="font-sans text-base text-white/65 mb-8 leading-relaxed">
-            Take our free IPO Readiness Check and find out where you stand today.
+            Take our IPO Readiness Check and find out where you stand today.
           </p>
           <Link
             href="/ipo-readiness-tool"

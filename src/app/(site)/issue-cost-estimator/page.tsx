@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import IssueCostEstimator from "@/components/tools/IssueCostEstimator";
 
 export const metadata: Metadata = {
-  title: "SME IPO Issue Cost Estimator — Free Ballpark",
+  title: "SME IPO Issue Cost Estimator — Instant Ballpark",
   description:
-    "Understand what going public costs. Get an indicative cost breakdown for an SME IPO — merchant banker fees, legal, marketing, market making and more. Free, instant.",
+    "Understand what going public costs. Get an indicative cost breakdown for an SME IPO — merchant banker fees, legal, marketing, market making and more. Instant.",
 };
 
 export default function IssueCostEstimatorPage() {
@@ -19,7 +19,7 @@ export default function IssueCostEstimatorPage() {
         />
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
-            Free Tool
+            Online Tool
           </p>
           <h1 className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4 leading-tight">
             SME IPO Issue Cost Estimator

@@ -135,14 +135,14 @@ export default async function CaseStudyDetailPage({ params }: Props) {
           </h2>
           <p className="font-sans text-base text-slate-600 mb-8 leading-relaxed">
             Take the same readiness assessment that Rajpur Agro, TechnoSynth,
-            and HealthPlus used — free, online, and in under 10 minutes.
+            and HealthPlus used — online, in under 10 minutes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/ipo-readiness-tool"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-gold text-brand-navy font-semibold rounded-lg shadow-md hover:bg-amber-400 transition-colors"
             >
-              Take the Free Readiness Check
+              Take the Readiness Check
             </Link>
             <Link
               href="/contact-us"

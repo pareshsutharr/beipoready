@@ -52,10 +52,10 @@ export default function ToolsPreview() {
         <div className="text-center mb-14">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">Plan Before You Commit</p>
           <h2 id="tools-heading" className="font-heading text-3xl sm:text-4xl font-bold text-white mb-4">
-            See where you stand today — free
+            See where you stand today
           </h2>
           <p className="text-base sm:text-lg text-white/55 max-w-xl mx-auto leading-relaxed">
-            Free tools built for promoters and CFOs exploring the capital-markets path.
+            Tools built for promoters and CFOs exploring the capital-markets path.
           </p>
         </div>
 
