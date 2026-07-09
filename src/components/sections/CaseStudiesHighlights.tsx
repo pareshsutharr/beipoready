@@ -1,9 +1,7 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { Quote, ArrowRight } from "lucide-react";
-import type { TestimonialCard as TestimonialCardType } from "@/lib/cms";
+import Image from "next/image";
+import { ArrowRight, BarChart3 } from "lucide-react";
+import type { CaseStudyCard as CaseStudyCardType } from "@/lib/cms";
 
 const INDUSTRY_COVER: Record<string, string> = {
   "Agro Processing":       "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&h=260&fit=crop&q=80",
@@ -14,123 +12,97 @@ const INDUSTRY_COVER: Record<string, string> = {
 };
 const DEFAULT_COVER = "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=260&fit=crop&q=80";
 
-interface CardProps { company: string; industry: string; outcome: string; quote: string; attribution: string; slug: string | null; imageUrl: string | null; }
+function getInitials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0].toUpperCase())
+    .join("");
+}
 
-function CaseStudyCard({ company, industry, outcome, quote, attribution, slug, imageUrl }: CardProps) {
-  const coverImage = INDUSTRY_COVER[industry] ?? DEFAULT_COVER;
+function CaseStudyPreview({ study }: { study: CaseStudyCardType }) {
+  const coverImage = study.coverImageUrl ?? INDUSTRY_COVER[study.sector] ?? DEFAULT_COVER;
   return (
-    <div
-      className="case-card group flex flex-col rounded-2xl overflow-hidden h-full"
-      style={{ background: "#fff", border: "1px solid #e2e8f0", transition: "box-shadow 0.3s, border-color 0.3s, transform 0.3s" }}
-      onMouseEnter={(e) => {
-        const el = e.currentTarget as HTMLDivElement;
-        el.style.boxShadow = "0 20px 60px -12px rgba(15,45,82,0.18), 0 4px 16px rgba(0,0,0,0.06)";
-        el.style.borderColor = "rgba(245,158,11,0.45)";
-        el.style.transform = "translateY(-4px)";
-      }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget as HTMLDivElement;
-        el.style.boxShadow = "none";
-        el.style.borderColor = "#e2e8f0";
-        el.style.transform = "translateY(0)";
-      }}
+    <Link
+      href={`/case-studies/${study.slug}`}
+      className="group grid h-full grid-rows-[120px_1fr] overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-brand-gold/60 hover:shadow-lg"
     >
-      {/* Cover image */}
-      <div className="relative h-44 w-full shrink-0 overflow-hidden">
-        <img
+      <div className="relative overflow-hidden">
+        <Image
           src={coverImage}
           alt=""
           aria-hidden="true"
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          fill
+          sizes="(min-width: 768px) 33vw, 100vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(15,45,82,0.55))" }} />
-        {/* Industry badge pinned over image */}
-        <span className="absolute bottom-3 left-4 text-xs font-bold uppercase tracking-wider text-white bg-brand-gold/90 px-2.5 py-1 rounded-full">
-          {industry}
-        </span>
-        {/* Company logo if provided */}
-        {imageUrl && (
-          <div className="absolute top-3 right-3 h-10 w-10 rounded-lg border border-white/30 bg-white/90 bg-cover bg-center shadow-sm"
-            style={{ backgroundImage: `url("${imageUrl}")` }} role="img" aria-label={`${company} logo`} />
-        )}
+        <div className="absolute inset-0 bg-brand-navy/30" aria-hidden="true" />
+        <div className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-lg border border-white/25 bg-brand-navy/90 shadow-sm">
+          <span className="font-heading text-xs font-bold text-brand-gold">{getInitials(study.company)}</span>
+        </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-7">
-
-        <h3 className="mb-3 font-heading text-xl font-bold leading-snug text-brand-navy">{company}</h3>
-
-        <p className="mb-5 rounded-lg border border-brand-navy/8 bg-brand-cream px-3.5 py-2.5 text-[0.95rem] font-semibold leading-snug text-brand-navy/70">
-          {outcome}
+      <div className="flex min-h-0 flex-col p-5">
+        <div className="mb-3 flex items-center justify-between gap-3">
+          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-gold">
+            {study.sector}
+          </p>
+          {study.readinessScore > 0 && (
+            <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-brand-cream px-2 py-1 text-xs font-bold text-brand-navy">
+              <BarChart3 className="h-3.5 w-3.5 text-brand-gold" aria-hidden="true" />
+              {study.readinessScore}/100
+            </span>
+          )}
+        </div>
+        <h3 className="mb-2 font-heading text-lg font-bold leading-snug text-brand-navy transition-colors group-hover:text-brand-gold">
+          {study.company}
+        </h3>
+        <p className="mb-4 line-clamp-2 text-sm font-medium leading-relaxed text-slate-600">
+          {study.outcome}
         </p>
-
-        <blockquote className="flex-1 mb-5">
-          <Quote className="w-5 h-5 text-brand-gold/50 mb-2" aria-hidden="true" />
-          <p className="text-[0.95rem] italic leading-relaxed text-slate-500">&ldquo;{quote}&rdquo;</p>
-          <footer className="mt-2 text-xs text-slate-400 font-medium not-italic">— {attribution}</footer>
-        </blockquote>
-
-        {slug && (
-          <Link href={`/case-studies/${slug}`} className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-gold hover:text-amber-600 transition-colors duration-150 group/link">
-            Read Case Study
-            <ArrowRight className="w-4 h-4 transition-transform duration-150 group-hover/link:translate-x-0.5" aria-hidden="true" />
-          </Link>
-        )}
+        <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-brand-navy transition-colors group-hover:text-brand-gold">
+          Read case study
+          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+        </span>
       </div>
-    </div>
+    </Link>
   );
 }
 
-export default function CaseStudiesHighlights({ testimonials }: { testimonials: TestimonialCardType[] }) {
-  const secRef = useRef<HTMLElement>(null);
+export default function CaseStudiesHighlights({ caseStudies }: { caseStudies: CaseStudyCardType[] }) {
+  if (!caseStudies.length) return null;
 
-  useEffect(() => {
-    let ctx: { revert: () => void } | null = null;
-    import("gsap").then(({ gsap }) => {
-      import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger);
-        ctx = gsap.context(() => {
-          const hd = secRef.current?.querySelector(".cs-head");
-          if (hd) gsap.from(hd, { y: 30, duration: 0.7, ease: "power3.out", scrollTrigger: { trigger: hd, start: "top 85%" } });
-          const cards = secRef.current ? Array.from(secRef.current.querySelectorAll(".case-card")) : [];
-          if (cards.length) gsap.from(cards, { y: 40, duration: 0.6, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: cards[0], start: "top 88%" } });
-        }, secRef);
-      });
-    });
-    return () => ctx?.revert();
-  }, []);
-
-  if (!testimonials.length) return null;
+  const featured = caseStudies.slice(0, 3);
 
   return (
-    <section ref={secRef} className="w-full py-20 sm:py-28 bg-white" aria-labelledby="case-studies-heading">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="cs-head text-center mb-16">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">What Our Clients Say</p>
-          <h2 id="case-studies-heading" className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-4">Results our clients talk about</h2>
+    <section className="w-full bg-brand-cream py-14 sm:py-16" aria-labelledby="case-studies-heading">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-gold">
+              Case Studies
+            </p>
+            <h2 id="case-studies-heading" className="font-heading text-2xl font-bold text-brand-navy sm:text-3xl">
+              IPO readiness work, shown through real client journeys
+            </h2>
+          </div>
+          <Link
+            href="/case-studies"
+            className="group inline-flex items-center gap-2 text-sm font-bold text-brand-navy transition-colors duration-200 hover:text-brand-gold"
+          >
+            View all case studies
+            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+          </Link>
         </div>
 
-        <ul className="mb-12 grid grid-cols-1 gap-6 lg:grid-cols-3" role="list">
-          {testimonials.map((t) => (
-            <li key={`${t.client_name}-${t.company_name ?? t.case_study_slug ?? "t"}`} className="flex">
-              <CaseStudyCard
-                company={t.company_name ?? t.client_name}
-                industry={t.industry ?? "Client Outcome"}
-                outcome={t.outcome ?? "IPO readiness engagement"}
-                quote={t.quote}
-                imageUrl={t.image_url}
-                attribution={t.client_title ? `${t.client_name}, ${t.client_title}` : t.client_name}
-                slug={t.case_study_slug}
-              />
+        <ul className="grid grid-cols-1 gap-5 md:grid-cols-3" role="list">
+          {featured.map((study) => (
+            <li key={study.slug}>
+              <CaseStudyPreview study={study} />
             </li>
           ))}
         </ul>
-
-        <div className="text-center">
-          <Link href="/case-studies" className="group inline-flex items-center gap-2 text-sm font-bold text-brand-navy hover:text-brand-gold transition-colors duration-200">
-            View All Case Studies
-            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
-          </Link>
-        </div>
       </div>
     </section>
   );

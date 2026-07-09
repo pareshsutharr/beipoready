@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AboutContent from "./AboutContent";
+import { getPublishedClients } from "@/lib/cms";
 
 export const metadata: Metadata = {
   title: "About BEIPOREADY | India's Leading SME IPO Advisor & Growth Capital Experts",
@@ -15,6 +16,10 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function AboutUsPage() {
-  return <AboutContent />;
+export const dynamic = "force-dynamic";
+
+export default async function AboutUsPage() {
+  const clients = await getPublishedClients();
+
+  return <AboutContent clients={clients} />;
 }

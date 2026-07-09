@@ -32,11 +32,11 @@ export default function BeforeAfter() {
             The Cost of Staying Where You Are
           </p>
           <h2 id="before-after-heading" className="font-heading text-3xl sm:text-4xl font-bold text-[#0D4A6F] mb-5 max-w-3xl mx-auto leading-snug">
-            The real question isn&rsquo;t &ldquo;why go public?&rdquo; — it&rsquo;s
-            &ldquo;what is staying private costing you?&rdquo;
+            The real question isn&rsquo;t why go public?  it&rsquo;s
+             what is staying private costing you?
           </h2>
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            Growth capital and a public listing don&rsquo;t just raise money — they
+            Growth capital and a public listing don&rsquo;t just raise money they
             unlock valuation, credibility, and liquidity. Here&rsquo;s the difference
             being IPO-ready makes.
           </p>

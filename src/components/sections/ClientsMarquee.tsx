@@ -1,3 +1,5 @@
+"use client";
+
 import { LogoCloud } from "@/components/ui/logo-cloud-3";
 import type { ClientLogoCard } from "@/lib/cms";
 

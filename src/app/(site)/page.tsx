@@ -13,18 +13,18 @@ import HomeFaq from "@/components/sections/HomeFaq";
 import FinalCta from "@/components/sections/FinalCta";
 import {
   getPublishedArticles,
+  getPublishedCaseStudies,
   getPublishedClients,
-  getPublishedTestimonials,
   getSiteStats,
 } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [stats, clients, testimonials, articles] = await Promise.all([
+  const [stats, clients, caseStudies, articles] = await Promise.all([
     getSiteStats(),
     getPublishedClients(),
-    getPublishedTestimonials(),
+    getPublishedCaseStudies(),
     getPublishedArticles(),
   ]);
 
@@ -55,8 +55,8 @@ export default async function Home() {
       {/* 8 — Clients logo wall */}
       <ClientsMarquee clients={clients} />
 
-      {/* 9 — Testimonials (hidden until real quotes are published) */}
-      <CaseStudiesHighlights testimonials={testimonials} />
+      {/* 9 — Case studies */}
+      <CaseStudiesHighlights caseStudies={caseStudies} />
 
       {/* 10 — Knowledge corner */}
       <KnowledgeCorner articles={articles} />
