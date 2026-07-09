@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
 import ContactForm from "@/components/forms/ContactForm";
+import ClientsMarquee from "@/components/sections/ClientsMarquee";
+import { getPublishedClients } from "@/lib/cms";
+
+const CONTACT_EMAIL = "info@beipoready.com";
+const CONTACT_PHONE_DISPLAY = "+91 95377 67203";
+const CONTACT_PHONE_HREF = "+919537767203";
+const CONTACT_ADDRESS =
+  "2001, 20th Floor, The Junomoneta Tower, RTO, Near Rajhans Cinema, Opp. Pal, Adajan, Surat, Gujarat 395009";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -7,12 +15,16 @@ export const metadata: Metadata = {
     "Speak with a Be IPO Ready advisor about SME IPO advisory, pre-IPO fundraising, or IPO readiness. Book a consultation today.",
 };
 
-export default function ContactUsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ContactUsPage() {
+  const clients = await getPublishedClients();
+
   return (
     <>
       {/* ── Page hero ─────────────────────────────────────────────────── */}
       <section className="relative bg-brand-navy py-16 sm:py-20 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1600&h=600&fit=crop&q=85" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
+        <img src="/heroaboutimg.png" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-top opacity-15" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
@@ -45,16 +57,16 @@ export default function ContactUsPage() {
                     <svg className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <a href="mailto:info@beipoready.com" className="hover:text-brand-gold transition-colors">
-                      info@beipoready.com
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-brand-gold transition-colors">
+                      {CONTACT_EMAIL}
                     </a>
                   </li>
                   <li className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    <a href="tel:+91XXXXXXXXXX" className="hover:text-brand-gold transition-colors">
-                      +91 XXXXX XXXXX
+                    <a href={`tel:${CONTACT_PHONE_HREF}`} className="hover:text-brand-gold transition-colors">
+                      {CONTACT_PHONE_DISPLAY}
                     </a>
                   </li>
                   <li className="flex items-start gap-3">
@@ -62,7 +74,7 @@ export default function ContactUsPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <span>Mumbai &amp; Jaipur, India</span>
+                    <span>{CONTACT_ADDRESS}</span>
                   </li>
                 </ul>
               </div>
@@ -72,17 +84,17 @@ export default function ContactUsPage() {
                   Office Hours
                 </h2>
                 <p className="font-sans text-sm text-slate-600 leading-relaxed">
-                  Monday – Friday: 9:30 AM – 6:30 PM IST<br />
-                  Saturday: 10:00 AM – 2:00 PM IST<br />
+                  Monday – Friday: 10:00 AM – 6:00 PM IST<br />
+                  Saturday: 10:00 AM – 6:00 PM IST<br />
                   Sunday: Closed
                 </p>
               </div>
 
               {/* Office photo */}
               <div className="relative rounded-xl overflow-hidden h-40 shadow-sm">
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=320&fit=crop&q=85" alt="Be IPO Ready office" className="w-full h-full object-cover" />
+                <img src="/heroaboutimg.png" alt="Be IPO Ready office" className="w-full h-full object-cover object-top" />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(15,45,82,0.6))" }} aria-hidden="true" />
-                <span className="absolute bottom-3 left-4 text-xs font-semibold text-white/90">Mumbai &amp; Jaipur offices</span>
+                <span className="absolute bottom-3 left-4 text-xs font-semibold text-white/90">Surat office</span>
               </div>
 
               <div className="bg-brand-navy/5 border border-brand-navy/10 rounded-xl p-5">
@@ -108,6 +120,8 @@ export default function ContactUsPage() {
           </div>
         </div>
       </section>
+
+      <ClientsMarquee clients={clients} />
     </>
   );
 }

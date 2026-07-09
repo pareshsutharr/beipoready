@@ -25,24 +25,28 @@ const TEAM_MEMBERS = [
   {
     name: "Dr. Rakesh Doshi",
     role: "Founder & Chairman",
+    experience: "35+ years experience",
     image: "/teamfolder/rakesh.JPG?v=20260708",
     linkedin: "https://www.linkedin.com/in/rakeshdoshi11",
   },
   {
     name: "Saurav Gandhi",
-    role: "Head of IPO advisor",
+    role: "Head of IPO advisory",
+    experience: "6+ years experience",
     image: "/teamfolder/saurav.JPG?v=20260708",
     linkedin: "https://www.linkedin.com/in/saurav-gandhi-027012154",
   },
   {
     name: "Vishwa Shah",
     role: "Head of Private Investments",
+    experience: "6+ years experience",
     image: "/teamfolder/vishwa.JPG?v=20260708",
     linkedin: "https://www.linkedin.com/in/vishwashah23",
   },
   {
     name: "Harshita Shewani",
     role: "Financial Analyst",
+    experience: "2+ years experience",
     image: "/teamfolder/harshita.JPG?v=20260708",
     linkedin: "https://www.linkedin.com/in/harshita-shewani-b549a1254",
   },
@@ -374,6 +378,9 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
                     <h3 className="font-heading text-2xl font-bold leading-none text-white">
                       {member.name}
                     </h3>
+                    <p className="mt-3 inline-flex rounded bg-white/10 px-3 py-1 font-sans text-xs font-bold uppercase tracking-[0.16em] text-white/90 backdrop-blur">
+                      {member.experience}
+                    </p>
                     <p className="mt-3 font-sans text-xs font-bold uppercase tracking-[0.22em] text-brand-gold">
                       {member.role}
                     </p>
@@ -530,9 +537,9 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
               </figure>
             ))}
           </div>
-          <p className="about-reveal mt-8 font-sans text-sm text-slate-500 leading-relaxed">
+          {/* <p className="about-reveal mt-8 font-sans text-sm text-slate-500 leading-relaxed">
             Templates only — I won&apos;t invent quotes. Collect a few approved quotes (with permission to publish name and company) and I&apos;ll polish them.
-          </p>
+          </p> */}
         </div>
       </section>
 

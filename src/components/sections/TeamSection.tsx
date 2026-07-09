@@ -10,7 +10,7 @@ const TEAM = [
   },
   {
     name: "Saurav Gandhi",
-    role: "Head of IPO advisor",
+    role: "Head of IPO advisory",
     image: "/teamfolder/saurav.JPG?v=20260708",
     linkedin: "https://www.linkedin.com/in/saurav-gandhi-027012154",
     // designation: "[Designation, e.g. Founder & Managing Director]",
