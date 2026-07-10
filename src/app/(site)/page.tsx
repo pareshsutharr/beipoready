@@ -8,11 +8,9 @@ import ReadinessJourney from "@/components/sections/ReadinessJourney";
 import TeamSection from "@/components/sections/TeamSection";
 import ClientsMarquee from "@/components/sections/ClientsMarquee";
 import CaseStudiesHighlights from "@/components/sections/CaseStudiesHighlights";
-import KnowledgeCorner from "@/components/sections/KnowledgeCorner";
 import HomeFaq from "@/components/sections/HomeFaq";
 import FinalCta from "@/components/sections/FinalCta";
 import {
-  getPublishedArticles,
   getPublishedCaseStudies,
   getPublishedClients,
   getSiteStats,
@@ -21,11 +19,10 @@ import {
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [stats, clients, caseStudies, articles] = await Promise.all([
+  const [stats, clients, caseStudies] = await Promise.all([
     getSiteStats(),
     getPublishedClients(),
     getPublishedCaseStudies(),
-    getPublishedArticles(),
   ]);
 
   return (
@@ -58,13 +55,10 @@ export default async function Home() {
       {/* 9 — Case studies */}
       <CaseStudiesHighlights caseStudies={caseStudies} />
 
-      {/* 10 — Knowledge corner */}
-      <KnowledgeCorner articles={articles} />
-
-      {/* 11 — FAQs (with FAQPage schema) */}
+      {/* 10 — FAQs (with FAQPage schema) */}
       <HomeFaq />
 
-      {/* 12 — Final CTA + lead capture */}
+      {/* 11 — Final CTA + lead capture */}
       <FinalCta />
     </>
   );

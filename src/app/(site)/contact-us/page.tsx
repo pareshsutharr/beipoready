@@ -42,7 +42,7 @@ export default async function ContactUsPage() {
       </section>
 
       {/* ── Content: info + form ──────────────────────────────────────── */}
-      <section className="bg-brand-cream py-16 sm:py-20">
+      <section className="bg-white py-16 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
 
@@ -97,16 +97,6 @@ export default async function ContactUsPage() {
                 <span className="absolute bottom-3 left-4 text-xs font-semibold text-white/90">Surat office</span>
               </div>
 
-              <div className="bg-brand-navy/5 border border-brand-navy/10 rounded-xl p-5">
-                <h3 className="font-heading text-base font-bold text-brand-navy mb-2">
-                  Your First Consultation
-                </h3>
-                <p className="font-sans text-sm text-slate-600 leading-relaxed">
-                  We offer a complimentary 30-minute call for all first-time
-                  enquiries — no obligation, no sales pitch. Just an honest
-                  assessment of your IPO readiness.
-                </p>
-              </div>
             </div>
 
             {/* Right: form */}

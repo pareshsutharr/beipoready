@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Our Services",
@@ -104,21 +105,23 @@ export default function ServicesPage() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="group flex flex-col sm:flex-row items-start gap-0 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-brand-gold hover:shadow-md transition-all duration-200"
+                className="group grid grid-cols-1 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:border-brand-gold hover:shadow-md sm:grid-cols-[220px_1fr]"
               >
                 {/* Thumbnail image */}
-                <div className="relative w-full sm:w-48 h-44 sm:h-auto shrink-0 overflow-hidden">
-                  <img
+                <div className="relative min-h-44 w-full overflow-hidden bg-slate-100 sm:h-full sm:min-h-[210px]">
+                  <Image
                     src={service.image}
                     alt=""
                     aria-hidden="true"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(min-width: 640px) 220px, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to right, transparent 60%, rgba(255,255,255,0.08))" }} aria-hidden="true" />
                 </div>
 
                 {/* Number + icon + content */}
-                <div className="flex flex-col sm:flex-row items-start gap-6 flex-1 p-6 sm:p-8">
+                <div className="flex min-w-0 flex-col gap-6 p-6 sm:flex-row sm:items-center sm:p-8">
                   <div className="flex items-center gap-4 shrink-0">
                     <span className="font-heading text-3xl font-bold text-brand-gold/30 leading-none w-8 text-right">
                       {String(idx + 1).padStart(2, "0")}
