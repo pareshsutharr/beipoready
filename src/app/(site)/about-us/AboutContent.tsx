@@ -16,7 +16,6 @@ import {
   Mail,
   MapPin,
   Phone,
-  Play,
   Quote,
   Users,
 } from "lucide-react";
@@ -306,27 +305,16 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
 
             <div className="about-reveal lg:sticky lg:top-24">
               <div className="relative aspect-video overflow-hidden rounded border border-slate-200 bg-brand-navy shadow-xl">
-                <div className="absolute inset-0 opacity-15" aria-hidden="true">
-                  <div className="absolute bottom-8 left-8 right-8 flex items-end justify-center gap-3">
-                    {[46, 72, 104, 138, 172].map((height) => (
-                      <span key={height} className="block w-8 rounded-t bg-brand-gold" style={{ height }} />
-                    ))}
-                  </div>
-                </div>
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                  <div className="w-16 h-16 rounded-full bg-brand-gold text-brand-navy flex items-center justify-center mb-5 shadow-lg">
-                    <Play className="w-7 h-7 fill-current" aria-hidden="true" />
-                  </div>
-                  <p className="font-heading text-2xl font-bold text-white">
-                    Founder&apos;s message / brand film goes here.
-                  </p>
-                  <p className="mt-3 font-sans text-sm text-white/65">
-                    Suggested 60–90 seconds: the founder on why BEIPOREADY exists, who it&apos;s for, and what &ldquo;being IPO ready&rdquo; really means.
-                  </p>
-                </div>
-                <span className="absolute top-4 right-4 rounded bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-brand-gold">
-                  Coming soon
-                </span>
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src="https://www.youtube.com/embed/SiAuBVrwqbw?si=p94tlr4xWkDVyhUe"
+                  title="YouTube video player"
+                  loading="lazy"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
               </div>
             </div>
           </div>
