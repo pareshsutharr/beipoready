@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ClientsMarquee from "@/components/sections/ClientsMarquee";
+import FaqAccordion from "@/components/sections/FaqAccordion";
 import type { ClientLogoCard } from "@/lib/cms";
 import {
   ArrowRight,
@@ -12,7 +13,6 @@ import {
   Building2,
   CalendarDays,
   CheckCircle2,
-  ChevronDown,
   Mail,
   MapPin,
   Phone,
@@ -122,7 +122,6 @@ const FAQS = [
 
 export default function AboutContent({ clients }: { clients: ClientLogoCard[] }) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [openFaq, setOpenFaq] = useState(FAQS[0].q);
 
   useEffect(() => {
     let cancelled = false;
@@ -542,37 +541,8 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
             </h2>
           </div>
 
-          <div className="space-y-3" data-about-stagger>
-            {FAQS.map((item, index) => {
-              const isOpen = openFaq === item.q;
-              const number = String(index + 1).padStart(2, "0");
-              return (
-                <article key={item.q} data-about-item className="overflow-hidden rounded border border-slate-200 bg-white">
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaq(isOpen ? "" : item.q)}
-                    aria-expanded={isOpen}
-                    className="w-full flex items-center gap-4 px-5 sm:px-6 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-inset"
-                  >
-                    <span
-                      className="font-heading text-sm font-bold text-brand-gold tabular-nums shrink-0"
-                      aria-hidden="true"
-                    >
-                      {number}
-                    </span>
-                    <span className="flex-1 font-heading text-base sm:text-lg font-bold text-brand-navy">{item.q}</span>
-                    <ChevronDown className={`w-5 h-5 shrink-0 text-brand-gold transition-transform ${isOpen ? "rotate-180" : ""}`} aria-hidden="true" />
-                  </button>
-                  {isOpen && (
-                    <div className="px-5 sm:px-6 pb-5">
-                      <p className="border-t border-slate-100 pt-4 font-sans text-sm sm:text-base text-slate-600 leading-relaxed">
-                        {item.a}
-                      </p>
-                    </div>
-                  )}
-                </article>
-              );
-            })}
+          <div className="about-reveal">
+            <FaqAccordion categories={[{ category: "", items: FAQS }]} />
           </div>
         </div>
       </section>

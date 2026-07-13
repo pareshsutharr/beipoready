@@ -5,10 +5,9 @@ import Image from "next/image";
 import NewsletterForm from "@/components/forms/NewsletterForm";
 
 const serviceLinks = [
+  { label: "Fund Raising", href: "/services/fund-raising" },
+  { label: "Pre-IPO Advisory", href: "/services/pre-ipo-advisory" },
   { label: "SME IPO Advisory", href: "/services/sme-ipo-advisory" },
-  { label: "IPO Readiness Assessment", href: "/services/ipo-readiness-assessment" },
-  { label: "Pre-IPO Fundraising", href: "/services/pre-ipo-fundraising" },
-  { label: "IPO Documentation & Compliance", href: "/services/ipo-documentation-compliance" },
   { label: "Valuation & Capital Structuring", href: "/services/valuation-capital-structuring" },
 ];
 

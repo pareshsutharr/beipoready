@@ -8,14 +8,14 @@ const PILLARS = [
     imageAlt: "Two business partners shaking hands after closing a funding deal",
     title: "Fundraising & Growth Capital",
     text: "Raise the right capital, on the right terms, from the right investors.",
-    href: "/services/pre-ipo-fundraising",
+    href: "/services/fund-raising",
   },
   {
     image: "/whatwedo-preipo.jpg",
     imageAlt: "Advisors reviewing financial documents and plans at a desk",
     title: "Pre-IPO Advisory",
     text: "Get truly IPO-ready before you file: financials, governance, capital efficiency.",
-    href: "/services/ipo-readiness-assessment",
+    href: "/services/pre-ipo-advisory",
   },
   {
     image: "/whatwedo-ipo.jpg",

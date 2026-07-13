@@ -578,10 +578,10 @@ export default function IpoReadinessQuiz() {
             Book a Consultation
           </Link>
           <Link
-            href="/services/ipo-readiness-assessment"
+            href="/services/pre-ipo-advisory"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/30 text-white font-semibold rounded-lg text-sm hover:bg-white/10 transition-colors"
           >
-            Learn About Our Assessment
+            Learn About Pre-IPO Advisory
           </Link>
         </div>
       </div>

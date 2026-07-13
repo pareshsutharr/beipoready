@@ -1,78 +1,50 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { Banknote, TrendingUp, LineChart, Scale } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Our Services",
   description:
-    "End-to-end SME IPO advisory services — from readiness assessment and corporate governance to DRHP documentation, pre-IPO fundraising, and valuation.",
+    "Strategic capital-markets advisory — Fund Raising, Pre-IPO Advisory, SME IPO Advisory, and Valuation & Capital Structuring for growth-stage and listing-bound companies.",
 };
 
 const SERVICES = [
   {
-    slug: "sme-ipo-advisory",
-    title: "SME IPO Advisory",
-    tagline: "End-to-end guidance from decision to listing day",
-    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=320&h=200&fit=crop&q=80",
-    description:
-      "Our flagship service covers the entire IPO lifecycle — structuring, SEBI filings, merchant banker coordination, road show preparation, and post-listing compliance — all from a single point of accountability.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-      </svg>
-    ),
-  },
-  {
-    slug: "ipo-readiness-assessment",
-    title: "IPO Readiness Assessment",
-    tagline: "Know your real IPO score before you engage a banker",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=320&h=200&fit=crop&q=80",
-    description:
-      "A structured diagnostic across financial reporting, corporate governance, compliance history, and business fundamentals — with a written roadmap of gaps to close and a realistic listing timeline.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-      </svg>
-    ),
-  },
-  {
-    slug: "pre-ipo-fundraising",
-    title: "Pre-IPO Fundraising",
-    tagline: "Bridge capital from the right investors before you list",
+    slug: "fund-raising",
+    title: "Fund Raising",
+    tagline: "Structured equity and debt capitalization solutions engineered to facilitate corporate expansion",
     image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=320&h=200&fit=crop&q=80",
     description:
-      "We connect growth-stage companies with high-net-worth individuals, family offices, and institutional investors for pre-IPO placements — structured to preserve listing optionality and meet SEBI lock-in requirements.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
+      "We help growth-stage businesses secure equity and debt capital from a curated network of investors — VC funds, private equity, family offices, HNIs, NBFCs, and banks — managing the process end-to-end, from investment story to closing.",
+    icon: <Banknote className="w-6 h-6" aria-hidden="true" />,
   },
   {
-    slug: "ipo-documentation-compliance",
-    title: "IPO Documentation & Compliance",
-    tagline: "SEBI-grade documentation that passes scrutiny",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=320&h=200&fit=crop&q=80",
+    slug: "pre-ipo-advisory",
+    title: "Pre-IPO Advisory",
+    tagline: "Strategic market positioning and capitalization initiatives 12–24 months before a public listing",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=320&h=200&fit=crop&q=80",
     description:
-      "We draft and review DRHP, RHP, and all regulatory filings — ensuring SEBI ICDR compliance, accurate financial disclosures, and on-time submissions to NSE Emerge or BSE SME.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-      </svg>
-    ),
+      "We ready your company for public markets — governance, capital structure, financial reporting — while helping you secure Pre-IPO funding from institutional investors, family offices, and HNIs ahead of listing day.",
+    icon: <TrendingUp className="w-6 h-6" aria-hidden="true" />,
+  },
+  {
+    slug: "sme-ipo-advisory",
+    title: "SME IPO Advisory",
+    tagline: "Comprehensive consultation and execution management for NSE Emerge or BSE SME listing",
+    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=320&h=200&fit=crop&q=80",
+    description:
+      "Your primary strategic partner and coordinator across the entire SME IPO journey — from eligibility evaluation and DRHP filing to marketing, the listing bell, and post-listing compliance.",
+    icon: <LineChart className="w-6 h-6" aria-hidden="true" />,
   },
   {
     slug: "valuation-capital-structuring",
     title: "Valuation & Capital Structuring",
-    tagline: "Price your IPO to succeed — not just to list",
+    tagline: "Professional business valuation analysis and the design of an optimized capital stack",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=320&h=200&fit=crop&q=80",
     description:
-      "We build defensible valuation models using sector P/E benchmarks, DCF, and comparable company analysis — then advise on optimal offer price, dilution percentage, and share capital structure to attract institutional interest.",
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    ),
+      "A professionally backed, defensible answer to what your business is worth — blending multi-method valuation with strategic capital-structure advice so you can negotiate with confidence.",
+    icon: <Scale className="w-6 h-6" aria-hidden="true" />,
   },
 ];
 
