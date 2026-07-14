@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Banknote, TrendingUp, LineChart, Scale, type LucideIcon } from "lucide-react";
 import ServiceDetail, { type ServiceData } from "@/components/services/ServiceDetail";
+import { getPublishedClients } from "@/lib/cms";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -279,6 +280,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   if (!service) notFound();
 
   const Icon = SERVICE_ICONS[slug];
+  const clients = await getPublishedClients();
 
   return (
     <main>
@@ -310,7 +312,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         </div>
       </section>
 
-      <ServiceDetail service={service} />
+      <ServiceDetail service={service} clients={clients} />
     </main>
   );
 }

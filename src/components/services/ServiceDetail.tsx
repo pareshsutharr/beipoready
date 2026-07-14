@@ -1,6 +1,8 @@
 import { CheckCircle2, Clock } from "lucide-react";
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 import FaqAccordion from "@/components/sections/FaqAccordion";
+import ClientsMarquee from "@/components/sections/ClientsMarquee";
+import type { ClientLogoCard } from "@/lib/cms";
 
 export type ServiceStage = {
   stage: string;
@@ -24,7 +26,13 @@ export type ServiceData = {
   faq: ServiceFaq[];
 };
 
-export default function ServiceDetail({ service }: { service: ServiceData }) {
+export default function ServiceDetail({
+  service,
+  clients,
+}: {
+  service: ServiceData;
+  clients: ClientLogoCard[];
+}) {
   return (
     <>
       {/* ── Overview + Who It's For ──────────────────────────────────── */}
@@ -152,6 +160,9 @@ export default function ServiceDetail({ service }: { service: ServiceData }) {
           <FaqAccordion categories={[{ category: "", items: service.faq }]} />
         </div>
       </section>
+
+      {/* ── Clients ──────────────────────────────────────────────────── */}
+      <ClientsMarquee clients={clients} />
 
       {/* ── Enquire ──────────────────────────────────────────────────── */}
       <section
