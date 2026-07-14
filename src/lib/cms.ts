@@ -95,7 +95,7 @@ export type CaseStudyDetail = CaseStudyCard & {
 export const FALLBACK_STATS: Pick<SiteStat, "label" | "value">[] = [
   { value: "₹[XXX] Cr+", label: "Capital Raised" },
   { value: "[XX]+", label: "Businesses Advised" },
-  { value: "[XX]", label: "Successful Listings" },
+  // { value: "[XX]", label: "Successful Listings" },
   { value: "[XX]+", label: "Years of Capital-Market Experience" },
 ];
 
