@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -44,7 +44,7 @@ export default function NewsletterForm() {
   if (status === "success") {
     return (
       <p className="font-sans text-sm font-semibold text-brand-gold">
-        ✓ You&rsquo;re subscribed — thanks!
+        ✓ You&rsquo;re subscribed, thanks!
       </p>
     );
   }

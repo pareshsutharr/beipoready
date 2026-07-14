@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+﻿import { createClient } from "@/lib/supabase/server";
 import type { BlogPost, CaseStudy, ClientLogo, Faq, SiteAlert, SiteStat, Testimonial } from "@/types";
 
 export type ArticleCard = {
@@ -90,7 +90,7 @@ export type CaseStudyDetail = CaseStudyCard & {
   quotePerson: string;
 };
 
-// Placeholder values — replace with BEIPOREADY's real, verifiable figures
+// Placeholder values, replace with BEIPOREADY's real, verifiable figures
 // via the admin CMS (site_stats table). Never publish invented numbers.
 export const FALLBACK_STATS: Pick<SiteStat, "label" | "value">[] = [
   { value: "₹[XXX] Cr+", label: "Capital Raised" },
@@ -202,7 +202,7 @@ export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyDetail> = {
     issueSize: "₹22 Crore",
     subscription: "4.2×",
     readinessScore: 62,
-    outcome: "Listed on NSE Emerge — ₹22 Cr IPO, oversubscribed 4.2×",
+    outcome: "Listed on NSE Emerge, ₹22 Cr IPO, oversubscribed 4.2×",
     summary:
       "Rajpur Agro engaged us with ambitions to list within 12 months. Our readiness assessment revealed related party transactions spanning 6 group entities and an incomplete statutory audit trail.",
     challenge:
@@ -228,7 +228,7 @@ export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyDetail> = {
     issueSize: "₹14 Crore",
     subscription: "6.8×",
     readinessScore: 74,
-    outcome: "Listed on BSE SME — ₹14 Cr IPO, oversubscribed 6.8×",
+    outcome: "Listed on BSE SME, ₹14 Cr IPO, oversubscribed 6.8×",
     summary:
       "TechnoSynth had strong financials but no corporate governance infrastructure before the readiness engagement.",
     challenge:
@@ -254,7 +254,7 @@ export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyDetail> = {
     issueSize: "₹18 Crore",
     subscription: "3.1×",
     readinessScore: 81,
-    outcome: "Listed on NSE Emerge — ₹18 Cr IPO, subscription 3.1×",
+    outcome: "Listed on NSE Emerge, ₹18 Cr IPO, subscription 3.1×",
     summary:
       "HealthPlus had grown from 1 to 12 diagnostic clinics in 4 years, but accounting policies had not scaled with the business.",
     challenge:
@@ -269,7 +269,7 @@ export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyDetail> = {
       "The auditor issued an unqualified opinion. The IPO was priced at 18× FY24 PAT and fully subscribed within 2 hours.",
     coverImageUrl: null,
     quote:
-      "Be IPO Ready turned it into a strength — our margins looked better, not worse.",
+      "Be IPO Ready turned it into a strength, our margins looked better, not worse.",
     quotePerson: "CFO, HealthPlus Diagnostics Ltd",
   },
 };
@@ -280,7 +280,7 @@ export const FALLBACK_FAQS = [
     items: [
       {
         q: "What is an SME IPO?",
-        a: "An SME IPO allows companies with a post-issue paid-up capital of up to ₹25 Crore to list on dedicated SME platforms — NSE Emerge or BSE SME.",
+        a: "An SME IPO allows companies with a post-issue paid-up capital of up to ₹25 Crore to list on dedicated SME platforms, NSE Emerge or BSE SME.",
       },
       {
         q: "Can a loss-making company do an SME IPO?",
@@ -478,7 +478,7 @@ export async function getPublishedTestimonials(): Promise<TestimonialCard[]> {
       .order("sort_order", { ascending: true })
       .limit(3);
 
-    // No invented fallback testimonials — sections hide until real,
+    // No invented fallback testimonials, sections hide until real,
     // approved quotes are published via the CMS.
     if (error || !data?.length) return [];
     return data;

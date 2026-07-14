@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { Send } from "lucide-react";
@@ -76,7 +76,7 @@ export default function GetListedForm() {
   function onFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const f = e.target.files?.[0] ?? null;
     if (f && f.size > MAX_FILE_BYTES) {
-      setError("File is too large — please keep it under 10 MB.");
+      setError("File is too large, please keep it under 10 MB.");
       e.target.value = "";
       setFile(null);
       return;
@@ -150,7 +150,7 @@ export default function GetListedForm() {
           <Send className="w-6 h-6 text-brand-gold" aria-hidden="true" />
         </div>
         <h2 className="font-heading text-xl font-bold text-brand-navy mb-2">
-          Details received — thank you!
+          Details received, thank you!
         </h2>
         <p className="font-sans text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
           Our team will review your eligibility and get back to you within one

@@ -1,4 +1,4 @@
-import { X, Check } from "lucide-react";
+﻿import { X, Check } from "lucide-react";
 
 const ROWS = [
   {
@@ -43,7 +43,7 @@ export default function BeforeAfter() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
-          {/* Before — muted */}
+          {/* Before, muted */}
           <div className="rounded-2xl p-7 sm:p-8 border border-slate-200 bg-white">
             <h3 className="font-heading text-lg font-bold text-slate-500 mb-6">
               Staying as you are
@@ -60,7 +60,7 @@ export default function BeforeAfter() {
             </ul>
           </div>
 
-          {/* After — brand colour */}
+          {/* After, brand colour */}
           <div
             className="rounded-2xl p-7 sm:p-8 text-white"
             style={{

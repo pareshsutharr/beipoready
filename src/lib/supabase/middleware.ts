@@ -1,4 +1,4 @@
-import { createServerClient } from "@supabase/ssr";
+﻿import { createServerClient } from "@supabase/ssr";
 import { NextRequest, NextResponse } from "next/server";
 import type { Database } from "@/types";
 
@@ -26,7 +26,7 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  // Refresh the session token. Use getUser() (not getSession()) —
+  // Refresh the session token. Use getUser() (not getSession())
   // getSession() reads from the cookie without server-side validation.
   await supabase.auth.getUser();
 

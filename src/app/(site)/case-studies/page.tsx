@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { getPublishedCaseStudies } from "@/lib/cms";
 
@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "Real SME IPO success stories — how Be IPO Ready guided companies across manufacturing, tech, and healthcare to successful listings on NSE Emerge and BSE SME.",
+    "Real SME IPO success stories, how Be IPO Ready guided companies across manufacturing, tech, and healthcare to successful listings on NSE Emerge and BSE SME.",
 };
 
 function getInitials(name: string) {
@@ -39,7 +39,7 @@ export default async function CaseStudiesPage() {
             Companies We&rsquo;ve Taken Public
           </h1>
           <p className="font-sans text-lg text-white/65 max-w-2xl mx-auto leading-relaxed">
-            Every company here started with real challenges — governance gaps,
+            Every company here started with real challenges, governance gaps,
             audit issues, or financial inconsistencies. Here is how we resolved
             them and got to listing.
           </p>

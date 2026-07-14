@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -33,7 +33,7 @@ const SECTIONS: Section[] = [
         text: "What best describes your company's profitability track record?",
         options: [
           { label: "Loss-making in 2 of the last 3 years", score: 0 },
-          { label: "Breakeven — barely profitable", score: 1 },
+          { label: "Breakeven, barely profitable", score: 1 },
           { label: "Profitable but PAT margin below 5%", score: 2 },
           { label: "Consistently profitable (PAT margin 5%+) for 3+ years", score: 3 },
         ],
@@ -52,9 +52,9 @@ const SECTIONS: Section[] = [
         id: "debt",
         text: "What is your company's current debt situation?",
         options: [
-          { label: "High leverage — Debt/Equity above 2×", score: 0 },
-          { label: "Moderate — Debt/Equity 1–2×", score: 1 },
-          { label: "Low leverage — Debt/Equity below 1×", score: 2 },
+          { label: "High leverage, Debt/Equity above 2×", score: 0 },
+          { label: "Moderate, Debt/Equity 1–2×", score: 1 },
+          { label: "Low leverage, Debt/Equity below 1×", score: 2 },
           { label: "Debt-free or near debt-free", score: 3 },
         ],
       },
@@ -67,7 +67,7 @@ const SECTIONS: Section[] = [
         id: "board",
         text: "What is the current composition of your board of directors?",
         options: [
-          { label: "Promoter directors only — no independent directors", score: 0 },
+          { label: "Promoter directors only, no independent directors", score: 0 },
           { label: "1 independent director appointed", score: 1 },
           { label: "2 independent directors + Audit Committee constituted", score: 2 },
           { label: "2+ IDs, all mandatory committees, and board minutes maintained", score: 3 },
@@ -77,7 +77,7 @@ const SECTIONS: Section[] = [
         id: "auditor",
         text: "Who is your current statutory auditor?",
         options: [
-          { label: "Small local CA — not peer-review certified", score: 0 },
+          { label: "Small local CA, not peer-review certified", score: 0 },
           { label: "CA firm with valid peer review certificate", score: 1 },
           { label: "Mid-size regional firm with IPO experience", score: 2 },
           { label: "Big-4 or Top-10 national CA firm", score: 3 },
@@ -112,7 +112,7 @@ const SECTIONS: Section[] = [
         id: "erp",
         text: "How does your company manage financial reporting?",
         options: [
-          { label: "Manual or Excel-based — no accounting software", score: 0 },
+          { label: "Manual or Excel-based, no accounting software", score: 0 },
           { label: "Basic accounting software (Tally etc.)", score: 1 },
           { label: "ERP partially implemented", score: 2 },
           { label: "Full ERP with real-time financial reporting", score: 3 },
@@ -122,7 +122,7 @@ const SECTIONS: Section[] = [
         id: "audit",
         text: "What internal audit / internal control framework is in place?",
         options: [
-          { label: "No internal audit — no documented controls", score: 0 },
+          { label: "No internal audit, no documented controls", score: 0 },
           { label: "Ad-hoc reviews only", score: 1 },
           { label: "Annual external internal audit conducted", score: 2 },
           { label: "Quarterly internal audit + management action tracking", score: 3 },
@@ -132,7 +132,7 @@ const SECTIONS: Section[] = [
         id: "rpt",
         text: "How significant are related party transactions in your company?",
         options: [
-          { label: "Large RPTs — some undisclosed or not at arm's length", score: 0 },
+          { label: "Large RPTs, some undisclosed or not at arm's length", score: 0 },
           { label: "Significant RPTs but disclosed in accounts", score: 1 },
           { label: "Minor RPTs, all at arm's length and disclosed", score: 2 },
           { label: "No material RPTs", score: 3 },
@@ -142,10 +142,10 @@ const SECTIONS: Section[] = [
         id: "working_capital",
         text: "How would you describe your working capital management?",
         options: [
-          { label: "Negative — company frequently stretches creditor payments", score: 0 },
-          { label: "Seasonal stress — cash flow tight in certain months", score: 1 },
-          { label: "Manageable — no significant stress", score: 2 },
-          { label: "Healthy — positive cash conversion cycle, low receivables", score: 3 },
+          { label: "Negative, company frequently stretches creditor payments", score: 0 },
+          { label: "Seasonal stress, cash flow tight in certain months", score: 1 },
+          { label: "Manageable, no significant stress", score: 2 },
+          { label: "Healthy, positive cash conversion cycle, low receivables", score: 3 },
         ],
       },
     ],
@@ -160,17 +160,17 @@ const SECTIONS: Section[] = [
           { label: "Top 3 customers = 70%+ of revenue", score: 0 },
           { label: "Top 3 customers = 50–70% of revenue", score: 1 },
           { label: "Top 3 customers = 30–50% of revenue", score: 2 },
-          { label: "Top 3 customers below 30% — well diversified", score: 3 },
+          { label: "Top 3 customers below 30%, well diversified", score: 3 },
         ],
       },
       {
         id: "moat",
         text: "What competitive advantage / moat does your company have?",
         options: [
-          { label: "None identified — competing on price only", score: 0 },
-          { label: "Marginal — some differentiation", score: 1 },
-          { label: "Moderate — brand, technology, or process advantage", score: 2 },
-          { label: "Strong — IP, exclusive contracts, network effects, or regulatory moat", score: 3 },
+          { label: "None identified, competing on price only", score: 0 },
+          { label: "Marginal, some differentiation", score: 1 },
+          { label: "Moderate, brand, technology, or process advantage", score: 2 },
+          { label: "Strong, IP, exclusive contracts, network effects, or regulatory moat", score: 3 },
         ],
       },
       {
@@ -178,16 +178,16 @@ const SECTIONS: Section[] = [
         text: "How would you characterise your industry's growth outlook?",
         options: [
           { label: "Declining or structurally challenged", score: 0 },
-          { label: "Flat — low single-digit growth", score: 1 },
-          { label: "Growing — 10–20% industry CAGR", score: 2 },
-          { label: "High growth — 20%+ CAGR with tailwinds", score: 3 },
+          { label: "Flat, low single-digit growth", score: 1 },
+          { label: "Growing, 10–20% industry CAGR", score: 2 },
+          { label: "High growth, 20%+ CAGR with tailwinds", score: 3 },
         ],
       },
       {
         id: "visibility",
         text: "How visible / recurring is your revenue?",
         options: [
-          { label: "Spot / project-based — no forward visibility", score: 0 },
+          { label: "Spot / project-based, no forward visibility", score: 0 },
           { label: "Short-term contracts (under 6 months)", score: 1 },
           { label: "Annual contracts with good renewal rate", score: 2 },
           { label: "Multi-year contracts or strongly recurring SaaS/subscription model", score: 3 },
@@ -205,17 +205,17 @@ const SECTIONS: Section[] = [
           { label: "Under 5 years", score: 0 },
           { label: "5–10 years", score: 1 },
           { label: "10–20 years", score: 2 },
-          { label: "20+ years — deep domain expertise", score: 3 },
+          { label: "20+ years, deep domain expertise", score: 3 },
         ],
       },
       {
         id: "team",
         text: "How deep is your management team?",
         options: [
-          { label: "Single founder-dependent — no second line", score: 0 },
+          { label: "Single founder-dependent, no second line", score: 0 },
           { label: "2–3 key people but no formal structure", score: 1 },
           { label: "Mid-management layer with functional heads", score: 2 },
-          { label: "Full C-suite in place — not founder-dependent", score: 3 },
+          { label: "Full C-suite in place, not founder-dependent", score: 3 },
         ],
       },
       {
@@ -232,10 +232,10 @@ const SECTIONS: Section[] = [
         id: "fundraising",
         text: "Has the company raised external capital before?",
         options: [
-          { label: "No — entirely promoter-funded", score: 0 },
+          { label: "No, entirely promoter-funded", score: 0 },
           { label: "Informal / angel / friends & family round", score: 1 },
           { label: "Formal VC or PE round completed", score: 2 },
-          { label: "Multiple rounds — experienced with investor diligence processes", score: 3 },
+          { label: "Multiple rounds, experienced with investor diligence processes", score: 3 },
         ],
       },
     ],
@@ -485,7 +485,7 @@ export default function IpoReadinessQuiz() {
             {submitting ? "Submitting…" : "Show My IPO Readiness Score →"}
           </button>
           <p className="font-sans text-xs text-slate-400 text-center">
-            We respect your privacy. No spam — just your results and a follow-up offer.
+            We respect your privacy. No spam, just your results and a follow-up offer.
           </p>
         </form>
       </div>
@@ -567,7 +567,7 @@ export default function IpoReadinessQuiz() {
         </h2>
         <p className="font-sans text-sm text-white/65 mb-6 leading-relaxed">
           Our advisors can walk you through every gap in your score and build a
-          specific 12–18 month roadmap to IPO readiness — at no cost for the
+          specific 12–18 month roadmap to IPO readiness, at no cost for the
           first consultation.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">

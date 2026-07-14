@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -20,7 +20,7 @@ const quickLinks = [
   { label: "Issue Size Calculator", href: "/issue-size-calculator" },
   { label: "Issue Cost Estimator", href: "/issue-cost-estimator" },
   { label: "SME IPO Listing Checklist", href: "/sme-ipo-checklist" },
-  { label: "Get Listed — Eligibility Form", href: "/get-listed" },
+  { label: "Get Listed: Eligibility Form", href: "/get-listed" },
 ];
 
 const legalLinks = [

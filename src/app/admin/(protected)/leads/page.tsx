@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import {
   ADMIN_SESSION_COOKIE,
@@ -8,7 +8,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import type { LeadSource, LeadStatus } from "@/types";
 
-export const metadata: Metadata = { title: "Leads — Be IPO Ready Admin" };
+export const metadata: Metadata = { title: "Leads, Be IPO Ready Admin" };
 
 const SOURCE_LABELS: Record<LeadSource, string> = {
   "contact": "Contact Form",
@@ -96,10 +96,10 @@ export default async function AdminLeadsPage() {
                       </a>
                     </td>
                     <td className="px-4 py-3 text-slate-500 whitespace-nowrap">
-                      {lead.phone ?? <span className="text-slate-300">—</span>}
+                      {lead.phone ?? <span className="text-slate-300">N/A</span>}
                     </td>
                     <td className="px-4 py-3 text-slate-600 whitespace-nowrap">
-                      {lead.company_name ?? <span className="text-slate-300">—</span>}
+                      {lead.company_name ?? <span className="text-slate-300">N/A</span>}
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap">
                       <span className="inline-block px-2 py-0.5 rounded-full text-xs font-medium bg-brand-navy/8 text-brand-navy">
@@ -113,7 +113,7 @@ export default async function AdminLeadsPage() {
                     </td>
                     <td className="px-4 py-3 text-slate-500 max-w-xs">
                       <p className="truncate text-xs" title={lead.message ?? ""}>
-                        {lead.message ?? <span className="text-slate-300">—</span>}
+                        {lead.message ?? <span className="text-slate-300">N/A</span>}
                       </p>
                     </td>
                   </tr>

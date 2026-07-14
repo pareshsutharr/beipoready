@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
@@ -28,7 +28,7 @@ const toolLinks: { label: string; href: string; icon: LucideIcon }[] = [
   { label: "Issue Size Calculator", href: "/issue-size-calculator", icon: Calculator },
   { label: "Issue Cost Estimator", href: "/issue-cost-estimator", icon: ReceiptText },
   { label: "SME IPO Listing Checklist", href: "/sme-ipo-checklist", icon: ListChecks },
-  { label: "Get Listed — Eligibility Form", href: "/get-listed", icon: FileCheck2 },
+  { label: "Get Listed: Eligibility Form", href: "/get-listed", icon: FileCheck2 },
 ];
 
 type NavItem = { label: string; href: string; children?: { label: string; href: string; icon?: LucideIcon }[] };

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -121,7 +121,7 @@ export default async function ArticlePage({ params }: Props) {
           </h2>
           <p className="font-sans text-base text-white/65 mb-8 leading-relaxed">
             Our advisors can walk you through each of these points in the context
-            of your specific business — at no cost for the first session.
+            of your specific business, at no cost for the first session.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

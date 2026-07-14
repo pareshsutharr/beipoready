@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import NewsletterForm from "@/components/forms/NewsletterForm";
 import SmeVsMainBoard from "@/components/sections/SmeVsMainBoard";
@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Knowledge Center",
   description:
-    "In-depth guides, regulatory updates, and practical insights on SME IPOs, SEBI compliance, and capital markets — written by Be IPO Ready advisors.",
+    "In-depth guides, regulatory updates, and practical insights on SME IPOs, SEBI compliance, and capital markets, written by Be IPO Ready advisors.",
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -40,7 +40,7 @@ export default async function KnowledgeCenterPage() {
           </h1>
           <p className="font-sans text-lg text-white/65 max-w-2xl mx-auto leading-relaxed">
             Practical guides on SME IPOs, SEBI compliance, valuations, and
-            corporate governance — written by advisors who have done this, not
+            corporate governance, written by advisors who have done this, not
             just written about it.
           </p>
         </div>
@@ -99,7 +99,7 @@ export default async function KnowledgeCenterPage() {
             Get New Guides in Your Inbox
           </h2>
           <p className="font-sans text-base text-white/65 mb-8 leading-relaxed">
-            We publish 2–3 new guides per month. No spam — just practical
+            We publish 2–3 new guides per month. No spam, just practical
             IPO insights from advisors in the trenches.
           </p>
           <div className="max-w-md mx-auto">

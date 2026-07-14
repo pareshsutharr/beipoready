@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import GetListedForm from "@/components/forms/GetListedForm";
 
 export const metadata: Metadata = {
-  title: "Get Listed — IPO Eligibility Form",
+  title: "Get Listed, IPO Eligibility Form",
   description:
-    "Check your company's eligibility for an SME IPO. Share your incorporation details, financials and fund-raising goals — our advisors will assess your readiness to get listed.",
+    "Check your company's eligibility for an SME IPO. Share your incorporation details, financials and fund-raising goals, our advisors will assess your readiness to get listed.",
 };
 
 export default function GetListedPage() {
@@ -26,7 +26,7 @@ export default function GetListedPage() {
           </h1>
           <p className="font-sans text-base text-white/65 max-w-xl mx-auto leading-relaxed">
             Share your company&rsquo;s details and our advisors will assess your
-            SME IPO eligibility — with an honest read on what&rsquo;s ready and
+            SME IPO eligibility, with an honest read on what&rsquo;s ready and
             what needs work.
           </p>
         </div>

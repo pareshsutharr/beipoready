@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import {
   ADMIN_SESSION_COOKIE,
@@ -7,7 +7,7 @@ import {
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 
-export const metadata: Metadata = { title: "Dashboard — Be IPO Ready Admin" };
+export const metadata: Metadata = { title: "Dashboard, Be IPO Ready Admin" };
 
 async function getStats(supabase: Awaited<ReturnType<typeof createClient>>) {
   const [totalLeads, newLeads, contactLeads, toolLeads] = await Promise.all([

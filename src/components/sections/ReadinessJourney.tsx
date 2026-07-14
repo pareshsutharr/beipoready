@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
@@ -26,7 +26,7 @@ const STEPS = [
     label: "Prepare & Strengthen",
     brief: "Implement fixes; tighten governance and systems.",
     description:
-      "We fix what the market will question — reporting, governance and cap table — before bankers and auditors do.",
+      "We fix what the market will question, reporting, governance and cap table, before bankers and auditors do.",
     points: ["Financial reporting clean-up", "Board & governance setup", "Cap-table restructuring"],
   },
   {
@@ -164,7 +164,7 @@ export default function ReadinessJourney() {
                 onClick={() => setActiveStep(step)}
                 className="group flex flex-col items-center flex-1 min-w-0 cursor-pointer focus-visible:outline-none"
                 aria-haspopup="dialog"
-                aria-label={`${step.label} — view details`}
+                aria-label={`${step.label}, view details`}
               >
                 {/* Node */}
                 <div
@@ -211,7 +211,7 @@ export default function ReadinessJourney() {
                   onClick={() => setActiveStep(step)}
                   className="inline-flex items-center gap-1 text-xs font-bold text-brand-gold hover:underline cursor-pointer"
                   aria-haspopup="dialog"
-                  aria-label={`${step.label} — view details`}
+                  aria-label={`${step.label}, view details`}
                 >
                   <Plus className="w-3.5 h-3.5" aria-hidden="true" />
                   View details

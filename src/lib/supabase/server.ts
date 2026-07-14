@@ -1,4 +1,4 @@
-import { createServerClient } from "@supabase/ssr";
+﻿import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import type { Database } from "@/types";
 
@@ -19,7 +19,7 @@ export async function createClient() {
               cookieStore.set(name, value, options)
             );
           } catch {
-            // setAll called from a Server Component — cookies are read-only there.
+            // setAll called from a Server Component, cookies are read-only there.
             // The middleware handles session refresh so this is safe to ignore.
           }
         },

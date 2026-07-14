@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
@@ -36,7 +36,7 @@ export default function TermsPage() {
           <section>
             <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">3. Intellectual Property</h2>
             <p>
-              All content on this Site — including text, graphics, logos, and software — is the property
+              All content on this Site, including text, graphics, logos, and software, is the property
               of Be IPO Ready / Jainam Capital Advisors and is protected by applicable copyright and
               intellectual property laws. You may not use any content without our express written permission.
             </p>

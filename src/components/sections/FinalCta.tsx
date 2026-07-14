@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { MapPin, Mail, Phone, ArrowRight } from "lucide-react";
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 
@@ -15,7 +15,7 @@ export default function FinalCta() {
       <div className="absolute top-0 inset-x-0 h-[2px]" style={{ background: "linear-gradient(90deg,transparent,#ECB85B,transparent)" }} aria-hidden="true" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-        {/* Left — pitch + contact strip */}
+        {/* Left, pitch + contact strip */}
         <div>
           <h2 id="final-cta-heading" className="font-heading text-3xl sm:text-4xl font-bold text-white leading-tight mb-4">
             Ready to raise capital or take your company public?
@@ -30,7 +30,7 @@ export default function FinalCta() {
             className="group inline-flex items-center gap-2 text-sm font-bold mb-10 transition-colors duration-150 hover:text-white"
             style={{ color: "#ECB85B" }}
           >
-            Are You IPO Ready? — Take the Check
+            Are You IPO Ready?, Take the Check
             <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
           </Link>
 
@@ -50,12 +50,12 @@ export default function FinalCta() {
           </address>
         </div>
 
-        {/* Right — embedded lead-capture form */}
+        {/* Right, embedded lead-capture form */}
         <div className="rounded-2xl bg-white p-6 sm:p-8" style={{ boxShadow: "0 24px 64px rgba(0,0,0,0.25)" }}>
           <LeadCaptureForm
             source="home-cta"
             heading="Book an IPO Readiness Call"
-            description="Tell us about your company — an advisor will get back within one business day."
+            description="Tell us about your company, an advisor will get back within one business day."
             submitLabel="Book My Call"
           />
         </div>

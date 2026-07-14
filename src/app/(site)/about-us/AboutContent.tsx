@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
@@ -96,19 +96,19 @@ const STATS = [
 const FAQS = [
   {
     q: "What makes BEIPOREADY different from other IPO advisors?",
-    a: "Most advisors join once you've decided to file. We start earlier — building genuine readiness, capital discipline and governance before the process begins. We also stay across the full journey (fundraising, pre-IPO and IPO), so you have one partner from your first raise to a successful listing and beyond.",
+    a: "Most advisors join once you've decided to file. We start earlier, building genuine readiness, capital discipline and governance before the process begins. We also stay across the full journey (fundraising, pre-IPO and IPO), so you have one partner from your first raise to a successful listing and beyond.",
   },
   {
     q: "Do you only work on IPOs?",
-    a: "No. Many of our clients aren't ready for — or don't yet need — an IPO. We help businesses raise growth capital through equity or debt, and pursue a public listing only when it's the right move. IPO readiness is a journey, and we meet you wherever you are on it.",
+    a: "No. Many of our clients aren't ready for, or don't yet need, an IPO. We help businesses raise growth capital through equity or debt, and pursue a public listing only when it's the right move. IPO readiness is a journey, and we meet you wherever you are on it.",
   },
   {
     q: "What kind of companies do you work with?",
-    a: "Promoter-led Indian businesses with real fundamentals and ambition — typically those exploring growth capital or a listing on NSE Emerge, BSE SME, or the Main Board. If you're serious about building long-term value, we're built to help.",
+    a: "Promoter-led Indian businesses with real fundamentals and ambition, typically those exploring growth capital or a listing on NSE Emerge, BSE SME, or the Main Board. If you're serious about building long-term value, we're built to help.",
   },
   {
     q: "Are you a merchant banker? What's your role in the process?",
-    a: "We're your advisor and coordinator — on your side of the table throughout. We assess readiness, structure the raise or issue, and select and coordinate the SEBI-registered intermediaries (merchant banker, RTA, legal, market maker) who execute the transaction. [Add your regulatory standing / registrations here.]",
+    a: "We're your advisor and coordinator, on your side of the table throughout. We assess readiness, structure the raise or issue, and select and coordinate the SEBI-registered intermediaries (merchant banker, RTA, legal, market maker) who execute the transaction. [Add your regulatory standing / registrations here.]",
   },
   {
     q: "Where are you based, and do you work across India?",
@@ -116,7 +116,7 @@ const FAQS = [
   },
   {
     q: "How do we start working with you?",
-    a: "It begins with an IPO Readiness Call. We'll understand where you are, tell you honestly how ready you are, and map the clearest path forward — no obligation.",
+    a: "It begins with an IPO Readiness Call. We'll understand where you are, tell you honestly how ready you are, and map the clearest path forward, no obligation.",
   },
 ];
 
@@ -247,7 +247,7 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
                 We don&apos;t just advise on IPOs. We make companies ready for them.
               </h1>
               {/* <p className="about-reveal mt-6 font-sans text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl text-white">
-                BEIPOREADY is India&apos;s IPO advisory and growth-capital specialist — partnering with promoters from their first raise to a confident public listing, and beyond.
+                BEIPOREADY is India&apos;s IPO advisory and growth-capital specialist, partnering with promoters from their first raise to a confident public listing, and beyond.
               </p> */}
             </div>
 {/* 
@@ -271,14 +271,14 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
                 Our Story
               </p>
               <h2 className="about-reveal font-heading text-3xl sm:text-4xl font-bold text-brand-navy leading-tight mb-7">
-                The name is the mission — Be IPO Ready.
+                The name is the mission, Be IPO Ready.
               </h2>
               <div className="space-y-5 font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
                 <p className="about-reveal">
-                  Most businesses treat an IPO as a finish line. We were founded on the opposite belief: that a great listing is never the starting point of value — it&apos;s the <em>result</em> of being genuinely ready for it.
+                  Most businesses treat an IPO as a finish line. We were founded on the opposite belief: that a great listing is never the starting point of value, it&apos;s the <em>result</em> of being genuinely ready for it.
                 </p>
                 <p className="about-reveal">
-                  [Founder name] started BEIPOREADY in [year] after seeing the same pattern again and again — strong Indian businesses, with real products and real customers, held back from the public markets not by their fundamentals but by a lack of preparation. Capital raised without a plan. Governance left until the last minute. Founders walking into a listing they weren&apos;t ready for, and leaving value on the table.
+                  [Founder name] started BEIPOREADY in [year] after seeing the same pattern again and again, strong Indian businesses, with real products and real customers, held back from the public markets not by their fundamentals but by a lack of preparation. Capital raised without a plan. Governance left until the last minute. Founders walking into a listing they weren&apos;t ready for, and leaving value on the table.
                 </p>
               </div>
 
@@ -288,16 +288,16 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
                   &ldquo;A successful IPO isn&apos;t an event you attend. It&apos;s a state you reach.&rdquo;
                 </blockquote>
                 <figcaption className="mt-4 font-sans text-sm text-white/70">
-                  — [Founder name], Founder, BEIPOREADY
+                  [Founder name], Founder, BEIPOREADY
                 </figcaption>
               </figure>
 
               <div className="space-y-5 font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
                 <p className="about-reveal">
-                  We built BEIPOREADY to close that gap. Our work begins long before a prospectus is filed — with respect for capital, disciplined preparation, and honest advice about where a business truly stands. We walk with promoters across the whole journey: raising the right growth capital, building genuine IPO readiness, and executing a successful listing on NSE Emerge, BSE SME, or the Main Board.
+                  We built BEIPOREADY to close that gap. Our work begins long before a prospectus is filed, with respect for capital, disciplined preparation, and honest advice about where a business truly stands. We walk with promoters across the whole journey: raising the right growth capital, building genuine IPO readiness, and executing a successful listing on NSE Emerge, BSE SME, or the Main Board.
                 </p>
                 <p className="about-reveal">
-                  The result is simple to say and hard to earn: <strong className="text-brand-navy">value creation before the IPO, and wealth creation after it.</strong> That&apos;s what it means to be IPO ready — and it&apos;s what we help every client become.
+                  The result is simple to say and hard to earn: <strong className="text-brand-navy">value creation before the IPO, and wealth creation after it.</strong> That&apos;s what it means to be IPO ready, and it&apos;s what we help every client become.
                 </p>
               </div>
             </div>
@@ -330,7 +330,7 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
               Advisors who&apos;ve walked this road before
             </h2>
             <p className="font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
-              Behind every BEIPOREADY mandate is a team that combines capital-markets expertise with real financial and operating insight. We sit on your side of the table — partners invested in your outcome, not just your transaction.
+              Behind every BEIPOREADY mandate is a team that combines capital-markets expertise with real financial and operating insight. We sit on your side of the table, partners invested in your outcome, not just your transaction.
             </p>
           </div>
 
@@ -439,7 +439,7 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
               <div className="bg-brand-navy p-8 sm:p-10 text-white flex flex-col justify-between">
                 <div>
                   <p className="font-sans text-sm font-semibold uppercase tracking-[0.22em] text-brand-gold mb-5">
-                    [Client name — Sector]
+                    [Client name, Sector]
                   </p>
                   <p className="font-heading text-4xl font-bold text-brand-gold leading-none">
                     ₹[XX] Cr
@@ -463,7 +463,7 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
                   ))}
                 </div>
                 <div className="space-y-5 font-sans text-sm sm:text-base text-slate-600 leading-relaxed">
-                  <p><strong className="text-brand-navy">The challenge:</strong> [What the company needed — e.g. raise growth capital, or prepare for and execute an SME IPO.]</p>
+                  <p><strong className="text-brand-navy">The challenge:</strong> [What the company needed, e.g. raise growth capital, or prepare for and execute an SME IPO.]</p>
                   <p><strong className="text-brand-navy">What we did:</strong> [BEIPOREADY&apos;s role across readiness, structuring, investor/intermediary coordination, and listing.]</p>
                   <p><strong className="text-brand-navy">The outcome:</strong> Issue size <strong>₹[XX] Cr</strong> · <strong>[X]×</strong> subscribed · <strong>[+XX]%</strong> listing gain · listed on <strong>[NSE Emerge / BSE SME]</strong>, [month/year].</p>
                   <p><strong className="text-brand-navy">In their words:</strong> &ldquo;[Short client quote, if available.]&rdquo;</p>
@@ -516,16 +516,16 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
               <figure key={item} data-about-item className="rounded border border-slate-200 bg-brand-cream p-7 sm:p-8">
                 <Quote className="w-8 h-8 text-brand-gold mb-5" aria-hidden="true" />
                 <blockquote className="font-heading text-xl sm:text-2xl font-bold text-brand-navy leading-tight">
-                  &ldquo;[Client quote{item === 1 ? " — the experience and outcome of working with BEIPOREADY." : ""}]&rdquo;
+                  &ldquo;[Client quote{item === 1 ? ", the experience and outcome of working with BEIPOREADY." : ""}]&rdquo;
                 </blockquote>
                 <figcaption className="mt-6 font-sans text-sm text-slate-600">
-                  <strong className="text-brand-navy">— [Name], [Designation], [Company]</strong>
+                  <strong className="text-brand-navy">[Name], [Designation], [Company]</strong>
                 </figcaption>
               </figure>
             ))}
           </div>
           {/* <p className="about-reveal mt-8 font-sans text-sm text-slate-500 leading-relaxed">
-            Templates only — I won&apos;t invent quotes. Collect a few approved quotes (with permission to publish name and company) and I&apos;ll polish them.
+            Templates only, I won&apos;t invent quotes. Collect a few approved quotes (with permission to publish name and company) and I&apos;ll polish them.
           </p> */}
         </div>
       </section>
@@ -534,7 +534,7 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="about-reveal mb-10">
             <p className="font-sans text-sm font-semibold uppercase tracking-[0.25em] text-brand-gold mb-4">
-              About BEIPOREADY — FAQs
+              About BEIPOREADY FAQs
             </p>
             <h2 className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy leading-tight">
               What founders ask before they work with us
@@ -570,7 +570,7 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
                   href="/ipo-readiness-tool"
                   className="inline-flex items-center justify-center gap-2 rounded border border-white/20 px-6 py-3 font-sans text-sm font-semibold text-white hover:border-brand-gold hover:text-brand-gold transition-colors"
                 >
-                  Are You IPO Ready? — Take the Check
+                  Are You IPO Ready?, Take the Check
                 </Link>
               </div>
 
@@ -581,7 +581,7 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
                 </p>
                 <p className="flex gap-3">
                   <Mail className="w-5 h-5 shrink-0 text-brand-gold" aria-hidden="true" />
-                  [domain email — e.g. hello@beipoready.com]
+                  [domain email, e.g. hello@beipoready.com]
                 </p>
                 <p className="flex gap-3">
                   <Phone className="w-5 h-5 shrink-0 text-brand-gold" aria-hidden="true" />

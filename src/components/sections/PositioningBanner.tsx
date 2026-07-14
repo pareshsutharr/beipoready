@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export default function PositioningBanner() {
@@ -42,7 +42,7 @@ export default function PositioningBanner() {
             fontSize: "clamp(0.82rem, 1vw, 0.94rem)",
           }}
         >
-          Get Listed — Check Your IPO Eligibility
+          Get Listed, Check Your IPO Eligibility
           <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
         </Link>
       </div>

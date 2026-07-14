@@ -1,4 +1,4 @@
-// ──────────────────────────────────────────────────────────────
+﻿// ──────────────────────────────────────────────────────────────
 // Supabase database types (hand-authored until supabase gen types
 // is run against a live project).
 // ──────────────────────────────────────────────────────────────
@@ -206,7 +206,7 @@ export type EligibilitySubmission = {
 // ──────────────────────────────────────────────────────────────
 
 // ──────────────────────────────────────────────────────────────
-// Database type — must satisfy GenericSchema from @supabase/postgrest-js:
+// Database type, must satisfy GenericSchema from @supabase/postgrest-js:
 //   Tables: each entry needs Row, Insert, Update, Relationships
 //   Plus top-level Views and Functions keys on the public schema.
 // Without these, Database["public"] doesn't extend GenericSchema and

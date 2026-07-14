@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Printer, Mail, FileDown, Globe, Phone, Building2, CalendarDays } from "lucide-react";
 import type { EligibilitySubmission } from "@/types";
@@ -13,12 +13,12 @@ const STATUS_COLORS: Record<string, string> = {
 const IMAGE_EXT_RE = /\.(jpe?g|png)$/i;
 
 function fmtDate(d: string | null) {
-  if (!d) return "—";
+  if (!d) return "N/A";
   return new Date(d).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" });
 }
 
 function fmtInr(v: string | null) {
-  if (!v) return "—";
+  if (!v) return "N/A";
   const n = Number(v.replace(/[,\s]/g, ""));
   if (Number.isNaN(n)) return v; // free-form text, show as entered
   return `₹${n.toLocaleString("en-IN")}`;
@@ -36,7 +36,7 @@ function YesNoPill({ label, value }: { label: string; value: boolean | null }) {
       }`}
     >
       {label}
-      <span aria-hidden="true">{value === null ? "—" : value ? "✓" : "✕"}</span>
+      <span aria-hidden="true">{value === null ? "N/A" : value ? "✓" : "✕"}</span>
     </span>
   );
 }
@@ -52,12 +52,12 @@ export default function EligibilityCard({
     ? row.fund_purposes
         .map((p) => (p === "Other" && row.fund_purpose_other ? `Other: ${row.fund_purpose_other}` : p))
         .join(", ")
-    : "—";
+    : "N/A";
 
   const isImage = !!row.financials_file_path && IMAGE_EXT_RE.test(row.financials_file_path);
 
   const mailSubject = encodeURIComponent(
-    `Your IPO eligibility review — ${row.organization_name}`
+    `Your IPO eligibility review, ${row.organization_name}`
   );
   const mailBody = encodeURIComponent(
     `Dear ${row.organization_name} team,\n\n` +
@@ -73,8 +73,8 @@ export default function EligibilityCard({
     if (!w) return;
     const field = (label: string, value: string) =>
       `<tr><td class="l">${label}</td><td>${value}</td></tr>`;
-    const yn = (v: boolean | null) => (v === null ? "—" : v ? "Yes" : "No");
-    w.document.write(`<!doctype html><html><head><title>${row.organization_name} — Eligibility Form</title>
+    const yn = (v: boolean | null) => (v === null ? "N/A" : v ? "Yes" : "No");
+    w.document.write(`<!doctype html><html><head><title>${row.organization_name}, Eligibility Form</title>
       <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
       <style>
         body { font-family: "Montserrat", sans-serif; color: #0D4A6F; padding: 40px; }
@@ -86,13 +86,13 @@ export default function EligibilityCard({
         .foot { color: #94a3b8; font-size: 11px; margin-top: 24px; }
       </style></head><body>
       <h1>${row.organization_name}</h1>
-      <p class="sub">Get Listed — IPO eligibility submission · ${fmtDate(row.created_at)} · status: ${row.status}</p>
+      <p class="sub">Get Listed, IPO eligibility submission · ${fmtDate(row.created_at)} · status: ${row.status}</p>
       <table>
         ${field("Email", row.email)}
-        ${field("Contact details", row.contact_details ?? "—")}
-        ${field("Website", row.website ?? "—")}
+        ${field("Contact details", row.contact_details ?? "N/A")}
+        ${field("Website", row.website ?? "N/A")}
         ${field("Date of incorporation", fmtDate(row.incorporation_date))}
-        ${field("Complete years in operation", row.operational_years != null ? String(row.operational_years) : "—")}
+        ${field("Complete years in operation", row.operational_years != null ? String(row.operational_years) : "N/A")}
         ${field("More than 3 years old", yn(row.is_three_years_old))}
         ${field("Operating profit > ₹1 Cr (2 of 3 FYs)", yn(row.has_min_operating_profit))}
         ${field("OFS compliant (≤20% issue / ≤50% holding)", yn(row.ofs_compliant))}

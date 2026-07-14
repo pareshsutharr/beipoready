@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
@@ -36,12 +36,12 @@ export default function WhatWeDo() {
             One partner across your entire capital journey
           </h2>
           <p className="text-base sm:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-            Most businesses don&rsquo;t fail at going public because of a weak idea — they
+            Most businesses don&rsquo;t fail at going public because of a weak idea, they
             fail because they weren&rsquo;t prepared. BEIPOREADY is a specialist
             capital-markets advisory firm that partners with promoters and management
             teams across three connected stages: raising growth capital, becoming
             IPO-ready, and executing a successful listing. We don&rsquo;t just advise on
-            the transaction — we build the value that makes it succeed.
+            the transaction, we build the value that makes it succeed.
           </p>
         </div>
 
