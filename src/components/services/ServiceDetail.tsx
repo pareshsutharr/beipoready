@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock } from "lucide-react";
+﻿import { CheckCircle2, Clock } from "lucide-react";
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
 import FaqAccordion from "@/components/sections/FaqAccordion";
 import ClientsMarquee from "@/components/sections/ClientsMarquee";
@@ -84,7 +84,7 @@ export default function ServiceDetail({
                 <div className="bg-brand-cream border border-slate-200 rounded-xl p-6">
                   <div className="flex flex-wrap items-center gap-3 mb-4">
                     <h3 className="font-heading text-lg font-bold text-brand-navy">
-                      Stage {i + 1} — {stage.stage}
+                      Stage {i + 1}, {stage.stage}
                     </h3>
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-navy/8 text-brand-navy text-xs font-semibold px-3 py-1">
                       <Clock className="w-3.5 h-3.5" aria-hidden="true" />

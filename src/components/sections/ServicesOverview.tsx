@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Banknote, TrendingUp, LineChart, Scale, ChevronDown, ArrowUpRight } from "lucide-react";
 
 const SERVICES = [
@@ -7,7 +7,7 @@ const SERVICES = [
     title: "Fund Raising",
     brief: "Structured equity and debt capital to fuel your expansion.",
     detailed:
-      "Structured equity and debt capitalization solutions engineered to facilitate corporate expansion. We help growth-stage businesses secure capital from a curated network of investors — VC funds, private equity, family offices, HNIs, NBFCs and banks — managing the process end-to-end.",
+      "Structured equity and debt capitalization solutions engineered to facilitate corporate expansion. We help growth-stage businesses secure capital from a curated network of investors, VC funds, private equity, family offices, HNIs, NBFCs and banks, managing the process end-to-end.",
     deliverables: [
       "Investment teaser & pitch deck",
       "Financial model",
@@ -22,7 +22,7 @@ const SERVICES = [
     title: "Pre-IPO Advisory",
     brief: "Get market-ready 12–24 months before your listing.",
     detailed:
-      "Strategic market positioning and capitalization initiatives executed within the twelve to twenty-four months preceding a public listing — governance, structure, financial reporting, and a Pre-IPO capital raise from institutional-quality investors.",
+      "Strategic market positioning and capitalization initiatives executed within the twelve to twenty-four months preceding a public listing, governance, structure, financial reporting, and a Pre-IPO capital raise from institutional-quality investors.",
     deliverables: [
       "IPO readiness diagnostic",
       "Corporate & financial restructuring",
@@ -36,7 +36,7 @@ const SERVICES = [
     title: "SME IPO Advisory",
     brief: "End-to-end execution for NSE Emerge & BSE SME listing.",
     detailed:
-      "Comprehensive consultation and execution management for public listing on the NSE Emerge or BSE SME platforms — from eligibility evaluation and DRHP filing to marketing, the listing bell, and post-listing compliance.",
+      "Comprehensive consultation and execution management for public listing on the NSE Emerge or BSE SME platforms, from eligibility evaluation and DRHP filing to marketing, the listing bell, and post-listing compliance.",
     deliverables: [
       "Eligibility & readiness check",
       "DRHP preparation & filing",
@@ -50,7 +50,7 @@ const SERVICES = [
     title: "Valuation & Capital Structuring",
     brief: "Know what you're worth; structure capital to match.",
     detailed:
-      "Professional business valuation analysis and the design of an optimized capital stack — multi-method valuation blended with strategic capital-structure advice, so you can negotiate with confidence.",
+      "Professional business valuation analysis and the design of an optimized capital stack, multi-method valuation blended with strategic capital-structure advice, so you can negotiate with confidence.",
     deliverables: [
       "Multi-method valuation report",
       "Capital structure review",

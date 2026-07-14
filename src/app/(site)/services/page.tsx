@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Banknote, TrendingUp, LineChart, Scale } from "lucide-react";
@@ -6,7 +6,7 @@ import { Banknote, TrendingUp, LineChart, Scale } from "lucide-react";
 export const metadata: Metadata = {
   title: "Our Services",
   description:
-    "Strategic capital-markets advisory — Fund Raising, Pre-IPO Advisory, SME IPO Advisory, and Valuation & Capital Structuring for growth-stage and listing-bound companies.",
+    "Strategic capital-markets advisory, Fund Raising, Pre-IPO Advisory, SME IPO Advisory, and Valuation & Capital Structuring for growth-stage and listing-bound companies.",
 };
 
 const SERVICES = [
@@ -16,7 +16,7 @@ const SERVICES = [
     tagline: "Structured equity and debt capitalization solutions engineered to facilitate corporate expansion",
     image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=320&h=200&fit=crop&q=80",
     description:
-      "We help growth-stage businesses secure equity and debt capital from a curated network of investors — VC funds, private equity, family offices, HNIs, NBFCs, and banks — managing the process end-to-end, from investment story to closing.",
+      "We help growth-stage businesses secure equity and debt capital from a curated network of investors, VC funds, private equity, family offices, HNIs, NBFCs, and banks, managing the process end-to-end, from investment story to closing.",
     icon: <Banknote className="w-6 h-6" aria-hidden="true" />,
   },
   {
@@ -25,7 +25,7 @@ const SERVICES = [
     tagline: "Strategic market positioning and capitalization initiatives 12–24 months before a public listing",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=320&h=200&fit=crop&q=80",
     description:
-      "We ready your company for public markets — governance, capital structure, financial reporting — while helping you secure Pre-IPO funding from institutional investors, family offices, and HNIs ahead of listing day.",
+      "We ready your company for public markets, governance, capital structure, financial reporting, while helping you secure Pre-IPO funding from institutional investors, family offices, and HNIs ahead of listing day.",
     icon: <TrendingUp className="w-6 h-6" aria-hidden="true" />,
   },
   {
@@ -34,7 +34,7 @@ const SERVICES = [
     tagline: "Comprehensive consultation and execution management for NSE Emerge or BSE SME listing",
     image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=320&h=200&fit=crop&q=80",
     description:
-      "Your primary strategic partner and coordinator across the entire SME IPO journey — from eligibility evaluation and DRHP filing to marketing, the listing bell, and post-listing compliance.",
+      "Your primary strategic partner and coordinator across the entire SME IPO journey, from eligibility evaluation and DRHP filing to marketing, the listing bell, and post-listing compliance.",
     icon: <LineChart className="w-6 h-6" aria-hidden="true" />,
   },
   {
@@ -43,7 +43,7 @@ const SERVICES = [
     tagline: "Professional business valuation analysis and the design of an optimized capital stack",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=320&h=200&fit=crop&q=80",
     description:
-      "A professionally backed, defensible answer to what your business is worth — blending multi-method valuation with strategic capital-structure advice so you can negotiate with confidence.",
+      "A professionally backed, defensible answer to what your business is worth, blending multi-method valuation with strategic capital-structure advice so you can negotiate with confidence.",
     icon: <Scale className="w-6 h-6" aria-hidden="true" />,
   },
 ];
@@ -63,7 +63,7 @@ export default function ServicesPage() {
             Services Built for SME IPO Success
           </h1>
           <p className="font-sans text-lg text-white/65 max-w-2xl mx-auto leading-relaxed">
-            From your first readiness check to the listing bell — we cover every
+            From your first readiness check to the listing bell, we cover every
             stage so you never have to stitch together multiple advisors mid-journey.
           </p>
         </div>
@@ -130,7 +130,7 @@ export default function ServicesPage() {
             Not sure which service you need?
           </h2>
           <p className="font-sans text-base text-white/65 mb-8 leading-relaxed">
-            Start with a readiness check — we will recommend exactly what is right for your stage.
+            Start with a readiness check, we will recommend exactly what is right for your stage.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
