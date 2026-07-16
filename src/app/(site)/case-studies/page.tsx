@@ -51,61 +51,46 @@ export default async function CaseStudiesPage() {
           <p className="font-sans text-xs text-slate-400 mb-8 text-center">
             Note: Identifying details may be changed to protect client confidentiality.
           </p>
-          <div className="grid grid-cols-1 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {caseStudies.map((cs) => (
               <Link
                 key={cs.slug}
                 href={`/case-studies/${cs.slug}`}
-                className="group block bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-brand-gold hover:shadow-md transition-all duration-200"
+                className="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-brand-gold hover:shadow-md transition-all duration-200"
               >
-                <div className="relative h-52 overflow-hidden" aria-label={`${cs.company} cover image`}>
-                  <img
-                    src={cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}
-                    alt=""
-                    aria-hidden="true"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 50%, rgba(15,45,82,0.5))" }} aria-hidden="true" />
-                  {/* Company logo monogram */}
-                  <div className="absolute top-3 right-3 w-12 h-12 rounded-xl flex items-center justify-center shadow-xl"
-                    style={{ background: "rgba(15,45,82,0.92)", border: "1.5px solid rgba(245,158,11,0.45)", backdropFilter: "blur(4px)" }}>
-                    <span className="font-heading text-sm font-bold" style={{ color: "#F59E0B" }}>{getInitials(cs.company)}</span>
-                  </div>
-                  {/* Sector badge */}
-                  <span className="absolute bottom-3 left-4 text-xs font-bold uppercase tracking-wide text-white bg-brand-gold/85 px-2.5 py-1 rounded-full">{cs.sector}</span>
+                <div
+                  className={`relative h-44 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 origin-center ${
+                    cs.coverImageUrl ? "bg-white" : "bg-slate-200"
+                  }`}
+                  style={{ backgroundImage: `url("${cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}")`, backgroundSize: cs.coverImageUrl ? "contain" : "cover" }}
+                  role="img"
+                  aria-label={`${cs.company} cover image`}
+                >
+                  {!cs.coverImageUrl && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-brand-navy/50">
+                      <span className="font-heading text-3xl font-bold text-white">{getInitials(cs.company)}</span>
+                    </div>
+                  )}
                 </div>
-                <div className="bg-brand-navy/5 border-b border-slate-100 px-8 py-4 flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <h2 className="font-heading text-lg font-bold text-brand-navy group-hover:text-brand-gold transition-colors">
-                      {cs.company}
-                    </h2>
-                    <p className="font-sans text-xs text-slate-400 mt-0.5">{cs.sector}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="font-sans text-xs text-slate-500">IPO Readiness Score</p>
-                    <p className="font-heading text-2xl font-bold text-brand-gold">{cs.readinessScore}<span className="text-sm text-slate-400">/100</span></p>
-                  </div>
-                </div>
-
-                <div className="px-8 py-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
-                  <div>
-                    <p className="font-sans text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Outcome</p>
-                    <p className="font-sans text-sm text-slate-700 leading-relaxed">{cs.outcome}</p>
-                  </div>
-                  <div>
-                    <p className="font-sans text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">The Challenge</p>
-                    <p className="font-sans text-sm text-slate-700 leading-relaxed">{cs.challenge}</p>
-                  </div>
-                  <div>
-                    <p className="font-sans text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">The Result</p>
-                    <p className="font-sans text-sm text-slate-700 leading-relaxed">{cs.result}</p>
-                  </div>
-                </div>
-
-                <div className="px-8 pb-5 text-right">
-                  <span className="font-sans text-sm font-semibold text-brand-gold group-hover:underline">
-                    Read full case study →
+                <div className="px-6 pt-6 pb-4 flex items-center justify-between">
+                  <span className="font-sans text-xs font-semibold border rounded-full px-3 py-1 bg-brand-navy/5 text-brand-navy border-brand-navy/10">
+                    Case Studies
                   </span>
+                  <span className="font-sans text-xs text-slate-400">{cs.sector}</span>
+                </div>
+                <div className="px-6 pb-6 flex-1 flex flex-col">
+                  <h2 className="font-heading text-base font-bold text-brand-navy mb-3 leading-snug group-hover:text-brand-gold transition-colors">
+                    {cs.company}
+                  </h2>
+                  <p className="font-sans text-sm text-slate-600 leading-relaxed flex-1">
+                    {cs.outcome}
+                  </p>
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="font-sans text-xs text-slate-400">{cs.publishedAt}</span>
+                    <span className="font-sans text-sm font-semibold text-brand-gold group-hover:underline">
+                      Read →
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}

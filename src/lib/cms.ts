@@ -78,6 +78,7 @@ export type CaseStudyCard = {
   result: string;
   readinessScore: number;
   coverImageUrl: string | null;
+  publishedAt: string;
 };
 
 export type CaseStudyDetail = CaseStudyCard & {
@@ -93,10 +94,10 @@ export type CaseStudyDetail = CaseStudyCard & {
 // Placeholder values, replace with BEIPOREADY's real, verifiable figures
 // via the admin CMS (site_stats table). Never publish invented numbers.
 export const FALLBACK_STATS: Pick<SiteStat, "label" | "value">[] = [
-  { value: "₹[XXX] Cr+", label: "Capital Raised" },
-  { value: "[XX]+", label: "Businesses Advised" },
+  { value: "₹50Cr+", label: "Capital Raised" },
+  { value: "20+", label: "Businesses Advised" },
   // { value: "[XX]", label: "Successful Listings" },
-  { value: "[XX]+", label: "Years of Capital-Market Experience" },
+  { value: "40+", label: "Years of Capital-Market Experience" },
 ];
 
 export const FALLBACK_ARTICLES: Record<string, ArticleCard> = {
@@ -216,6 +217,7 @@ export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyDetail> = {
     result:
       "After 14 months of remediation, the DRHP was filed with clean RTP disclosures. The IPO was subscribed 4.2× and listed at a 38% premium.",
     coverImageUrl: null,
+    publishedAt: "March 10, 2025",
     quote:
       "Their systematic approach to closing that gap saved our IPO.",
     quotePerson: "Promoter, Rajpur Agro Products Ltd",
@@ -242,6 +244,7 @@ export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyDetail> = {
     result:
       "Within 6 months, TechnoSynth had a compliant governance structure. The IPO was oversubscribed on day one and closed at 6.8×.",
     coverImageUrl: null,
+    publishedAt: "February 18, 2025",
     quote:
       "Be IPO Ready made it happen in 6 months without disrupting our business operations.",
     quotePerson: "CEO, TechnoSynth Controls Pvt Ltd",
@@ -268,6 +271,7 @@ export const FALLBACK_CASE_STUDIES: Record<string, CaseStudyDetail> = {
     result:
       "The auditor issued an unqualified opinion. The IPO was priced at 18× FY24 PAT and fully subscribed within 2 hours.",
     coverImageUrl: null,
+    publishedAt: "January 22, 2025",
     quote:
       "Be IPO Ready turned it into a strength, our margins looked better, not worse.",
     quotePerson: "CFO, HealthPlus Diagnostics Ltd",
@@ -332,6 +336,7 @@ function caseStudyFromRow(row: CaseStudy): CaseStudyDetail {
     approach: row.approach?.length ? row.approach : [row.our_role ?? "IPO readiness advisory"],
     result: row.result ?? row.listing_results ?? row.outcome ?? "",
     coverImageUrl: row.cover_image_url,
+    publishedAt: formatDate(row.published_at ?? row.created_at),
     quote: row.testimonial_quote ?? "",
     quotePerson: row.testimonial_author ?? row.company_name,
   };

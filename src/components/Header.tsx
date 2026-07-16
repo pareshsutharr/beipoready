@@ -13,6 +13,10 @@ import {
   ReceiptText,
   ListChecks,
   FileCheck2,
+  NotebookPen,
+  FileSearch2,
+  MonitorPlay,
+  Clapperboard,
   type LucideIcon,
 } from "lucide-react";
 
@@ -20,7 +24,7 @@ const serviceLinks: { label: string; href: string; icon: LucideIcon }[] = [
   { label: "Fund Raising", href: "/services/fund-raising", icon: Banknote },
   { label: "Pre-IPO Advisory", href: "/services/pre-ipo-advisory", icon: TrendingUp },
   { label: "SME IPO Advisory", href: "/services/sme-ipo-advisory", icon: LineChart },
-  { label: "Valuation & Capital Structuring", href: "/services/valuation-capital-structuring", icon: Scale },
+  { label: "Valuation & Corporate Restructuring", href: "/services/valuation-corporate-restructuring", icon: Scale },
 ];
 
 const toolLinks: { label: string; href: string; icon: LucideIcon }[] = [
@@ -31,14 +35,21 @@ const toolLinks: { label: string; href: string; icon: LucideIcon }[] = [
   { label: "Get Listed: Eligibility Form", href: "/get-listed", icon: FileCheck2 },
 ];
 
+const knowledgeLinks: { label: string; href: string; icon: LucideIcon }[] = [
+  { label: "Regulatory Updates", href: "/knowledge-center?type=regulatory", icon: FileCheck2 },
+  { label: "Articles & Guides", href: "/knowledge-center?type=articles", icon: NotebookPen },
+  { label: "Case Studies", href: "/case-studies", icon: FileSearch2 },
+  { label: "Webinars & Events", href: "/webinars-events", icon: MonitorPlay },
+  { label: "Video & Podcasts", href: "/video-podcasts", icon: Clapperboard },
+];
+
 type NavItem = { label: string; href: string; children?: { label: string; href: string; icon?: LucideIcon }[] };
 
 const navLinks: NavItem[] = [
   { label: "About", href: "/about-us" },
   { label: "Services", href: "/services", children: serviceLinks },
   { label: "Tools", href: "#", children: toolLinks },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Knowledge", href: "/knowledge-center" },
+  { label: "Knowledge Corner", href: "#", children: knowledgeLinks },
   { label: "FAQ's", href: "/faqs" },
   { label: "Contact", href: "/contact-us" },
 ];

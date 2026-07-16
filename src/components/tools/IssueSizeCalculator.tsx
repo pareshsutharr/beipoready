@@ -330,7 +330,7 @@ export default function IssueSizeCalculator() {
             Book a Consultation
           </Link>
           <Link
-            href="/services/valuation-capital-structuring"
+            href="/services/valuation-corporate-restructuring"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/30 text-white font-semibold rounded-lg text-sm hover:bg-white/10 transition-colors"
           >
             View Valuation Service

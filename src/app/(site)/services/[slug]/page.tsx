@@ -11,14 +11,14 @@ const SERVICE_IMAGES: Record<string, string> = {
   "fund-raising":                  "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1600&h=700&fit=crop&q=85",
   "pre-ipo-advisory":              "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=700&fit=crop&q=85",
   "sme-ipo-advisory":              "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&h=700&fit=crop&q=85",
-  "valuation-capital-structuring": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=700&fit=crop&q=85",
+  "valuation-corporate-restructuring": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=700&fit=crop&q=85",
 };
 
 const SERVICE_ICONS: Record<string, LucideIcon> = {
   "fund-raising": Banknote,
   "pre-ipo-advisory": TrendingUp,
   "sme-ipo-advisory": LineChart,
-  "valuation-capital-structuring": Scale,
+  "valuation-corporate-restructuring": Scale,
 };
 
 const SERVICES: Record<string, ServiceData> = {
@@ -201,13 +201,13 @@ const SERVICES: Record<string, ServiceData> = {
     ],
   },
 
-  "valuation-capital-structuring": {
-    slug: "valuation-capital-structuring",
-    title: "Valuation & Capital Structuring",
+  "valuation-corporate-restructuring": {
+    slug: "valuation-corporate-restructuring",
+    title: "Valuation & Corporate Restructuring",
     tagline: "Professional business valuation analysis and the design of an optimized capital stack",
     overview: [
       "Whether you are planning an IPO, raising funds, selling a stake, bringing on a partner, or organizing succession, every critical milestone hinges on a single question: what is your business truly worth, and how should its capital be structured?",
-      "With our Valuation & Capital Structuring service, you get a professionally backed, defensible answer. By blending detailed valuation methodologies with strategic capital-structure advice, we empower you to negotiate with confidence and construct a balance sheet designed to sustain your long-term ambitions.",
+      "With our Valuation & Corporate Restructuring service, you get a professionally backed, defensible answer. By blending detailed valuation methodologies with strategic capital-structure advice, we empower you to negotiate with confidence and construct a balance sheet designed to sustain your long-term ambitions.",
     ],
     whoItsFor: [
       "Promoters preparing for a fund raise, Pre-IPO round, or IPO and needing a valuation benchmark",

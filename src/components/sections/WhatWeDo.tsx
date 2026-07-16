@@ -24,6 +24,13 @@ const PILLARS = [
     text: "Go public with confidence, end-to-end, on SME or Main Board.",
     href: "/services/sme-ipo-advisory",
   },
+  {
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&q=80",
+    imageAlt: "Financial charts and documents used for business valuation",
+    title: "Valuation & Corporate Restructuring",
+    text: "Know what you're worth, and structure your capital to match.",
+    href: "/services/valuation-corporate-restructuring",
+  },
 ];
 
 export default function WhatWeDo() {
@@ -67,7 +74,7 @@ export default function WhatWeDo() {
           ))}
         </div>
 
-        <ul className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12" role="list">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12" role="list">
           {PILLARS.map(({ image, imageAlt, title, text, href }) => (
             <li key={title} className="flex">
               <Link

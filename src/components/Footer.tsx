@@ -8,7 +8,7 @@ const serviceLinks = [
   { label: "Fund Raising", href: "/services/fund-raising" },
   { label: "Pre-IPO Advisory", href: "/services/pre-ipo-advisory" },
   { label: "SME IPO Advisory", href: "/services/sme-ipo-advisory" },
-  { label: "Valuation & Capital Structuring", href: "/services/valuation-capital-structuring" },
+  { label: "Valuation & Corporate Restructuring", href: "/services/valuation-corporate-restructuring" },
 ];
 
 const quickLinks = [
@@ -55,7 +55,7 @@ export default function Footer() {
             Value creation before IPO, wealth creation post listing.
           </p>
           <div className="flex flex-wrap gap-2">
-            {["NSE Emerge", "BSE SME", "SEBI-registered partners"].map((b) => (
+            {["NSE Emerge", "BSE SME"].map((b) => (
               <span key={b} className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold text-white/80" style={{ border: "1px solid rgba(245,158,11,0.25)", background: "rgba(245,158,11,0.06)" }}>
                 <svg className="w-3.5 h-3.5 text-brand-gold shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                 {b}

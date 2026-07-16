@@ -47,7 +47,7 @@ const SERVICES = [
   },
   {
     icon: Scale,
-    title: "Valuation & Capital Structuring",
+    title: "Valuation & Corporate Restructuring",
     brief: "Know what you're worth; structure capital to match.",
     detailed:
       "Professional business valuation analysis and the design of an optimized capital stack, multi-method valuation blended with strategic capital-structure advice, so you can negotiate with confidence.",
@@ -57,7 +57,7 @@ const SERVICES = [
       "Debt refinancing support",
       "Cap table & instrument structuring",
     ],
-    href: "/services/valuation-capital-structuring",
+    href: "/services/valuation-corporate-restructuring",
   },
 ];
 

@@ -8,6 +8,8 @@ import {
   SubmitRow,
   TextArea,
   cardClass,
+  inputClass,
+  labelClass,
   statuses,
 } from "@/components/admin/cms/FormControls";
 import { deleteCaseStudy, saveCaseStudy } from "../cms/actions";
@@ -36,7 +38,11 @@ export default async function CaseStudiesPage() {
             <Field label="Company" name="company_name" required />
             <Field label="Slug" name="slug" placeholder="auto-created if blank" />
             <Field label="Industry" name="industry" />
-            <Field label="Cover Image URL" name="cover_image_url" />
+            <Field label="Cover Image URL" name="cover_image_url" placeholder="https://... (or upload below)" />
+            <label className="block">
+              <span className={labelClass}>Or Upload Cover Image</span>
+              <input name="cover_image_file" type="file" accept="image/*" className={inputClass} />
+            </label>
             <Field label="Exchange" name="exchange" />
             <Field label="Issue Size" name="ipo_size" />
             <Field label="Subscription" name="subscription" />
@@ -58,6 +64,7 @@ export default async function CaseStudiesPage() {
         {cases.map((cs) => (
           <form key={cs.id} action={saveCaseStudy} className={cardClass}>
             <input type="hidden" name="id" value={cs.id} />
+            <input type="hidden" name="current_cover_image_url" value={cs.cover_image_url ?? ""} />
             <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <h2 className="font-heading text-lg font-bold text-brand-navy">{cs.company_name}</h2>
@@ -73,6 +80,10 @@ export default async function CaseStudiesPage() {
               <Field label="Slug" name="slug" defaultValue={cs.slug} />
               <Field label="Industry" name="industry" defaultValue={cs.industry} />
               <Field label="Cover Image URL" name="cover_image_url" defaultValue={cs.cover_image_url} />
+              <label className="block">
+                <span className={labelClass}>Replace Cover Image</span>
+                <input name="cover_image_file" type="file" accept="image/*" className={inputClass} />
+              </label>
               <Field label="Exchange" name="exchange" defaultValue={cs.exchange} />
               <Field label="Issue Size" name="ipo_size" defaultValue={cs.ipo_size} />
               <Field label="Subscription" name="subscription" defaultValue={cs.subscription} />

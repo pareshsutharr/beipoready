@@ -6,7 +6,7 @@ import { Banknote, TrendingUp, LineChart, Scale } from "lucide-react";
 export const metadata: Metadata = {
   title: "Our Services",
   description:
-    "Strategic capital-markets advisory, Fund Raising, Pre-IPO Advisory, SME IPO Advisory, and Valuation & Capital Structuring for growth-stage and listing-bound companies.",
+    "Strategic capital-markets advisory, Fund Raising, Pre-IPO Advisory, SME IPO Advisory, and Valuation & Corporate Restructuring for growth-stage and listing-bound companies.",
 };
 
 const SERVICES = [
@@ -38,8 +38,8 @@ const SERVICES = [
     icon: <LineChart className="w-6 h-6" aria-hidden="true" />,
   },
   {
-    slug: "valuation-capital-structuring",
-    title: "Valuation & Capital Structuring",
+    slug: "valuation-corporate-restructuring",
+    title: "Valuation & Corporate Restructuring",
     tagline: "Professional business valuation analysis and the design of an optimized capital stack",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=320&h=200&fit=crop&q=80",
     description:
