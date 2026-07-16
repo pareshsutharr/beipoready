@@ -285,10 +285,10 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
               <figure className="about-reveal my-8 rounded bg-brand-navy p-6 sm:p-8 text-white">
                 <Quote className="w-8 h-8 text-brand-gold mb-4" aria-hidden="true" />
                 <blockquote className="font-heading text-2xl sm:text-3xl font-bold leading-tight">
-                  &ldquo;A successful IPO isn&apos;t an event you attend. It&apos;s a state you reach.&rdquo;
+                  A successful IPO isn&apos;t an event you attend. It&apos;s a state you reach.
                 </blockquote>
                 <figcaption className="mt-4 font-sans text-sm text-white/70">
-                  [Founder name], Founder, BEIPOREADY
+                  Dr. Rakesh Doshi, Founder, BEIPOREADY
                 </figcaption>
               </figure>
 
@@ -439,10 +439,10 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
               <div className="bg-brand-navy p-8 sm:p-10 text-white flex flex-col justify-between">
                 <div>
                   <p className="font-sans text-sm font-semibold uppercase tracking-[0.22em] text-brand-gold mb-5">
-                    [Client name, Sector]
+                    Aaron Industries Ltd, Capital Goods (Elevators)
                   </p>
                   <p className="font-heading text-4xl font-bold text-brand-gold leading-none">
-                    ₹[XX] Cr
+                    ₹4.90 Cr
                   </p>
                   <p className="mt-3 font-sans text-sm text-white/65">Issue size</p>
                 </div>
@@ -453,28 +453,32 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
               </div>
               <div className="p-8 sm:p-10">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                  {["₹[XX] Cr", "[X]×", "[+XX]%"].map((metric, index) => (
-                    <div key={metric} className="rounded border border-slate-200 bg-brand-cream p-4">
+                  {[
+                    { metric: "₹4.90 Cr", label: "Issue size" },
+                    { metric: "26.5%", label: "Equity diluted" },
+                    { metric: "20×+", label: "Stock return in 5 yrs" },
+                  ].map(({ metric, label }) => (
+                    <div key={label} className="rounded border border-slate-200 bg-brand-cream p-4">
                       <p className="font-heading text-2xl font-bold text-brand-navy">{metric}</p>
-                      <p className="mt-1 font-sans text-xs text-slate-500">
-                        {index === 0 ? "Issue size" : index === 1 ? "Subscribed" : "Listing gain"}
-                      </p>
+                      <p className="mt-1 font-sans text-xs text-slate-500">{label}</p>
                     </div>
                   ))}
                 </div>
                 <div className="space-y-5 font-sans text-sm sm:text-base text-slate-600 leading-relaxed">
-                  <p><strong className="text-brand-navy">The challenge:</strong> [What the company needed, e.g. raise growth capital, or prepare for and execute an SME IPO.]</p>
-                  <p><strong className="text-brand-navy">What we did:</strong> [BEIPOREADY&apos;s role across readiness, structuring, investor/intermediary coordination, and listing.]</p>
-                  <p><strong className="text-brand-navy">The outcome:</strong> Issue size <strong>₹[XX] Cr</strong> · <strong>[X]×</strong> subscribed · <strong>[+XX]%</strong> listing gain · listed on <strong>[NSE Emerge / BSE SME]</strong>, [month/year].</p>
-                  <p><strong className="text-brand-navy">In their words:</strong> &ldquo;[Short client quote, if available.]&rdquo;</p>
+                  <p><strong className="text-brand-navy">The challenge:</strong> A 60-year-old elevator cabinet manufacturer with strong engineering expertise but a traditional, bank-dependent capital structure that couldn&apos;t fund its growth ambitions.</p>
+                  <p><strong className="text-brand-navy">What we did:</strong> Guided the full IPO journey, wealth-creation strategy and financial structuring for the promoters, and execution of the NSE Emerge listing, plus ongoing advice on leveraging public-market capital.</p>
+                  <p><strong className="text-brand-navy">The outcome:</strong> Issue size <strong>₹4.90 Cr</strong> · <strong>26.5%</strong> equity diluted · listed on <strong>NSE Emerge</strong>, August 2018. Revenue has since grown from ₹9 Cr to ₹75+ Cr, and the stock is up from ₹38 to ₹360.</p>
+                  <Link
+                    href="/case-studies/aaron-industries-limited-transforming-ambition-into-market-leadership"
+                    className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-brand-navy hover:text-brand-gold"
+                  >
+                    Read the full Aaron Industries case study
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
-
-          <p className="about-reveal mt-8 font-sans text-sm text-slate-500 leading-relaxed">
-            Publish only verified, permitted figures. Send details and I&apos;ll write the full case study.
-          </p>
         </div>
       </section>
 

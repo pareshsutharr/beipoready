@@ -59,10 +59,13 @@ export default async function CaseStudiesPage() {
                 className="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-brand-gold hover:shadow-md transition-all duration-200"
               >
                 <div
-                  className={`relative h-44 bg-cover bg-center transition-transform duration-500 group-hover:scale-105 origin-center ${
-                    cs.coverImageUrl ? "bg-white" : "bg-slate-200"
+                  className={`relative h-44 bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-105 origin-center ${
+                    cs.coverImageUrl ? "bg-white" : "bg-slate-200 bg-cover"
                   }`}
-                  style={{ backgroundImage: `url("${cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}")`, backgroundSize: cs.coverImageUrl ? "contain" : "cover" }}
+                  style={{
+                    backgroundImage: `url("${cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}")`,
+                    backgroundSize: cs.coverImageUrl ? "contain" : undefined,
+                  }}
                   role="img"
                   aria-label={`${cs.company} cover image`}
                 >

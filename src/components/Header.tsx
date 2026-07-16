@@ -31,7 +31,7 @@ const toolLinks: { label: string; href: string; icon: LucideIcon }[] = [
   { label: "IPO Readiness Tool", href: "/ipo-readiness-tool", icon: ClipboardCheck },
   { label: "Issue Size Calculator", href: "/issue-size-calculator", icon: Calculator },
   { label: "Issue Cost Estimator", href: "/issue-cost-estimator", icon: ReceiptText },
-  { label: "SME IPO Listing Checklist", href: "/sme-ipo-checklist", icon: ListChecks },
+  // { label: "SME IPO Listing Checklist", href: "/sme-ipo-checklist", icon: ListChecks },
   { label: "Get Listed: Eligibility Form", href: "/get-listed", icon: FileCheck2 },
 ];
 

@@ -85,8 +85,13 @@ export default async function CaseStudyDetailPage({ params }: Props) {
       <section className="bg-brand-cream py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div
-            className="h-72 rounded-2xl border border-slate-200 bg-slate-200 bg-cover bg-center shadow-sm overflow-hidden"
-            style={{ backgroundImage: `url("${cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}")` }}
+            className={`h-72 rounded-2xl border border-slate-200 bg-center bg-no-repeat shadow-sm overflow-hidden ${
+              cs.coverImageUrl ? "bg-white" : "bg-slate-200 bg-cover"
+            }`}
+            style={{
+              backgroundImage: `url("${cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}")`,
+              backgroundSize: cs.coverImageUrl ? "contain" : undefined,
+            }}
             role="img"
             aria-label={`${cs.company} cover image`}
           />
