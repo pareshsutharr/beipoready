@@ -456,7 +456,7 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
                   {[
                     { metric: "₹4.90 Cr", label: "Issue size" },
                     { metric: "26.5%", label: "Equity diluted" },
-                    { metric: "20×+", label: "Stock return in 5 yrs" },
+                    { metric: "20×", label: "Stock return in 5 yrs" },
                   ].map(({ metric, label }) => (
                     <div key={label} className="rounded border border-slate-200 bg-brand-cream p-4">
                       <p className="font-heading text-2xl font-bold text-brand-navy">{metric}</p>
@@ -465,9 +465,7 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
                   ))}
                 </div>
                 <div className="space-y-5 font-sans text-sm sm:text-base text-slate-600 leading-relaxed">
-                  <p><strong className="text-brand-navy">The challenge:</strong> A 60-year-old elevator cabinet manufacturer with strong engineering expertise but a traditional, bank-dependent capital structure that couldn&apos;t fund its growth ambitions.</p>
-                  <p><strong className="text-brand-navy">What we did:</strong> Guided the full IPO journey, wealth-creation strategy and financial structuring for the promoters, and execution of the NSE Emerge listing, plus ongoing advice on leveraging public-market capital.</p>
-                  <p><strong className="text-brand-navy">The outcome:</strong> Issue size <strong>₹4.90 Cr</strong> · <strong>26.5%</strong> equity diluted · listed on <strong>NSE Emerge</strong>, August 2018. Revenue has since grown from ₹9 Cr to ₹75+ Cr, and the stock is up from ₹38 to ₹360.</p>
+                  <p>Listed on NSE Emerge with a ₹4.90 Cr IPO in 2018 at ₹38/share; stock now trades near ₹360, with revenue up from ₹9 Cr to ₹75+ Cr.</p>
                   <Link
                     href="/case-studies/aaron-industries-limited-transforming-ambition-into-market-leadership"
                     className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-brand-navy hover:text-brand-gold"
