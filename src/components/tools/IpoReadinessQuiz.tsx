@@ -294,7 +294,7 @@ export default function IpoReadinessQuiz() {
       phone: phone.trim() || null,
       company_name: company.trim() || null,
       source: "readiness-tool",
-      message: `IPO Readiness Score: ${finalScore}/100`,
+      message: `IPO Readiness Score: ${(finalScore / 10).toFixed(1)}/10`,
     });
 
     setSubmitting(false);
@@ -522,8 +522,8 @@ export default function IpoReadinessQuiz() {
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="font-heading text-4xl font-bold text-brand-navy">{finalScore}</span>
-            <span className="font-sans text-xs text-slate-400">/100</span>
+            <span className="font-heading text-4xl font-bold text-brand-navy">{(finalScore / 10).toFixed(1)}</span>
+            <span className="font-sans text-xs text-slate-400">/10</span>
           </div>
         </div>
         <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold ${label.bg} ${label.color} mb-4`}>
