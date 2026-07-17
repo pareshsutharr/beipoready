@@ -1,9 +1,9 @@
-import type { ComponentPropsWithoutRef } from "react";
+﻿import type { ComponentPropsWithoutRef } from "react";
 
 interface InputProps extends ComponentPropsWithoutRef<"input"> {
   /** Rendered as <label> and wired via htmlFor ↔ id */
   label: string;
-  /** Must be provided — used for both id and htmlFor */
+  /** Must be provided, used for both id and htmlFor */
   id: string;
   error?: string;
 }

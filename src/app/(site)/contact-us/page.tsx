@@ -35,7 +35,7 @@ export default async function ContactUsPage() {
           </h1>
           <p className="font-sans text-base sm:text-lg text-white/65 max-w-xl mx-auto leading-relaxed">
             Whether you are three months or three years from listing, we can
-            tell you exactly where you stand and what to do next — at no cost
+            tell you exactly where you stand and what to do next at no cost
             for the first conversation.
           </p>
         </div>

@@ -1,10 +1,10 @@
-export default function VisualQuote() {
+﻿export default function VisualQuote() {
   return (
     <section
       className="relative w-full h-[340px] sm:h-[400px] flex items-center justify-center overflow-hidden"
       aria-label="IPO advisory visual"
     >
-      {/* Background stock photo — financial district / exchange trading floor */}
+      {/* Background stock photo, financial district / exchange trading floor */}
       <img
         src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1600&h=800&fit=crop&q=85"
         alt=""
@@ -31,7 +31,7 @@ export default function VisualQuote() {
           <span style={{ color: "#F59E0B" }}>We build them to deserve one.</span>"
         </blockquote>
         <p className="text-sm text-white/60 font-medium tracking-wide">
-          — Be IPO Ready Advisory Team
+         , Be IPO Ready Advisory Team
         </p>
       </div>
     </section>

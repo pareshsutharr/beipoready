@@ -9,6 +9,8 @@ import {
   TextArea,
   blogCategories,
   cardClass,
+  inputClass,
+  labelClass,
   statuses,
 } from "@/components/admin/cms/FormControls";
 import { deleteBlogPost, saveBlogPost } from "../cms/actions";
@@ -57,7 +59,11 @@ export default async function BlogsPage() {
             <Field label="Slug" name="slug" placeholder="auto-created if blank" />
             <Select label="Category" name="category" options={blogCategories} />
             <Select label="Status" name="status" options={statuses} />
-            <Field label="Cover Image URL" name="cover_image_url" placeholder="https://..." />
+            <Field label="Cover Image URL" name="cover_image_url" placeholder="https://... (or upload below)" />
+            <label className="block">
+              <span className={labelClass}>Or Upload Cover Image</span>
+              <input name="cover_image_file" type="file" accept="image/*" className={inputClass} />
+            </label>
             <Field label="SEO Title" name="seo_title" />
             <Field label="SEO Description" name="seo_description" />
           </div>
@@ -71,6 +77,7 @@ export default async function BlogsPage() {
         {posts.map((post) => (
           <form key={post.id} action={saveBlogPost} className={cardClass}>
             <input type="hidden" name="id" value={post.id} />
+            <input type="hidden" name="current_cover_image_url" value={post.cover_image_url ?? ""} />
             <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <h2 className="font-heading text-lg font-bold text-brand-navy">{post.title}</h2>
@@ -87,6 +94,10 @@ export default async function BlogsPage() {
               <Select label="Category" name="category" defaultValue={post.category} options={blogCategories} />
               <Select label="Status" name="status" defaultValue={post.status} options={statuses} />
               <Field label="Cover Image URL" name="cover_image_url" defaultValue={post.cover_image_url} />
+              <label className="block">
+                <span className={labelClass}>Replace Cover Image</span>
+                <input name="cover_image_file" type="file" accept="image/*" className={inputClass} />
+              </label>
               <Field label="SEO Title" name="seo_title" defaultValue={post.seo_title} />
               <Field label="SEO Description" name="seo_description" defaultValue={post.seo_description} />
             </div>

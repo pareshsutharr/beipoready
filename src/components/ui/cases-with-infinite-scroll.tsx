@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import type { ClientLogoCard } from "@/lib/cms";
 
-// Real BEIPOREADY clients — swap in actual logos via the admin CMS
+// Real BEIPOREADY clients, swap in actual logos via the admin CMS
 // (clients table); monogram tiles render until a logo_url is provided.
 type ClientTile = Omit<ClientLogoCard, "logo_url"> & { logo_url: string | null };
 

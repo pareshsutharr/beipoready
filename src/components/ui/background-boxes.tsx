@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -76,7 +76,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
                   </svg>
                 ) : null}
 
-                {/* Logo — hidden by default, revealed on hover */}
+                {/* Logo, hidden by default, revealed on hover */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150">
                   <img
                     src={logo}

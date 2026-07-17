@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 const COMPARISON = [
   {
@@ -8,7 +8,7 @@ const COMPARISON = [
   },
   {
     label: "Eligibility",
-    sme: "Lighter thresholds — post-issue paid-up capital up to ₹25 Cr",
+    sme: "Lighter thresholds, post-issue paid-up capital up to ₹25 Cr",
     main: "Higher thresholds for profitability, net worth and capital",
   },
   {
@@ -36,7 +36,7 @@ export default function SmeVsMainBoard() {
           id="sme-vs-main-heading"
           className="font-heading text-xl sm:text-2xl font-bold text-[#0D4A6F] text-center mb-6"
         >
-          SME IPO vs Main Board IPO — which path fits you?
+          SME IPO vs Main Board IPO, which path fits you?
         </h2>
         <div className="overflow-x-auto rounded-2xl border border-slate-200">
           <table className="w-full text-sm text-left">

@@ -1,20 +1,25 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import FaqAccordion from "@/components/sections/FaqAccordion";
 import { getPublishedFaqGroups } from "@/lib/cms";
 import { HOME_FAQS } from "@/lib/home-faqs";
+import { SERVICES } from "@/lib/services-data";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "FAQs — SME IPO Questions Answered",
+  title: "FAQs: SME IPO Questions Answered",
   description:
-    "Answers to the most common questions about SME IPOs — eligibility, process, costs, documentation, and post-listing compliance obligations.",
+    "Answers to the most common questions about SME IPOs, eligibility, process, costs, documentation, and post-listing compliance obligations.",
 };
 
 export default async function FAQsPage() {
   const publishedGroups = await getPublishedFaqGroups();
-  const faqs = [{ category: "General", items: HOME_FAQS }, ...publishedGroups];
+  const serviceGroups = Object.values(SERVICES).map((service) => ({
+    category: service.title,
+    items: service.faq,
+  }));
+  const faqs = [{ category: "General", items: HOME_FAQS }, ...serviceGroups, ...publishedGroups];
 
   return (
     <>
@@ -48,7 +53,7 @@ export default async function FAQsPage() {
           </h2>
           <p className="font-sans text-base text-white/65 mb-8 leading-relaxed">
             Our advisors are happy to answer specific questions about your company&rsquo;s
-            situation — at no charge for the first conversation.
+            situation, at no charge for the first conversation.
           </p>
           <Link
             href="/contact-us"

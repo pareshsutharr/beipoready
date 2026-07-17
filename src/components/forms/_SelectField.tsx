@@ -1,4 +1,4 @@
-// Internal helper — used by LeadCaptureForm and ContactForm; not a public ui/ primitive.
+﻿// Internal helper, used by LeadCaptureForm and ContactForm; not a public ui/ primitive.
 
 interface SelectFieldProps {
   label: string;

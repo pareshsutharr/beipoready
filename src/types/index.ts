@@ -1,4 +1,4 @@
-// ──────────────────────────────────────────────────────────────
+﻿// ──────────────────────────────────────────────────────────────
 // Supabase database types (hand-authored until supabase gen types
 // is run against a live project).
 // ──────────────────────────────────────────────────────────────
@@ -177,6 +177,16 @@ export type Lead = {
 
 export type EligibilityStatus = "new" | "reviewed" | "contacted" | "closed";
 
+export type RuleStatus = "pass" | "fail" | "flag" | "pending";
+
+export type EligibilityCheckResult = {
+  id: string;
+  label: string;
+  exchanges: ("nse" | "bse")[];
+  status: RuleStatus;
+  message: string;
+};
+
 export type EligibilitySubmission = {
   id: string;
   organization_name: string;
@@ -194,6 +204,13 @@ export type EligibilitySubmission = {
   contact_details: string | null;
   email: string;
   website: string | null;
+  industry: string | null;
+  designation: string | null;
+  notes: string | null;
+  nse_status: RuleStatus | null;
+  bse_status: RuleStatus | null;
+  answers: Record<string, unknown>;
+  checks: EligibilityCheckResult[];
   status: EligibilityStatus;
   created_at: string;
   updated_at: string;
@@ -206,7 +223,7 @@ export type EligibilitySubmission = {
 // ──────────────────────────────────────────────────────────────
 
 // ──────────────────────────────────────────────────────────────
-// Database type — must satisfy GenericSchema from @supabase/postgrest-js:
+// Database type, must satisfy GenericSchema from @supabase/postgrest-js:
 //   Tables: each entry needs Row, Insert, Update, Relationships
 //   Plus top-level Views and Functions keys on the public schema.
 // Without these, Database["public"] doesn't extend GenericSchema and
@@ -347,6 +364,13 @@ type EligibilitySubmissionInsert = {
   contact_details?: string | null;
   email: string;
   website?: string | null;
+  industry?: string | null;
+  designation?: string | null;
+  notes?: string | null;
+  nse_status?: RuleStatus | null;
+  bse_status?: RuleStatus | null;
+  answers?: Record<string, unknown>;
+  checks?: EligibilityCheckResult[];
   status?: EligibilityStatus;
   created_at?: string;
   updated_at?: string;

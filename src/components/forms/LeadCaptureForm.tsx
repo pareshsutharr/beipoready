@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -134,7 +134,7 @@ export default function LeadCaptureForm({
         </div>
       )}
 
-      {/* Row 1 — Name + Email */}
+      {/* Row 1, Name + Email */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
           id="lcf-name"
@@ -158,7 +158,7 @@ export default function LeadCaptureForm({
         />
       </div>
 
-      {/* Row 2 — Phone + Service Interest */}
+      {/* Row 2, Phone + Service Interest */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
           id="lcf-phone"
@@ -179,7 +179,7 @@ export default function LeadCaptureForm({
         />
       </div>
 
-      {/* Row 3 — Message */}
+      {/* Row 3, Message */}
       <Textarea
         id="lcf-message"
         label="Message (optional)"

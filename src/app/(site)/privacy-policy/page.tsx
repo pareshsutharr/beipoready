@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy Policy for Be IPO Ready — how we collect, use, and protect your personal information.",
+  description: "Privacy Policy for Be IPO Ready: how we collect, use, and protect your personal information.",
 };
 
 export default function PrivacyPolicyPage() {
@@ -28,9 +28,9 @@ export default function PrivacyPolicyPage() {
             <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">2. Information We Collect</h2>
             <p>We collect information in the following ways:</p>
             <ul className="list-disc pl-6 space-y-2 mt-3">
-              <li><strong>Information you provide directly</strong> — name, email address, phone number, company name, and any message content you submit via our contact form, lead capture forms, or newsletter signup.</li>
-              <li><strong>Tool usage data</strong> — responses you provide in our IPO Readiness Tool and Issue Size Calculator, which help us tailor our advisory to your situation.</li>
-              <li><strong>Automatically collected data</strong> — IP address, browser type, pages visited, and time spent on pages, collected via cookies and similar technologies.</li>
+              <li><strong>Information you provide directly</strong>, name, email address, phone number, company name, and any message content you submit via our contact form, lead capture forms, or newsletter signup.</li>
+              <li><strong>Tool usage data</strong>, responses you provide in our IPO Readiness Tool and Issue Size Calculator, which help us tailor our advisory to your situation.</li>
+              <li><strong>Automatically collected data</strong>, IP address, browser type, pages visited, and time spent on pages, collected via cookies and similar technologies.</li>
             </ul>
           </section>
 

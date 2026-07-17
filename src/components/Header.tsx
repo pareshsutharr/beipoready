@@ -1,33 +1,55 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Banknote,
+  TrendingUp,
+  LineChart,
+  Scale,
+  ClipboardCheck,
+  Calculator,
+  ReceiptText,
+  ListChecks,
+  FileCheck2,
+  NotebookPen,
+  FileSearch2,
+  MonitorPlay,
+  Clapperboard,
+  type LucideIcon,
+} from "lucide-react";
 
-const serviceLinks = [
-  { label: "SME IPO Advisory", href: "/services/sme-ipo-advisory" },
-  { label: "IPO Readiness Assessment", href: "/services/ipo-readiness-assessment" },
-  { label: "Pre-IPO Fundraising", href: "/services/pre-ipo-fundraising" },
-  { label: "IPO Documentation & Compliance", href: "/services/ipo-documentation-compliance" },
-  { label: "Valuation & Capital Structuring", href: "/services/valuation-capital-structuring" },
+const serviceLinks: { label: string; href: string; icon: LucideIcon }[] = [
+  { label: "Fund Raising", href: "/services/fund-raising", icon: Banknote },
+  { label: "Pre-IPO Advisory", href: "/services/pre-ipo-advisory", icon: TrendingUp },
+  { label: "SME IPO Advisory", href: "/services/sme-ipo-advisory", icon: LineChart },
+  { label: "Valuation & Corporate Restructuring", href: "/services/valuation-corporate-restructuring", icon: Scale },
 ];
 
-const toolLinks = [
-  { label: "IPO Readiness Tool", href: "/ipo-readiness-tool" },
-  { label: "Issue Size Calculator", href: "/issue-size-calculator" },
-  { label: "Issue Cost Estimator", href: "/issue-cost-estimator" },
-  { label: "SME IPO Listing Checklist", href: "/sme-ipo-checklist" },
-  { label: "Get Listed — Eligibility Form", href: "/get-listed" },
+const toolLinks: { label: string; href: string; icon: LucideIcon }[] = [
+  { label: "IPO Readiness Tool", href: "/ipo-readiness-tool", icon: ClipboardCheck },
+  { label: "Issue Size Calculator", href: "/issue-size-calculator", icon: Calculator },
+  { label: "Issue Cost Estimator", href: "/issue-cost-estimator", icon: ReceiptText },
+  // { label: "SME IPO Listing Checklist", href: "/sme-ipo-checklist", icon: ListChecks },
+  { label: "Get Listed: Eligibility Form", href: "/get-listed", icon: FileCheck2 },
 ];
 
-type NavItem = { label: string; href: string; children?: { label: string; href: string }[] };
+const knowledgeLinks: { label: string; href: string; icon: LucideIcon }[] = [
+  { label: "Regulatory Updates", href: "/knowledge-center?type=regulatory", icon: FileCheck2 },
+  { label: "Articles & Guides", href: "/knowledge-center?type=articles", icon: NotebookPen },
+  { label: "Case Studies", href: "/case-studies", icon: FileSearch2 },
+  { label: "Webinars & Events", href: "/webinars-events", icon: MonitorPlay },
+  { label: "Video & Podcasts", href: "/video-podcasts", icon: Clapperboard },
+];
+
+type NavItem = { label: string; href: string; children?: { label: string; href: string; icon?: LucideIcon }[] };
 
 const navLinks: NavItem[] = [
   { label: "About", href: "/about-us" },
   { label: "Services", href: "/services", children: serviceLinks },
   { label: "Tools", href: "#", children: toolLinks },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "Knowledge", href: "/knowledge-center" },
+  { label: "Knowledge Corner", href: "#", children: knowledgeLinks },
   { label: "FAQ's", href: "/faqs" },
   { label: "Contact", href: "/contact-us" },
 ];
@@ -103,16 +125,20 @@ export default function Header() {
                         All {link.label} →
                       </Link>
                     )}
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block px-4 py-2.5 text-[13px] text-slate-600 hover:bg-blue-50 hover:text-[#0D4A6F] transition-colors whitespace-nowrap"
-                        onClick={() => setOpenDropdown(null)}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                    {link.children.map((child) => {
+                      const ChildIcon = child.icon;
+                      return (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="flex items-center gap-2.5 px-4 py-2.5 text-[13px] text-slate-600 hover:bg-blue-50 hover:text-[#0D4A6F] transition-colors whitespace-nowrap"
+                          onClick={() => setOpenDropdown(null)}
+                        >
+                          {ChildIcon && <ChildIcon className="w-4 h-4 shrink-0 text-brand-gold" aria-hidden="true" />}
+                          {child.label}
+                        </Link>
+                      );
+                    })}
                   </div>
                 )}
               </li>
@@ -188,17 +214,21 @@ export default function Header() {
                   </button>
                   {mobileExpanded === link.label && (
                     <ul className="mt-1 ml-3 pl-3 border-l-2 border-[#ECB85B]/60 space-y-0.5">
-                      {link.children.map((child) => (
-                        <li key={child.href}>
-                          <Link
-                            href={child.href}
-                            className="block px-3 py-2.5 text-sm text-slate-500 hover:text-[#0D4A6F] transition-colors"
-                            onClick={() => setMobileOpen(false)}
-                          >
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
+                      {link.children.map((child) => {
+                        const ChildIcon = child.icon;
+                        return (
+                          <li key={child.href}>
+                            <Link
+                              href={child.href}
+                              className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-slate-500 hover:text-[#0D4A6F] transition-colors"
+                              onClick={() => setMobileOpen(false)}
+                            >
+                              {ChildIcon && <ChildIcon className="w-4 h-4 shrink-0 text-brand-gold" aria-hidden="true" />}
+                              {child.label}
+                            </Link>
+                          </li>
+                        );
+                      })}
                     </ul>
                   )}
                 </>

@@ -1,4 +1,4 @@
-import Hero from "@/components/sections/Hero";
+﻿import Hero from "@/components/sections/Hero";
 import StatsBanner from "@/components/sections/StatsBanner";
 import WhatWeDo from "@/components/sections/WhatWeDo";
 import PositioningBanner from "@/components/sections/PositioningBanner";
@@ -27,38 +27,38 @@ export default async function Home() {
 
   return (
     <>
-      {/* 1 — Hero */}
+      {/* 1, Hero */}
       <Hero />
       <StatsBanner stats={stats} />
 
-      {/* 2 — About / What We Do */}
+      {/* 2, About / What We Do */}
       <WhatWeDo />
 
-      {/* 3 — Positioning statement */}
+      {/* 3, Positioning statement */}
       <PositioningBanner />
 
-      {/* 4 — Why go public (before / after) */}
+      {/* 4, Why go public (before / after) */}
       <BeforeAfter />
 
-      {/* 5 — Tools & lead magnets */}
+      {/* 5, Tools & lead magnets */}
       <ToolsPreview />
 
-      {/* 6 — Process */}
+      {/* 6, Process */}
       <ReadinessJourney />
 
-      {/* 7 — Team */}
+      {/* 7, Team */}
       <TeamSection />
 
-      {/* 8 — Clients logo wall */}
+      {/* 8, Clients logo wall */}
       <ClientsMarquee clients={clients} />
 
-      {/* 9 — Case studies */}
+      {/* 9, Case studies */}
       <CaseStudiesHighlights caseStudies={caseStudies} />
 
-      {/* 10 — FAQs (with FAQPage schema) */}
+      {/* 10, FAQs (with FAQPage schema) */}
       <HomeFaq />
 
-      {/* 11 — Final CTA + lead capture */}
+      {/* 11, Final CTA + lead capture */}
       <FinalCta />
     </>
   );

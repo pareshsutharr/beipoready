@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { Printer } from "lucide-react";
@@ -8,7 +8,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const PHASES: { phase: string; items: string[] }[] = [
   {
-    phase: "1 — Check Your Eligibility",
+    phase: "1. Check Your Eligibility",
     items: [
       "At least 3 years of operational track record",
       "Positive net worth and net tangible assets of at least ₹1.5 Cr",
@@ -19,7 +19,7 @@ const PHASES: { phase: string; items: string[] }[] = [
     ],
   },
   {
-    phase: "2 — Get IPO-Ready",
+    phase: "2. Get IPO-Ready",
     items: [
       "Audited financials for the last 3 years, restated where needed",
       "Statutory auditor holds a valid peer review certificate",
@@ -31,7 +31,7 @@ const PHASES: { phase: string; items: string[] }[] = [
     ],
   },
   {
-    phase: "3 — Appoint Intermediaries",
+    phase: "3. Appoint Intermediaries",
     items: [
       "Select and mandate a SEBI-registered merchant banker (lead manager)",
       "Appoint legal counsel for the issue",
@@ -41,7 +41,7 @@ const PHASES: { phase: string; items: string[] }[] = [
     ],
   },
   {
-    phase: "4 — Documentation & Filing",
+    phase: "4. Documentation & Filing",
     items: [
       "Complete due diligence with the lead manager",
       "Draft the DRHP with specific, quantified risk factors",
@@ -52,7 +52,7 @@ const PHASES: { phase: string; items: string[] }[] = [
     ],
   },
   {
-    phase: "5 — Issue & Listing",
+    phase: "5. Issue & Listing",
     items: [
       "Finalise issue price / price band and issue structure",
       "Run marketing, advertising and investor roadshows",
@@ -61,7 +61,7 @@ const PHASES: { phase: string; items: string[] }[] = [
     ],
   },
   {
-    phase: "6 — Post-Listing",
+    phase: "6. Post-Listing",
     items: [
       "Meet continuous disclosure obligations (SEBI LODR)",
       "Maintain the 3-year market making arrangement",
@@ -186,7 +186,7 @@ export default function SmeIpoChecklist() {
               The checklist is on its way!
             </p>
             <p className="font-sans text-sm text-slate-600">
-              An advisor will email it to you within one business day — along
+              An advisor will email it to you within one business day, along
               with an honest read on where your company stands.
             </p>
           </div>

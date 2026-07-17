@@ -1,65 +1,63 @@
-import Link from "next/link";
-import { Banknote, ClipboardCheck, LineChart, Scale, ChevronDown, ArrowUpRight } from "lucide-react";
+﻿import Link from "next/link";
+import { Banknote, TrendingUp, LineChart, Scale, ChevronDown, ArrowUpRight } from "lucide-react";
 
 const SERVICES = [
   {
     icon: Banknote,
-    title: "Fundraising & Growth Capital",
-    brief: "Structure your raise and connect with the right investors.",
+    title: "Fund Raising",
+    brief: "Structured equity and Equity Related Instruments capital to fuel your expansion.",
     detailed:
-      "We define how much capital you need and why, choose between equity and debt, prepare investor-ready materials (models, information memoranda, growth story), and introduce you to institutional investors, PE, family offices, HNIs and lenders aligned to your stage.",
+      "Structured equity and Equity Related Instruments solutions engineered to facilitate corporate expansion. We help growth-stage businesses secure capital from a curated network of investors, VC funds, private equity, family offices, HNIs, NBFCs and banks, managing the process end-to-end.",
     deliverables: [
-      "Capital requirement structuring",
-      "Equity & debt strategy",
-      "Investor documentation",
-      "Investor introductions",
-      "Negotiation support",
+      "Investment teaser & pitch deck",
+      "Financial model",
+      "Investor outreach & shortlisting",
+      "Term sheet negotiation",
+      "Closing & documentation",
     ],
-    href: "/services/pre-ipo-fundraising",
+    href: "/services/fund-raising",
   },
   {
-    icon: ClipboardCheck,
-    title: "Pre-IPO Advisory & IPO Readiness",
-    brief: "Build the value and discipline that make a listing succeed.",
+    icon: TrendingUp,
+    title: "Pre-IPO Advisory",
+    brief: "Get market-ready 12–24 months before your listing.",
     detailed:
-      "We assess capital efficiency, review financials and governance, recommend corrective actions, clean up the cap table, and put the right people, processes and systems in place — so you approach the market from strength.",
+      "Strategic market positioning and capitalization initiatives executed within the twelve to twenty-four months preceding a public listing, governance, structure, financial reporting, and a Pre-IPO capital raise from institutional-quality investors.",
     deliverables: [
-      "Capital-efficiency assessment",
-      "Financial & governance review",
-      "Restructuring guidance",
-      "IPO-readiness roadmap",
-      "Expert & investor connects",
+      "IPO readiness diagnostic",
+      "Corporate & financial restructuring",
+      "Pre-IPO capital raise",
+      "IPO runway preparation",
     ],
-    href: "/services/ipo-readiness-assessment",
+    href: "/services/pre-ipo-advisory",
   },
   {
     icon: LineChart,
-    title: "IPO Advisory (NSE Emerge, BSE SME & Main Board)",
-    brief: "Manage the full path from eligibility to listing.",
+    title: "SME IPO Advisory",
+    brief: "End-to-end execution for NSE Emerge & BSE SME listing.",
     detailed:
-      "We check eligibility, size and structure the issue, select and coordinate merchant bankers, registrars and legal counsel, support due diligence and documentation, and steer you to a successful listing and beyond.",
+      "Comprehensive consultation and execution management for public listing on the NSE Emerge or BSE SME platforms, from eligibility evaluation and DRHP filing to marketing, the listing bell, and post-listing compliance.",
     deliverables: [
-      "Eligibility assessment",
-      "Issue sizing & structuring",
-      "Intermediary selection & coordination",
-      "Due diligence & documentation support",
-      "Listing & post-listing guidance",
+      "Eligibility & readiness check",
+      "DRHP preparation & filing",
+      "Issue marketing & investor outreach",
+      "Listing & post-listing compliance",
     ],
     href: "/services/sme-ipo-advisory",
   },
   {
     icon: Scale,
-    title: "Corporate Advisory & Valuation",
-    brief: "Know what you're worth; make sound capital decisions.",
+    title: "Valuation & Corporate Restructuring",
+    brief: "Know what you're worth; structure capital to match.",
     detailed:
-      "Independent valuations, corporate and capital-structure advisory, and transaction guidance — clarity to negotiate and grow with confidence.",
+      "Professional business valuation analysis and the design of an optimized capital stack, multi-method valuation blended with strategic capital-structure advice, so you can negotiate with confidence.",
     deliverables: [
-      "Business valuation",
-      "Corporate & strategic advisory",
-      "Capital-structure guidance",
-      "Transaction advisory",
+      "Multi-method valuation report",
+      "Capital structure review",
+      "Debt refinancing support",
+      "Cap table & instrument structuring",
     ],
-    href: "/services/valuation-capital-structuring",
+    href: "/services/valuation-corporate-restructuring",
   },
 ];
 

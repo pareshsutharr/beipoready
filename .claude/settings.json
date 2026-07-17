@@ -34,7 +34,13 @@
       "Bash(./venv/bin/pip install *)",
       "Bash(./venv/bin/python -c \"import PIL, numpy, scipy; print\\('ok'\\)\")",
       "Bash(./venv/bin/python make_logos.py)",
-      "Bash(./venv/bin/python -c ' *)"
+      "Bash(./venv/bin/python -c ' *)",
+      "Bash(git -C /Users/pareshsuthar/Desktop/BEIPOREADY-V2 status --short)",
+      "Bash(git -C /Users/pareshsuthar/Desktop/BEIPOREADY-V2 status -sb)",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"fintech SaaS assessment quiz tool professional finance advisory\" --design-system -p \"IPO Readiness Tool\")",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"premium minimal finance advisory card professional trustworthy\" --domain style -n 6)",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"multi-step form quiz progress stepper\" --domain ux -n 10)",
+      "Bash(python3 .claude/skills/ui-ux-pro-max/scripts/search.py \"card layout progress radial gauge results\" --stack nextjs -n 8)"
     ]
   }
 }
