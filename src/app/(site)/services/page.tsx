@@ -13,10 +13,10 @@ const SERVICES = [
   {
     slug: "fund-raising",
     title: "Fund Raising",
-    tagline: "Structured equity and Equity Related Instruments capitalization solutions engineered to facilitate corporate expansion",
+    tagline: "Structured equity and debt capitalization solutions engineered to facilitate corporate expansion",
     image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=320&h=200&fit=crop&q=80",
     description:
-      "We help growth-stage businesses secure equity capital from a curated network of investors, VC funds, private equity, family offices, HNIs, NBFCs, and banks, managing the process end-to-end, from investment story to closing.",
+      "We help growth-stage businesses secure equity and debt capital from a curated network of investors, VC funds, private equity, family offices, HNIs, NBFCs, and banks, managing the process end-to-end, from investment story to closing.",
     icon: <Banknote className="w-6 h-6" aria-hidden="true" />,
   },
   {

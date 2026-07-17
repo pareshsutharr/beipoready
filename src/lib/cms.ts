@@ -92,6 +92,7 @@ export type CaseStudyDetail = CaseStudyCard & {
 };
 
 // Placeholder values, replace with BEIPOREADY's real, verifiable figures
+// Placeholder values, replace with BEIPOREADY's real, verifiable figures
 // via the admin CMS (site_stats table). Never publish invented numbers.
 export const FALLBACK_STATS: Pick<SiteStat, "label" | "value">[] = [
   { value: "₹1000Cr+", label: "Capital Raised" },
@@ -483,6 +484,7 @@ export async function getPublishedTestimonials(): Promise<TestimonialCard[]> {
       .order("sort_order", { ascending: true })
       .limit(3);
 
+    // No invented fallback testimonials, sections hide until real,
     // No invented fallback testimonials, sections hide until real,
     // approved quotes are published via the CMS.
     if (error || !data?.length) return [];

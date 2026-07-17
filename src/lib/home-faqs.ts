@@ -1,5 +1,6 @@
 ﻿// The general founder-facing FAQs shown on the home page and at the top of /faqs.
 // Q8's answer needs BEIPOREADY's real regulatory standing before launch
+// Q8's answer needs BEIPOREADY's real regulatory standing before launch
 // placeholder kept in brackets.
 export const HOME_FAQS: { q: string; a: string }[] = [
   {

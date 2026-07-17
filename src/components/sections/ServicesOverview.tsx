@@ -5,9 +5,9 @@ const SERVICES = [
   {
     icon: Banknote,
     title: "Fund Raising",
-    brief: "Structured equity and Equity Related Instruments capital to fuel your expansion.",
+    brief: "Structured equity and debt capital to fuel your expansion.",
     detailed:
-      "Structured equity and Equity Related Instruments solutions engineered to facilitate corporate expansion. We help growth-stage businesses secure capital from a curated network of investors, VC funds, private equity, family offices, HNIs, NBFCs and banks, managing the process end-to-end.",
+      "Structured equity and debt capitalization solutions engineered to facilitate corporate expansion. We help growth-stage businesses secure capital from a curated network of investors, VC funds, private equity, family offices, HNIs, NBFCs and banks, managing the process end-to-end.",
     deliverables: [
       "Investment teaser & pitch deck",
       "Financial model",
