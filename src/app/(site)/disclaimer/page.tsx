@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Disclaimer",
   description:
-    "Regulatory and investment disclaimers for Be IPO Ready — a SEBI-registered merchant banking advisory firm.",
+    "Regulatory and investment disclaimers for Be IPO Ready, a SEBI-registered merchant banking advisory firm.",
 };
 
 export default function DisclaimerPage() {
@@ -37,8 +37,8 @@ export default function DisclaimerPage() {
           <section>
             <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">No Investment Advice</h2>
             <p>
-              Nothing on this website — including the IPO Readiness Tool, Issue Size Calculator, blog
-              articles, case studies, and any other content — constitutes financial, investment, tax,
+              Nothing on this website, including the IPO Readiness Tool, Issue Size Calculator, blog
+              articles, case studies, and any other content, constitutes financial, investment, tax,
               or legal advice. The information is general in nature and may not apply to your specific
               circumstances. You should consult with your own professional advisors before making any
               financial or investment decision.

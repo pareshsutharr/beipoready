@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import {
   ADMIN_SESSION_COOKIE,
@@ -8,7 +8,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import EligibilityCard from "@/components/admin/EligibilityCard";
 
-export const metadata: Metadata = { title: "Eligibility Forms — Be IPO Ready Admin" };
+export const metadata: Metadata = { title: "Eligibility Forms, Be IPO Ready Admin" };
 
 export const dynamic = "force-dynamic";
 

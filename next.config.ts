@@ -7,10 +7,10 @@ const nextConfig: NextConfig = {
     },
   },
   images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "images.unsplash.com" },
-      { protocol: "https", hostname: "pfunzbnsxwfhdmwmkarg.supabase.co" },
-    ],
+    // Admins paste cover image URLs from arbitrary hosts (image hosts, drive
+    // links, etc.) via the CMS, so we can't maintain a fixed allowlist here
+    // without every new host crashing the site until a code change ships.
+    remotePatterns: [{ protocol: "https", hostname: "**" }],
   },
 };
 

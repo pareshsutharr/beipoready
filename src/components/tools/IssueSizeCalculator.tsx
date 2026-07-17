@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -165,7 +165,7 @@ export default function IssueSizeCalculator() {
           <div>
             <label htmlFor="calc-cagr" className="block font-sans text-sm font-medium text-slate-700 mb-1.5">
               3-Year Revenue CAGR (%)
-              <span className="ml-2 font-normal text-slate-400">Optional — used for growth premium</span>
+              <span className="ml-2 font-normal text-slate-400">Optional, used for growth premium</span>
             </label>
             <input
               id="calc-cagr"
@@ -192,7 +192,7 @@ export default function IssueSizeCalculator() {
         {/* Methodology note */}
         <div className="mt-6 pt-6 border-t border-slate-100">
           <p className="font-sans text-xs text-slate-400 leading-relaxed">
-            <strong className="text-slate-500">Methodology:</strong> Estimated market capitalisation is calculated as PAT × sector P/E (with growth premium for high-CAGR companies). Issue size assumes 20–30% primary dilution. This is a directional estimate only — not a formal valuation.
+            <strong className="text-slate-500">Methodology:</strong> Estimated market capitalisation is calculated as PAT × sector P/E (with growth premium for high-CAGR companies). Issue size assumes 20–30% primary dilution. This is a directional estimate only, not a formal valuation.
           </p>
         </div>
       </div>
@@ -330,7 +330,7 @@ export default function IssueSizeCalculator() {
             Book a Consultation
           </Link>
           <Link
-            href="/services/valuation-capital-structuring"
+            href="/services/valuation-corporate-restructuring"
             className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/30 text-white font-semibold rounded-lg text-sm hover:bg-white/10 transition-colors"
           >
             View Valuation Service

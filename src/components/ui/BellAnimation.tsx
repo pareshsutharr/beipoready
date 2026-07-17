@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
@@ -25,7 +25,7 @@ export default function BellAnimation({
       const bell = bellRef.current;
       if (!bell) return;
 
-      // Swing — pivots from top like a real bell
+      // Swing, pivots from top like a real bell
       swingTl = gsap.timeline({ repeat: -1 });
       swingTl
         .to(bell, { rotation: 18,  duration: 0.5, ease: "sine.inOut" })
@@ -74,7 +74,7 @@ export default function BellAnimation({
 
   return (
     <div className={`relative ${className ?? ""}`} style={style}>
-      {/* Bell — transform-origin: center top so it pivots at the chain */}
+      {/* Bell, transform-origin: center top so it pivots at the chain */}
       <div
         ref={bellRef}
         className="w-full h-full flex justify-center items-start"
@@ -94,7 +94,7 @@ export default function BellAnimation({
         />
       </div>
 
-      {/* Spark particles — centered at bell body */}
+      {/* Spark particles, centered at bell body */}
       <div
         className="absolute pointer-events-none"
         style={{ top: "55%", left: "50%", transform: "translate(-50%, -50%)" }}

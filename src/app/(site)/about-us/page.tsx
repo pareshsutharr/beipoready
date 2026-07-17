@@ -5,7 +5,7 @@ import { getPublishedClients } from "@/lib/cms";
 export const metadata: Metadata = {
   title: "About BEIPOREADY | India's Leading SME IPO Advisor & Growth Capital Experts",
   description:
-    "Meet the team behind BEIPOREADY — India's IPO advisory and growth-capital specialists helping businesses raise capital, get IPO-ready, and list on NSE Emerge & BSE SME.",
+    "Meet the team behind BEIPOREADY India's IPO advisory and growth-capital specialists helping businesses raise capital, get IPO-ready, and list on NSE Emerge & BSE SME.",
   keywords: [
     "about BEIPOREADY",
     "IPO advisory firm India",

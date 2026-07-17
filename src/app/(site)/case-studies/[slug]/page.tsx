@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCaseStudyBySlug } from "@/lib/cms";
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!cs) return {};
   return {
     title: `Case Study: ${cs.company}`,
-    description: `${cs.company} — ${cs.issueSize} IPO on ${cs.exchange}, ${cs.subscription} oversubscribed. ${cs.summary.slice(0, 100)}...`,
+    description: `${cs.company}, ${cs.issueSize} IPO on ${cs.exchange}, ${cs.subscription} oversubscribed. ${cs.summary.slice(0, 100)}...`,
   };
 }
 
@@ -85,8 +85,13 @@ export default async function CaseStudyDetailPage({ params }: Props) {
       <section className="bg-brand-cream py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div
-            className="h-72 rounded-2xl border border-slate-200 bg-slate-200 bg-cover bg-center shadow-sm overflow-hidden"
-            style={{ backgroundImage: `url("${cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}")` }}
+            className={`h-72 rounded-2xl border border-slate-200 bg-center bg-no-repeat shadow-sm overflow-hidden ${
+              cs.coverImageUrl ? "bg-white" : "bg-slate-200 bg-cover"
+            }`}
+            style={{
+              backgroundImage: `url("${cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}")`,
+              backgroundSize: cs.coverImageUrl ? "contain" : undefined,
+            }}
             role="img"
             aria-label={`${cs.company} cover image`}
           />
@@ -135,7 +140,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
           </h2>
           <p className="font-sans text-base text-slate-600 mb-8 leading-relaxed">
             Take the same readiness assessment that Rajpur Agro, TechnoSynth,
-            and HealthPlus used — online, in under 10 minutes.
+            and HealthPlus used, online, in under 10 minutes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

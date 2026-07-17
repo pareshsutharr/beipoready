@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import IssueCostEstimator from "@/components/tools/IssueCostEstimator";
 
 export const metadata: Metadata = {
-  title: "SME IPO Issue Cost Estimator — Instant Ballpark",
+  title: "SME IPO Issue Cost Estimator, Instant Ballpark",
   description:
-    "Understand what going public costs. Get an indicative cost breakdown for an SME IPO — merchant banker fees, legal, marketing, market making and more. Instant.",
+    "Understand what going public costs. Get an indicative cost breakdown for an SME IPO, merchant banker fees, legal, marketing, market making and more. Instant.",
 };
 
 export default function IssueCostEstimatorPage() {

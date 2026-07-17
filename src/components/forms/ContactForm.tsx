@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
@@ -114,7 +114,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
 
-      {/* Row 1 — Name + Email */}
+      {/* Row 1, Name + Email */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <Input
           id="cf-name"
@@ -138,7 +138,7 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* Row 2 — Company + Phone */}
+      {/* Row 2, Company + Phone */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <Input
           id="cf-company"
@@ -160,7 +160,7 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* Row 3 — Service Interest */}
+      {/* Row 3, Service Interest */}
       <SelectField
         id="cf-service"
         label="Service Interest (optional)"
@@ -170,7 +170,7 @@ export default function ContactForm() {
         placeholder="Which service are you enquiring about?"
       />
 
-      {/* Row 4 — Message (required) */}
+      {/* Row 4, Message (required) */}
       <Textarea
         id="cf-message"
         label="Message *"

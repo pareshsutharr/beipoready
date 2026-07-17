@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 @import "tw-animate-css";
 
 @theme {
@@ -9,7 +9,7 @@
   --color-brand-navy-dark:  #070F1E;
   --color-brand-cream:      #F0F6FF;
 
-  /* ── Fonts — Montserrat (body) + Hanken Grotesk (headings) only ── */
+  /* ── Fonts, Montserrat (body) + Hanken Grotesk (headings) only ── */
   --font-sans:    var(--font-montserrat);
   --font-heading: var(--font-hanken);
 }

@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
@@ -8,14 +8,14 @@ const PILLARS = [
     imageAlt: "Two business partners shaking hands after closing a funding deal",
     title: "Fundraising & Growth Capital",
     text: "Raise the right capital, on the right terms, from the right investors.",
-    href: "/services/pre-ipo-fundraising",
+    href: "/services/fund-raising",
   },
   {
     image: "/whatwedo-preipo.jpg",
     imageAlt: "Advisors reviewing financial documents and plans at a desk",
     title: "Pre-IPO Advisory",
     text: "Get truly IPO-ready before you file: financials, governance, capital efficiency.",
-    href: "/services/ipo-readiness-assessment",
+    href: "/services/pre-ipo-advisory",
   },
   {
     image: "/whatwedo-ipo.jpg",
@@ -23,6 +23,13 @@ const PILLARS = [
     title: "IPO Advisory",
     text: "Go public with confidence, end-to-end, on SME or Main Board.",
     href: "/services/sme-ipo-advisory",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop&q=80",
+    imageAlt: "Financial charts and documents used for business valuation",
+    title: "Valuation & Corporate Restructuring",
+    text: "Know what you're worth, and structure your capital to match.",
+    href: "/services/valuation-corporate-restructuring",
   },
 ];
 
@@ -36,12 +43,12 @@ export default function WhatWeDo() {
             One partner across your entire capital journey
           </h2>
           <p className="text-base sm:text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed">
-            Most businesses don&rsquo;t fail at going public because of a weak idea — they
+            Most businesses don&rsquo;t fail at going public because of a weak idea, they
             fail because they weren&rsquo;t prepared. BEIPOREADY is a specialist
             capital-markets advisory firm that partners with promoters and management
             teams across three connected stages: raising growth capital, becoming
             IPO-ready, and executing a successful listing. We don&rsquo;t just advise on
-            the transaction — we build the value that makes it succeed.
+            the transaction, we build the value that makes it succeed.
           </p>
         </div>
 
@@ -67,7 +74,7 @@ export default function WhatWeDo() {
           ))}
         </div>
 
-        <ul className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12" role="list">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12" role="list">
           {PILLARS.map(({ image, imageAlt, title, text, href }) => (
             <li key={title} className="flex">
               <Link

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -9,7 +9,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 /**
  * Indicative industry cost ranges for an SME IPO, in ₹ Lakhs.
  * `pctOfIssue` components scale with issue size; the rest are broadly fixed.
- * These are directional ballparks only — actuals depend on intermediaries,
+ * These are directional ballparks only, actuals depend on intermediaries,
  * issue structure and timeline.
  */
 const FIXED_COSTS = [

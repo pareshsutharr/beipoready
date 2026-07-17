@@ -111,13 +111,15 @@ export async function saveBlogPost(formData: FormData) {
   const id = text(formData, "id");
   const title = text(formData, "title");
   const status = text(formData, "status") as ContentStatus;
+  const currentCoverUrl = nullableText(formData, "current_cover_image_url");
+  const uploadedCoverUrl = await uploadCmsImage(formData, "cover_image_file", "blogs");
   const supabase = createAdminClient();
   const payload = {
     title,
     slug: text(formData, "slug") || slugify(title),
     excerpt: nullableText(formData, "excerpt"),
     body: nullableText(formData, "body"),
-    cover_image_url: nullableText(formData, "cover_image_url"),
+    cover_image_url: uploadedCoverUrl ?? nullableText(formData, "cover_image_url") ?? currentCoverUrl,
     category: text(formData, "category") as BlogCategory,
     status,
     seo_title: nullableText(formData, "seo_title"),
@@ -127,6 +129,12 @@ export async function saveBlogPost(formData: FormData) {
 
   if (id) await supabase.from("blog_posts").update(payload).eq("id", id);
   else await supabase.from("blog_posts").insert(payload);
+
+  if (uploadedCoverUrl && currentCoverUrl) {
+    const oldPath = storagePathFromPublicUrl(currentCoverUrl);
+    if (oldPath) await supabase.storage.from("cms-assets").remove([oldPath]);
+  }
+
   refreshCms();
 }
 
@@ -139,6 +147,8 @@ export async function saveCaseStudy(formData: FormData) {
   const id = text(formData, "id");
   const companyName = text(formData, "company_name");
   const status = text(formData, "status") as ContentStatus;
+  const currentCoverUrl = nullableText(formData, "current_cover_image_url");
+  const uploadedCoverUrl = await uploadCmsImage(formData, "cover_image_file", "case-studies");
   const supabase = createAdminClient();
   const payload = {
     company_name: companyName,
@@ -147,7 +157,7 @@ export async function saveCaseStudy(formData: FormData) {
     outcome: nullableText(formData, "outcome"),
     challenge: nullableText(formData, "challenge"),
     summary: nullableText(formData, "summary"),
-    cover_image_url: nullableText(formData, "cover_image_url"),
+    cover_image_url: uploadedCoverUrl ?? nullableText(formData, "cover_image_url") ?? currentCoverUrl,
     approach: text(formData, "approach").split("\n").map((item) => item.trim()).filter(Boolean),
     result: nullableText(formData, "result"),
     ipo_size: nullableText(formData, "ipo_size"),
@@ -162,6 +172,12 @@ export async function saveCaseStudy(formData: FormData) {
 
   if (id) await supabase.from("case_studies").update(payload).eq("id", id);
   else await supabase.from("case_studies").insert(payload);
+
+  if (uploadedCoverUrl && currentCoverUrl) {
+    const oldPath = storagePathFromPublicUrl(currentCoverUrl);
+    if (oldPath) await supabase.storage.from("cms-assets").remove([oldPath]);
+  }
+
   refreshCms();
 }
 
