@@ -141,7 +141,7 @@ export default function Hero() {
               animationDelay: `${AFTER_HEADLINE}s`,
             }}
           >
-            We help ambitious Indian businesses raise the right capital, get
+            We help ambitious Indian businesses raise the right capital & help them get better Valuation get
             truly IPO-ready, and list successfully on NSE Emerge, BSE SME, and
             the Main Board.
           </p>

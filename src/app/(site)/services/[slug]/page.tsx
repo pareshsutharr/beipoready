@@ -215,6 +215,8 @@ const SERVICES: Record<string, ServiceData> = {
       "Businesses with stressed or inefficient capital structures (high-cost debt, complex cap tables)",
       "Companies requiring valuations for regulatory or transaction purposes (in coordination with registered valuers where statutorily required)",
       "Family businesses planning succession, restructuring, or shareholder buyouts",
+      "We do Business Valuation, ESOP Valuation, Share Valuation, and Fairness Opinions",
+
     ],
     process: [
       {

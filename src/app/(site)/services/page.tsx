@@ -66,6 +66,10 @@ export default function ServicesPage() {
             From your first readiness check to the listing bell, we cover every
             stage so you never have to stitch together multiple advisors mid-journey.
           </p>
+          <br />
+           <p className="font-sans text-lg max-w-2xl mx-auto leading-relaxed" style={{color:"orange"}}>
+            We are Good advisors because we are good investors, we are good investors because we are good advisors
+          </p>
         </div>
       </section>
 

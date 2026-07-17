@@ -52,7 +52,7 @@ export const SERVICES: Record<string, ServiceData> = {
     ],
     faq: [
       { q: "Equity or debt, which is right for my business?", a: "It depends on your cash flows, growth plans, and how much dilution you are comfortable with. Our first step is always a capital structuring review to recommend the optimal mix." },
-      { q: "How do you charge for fund raising?", a: "Our fee structure generally combines a modest retainer with a success fee payable only on closing. Exact terms are shared after an initial assessment." },
+      { q: "How do you charge for fund raising?", a: "Our fee structure generally combines a modest fixed fees with a success fee payable only on closing. Exact terms are shared after an initial assessment." },
       { q: "Will my information remain confidential?", a: "Yes. All investor outreach happens under NDA, and we share detailed information only with shortlisted, serious investors after your approval." },
       { q: "My financials are not audited/organised. Can you still help?", a: "Absolutely, cleaning up and presenting your financials investor-ready is part of our Stage 1 work." },
     ],
@@ -194,6 +194,7 @@ export const SERVICES: Record<string, ServiceData> = {
       "Businesses with stressed or inefficient capital structures (high-cost debt, complex cap tables)",
       "Companies requiring valuations for regulatory or transaction purposes (in coordination with registered valuers where statutorily required)",
       "Family businesses planning succession, restructuring, or shareholder buyouts",
+      "We do Business Valuation, ESOP Valuation, Share Valuation, and Fairness Opinions",
     ],
     process: [
       {

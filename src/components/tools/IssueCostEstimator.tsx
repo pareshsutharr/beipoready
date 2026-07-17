@@ -31,6 +31,13 @@ function fmtLakhs(lakhs: number) {
   return `₹${Math.round(lakhs)} L`;
 }
 
+/** Indicative cost-as-% -of-issue-size band, by issue size tier (₹ Crore). */
+function costSharePct(sizeCr: number): { low: number; high: number } {
+  if (sizeCr < 150) return { low: 8, high: 10 };
+  if (sizeCr > 400) return { low: 4, high: 6 };
+  return { low: 7, high: 8 };
+}
+
 export default function IssueCostEstimator() {
   const [issueSize, setIssueSize] = useState(""); // ₹ Crore
   const [showResult, setShowResult] = useState(false);
@@ -148,7 +155,7 @@ export default function IssueCostEstimator() {
                 <tr style={{ background: "#FEF3C7" }}>
                   <td className="px-4 py-3 text-slate-600">As a share of issue size</td>
                   <td className="px-4 py-3 text-right text-slate-700 font-medium whitespace-nowrap">
-                    {((totalLow / sizeLakhs) * 100).toFixed(1)}% – {((totalHigh / sizeLakhs) * 100).toFixed(1)}%
+                    {costSharePct(size).low}% – {costSharePct(size).high}%
                   </td>
                 </tr>
               </tbody>

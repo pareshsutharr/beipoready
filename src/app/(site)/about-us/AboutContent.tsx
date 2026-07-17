@@ -108,7 +108,7 @@ const FAQS = [
   },
   {
     q: "Are you a merchant banker? What's your role in the process?",
-    a: "We're your advisor and coordinator, on your side of the table throughout. We assess readiness, structure the raise or issue, and select and coordinate the SEBI-registered intermediaries (merchant banker, RTA, legal, market maker) who execute the transaction. [Add your regulatory standing / registrations here.]",
+    a: "No We are not, We are your advisor and coordinator, on your side of the table throughout. We assess readiness, structure the raise or issue, and select and coordinate the SEBI-registered intermediaries (merchant banker, RTA, legal, market maker) who execute the transaction. [Add your regulatory standing / registrations here.]",
   },
   {
     q: "Where are you based, and do you work across India?",
@@ -246,6 +246,8 @@ export default function AboutContent({ clients }: { clients: ClientLogoCard[] })
               <h1 className="about-reveal font-heading text-4xl sm:text-5xl lg:text-[3.65rem] font-bold  leading-[1.08] tracking-tight max-w-3xl text-brand-gold">
                 We don&apos;t just advise on IPOs. We make companies ready for them.
               </h1>
+              <p className="text-white font-sans text-xl">
+Beyond Procedural compliance, we Help companies get Better Valuation              </p>
               {/* <p className="about-reveal mt-6 font-sans text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl text-white">
                 BEIPOREADY is India&apos;s IPO advisory and growth-capital specialist, partnering with promoters from their first raise to a confident public listing, and beyond.
               </p> */}
