@@ -10,6 +10,11 @@ import SelectField from "./_SelectField";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function isValidPhone(phone: string) {
+  const digits = phone.replace(/\D/g, "");
+  return digits.length >= 10 && digits.length <= 15;
+}
+
 const SERVICE_OPTIONS = [
   { value: "Fundraising & Growth Capital",  label: "Fundraising & Growth Capital" },
   { value: "Pre-IPO Advisory",              label: "Pre-IPO Advisory" },
@@ -43,6 +48,8 @@ function validate(v: FormValues): FormErrors {
   if (!v.name.trim())            errs.name  = "Name is required.";
   if (!v.email.trim())           errs.email = "Email is required.";
   else if (!EMAIL_RE.test(v.email.trim())) errs.email = "Enter a valid email address.";
+  if (!v.phone.trim())           errs.phone = "Phone number is required.";
+  else if (!isValidPhone(v.phone)) errs.phone = "Enter a valid phone number.";
   return errs;
 }
 
@@ -106,7 +113,7 @@ export default function LeadCaptureForm({
     const { error } = await supabase.from("leads").insert({
       name:             values.name.trim(),
       email:            values.email.trim(),
-      phone:            values.phone.trim()            || null,
+      phone:            values.phone.trim(),
       service_interest: values.service_interest        || null,
       message:          values.message.trim()          || null,
       source,
@@ -162,11 +169,12 @@ export default function LeadCaptureForm({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
           id="lcf-phone"
-          label="Phone (optional)"
+          label="Phone *"
           type="tel"
           placeholder="+91 98765 43210"
           value={values.phone}
           onChange={(e) => set("phone", e.target.value)}
+          error={errors.phone}
           autoComplete="tel"
         />
         <SelectField

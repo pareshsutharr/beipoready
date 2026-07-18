@@ -63,6 +63,7 @@ export type BlogPost = {
   seo_title: string | null;
   seo_description: string | null;
   author_id: string | null;
+  show_in_news_alert: boolean;
   published_at: string | null;
   created_at: string;
   updated_at: string;
@@ -90,6 +91,7 @@ export type CaseStudy = {
   result: string | null;
   cover_image_url: string | null;
   status: ContentStatus;
+  show_in_news_alert: boolean;
   published_at: string | null;
   created_at: string;
   updated_at: string;
@@ -252,6 +254,7 @@ type BlogPostInsert = {
   seo_title?: string | null;
   seo_description?: string | null;
   author_id?: string | null;
+  show_in_news_alert?: boolean;
   published_at?: string | null;
   created_at?: string;
   updated_at?: string;
@@ -279,6 +282,7 @@ type CaseStudyInsert = {
   result?: string | null;
   cover_image_url?: string | null;
   status?: ContentStatus;
+  show_in_news_alert?: boolean;
   published_at?: string | null;
   created_at?: string;
   updated_at?: string;

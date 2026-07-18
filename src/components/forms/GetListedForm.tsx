@@ -16,6 +16,11 @@ import {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function isValidPhone(phone: string) {
+  const digits = phone.replace(/\D/g, "");
+  return digits.length >= 10 && digits.length <= 15;
+}
+
 const FUND_OBJECTS = [
   "Capital expenditure / new project",
   "Long-term working capital",
@@ -189,6 +194,7 @@ export default function GetListedForm() {
     if (!name.trim()) { setError("Your name is required."); return; }
     if (!EMAIL_RE.test(email.trim())) { setError("Enter a valid email address."); return; }
     if (!phone.trim()) { setError("Mobile number is required."); return; }
+    if (!isValidPhone(phone)) { setError("Enter a valid mobile number."); return; }
 
     setStatus("loading");
     const supabase = createClient();

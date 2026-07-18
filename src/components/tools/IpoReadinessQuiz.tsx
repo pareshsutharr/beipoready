@@ -291,7 +291,7 @@ export default function IpoReadinessQuiz() {
     const { error } = await supabase.from("leads").insert({
       name: name.trim(),
       email: email.trim(),
-      phone: phone.trim() || null,
+      phone: phone.trim(),
       company_name: company.trim() || null,
       source: "readiness-tool",
       message: `IPO Readiness Score: ${(finalScore / 10).toFixed(1)}/10`,
@@ -445,11 +445,13 @@ export default function IpoReadinessQuiz() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label htmlFor="rl-phone" className="block font-sans text-sm font-medium text-slate-700 mb-1.5">
-                Phone
+                Phone <span className="text-red-500" aria-hidden="true">*</span>
               </label>
               <input
                 id="rl-phone"
                 type="tel"
+                required
+                minLength={10}
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="+91 XXXXX XXXXX"

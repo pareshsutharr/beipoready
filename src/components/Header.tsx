@@ -17,8 +17,16 @@ import {
   FileSearch2,
   MonitorPlay,
   Clapperboard,
+  Bell,
   type LucideIcon,
 } from "lucide-react";
+import type { NewsAlertItem } from "@/lib/cms";
+
+function formatNewsDate(date: string) {
+  return new Intl.DateTimeFormat("en-IN", { month: "short", day: "numeric", year: "numeric" }).format(
+    new Date(date)
+  );
+}
 
 const serviceLinks: { label: string; href: string; icon: LucideIcon }[] = [
   { label: "Fund Raising", href: "/services/fund-raising", icon: Banknote },
@@ -54,7 +62,7 @@ const navLinks: NavItem[] = [
   { label: "Contact", href: "/contact-us" },
 ];
 
-export default function Header() {
+export default function Header({ newsAlertItems = [] }: { newsAlertItems?: NewsAlertItem[] }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -155,6 +163,59 @@ export default function Header() {
           )}
         </ul>
 
+        {/* News & Alerts bell */}
+        <div className="relative ml-auto lg:ml-0">
+          <button
+            aria-haspopup="true"
+            aria-expanded={openDropdown === "news"}
+            aria-label="News and alerts"
+            onClick={() => setOpenDropdown(openDropdown === "news" ? null : "news")}
+            className="relative flex items-center justify-center w-9 h-9 rounded-md transition-colors duration-150 cursor-pointer"
+            style={{ color: openDropdown === "news" ? "#0D4A6F" : "#374151" }}
+            onMouseEnter={e => (e.currentTarget.style.color = "#0D4A6F")}
+            onMouseLeave={e => (e.currentTarget.style.color = openDropdown === "news" ? "#0D4A6F" : "#374151")}
+          >
+            <Bell className="w-5 h-5" aria-hidden="true" />
+            {newsAlertItems.length > 0 && (
+              <span className="absolute top-0.5 right-0.5 flex items-center justify-center min-w-[16px] h-4 px-1 rounded-full bg-brand-gold text-brand-navy text-[10px] font-bold">
+                {newsAlertItems.length}
+              </span>
+            )}
+          </button>
+
+          {openDropdown === "news" && (
+            <div className="absolute top-full right-0 mt-1.5 bg-white rounded-xl shadow-xl border border-slate-100 z-50 w-[340px] max-w-[90vw] max-h-[70vh] overflow-y-auto">
+              <div className="h-0.5 mb-1.5 mx-2 mt-1.5 rounded-full" style={{ background: "linear-gradient(90deg,#0D4A6F,#ECB85B)" }} aria-hidden="true" />
+              <p className="px-4 pt-1 pb-2 text-[13px] font-bold" style={{ color: "#0D4A6F" }}>
+                News &amp; Alerts
+              </p>
+              {newsAlertItems.length === 0 ? (
+                <p className="px-4 pb-4 text-[13px] text-slate-400">No updates right now.</p>
+              ) : (
+                <ul className="pb-1.5" role="list">
+                  {newsAlertItems.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={() => setOpenDropdown(null)}
+                        className="block px-4 py-2.5 hover:bg-blue-50 transition-colors"
+                      >
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="rounded-full bg-brand-navy/8 text-brand-navy text-[10px] font-bold uppercase tracking-wide px-2 py-0.5">
+                            {item.type === "blog" ? "Article" : "Case Study"}
+                          </span>
+                          <span className="text-[11px] text-slate-400">{formatNewsDate(item.date)}</span>
+                        </div>
+                        <p className="text-[13px] font-semibold text-[#0D4A6F] leading-snug">{item.title}</p>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
+        </div>
+
         {/* CTA button */}
         <Link
           href="/contact-us"
@@ -166,7 +227,7 @@ export default function Header() {
 
         {/* Mobile burger */}
         <button
-          className="lg:hidden ml-auto p-2 rounded-md transition-colors cursor-pointer"
+          className="lg:hidden ml-1 p-2 rounded-md transition-colors cursor-pointer"
           style={{ color: "#0D4A6F" }}
           onClick={() => setMobileOpen((v) => !v)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}

@@ -10,7 +10,9 @@ import ClientsMarquee from "@/components/sections/ClientsMarquee";
 import CaseStudiesHighlights from "@/components/sections/CaseStudiesHighlights";
 import HomeFaq from "@/components/sections/HomeFaq";
 import FinalCta from "@/components/sections/FinalCta";
+import NewsAlertWidget from "@/components/sections/NewsAlertWidget";
 import {
+  getNewsAlertItems,
   getPublishedCaseStudies,
   getPublishedClients,
   getSiteStats,
@@ -19,16 +21,18 @@ import {
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const [stats, clients, caseStudies] = await Promise.all([
+  const [stats, clients, caseStudies, newsAlertItems] = await Promise.all([
     getSiteStats(),
     getPublishedClients(),
     getPublishedCaseStudies(),
+    getNewsAlertItems(),
   ]);
 
   return (
     <>
       {/* 1, Hero */}
       <Hero />
+      <NewsAlertWidget items={newsAlertItems} />
       <StatsBanner stats={stats} />
 
       {/* 2, About / What We Do */}

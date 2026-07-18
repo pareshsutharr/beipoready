@@ -124,6 +124,7 @@ export async function saveBlogPost(formData: FormData) {
     status,
     seo_title: nullableText(formData, "seo_title"),
     seo_description: nullableText(formData, "seo_description"),
+    show_in_news_alert: bool(formData, "show_in_news_alert"),
     published_at: status === "published" ? new Date().toISOString() : null,
   };
 
@@ -167,6 +168,7 @@ export async function saveCaseStudy(formData: FormData) {
     testimonial_quote: nullableText(formData, "testimonial_quote"),
     testimonial_author: nullableText(formData, "testimonial_author"),
     status,
+    show_in_news_alert: bool(formData, "show_in_news_alert"),
     published_at: status === "published" ? new Date().toISOString() : null,
   };
 

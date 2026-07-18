@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { createAdminClient } from "@/lib/supabase/admin";
 import {
+  Checkbox,
   Field,
   ImagePreview,
   PageHeader,
@@ -57,6 +58,7 @@ export default async function CaseStudiesPage() {
             <TextArea label="Result" name="result" rows={3} />
             <TextArea label="Testimonial Quote" name="testimonial_quote" rows={2} />
             <Field label="Testimonial Author" name="testimonial_author" />
+            <Checkbox label="Add to News & Alerts popup" name="show_in_news_alert" />
           </div>
           <SubmitRow />
         </form>
@@ -98,6 +100,7 @@ export default async function CaseStudiesPage() {
               <TextArea label="Result" name="result" defaultValue={cs.result} rows={3} />
               <TextArea label="Testimonial Quote" name="testimonial_quote" defaultValue={cs.testimonial_quote} rows={2} />
               <Field label="Testimonial Author" name="testimonial_author" defaultValue={cs.testimonial_author} />
+              <Checkbox label="Add to News & Alerts popup" name="show_in_news_alert" defaultChecked={cs.show_in_news_alert} />
             </div>
             <SubmitRow deleteAction={deleteCaseStudy} id={cs.id} />
           </form>

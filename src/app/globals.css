@@ -73,6 +73,15 @@ body {
 /* ─── Scroll-reveal helper (GSAP sets opacity/transform directly) ─── */
 .sr { opacity: 0; }
 
+/* ─── Attention pulse (floating widgets that need to catch the eye) ─── */
+@keyframes attention-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.55), 0 20px 60px rgba(15,45,82,0.35); }
+  50%      { box-shadow: 0 0 0 14px rgba(245,158,11,0), 0 20px 60px rgba(15,45,82,0.35); }
+}
+.animate-attention-glow {
+  animation: attention-glow 2.2s ease-out infinite;
+}
+
 /* ─── Respect reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

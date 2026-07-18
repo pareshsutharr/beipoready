@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { createAdminClient } from "@/lib/supabase/admin";
 import {
+  Checkbox,
   Field,
   ImagePreview,
   PageHeader,
@@ -70,6 +71,7 @@ export default async function BlogsPage() {
           <div className="mt-4 grid gap-4">
             <TextArea label="Excerpt" name="excerpt" rows={2} />
             <TextArea label="Body" name="body" rows={10} placeholder="Markdown-style headings and bullets supported" />
+            <Checkbox label="Add to News & Alerts popup" name="show_in_news_alert" />
           </div>
           <SubmitRow saveLabel="Publish / Save" />
         </form>
@@ -104,6 +106,7 @@ export default async function BlogsPage() {
             <div className="mt-4 grid gap-4">
               <TextArea label="Excerpt" name="excerpt" defaultValue={post.excerpt} rows={2} />
               <TextArea label="Body" name="body" defaultValue={post.body} rows={10} />
+              <Checkbox label="Add to News & Alerts popup" name="show_in_news_alert" defaultChecked={post.show_in_news_alert} />
             </div>
             <SubmitRow deleteAction={deleteBlogPost} id={post.id} />
           </form>

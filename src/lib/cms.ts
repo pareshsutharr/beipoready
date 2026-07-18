@@ -409,6 +409,71 @@ export async function getCaseStudyBySlug(slug: string) {
   }
 }
 
+export type NewsAlertItem = {
+  type: "blog" | "case-study";
+  title: string;
+  excerpt: string;
+  href: string;
+  date: string;
+};
+
+export async function getNewsAlertItems(limit = 6): Promise<NewsAlertItem[]> {
+  try {
+    const supabase = await createClient();
+
+    const [latestPostResult, flaggedPostsResult, flaggedCaseStudiesResult] = await Promise.all([
+      supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("status", "published")
+        .order("published_at", { ascending: false })
+        .limit(1),
+      supabase
+        .from("blog_posts")
+        .select("*")
+        .eq("status", "published")
+        .eq("show_in_news_alert", true)
+        .order("published_at", { ascending: false })
+        .limit(limit),
+      supabase
+        .from("case_studies")
+        .select("*")
+        .eq("status", "published")
+        .eq("show_in_news_alert", true)
+        .order("published_at", { ascending: false })
+        .limit(limit),
+    ]);
+
+    const posts = new Map<string, BlogPost>();
+    for (const post of [...(latestPostResult.data ?? []), ...(flaggedPostsResult.data ?? [])]) {
+      posts.set(post.id, post);
+    }
+
+    const items: NewsAlertItem[] = [
+      ...Array.from(posts.values()).map((post) => ({
+        type: "blog" as const,
+        title: post.title,
+        excerpt: post.excerpt ?? "",
+        href: `/knowledge-center/${post.slug}`,
+        date: post.published_at ?? post.created_at,
+      })),
+      ...(flaggedCaseStudiesResult.data ?? []).map((cs) => ({
+        type: "case-study" as const,
+        title: cs.company_name,
+        excerpt: cs.summary ?? cs.outcome ?? "",
+        href: `/case-studies/${cs.slug}`,
+        date: cs.published_at ?? cs.created_at,
+      })),
+    ];
+
+    return items
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, limit);
+  } catch {
+    return [];
+  }
+}
+
 export async function getPublishedFaqGroups() {
   try {
     const supabase = await createClient();

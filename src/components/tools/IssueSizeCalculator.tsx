@@ -88,7 +88,7 @@ export default function IssueSizeCalculator() {
     const { error } = await supabase.from("leads").insert({
       name: name.trim(),
       email: email.trim(),
-      phone: phone.trim() || null,
+      phone: phone.trim(),
       company_name: company.trim() || null,
       source: "issue-size-calculator",
       message: issueSummary,
@@ -241,9 +241,9 @@ export default function IssueSizeCalculator() {
             </div>
             <div>
               <label htmlFor="isc-phone" className="block font-sans text-sm font-medium text-slate-700 mb-1.5">
-                Phone
+                Phone <span className="text-red-500" aria-hidden="true">*</span>
               </label>
-              <input id="isc-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 border border-slate-300 rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold" />
+              <input id="isc-phone" type="tel" required minLength={10} value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 border border-slate-300 rounded-lg font-sans text-sm focus:outline-none focus:ring-2 focus:ring-brand-gold focus:border-brand-gold" />
             </div>
           </div>
 
