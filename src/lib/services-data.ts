@@ -118,7 +118,7 @@ export const SERVICES: Record<string, ServiceData> = {
   "sme-ipo-advisory": {
     slug: "sme-ipo-advisory",
     title: "SME IPO Advisory",
-    tagline: "Comprehensive consultation and execution management for public listing on the NSE Emerge or BSE SME platforms",
+    tagline: "Comprehensive consultation and execution management for public listing on the NSE Emerge or BSE SME platforms, We also do Mainboard",
     overview: [
       "For small and mid-sized businesses in India, listing on BSE SME or NSE Emerge represents a highly effective growth strategy, providing access to funding, enhancing reputation, increasing brand awareness, and offering liquidity for promoters. However, navigating this transition requires managing numerous complexities, such as regulatory compliance, exchange requirements, eligibility guidelines, and coordination with merchant bankers.",
       "Our dedicated SME IPO Advisory serves as your primary strategic partner and coordinator throughout the entire process. We provide comprehensive guidance at every stage, from initial eligibility evaluation and DRHP submission to campaign marketing and the final celebratory listing bell.",
