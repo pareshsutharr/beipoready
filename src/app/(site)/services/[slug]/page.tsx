@@ -286,6 +286,18 @@ export default async function ServiceDetailPage({ params }: Props) {
 
   return (
     <main>
+      {/* ── Service name tab (fixed, left edge, vertically centered) ──── */}
+      <Link
+        href="/services"
+        aria-label={`${service.title} — back to all services`}
+        className="hidden md:block fixed left-0 top-1/2 z-40 px-3 py-6 rounded-r-lg shadow-lg hover:pl-4 transition-[padding] duration-200"
+        style={{ background: "#ECB85B", writingMode: "vertical-rl", transform: "translateY(-50%) rotate(360deg)" }}
+      >
+        <span className="font-sans text-sm font-bold uppercase tracking-widest text-white whitespace-nowrap">
+          {service.title}
+        </span>
+      </Link>
+
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative bg-brand-navy py-20 sm:py-24 overflow-hidden">
         <img src={SERVICE_IMAGES[slug]} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
