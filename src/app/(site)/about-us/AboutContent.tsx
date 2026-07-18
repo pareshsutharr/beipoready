@@ -280,15 +280,14 @@ Beyond Procedural compliance, we Help companies get Better Valuation            
                   Most businesses treat an IPO as a finish line. We were founded on the opposite belief: that a great listing is never the starting point of value, it&apos;s the <em>result</em> of being genuinely ready for it.
                 </p>
                 <p className="about-reveal">
-                  [Founder name] started BEIPOREADY in [year] after seeing the same pattern again and again, strong Indian businesses, with real products and real customers, held back from the public markets not by their fundamentals but by a lack of preparation. Capital raised without a plan. Governance left until the last minute. Founders walking into a listing they weren&apos;t ready for, and leaving value on the table.
+                  Dr. Rakesh Doshi started BEIPOREADY in 2020 after seeing the same pattern again and again, strong Indian businesses, with real products and real customers, held back from the public markets not by their fundamentals but by a lack of preparation. Capital raised without a plan. Governance left until the last minute. Founders walking into a listing they weren&apos;t ready for, and leaving value on the table.
                 </p>
               </div>
 
               <figure className="about-reveal my-8 rounded bg-brand-navy p-6 sm:p-8 text-white">
                 <Quote className="w-8 h-8 text-brand-gold mb-4" aria-hidden="true" />
                 <blockquote className="font-heading text-2xl sm:text-3xl font-bold leading-tight">
-                  A successful IPO isn&apos;t an event you attend. It&apos;s a state you reach.
-                </blockquote>
+We are good Advisors because we are good Investors. We are good Investors because we are good Advisors.                </blockquote>
                 <figcaption className="mt-4 font-sans text-sm text-white/70">
                   Dr. Rakesh Doshi, Founder, BEIPOREADY
                 </figcaption>
