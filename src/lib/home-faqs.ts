@@ -32,10 +32,6 @@ export const HOME_FAQS: { q: string; a: string }[] = [
     a: "It varies with issue size and intermediaries. Our issue cost estimator gives an early ballpark; we detail it during planning.",
   },
   {
-    q: "Are you SEBI-registered / who do you work with?",
-    a: "[State BEIPOREADY's regulatory standing and the SEBI-registered intermediaries coordinated with.]",
-  },
-  {
     q: "Where are you based and do you work across India?",
     a: "Based in Surat, Gujarat; we work with businesses across India. Initial conversations happen over a call.",
   },
