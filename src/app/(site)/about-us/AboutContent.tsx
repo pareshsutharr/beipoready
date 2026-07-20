@@ -85,12 +85,12 @@ const JOURNEY = [
 ];
 
 const STATS = [
-  { value: "₹50Cr+", label: "capital raised for clients", icon: BarChart3 },
-  { value: "2+", label: "successful listings enabled", icon: CheckCircle2 },
+  { value: "₹1000Cr+", label: "capital raised for clients", icon: BarChart3 },
+  { value: "20+", label: "Companies Invested In", icon: CheckCircle2 },
   { value: "20+", label: "businesses advised", icon: BriefcaseBusiness },
   { value: "40+", label: "years of combined capital-market experience", icon: CalendarDays },
   { value: "10+", label: "sectors served", icon: Building2 },
-  { value: "20+", label: "investors, PE funds & lenders in our network", icon: Users },
+  { value: "50+", label: "investors, PE funds & lenders in our network", icon: Users },
 ];
 
 const FAQS = [
