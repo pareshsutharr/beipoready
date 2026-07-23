@@ -1,7 +1,15 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { connectToDatabase } from "@/lib/mongodb";
+import { deletePublicUpload, saveUploadedImage } from "@/lib/upload";
+import { BlogPost } from "@/models/BlogPost";
+import { CaseStudy } from "@/models/CaseStudy";
+import { Testimonial } from "@/models/Testimonial";
+import { Client } from "@/models/Client";
+import { SiteStat } from "@/models/SiteStat";
+import { SiteAlert } from "@/models/SiteAlert";
+import { Faq } from "@/models/Faq";
 import type { BlogCategory, ContentStatus, FaqCategory, SiteAlertPlacement } from "@/types";
 
 const REVALIDATE_PATHS = [
@@ -50,34 +58,10 @@ function fileFromForm(formData: FormData, key: string) {
   return value instanceof File && value.size > 0 ? value : null;
 }
 
-function storagePathFromPublicUrl(url: string | null) {
-  if (!url) return null;
-  const marker = "/storage/v1/object/public/cms-assets/";
-  const index = url.indexOf(marker);
-  return index >= 0 ? decodeURIComponent(url.slice(index + marker.length)) : null;
-}
-
 async function uploadCmsImage(formData: FormData, key: string, folder: string) {
   const file = fileFromForm(formData, key);
   if (!file) return null;
-
-  if (!file.type.startsWith("image/")) {
-    throw new Error("Only image files can be uploaded.");
-  }
-
-  const supabase = createAdminClient();
-  const extension = file.name.split(".").pop()?.toLowerCase() || "png";
-  const baseName = slugify(file.name.replace(/\.[^.]+$/, "")) || "image";
-  const path = `${folder}/${Date.now()}-${baseName}.${extension}`;
-  const { error } = await supabase.storage.from("cms-assets").upload(path, file, {
-    contentType: file.type,
-    upsert: false,
-  });
-
-  if (error) throw new Error(error.message);
-
-  const { data } = supabase.storage.from("cms-assets").getPublicUrl(path);
-  return data.publicUrl;
+  return saveUploadedImage(file, folder);
 }
 
 function refreshCms() {
@@ -87,8 +71,8 @@ function refreshCms() {
 }
 
 export async function saveFaq(formData: FormData) {
+  await connectToDatabase();
   const id = text(formData, "id");
-  const supabase = createAdminClient();
   const payload = {
     question: text(formData, "question"),
     answer: text(formData, "answer"),
@@ -97,23 +81,24 @@ export async function saveFaq(formData: FormData) {
     is_published: bool(formData, "is_published"),
   };
 
-  if (id) await supabase.from("faqs").update(payload).eq("id", id);
-  else await supabase.from("faqs").insert(payload);
+  if (id) await Faq.findByIdAndUpdate(id, payload);
+  else await Faq.create(payload);
   refreshCms();
 }
 
 export async function deleteFaq(formData: FormData) {
-  await createAdminClient().from("faqs").delete().eq("id", text(formData, "id"));
+  await connectToDatabase();
+  await Faq.findByIdAndDelete(text(formData, "id"));
   refreshCms();
 }
 
 export async function saveBlogPost(formData: FormData) {
+  await connectToDatabase();
   const id = text(formData, "id");
   const title = text(formData, "title");
   const status = text(formData, "status") as ContentStatus;
   const currentCoverUrl = nullableText(formData, "current_cover_image_url");
   const uploadedCoverUrl = await uploadCmsImage(formData, "cover_image_file", "blogs");
-  const supabase = createAdminClient();
   const payload = {
     title,
     slug: text(formData, "slug") || slugify(title),
@@ -125,32 +110,32 @@ export async function saveBlogPost(formData: FormData) {
     seo_title: nullableText(formData, "seo_title"),
     seo_description: nullableText(formData, "seo_description"),
     show_in_news_alert: bool(formData, "show_in_news_alert"),
-    published_at: status === "published" ? new Date().toISOString() : null,
+    published_at: status === "published" ? new Date() : null,
   };
 
-  if (id) await supabase.from("blog_posts").update(payload).eq("id", id);
-  else await supabase.from("blog_posts").insert(payload);
+  if (id) await BlogPost.findByIdAndUpdate(id, payload);
+  else await BlogPost.create(payload);
 
   if (uploadedCoverUrl && currentCoverUrl) {
-    const oldPath = storagePathFromPublicUrl(currentCoverUrl);
-    if (oldPath) await supabase.storage.from("cms-assets").remove([oldPath]);
+    await deletePublicUpload(currentCoverUrl);
   }
 
   refreshCms();
 }
 
 export async function deleteBlogPost(formData: FormData) {
-  await createAdminClient().from("blog_posts").delete().eq("id", text(formData, "id"));
+  await connectToDatabase();
+  await BlogPost.findByIdAndDelete(text(formData, "id"));
   refreshCms();
 }
 
 export async function saveCaseStudy(formData: FormData) {
+  await connectToDatabase();
   const id = text(formData, "id");
   const companyName = text(formData, "company_name");
   const status = text(formData, "status") as ContentStatus;
   const currentCoverUrl = nullableText(formData, "current_cover_image_url");
   const uploadedCoverUrl = await uploadCmsImage(formData, "cover_image_file", "case-studies");
-  const supabase = createAdminClient();
   const payload = {
     company_name: companyName,
     slug: text(formData, "slug") || slugify(companyName),
@@ -169,28 +154,28 @@ export async function saveCaseStudy(formData: FormData) {
     testimonial_author: nullableText(formData, "testimonial_author"),
     status,
     show_in_news_alert: bool(formData, "show_in_news_alert"),
-    published_at: status === "published" ? new Date().toISOString() : null,
+    published_at: status === "published" ? new Date() : null,
   };
 
-  if (id) await supabase.from("case_studies").update(payload).eq("id", id);
-  else await supabase.from("case_studies").insert(payload);
+  if (id) await CaseStudy.findByIdAndUpdate(id, payload);
+  else await CaseStudy.create(payload);
 
   if (uploadedCoverUrl && currentCoverUrl) {
-    const oldPath = storagePathFromPublicUrl(currentCoverUrl);
-    if (oldPath) await supabase.storage.from("cms-assets").remove([oldPath]);
+    await deletePublicUpload(currentCoverUrl);
   }
 
   refreshCms();
 }
 
 export async function deleteCaseStudy(formData: FormData) {
-  await createAdminClient().from("case_studies").delete().eq("id", text(formData, "id"));
+  await connectToDatabase();
+  await CaseStudy.findByIdAndDelete(text(formData, "id"));
   refreshCms();
 }
 
 export async function saveTestimonial(formData: FormData) {
+  await connectToDatabase();
   const id = text(formData, "id");
-  const supabase = createAdminClient();
   const payload = {
     client_name: text(formData, "client_name"),
     client_title: nullableText(formData, "client_title"),
@@ -204,17 +189,19 @@ export async function saveTestimonial(formData: FormData) {
     is_published: bool(formData, "is_published"),
   };
 
-  if (id) await supabase.from("testimonials").update(payload).eq("id", id);
-  else await supabase.from("testimonials").insert(payload);
+  if (id) await Testimonial.findByIdAndUpdate(id, payload);
+  else await Testimonial.create(payload);
   refreshCms();
 }
 
 export async function deleteTestimonial(formData: FormData) {
-  await createAdminClient().from("testimonials").delete().eq("id", text(formData, "id"));
+  await connectToDatabase();
+  await Testimonial.findByIdAndDelete(text(formData, "id"));
   refreshCms();
 }
 
 export async function saveClient(formData: FormData) {
+  await connectToDatabase();
   const id = text(formData, "id");
   const currentLogoUrl = nullableText(formData, "current_logo_url");
   const uploadedLogoUrl = await uploadCmsImage(formData, "logo_file", "clients");
@@ -224,7 +211,6 @@ export async function saveClient(formData: FormData) {
     throw new Error("Upload a client logo before saving.");
   }
 
-  const supabase = createAdminClient();
   const payload = {
     name: text(formData, "name"),
     logo_url: logoUrl,
@@ -234,30 +220,29 @@ export async function saveClient(formData: FormData) {
     is_published: bool(formData, "is_published"),
   };
 
-  if (id) await supabase.from("clients").update(payload).eq("id", id);
-  else await supabase.from("clients").insert(payload);
+  if (id) await Client.findByIdAndUpdate(id, payload);
+  else await Client.create(payload);
 
   if (uploadedLogoUrl && currentLogoUrl) {
-    const oldLogoPath = storagePathFromPublicUrl(currentLogoUrl);
-    if (oldLogoPath) await supabase.storage.from("cms-assets").remove([oldLogoPath]);
+    await deletePublicUpload(currentLogoUrl);
   }
 
   refreshCms();
 }
 
 export async function deleteClient(formData: FormData) {
+  await connectToDatabase();
   const id = text(formData, "id");
-  const logoPath = storagePathFromPublicUrl(nullableText(formData, "current_logo_url"));
-  const supabase = createAdminClient();
+  const currentLogoUrl = nullableText(formData, "current_logo_url");
 
-  await supabase.from("clients").delete().eq("id", id);
-  if (logoPath) await supabase.storage.from("cms-assets").remove([logoPath]);
+  await Client.findByIdAndDelete(id);
+  await deletePublicUpload(currentLogoUrl);
   refreshCms();
 }
 
 export async function saveSiteStat(formData: FormData) {
+  await connectToDatabase();
   const id = text(formData, "id");
-  const supabase = createAdminClient();
   const payload = {
     label: text(formData, "label"),
     value: text(formData, "value"),
@@ -265,19 +250,20 @@ export async function saveSiteStat(formData: FormData) {
     is_published: bool(formData, "is_published"),
   };
 
-  if (id) await supabase.from("site_stats").update(payload).eq("id", id);
-  else await supabase.from("site_stats").insert(payload);
+  if (id) await SiteStat.findByIdAndUpdate(id, payload);
+  else await SiteStat.create(payload);
   refreshCms();
 }
 
 export async function deleteSiteStat(formData: FormData) {
-  await createAdminClient().from("site_stats").delete().eq("id", text(formData, "id"));
+  await connectToDatabase();
+  await SiteStat.findByIdAndDelete(text(formData, "id"));
   refreshCms();
 }
 
 export async function saveSiteAlert(formData: FormData) {
+  await connectToDatabase();
   const id = text(formData, "id");
-  const supabase = createAdminClient();
   const payload = {
     title: text(formData, "title"),
     message: text(formData, "message"),
@@ -287,12 +273,13 @@ export async function saveSiteAlert(formData: FormData) {
     is_active: bool(formData, "is_active"),
   };
 
-  if (id) await supabase.from("site_alerts").update(payload).eq("id", id);
-  else await supabase.from("site_alerts").insert(payload);
+  if (id) await SiteAlert.findByIdAndUpdate(id, payload);
+  else await SiteAlert.create(payload);
   refreshCms();
 }
 
 export async function deleteSiteAlert(formData: FormData) {
-  await createAdminClient().from("site_alerts").delete().eq("id", text(formData, "id"));
+  await connectToDatabase();
+  await SiteAlert.findByIdAndDelete(text(formData, "id"));
   refreshCms();
 }

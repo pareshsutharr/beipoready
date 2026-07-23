@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { connectToDatabase } from "@/lib/mongodb";
+import { toPlainArray } from "@/lib/serialize";
+import { Client } from "@/models/Client";
 import {
   Checkbox,
   Field,
@@ -15,12 +17,8 @@ import { deleteClient, saveClient } from "../cms/actions";
 export const metadata: Metadata = { title: "Our Clients - Be IPO Ready Admin" };
 
 export default async function ClientsPage() {
-  const clientsResult = await createAdminClient()
-    .from("clients")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  const clients = clientsResult.data ?? [];
-  const errorMessage = clientsResult.error?.message;
+  await connectToDatabase();
+  const clients = toPlainArray(await Client.find().sort({ sort_order: 1 }).lean());
 
   return (
     <div className="p-8">
@@ -30,19 +28,6 @@ export default async function ClientsPage() {
         description="Upload and manage client logos shown in the homepage carousel. Published clients update live after save."
       />
 
-      {errorMessage && (
-        <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-          <p className="font-semibold">Clients table is not available in Supabase yet.</p>
-          <p className="mt-1">{errorMessage}</p>
-          <p className="mt-2">
-            Apply the migration in <span className="font-semibold">supabase/migrations/20260619010000_cms_content_controls.sql</span>,
-            then refresh this page.
-          </p>
-        </div>
-      )}
-
-      {errorMessage ? null : (
-        <>
       <div className="mb-6 grid gap-3 sm:grid-cols-3">
         <div className="rounded-xl border border-slate-200 bg-white p-4">
           <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Total clients</p>
@@ -128,8 +113,6 @@ export default async function ClientsPage() {
           </form>
         ))}
       </div>
-        </>
-      )}
     </div>
   );
 }

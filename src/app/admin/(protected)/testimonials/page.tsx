@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { connectToDatabase } from "@/lib/mongodb";
+import { toPlainArray } from "@/lib/serialize";
+import { Testimonial } from "@/models/Testimonial";
 import {
   Checkbox,
   Field,
@@ -14,11 +16,8 @@ import { deleteTestimonial, saveTestimonial } from "../cms/actions";
 export const metadata: Metadata = { title: "Testimonials - Be IPO Ready Admin" };
 
 export default async function TestimonialsPage() {
-  const testimonialsResult = await createAdminClient()
-    .from("testimonials")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  const testimonials = testimonialsResult.data ?? [];
+  await connectToDatabase();
+  const testimonials = toPlainArray(await Testimonial.find().sort({ sort_order: 1 }).lean());
 
   return (
     <div className="p-8">

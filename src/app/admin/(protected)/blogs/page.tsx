@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { connectToDatabase } from "@/lib/mongodb";
+import { toPlainArray } from "@/lib/serialize";
+import { BlogPost } from "@/models/BlogPost";
 import {
   Checkbox,
   Field,
@@ -19,11 +21,8 @@ import { deleteBlogPost, saveBlogPost } from "../cms/actions";
 export const metadata: Metadata = { title: "Blogs - Be IPO Ready Admin" };
 
 export default async function BlogsPage() {
-  const postsResult = await createAdminClient()
-    .from("blog_posts")
-    .select("*")
-    .order("created_at", { ascending: false });
-  const posts = postsResult.data ?? [];
+  await connectToDatabase();
+  const posts = toPlainArray(await BlogPost.find().sort({ created_at: -1 }).lean());
 
   return (
     <div className="p-8">

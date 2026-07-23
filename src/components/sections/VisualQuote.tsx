@@ -27,8 +27,8 @@
       <div className="relative z-10 max-w-3xl mx-auto px-6 sm:px-10 text-center">
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-brand-gold mb-5">Our Philosophy</p>
         <blockquote className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-[1.2] mb-6">
-          "We don&apos;t just prepare companies for an IPO.{" "}
-          <span style={{ color: "#F59E0B" }}>We build them to deserve one.</span>"
+          &ldquo;We don&apos;t just prepare companies for an IPO.{" "}
+          <span style={{ color: "#F59E0B" }}>We build them to deserve one.</span>&rdquo;
         </blockquote>
         <p className="text-sm text-white/60 font-medium tracking-wide">
          , Be IPO Ready Advisory Team

@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { submitLead } from "@/lib/submit-lead";
 import Button from "@/components/ui/Button";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -23,16 +23,14 @@ export default function NewsletterForm() {
 
     setStatus("loading");
 
-    const supabase = createClient();
-    // No .select() after .insert(); anon visitors can submit leads but cannot read them.
-    // name is NOT NULL in schema; placeholder used for newsletter signups.
-    const { error: dbError } = await supabase.from("leads").insert({
+    // name is required; placeholder used for newsletter signups.
+    const ok = await submitLead({
       name:   "Newsletter Subscriber",
       email:  trimmed,
       source: "newsletter",
     });
 
-    if (dbError) {
+    if (!ok) {
       setApiError("Could not subscribe. Please try again.");
       setStatus("idle");
       return;

@@ -2,13 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { createBrowserClient } from "@supabase/ssr";
-import type { Database } from "@/types";
-
-const supabase = createBrowserClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
-);
+import { submitLead } from "@/lib/submit-lead";
 
 const INDUSTRY_PE: Record<string, number> = {
   "IT / Software Services": 28,
@@ -85,7 +79,7 @@ export default function IssueSizeCalculator() {
       ? `Issue Size Est: ₹${result.issueLow}–₹${result.issueHigh} Cr | Market Cap Est: ₹${result.marketCapLow}–₹${result.marketCapHigh} Cr | Sector PE: ${result.pe}x | Industry: ${industry} | PAT: ₹${pat} Cr | CAGR: ${cagr}%`
       : "";
 
-    const { error } = await supabase.from("leads").insert({
+    const ok = await submitLead({
       name: name.trim(),
       email: email.trim(),
       phone: phone.trim(),
@@ -95,7 +89,7 @@ export default function IssueSizeCalculator() {
     });
 
     setSubmitting(false);
-    if (error) {
+    if (!ok) {
       setSubmitError("Something went wrong. Please try again.");
       return;
     }

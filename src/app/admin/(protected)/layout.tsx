@@ -1,12 +1,7 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { createClient } from "@/lib/supabase/server";
 import AdminSidebar from "@/components/admin/AdminSidebar";
-import {
-  ADMIN_SESSION_COOKIE,
-  HARDCODED_ADMIN_EMAIL,
-  hasHardcodedAdminSession,
-} from "@/lib/admin-auth";
+import { ADMIN_SESSION_COOKIE, verifyAdminToken } from "@/lib/auth";
 
 export default async function ProtectedAdminLayout({
   children,
@@ -14,20 +9,15 @@ export default async function ProtectedAdminLayout({
   children: React.ReactNode;
 }) {
   const cookieStore = await cookies();
-  const hasAdminCookie = hasHardcodedAdminSession(
-    cookieStore.get(ADMIN_SESSION_COOKIE)?.value
-  );
+  const admin = await verifyAdminToken(cookieStore.get(ADMIN_SESSION_COOKIE)?.value);
 
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-
-  if (!user && !hasAdminCookie) {
+  if (!admin) {
     redirect("/admin/login");
   }
 
   return (
     <div className="flex min-h-screen bg-slate-100">
-      <AdminSidebar email={user?.email ?? HARDCODED_ADMIN_EMAIL} />
+      <AdminSidebar email={admin.email} />
       <main className="flex-1 overflow-auto">
         {children}
       </main>

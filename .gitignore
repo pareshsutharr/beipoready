@@ -40,3 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 public/heroteamimg.png
+
+# user-uploaded content (runtime data, not source)
+/private-uploads/
+/public/uploads/

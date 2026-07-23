@@ -1,4 +1,12 @@
-﻿import { createClient } from "@/lib/supabase/server";
+﻿import { connectToDatabase } from "@/lib/mongodb";
+import { toPlain, toPlainArray } from "@/lib/serialize";
+import { BlogPost as BlogPostModel } from "@/models/BlogPost";
+import { CaseStudy as CaseStudyModel } from "@/models/CaseStudy";
+import { Faq as FaqModel } from "@/models/Faq";
+import { SiteStat as SiteStatModel } from "@/models/SiteStat";
+import { Client as ClientModel } from "@/models/Client";
+import { Testimonial as TestimonialModel } from "@/models/Testimonial";
+import { SiteAlert as SiteAlertModel } from "@/models/SiteAlert";
 import type { BlogPost, CaseStudy, ClientLogo, Faq, SiteAlert, SiteStat, Testimonial } from "@/types";
 
 export type ArticleCard = {
@@ -345,15 +353,13 @@ function caseStudyFromRow(row: CaseStudy): CaseStudyDetail {
 
 export async function getPublishedArticles() {
   try {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("blog_posts")
-      .select("*")
-      .eq("status", "published")
-      .order("published_at", { ascending: false });
+    await connectToDatabase();
+    const docs = await BlogPostModel.find({ status: "published" })
+      .sort({ published_at: -1 })
+      .lean();
 
-    if (error || !data?.length) return Object.values(FALLBACK_ARTICLES);
-    return data.map(articleFromPost);
+    if (!docs.length) return Object.values(FALLBACK_ARTICLES);
+    return toPlainArray(docs).map((doc) => articleFromPost(doc as unknown as BlogPost));
   } catch {
     return Object.values(FALLBACK_ARTICLES);
   }
@@ -361,16 +367,11 @@ export async function getPublishedArticles() {
 
 export async function getArticleBySlug(slug: string) {
   try {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("blog_posts")
-      .select("*")
-      .eq("slug", slug)
-      .eq("status", "published")
-      .maybeSingle();
+    await connectToDatabase();
+    const doc = await BlogPostModel.findOne({ slug, status: "published" }).lean();
 
-    if (error || !data) return FALLBACK_ARTICLES[slug] ?? null;
-    return articleFromPost(data);
+    if (!doc) return FALLBACK_ARTICLES[slug] ?? null;
+    return articleFromPost(toPlain(doc) as unknown as BlogPost);
   } catch {
     return FALLBACK_ARTICLES[slug] ?? null;
   }
@@ -378,15 +379,13 @@ export async function getArticleBySlug(slug: string) {
 
 export async function getPublishedCaseStudies() {
   try {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("case_studies")
-      .select("*")
-      .eq("status", "published")
-      .order("published_at", { ascending: false });
+    await connectToDatabase();
+    const docs = await CaseStudyModel.find({ status: "published" })
+      .sort({ published_at: -1 })
+      .lean();
 
-    if (error || !data?.length) return Object.values(FALLBACK_CASE_STUDIES);
-    return data.map(caseStudyFromRow);
+    if (!docs.length) return Object.values(FALLBACK_CASE_STUDIES);
+    return toPlainArray(docs).map((doc) => caseStudyFromRow(doc as unknown as CaseStudy));
   } catch {
     return Object.values(FALLBACK_CASE_STUDIES);
   }
@@ -394,16 +393,11 @@ export async function getPublishedCaseStudies() {
 
 export async function getCaseStudyBySlug(slug: string) {
   try {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("case_studies")
-      .select("*")
-      .eq("slug", slug)
-      .eq("status", "published")
-      .maybeSingle();
+    await connectToDatabase();
+    const doc = await CaseStudyModel.findOne({ slug, status: "published" }).lean();
 
-    if (error || !data) return FALLBACK_CASE_STUDIES[slug] ?? null;
-    return caseStudyFromRow(data);
+    if (!doc) return FALLBACK_CASE_STUDIES[slug] ?? null;
+    return caseStudyFromRow(toPlain(doc) as unknown as CaseStudy);
   } catch {
     return FALLBACK_CASE_STUDIES[slug] ?? null;
   }
@@ -419,33 +413,26 @@ export type NewsAlertItem = {
 
 export async function getNewsAlertItems(limit = 6): Promise<NewsAlertItem[]> {
   try {
-    const supabase = await createClient();
+    await connectToDatabase();
 
-    const [latestPostResult, flaggedPostsResult, flaggedCaseStudiesResult] = await Promise.all([
-      supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("status", "published")
-        .order("published_at", { ascending: false })
-        .limit(1),
-      supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("status", "published")
-        .eq("show_in_news_alert", true)
-        .order("published_at", { ascending: false })
-        .limit(limit),
-      supabase
-        .from("case_studies")
-        .select("*")
-        .eq("status", "published")
-        .eq("show_in_news_alert", true)
-        .order("published_at", { ascending: false })
-        .limit(limit),
+    const [latestPostDocs, flaggedPostDocs, flaggedCaseStudyDocs] = await Promise.all([
+      BlogPostModel.find({ status: "published" }).sort({ published_at: -1 }).limit(1).lean(),
+      BlogPostModel.find({ status: "published", show_in_news_alert: true })
+        .sort({ published_at: -1 })
+        .limit(limit)
+        .lean(),
+      CaseStudyModel.find({ status: "published", show_in_news_alert: true })
+        .sort({ published_at: -1 })
+        .limit(limit)
+        .lean(),
     ]);
 
+    const latestPostResult = toPlainArray(latestPostDocs) as unknown as BlogPost[];
+    const flaggedPostsResult = toPlainArray(flaggedPostDocs) as unknown as BlogPost[];
+    const flaggedCaseStudiesResult = toPlainArray(flaggedCaseStudyDocs) as unknown as CaseStudy[];
+
     const posts = new Map<string, BlogPost>();
-    for (const post of [...(latestPostResult.data ?? []), ...(flaggedPostsResult.data ?? [])]) {
+    for (const post of [...latestPostResult, ...flaggedPostsResult]) {
       posts.set(post.id, post);
     }
 
@@ -457,7 +444,7 @@ export async function getNewsAlertItems(limit = 6): Promise<NewsAlertItem[]> {
         href: `/knowledge-center/${post.slug}`,
         date: post.published_at ?? post.created_at,
       })),
-      ...(flaggedCaseStudiesResult.data ?? []).map((cs) => ({
+      ...flaggedCaseStudiesResult.map((cs) => ({
         type: "case-study" as const,
         title: cs.company_name,
         excerpt: cs.summary ?? cs.outcome ?? "",
@@ -476,16 +463,14 @@ export async function getNewsAlertItems(limit = 6): Promise<NewsAlertItem[]> {
 
 export async function getPublishedFaqGroups() {
   try {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("faqs")
-      .select("*")
-      .eq("is_published", true)
-      .order("category", { ascending: true })
-      .order("sort_order", { ascending: true });
+    await connectToDatabase();
+    const docs = await FaqModel.find({ is_published: true })
+      .sort({ category: 1, sort_order: 1 })
+      .lean();
 
-    if (error || !data?.length) return FALLBACK_FAQS;
+    if (!docs.length) return FALLBACK_FAQS;
 
+    const data = toPlainArray(docs) as unknown as Faq[];
     const groups = new Map<string, { category: string; items: { q: string; a: string }[] }>();
     data.forEach((faq: Faq) => {
       const category = faq.category.replaceAll("-", " ").replace(/\b\w/g, (c) => c.toUpperCase());
@@ -501,15 +486,11 @@ export async function getPublishedFaqGroups() {
 
 export async function getSiteStats() {
   try {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("site_stats")
-      .select("*")
-      .eq("is_published", true)
-      .order("sort_order", { ascending: true });
+    await connectToDatabase();
+    const docs = await SiteStatModel.find({ is_published: true }).sort({ sort_order: 1 }).lean();
 
-    if (error || !data?.length) return FALLBACK_STATS;
-    return data;
+    if (!docs.length) return FALLBACK_STATS;
+    return toPlainArray(docs) as unknown as SiteStat[];
   } catch {
     return FALLBACK_STATS;
   }
@@ -517,23 +498,16 @@ export async function getSiteStats() {
 
 export async function getPublishedClients(): Promise<ClientLogoCard[]> {
   try {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("clients")
-      .select("name, logo_url, website_url, nature_of_business")
-      .eq("is_published", true)
-      .order("sort_order", { ascending: true });
+    await connectToDatabase();
+    const docs = await ClientModel.find(
+      { is_published: true },
+      "name logo_url website_url nature_of_business"
+    )
+      .sort({ sort_order: 1 })
+      .lean();
 
-    if (!error && data?.length) return data.map(withClientNature);
-
-    const fallback = await supabase
-      .from("clients")
-      .select("name, logo_url, website_url")
-      .eq("is_published", true)
-      .order("sort_order", { ascending: true });
-
-    if (fallback.error || !fallback.data?.length) return [];
-    return fallback.data.map((client) => withClientNature({ ...client, nature_of_business: null }));
+    if (!docs.length) return [];
+    return (toPlainArray(docs) as unknown as ClientLogoCard[]).map(withClientNature);
   } catch {
     return [];
   }
@@ -541,19 +515,16 @@ export async function getPublishedClients(): Promise<ClientLogoCard[]> {
 
 export async function getPublishedTestimonials(): Promise<TestimonialCard[]> {
   try {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("testimonials")
-      .select("*")
-      .eq("is_published", true)
-      .order("sort_order", { ascending: true })
-      .limit(3);
+    await connectToDatabase();
+    const docs = await TestimonialModel.find({ is_published: true })
+      .sort({ sort_order: 1 })
+      .limit(3)
+      .lean();
 
     // No invented fallback testimonials, sections hide until real,
-    // No invented fallback testimonials, sections hide until real,
     // approved quotes are published via the CMS.
-    if (error || !data?.length) return [];
-    return data;
+    if (!docs.length) return [];
+    return toPlainArray(docs) as unknown as TestimonialCard[];
   } catch {
     return [];
   }
@@ -561,18 +532,13 @@ export async function getPublishedTestimonials(): Promise<TestimonialCard[]> {
 
 export async function getActiveSiteAlert(placement: "banner" | "popup") {
   try {
-    const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("site_alerts")
-      .select("*")
-      .eq("is_active", true)
-      .eq("placement", placement)
-      .order("created_at", { ascending: false })
-      .limit(1)
-      .maybeSingle();
+    await connectToDatabase();
+    const doc = await SiteAlertModel.findOne({ is_active: true, placement })
+      .sort({ created_at: -1 })
+      .lean();
 
-    if (error) return null;
-    return data as SiteAlert | null;
+    if (!doc) return null;
+    return toPlain(doc) as unknown as SiteAlert;
   } catch {
     return null;
   }

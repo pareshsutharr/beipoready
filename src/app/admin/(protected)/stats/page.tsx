@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { connectToDatabase } from "@/lib/mongodb";
+import { toPlainArray } from "@/lib/serialize";
+import { SiteStat } from "@/models/SiteStat";
 import {
   Checkbox,
   Field,
@@ -12,11 +14,8 @@ import { deleteSiteStat, saveSiteStat } from "../cms/actions";
 export const metadata: Metadata = { title: "Stats - Be IPO Ready Admin" };
 
 export default async function StatsPage() {
-  const statsResult = await createAdminClient()
-    .from("site_stats")
-    .select("*")
-    .order("sort_order", { ascending: true });
-  const stats = statsResult.data ?? [];
+  await connectToDatabase();
+  const stats = toPlainArray(await SiteStat.find().sort({ sort_order: 1 }).lean());
 
   return (
     <div className="p-8">

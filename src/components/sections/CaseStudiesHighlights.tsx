@@ -125,15 +125,10 @@ function GhostCard({ study, side }: { study: CaseStudyCardType; side: "left" | "
 }
 
 export default function CaseStudiesHighlights({ caseStudies }: { caseStudies: CaseStudyCardType[] }) {
-  if (!caseStudies.length) return null;
-
   const featured = caseStudies.slice(0, 7);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [direction, setDirection] = useState(1);
-  const activeStudy = featured[activeIndex];
-  const previousStudy = featured[(activeIndex - 1 + featured.length) % featured.length];
-  const nextStudy = featured[(activeIndex + 1) % featured.length];
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -146,6 +141,12 @@ export default function CaseStudiesHighlights({ caseStudies }: { caseStudies: Ca
 
     return () => window.clearInterval(timer);
   }, [featured.length, isPaused]);
+
+  if (!caseStudies.length) return null;
+
+  const activeStudy = featured[activeIndex];
+  const previousStudy = featured[(activeIndex - 1 + featured.length) % featured.length];
+  const nextStudy = featured[(activeIndex + 1) % featured.length];
 
   const goPrevious = () => {
     setDirection(-1);

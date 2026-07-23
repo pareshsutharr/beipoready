@@ -2,13 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { createBrowserClient } from "@supabase/ssr";
-import type { Database } from "@/types";
-
-const supabase = createBrowserClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
-);
+import { submitLead } from "@/lib/submit-lead";
 
 type Option = { label: string; score: number };
 type Question = { id: string; text: string; options: Option[] };
@@ -288,7 +282,7 @@ export default function IpoReadinessQuiz() {
     setSubmitting(true);
     setSubmitError(null);
 
-    const { error } = await supabase.from("leads").insert({
+    const ok = await submitLead({
       name: name.trim(),
       email: email.trim(),
       phone: phone.trim(),
@@ -298,7 +292,7 @@ export default function IpoReadinessQuiz() {
     });
 
     setSubmitting(false);
-    if (error) {
+    if (!ok) {
       setSubmitError("Something went wrong. Please try again or contact us directly.");
       return;
     }

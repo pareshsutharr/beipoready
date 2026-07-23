@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { connectToDatabase } from "@/lib/mongodb";
+import { toPlainArray } from "@/lib/serialize";
+import { SiteAlert } from "@/models/SiteAlert";
 import {
   Checkbox,
   Field,
@@ -15,11 +17,8 @@ import { deleteSiteAlert, saveSiteAlert } from "../cms/actions";
 export const metadata: Metadata = { title: "Alerts - Be IPO Ready Admin" };
 
 export default async function AlertsPage() {
-  const alertsResult = await createAdminClient()
-    .from("site_alerts")
-    .select("*")
-    .order("created_at", { ascending: false });
-  const alerts = alertsResult.data ?? [];
+  await connectToDatabase();
+  const alerts = toPlainArray(await SiteAlert.find().sort({ created_at: -1 }).lean());
 
   return (
     <div className="p-8">

@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Send } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
 import EligibilityRail from "@/components/forms/EligibilityRail";
 import {
   EMPTY_ANSWERS,
@@ -197,26 +196,10 @@ export default function GetListedForm() {
     if (!isValidPhone(phone)) { setError("Enter a valid mobile number."); return; }
 
     setStatus("loading");
-    const supabase = createClient();
-
-    let filePath: string | null = null;
-    if (file) {
-      const safeName = file.name.replace(/[^\w.\-]+/g, "_");
-      filePath = `${crypto.randomUUID()}/${safeName}`;
-      const { error: uploadError } = await supabase.storage
-        .from("eligibility-docs")
-        .upload(filePath, file, { contentType: file.type });
-      if (uploadError) {
-        setError("Could not upload the file. Please try again, or submit without it.");
-        setStatus("idle");
-        return;
-      }
-    }
 
     const ofsPct = a.issueSize && a.ofsAmt !== null ? (a.ofsAmt / a.issueSize) * 100 : null;
 
-    // No .select() after .insert(); anon visitors can submit but cannot read.
-    const { error: insertError } = await supabase.from("eligibility_submissions").insert({
+    const payload = {
       organization_name: a.company.trim(),
       incorporation_date: a.incDate || null,
       operational_years: operationalYearsFromDate(a.incDate),
@@ -231,7 +214,6 @@ export default function GetListedForm() {
       net_tangible_assets: a.nta !== null ? `₹${a.nta} Cr` : null,
       fund_purposes: a.objects.length ? a.objects : null,
       fund_purpose_other: a.objects.includes("Other") ? a.objectOther.trim() || null : null,
-      financials_file_path: filePath,
       contact_details: phone.trim(),
       email: email.trim(),
       website: website.trim() || null,
@@ -242,10 +224,16 @@ export default function GetListedForm() {
       bse_status: bse.status,
       answers: a,
       checks: results,
-    });
+    };
+
+    const submission = new FormData();
+    submission.set("payload", JSON.stringify(payload));
+    if (file) submission.set("file", file);
+
+    const response = await fetch("/api/eligibility", { method: "POST", body: submission });
 
     setStatus("idle");
-    if (insertError) {
+    if (!response.ok) {
       setError("Something went wrong. Please try again or email us directly.");
       return;
     }

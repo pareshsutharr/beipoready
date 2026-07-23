@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
+import { submitLead as postLead } from "@/lib/submit-lead";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -68,15 +68,13 @@ export default function IssueCostEstimator() {
     if (!EMAIL_RE.test(email.trim())) { setLeadError("Enter a valid email address."); return; }
 
     setLeadStatus("loading");
-    const supabase = createClient();
-    // No .select() after .insert(); anon visitors can submit leads but cannot read them.
-    const { error } = await supabase.from("leads").insert({
+    const ok = await postLead({
       name: name.trim(),
       email: email.trim(),
       message: `Issue cost estimate requested for issue size ₹${size} Cr (indicative total ${fmtLakhs(totalLow)}–${fmtLakhs(totalHigh)}).`,
       source: "issue-cost-estimator",
     });
-    if (error) {
+    if (!ok) {
       setLeadError("Something went wrong. Please try again or email us directly.");
       setLeadStatus("idle");
       return;

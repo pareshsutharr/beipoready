@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { submitLead } from "@/lib/submit-lead";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import Button from "@/components/ui/Button";
@@ -95,9 +95,7 @@ export default function ContactForm() {
 
     setStatus("loading");
 
-    const supabase = createClient();
-    // No .select() after .insert(); anon visitors can submit leads but cannot read them.
-    const { error } = await supabase.from("leads").insert({
+    const ok = await submitLead({
       name:             values.name.trim(),
       email:            values.email.trim(),
       phone:            values.phone.trim(),
@@ -107,7 +105,7 @@ export default function ContactForm() {
       source:           "contact",
     });
 
-    if (error) {
+    if (!ok) {
       setApiError("Something went wrong. Please try again or email us directly at info@beipoready.com.");
       setStatus("idle");
       return;

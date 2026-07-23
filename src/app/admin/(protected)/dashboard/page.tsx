@@ -1,40 +1,23 @@
 ﻿import type { Metadata } from "next";
-import { cookies } from "next/headers";
-import {
-  ADMIN_SESSION_COOKIE,
-  hasHardcodedAdminSession,
-} from "@/lib/admin-auth";
-import { createAdminClient } from "@/lib/supabase/admin";
-import { createClient } from "@/lib/supabase/server";
+import { connectToDatabase } from "@/lib/mongodb";
+import { Lead } from "@/models/Lead";
 
 export const metadata: Metadata = { title: "Dashboard, Be IPO Ready Admin" };
 
-async function getStats(supabase: Awaited<ReturnType<typeof createClient>>) {
-  const [totalLeads, newLeads, contactLeads, toolLeads] = await Promise.all([
-    supabase.from("leads").select("*", { count: "exact", head: true }),
-    supabase.from("leads").select("*", { count: "exact", head: true }).eq("status", "new"),
-    supabase.from("leads").select("*", { count: "exact", head: true }).eq("source", "contact"),
-    supabase
-      .from("leads")
-      .select("*", { count: "exact", head: true })
-      .in("source", ["readiness-tool", "issue-size-calculator"]),
+async function getStats() {
+  const [total, newCount, contact, tools] = await Promise.all([
+    Lead.countDocuments(),
+    Lead.countDocuments({ status: "new" }),
+    Lead.countDocuments({ source: "contact" }),
+    Lead.countDocuments({ source: { $in: ["readiness-tool", "issue-size-calculator"] } }),
   ]);
 
-  return {
-    total: totalLeads.count ?? 0,
-    new: newLeads.count ?? 0,
-    contact: contactLeads.count ?? 0,
-    tools: toolLeads.count ?? 0,
-  };
+  return { total, new: newCount, contact, tools };
 }
 
 export default async function AdminDashboardPage() {
-  const cookieStore = await cookies();
-  const hasAdminCookie = hasHardcodedAdminSession(
-    cookieStore.get(ADMIN_SESSION_COOKIE)?.value
-  );
-  const supabase = hasAdminCookie ? createAdminClient() : await createClient();
-  const stats = await getStats(supabase);
+  await connectToDatabase();
+  const stats = await getStats();
 
   const STAT_CARDS = [
     { label: "Total Leads", value: stats.total, color: "text-brand-navy" },

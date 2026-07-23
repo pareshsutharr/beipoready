@@ -1,37 +1,8 @@
 @AGENTS.md
 
-## Supabase: RLS + RETURNING interaction for anon/public inserts
+## Data layer
 
-When the `anon` role inserts into `leads`, `blog_posts`, or `case_studies`, **never chain `.select()` after `.insert()`** in client code, and never use `RETURNING` columns in raw SQL tests for these tables as the anon role.
-
-**Why:** `RETURNING` (raw SQL) and `Prefer: return=representation` (PostgREST / Supabase JS `.select()`) both require SELECT privilege on the table. The `anon` role intentionally has no SELECT on `leads` (sensitive data). When SELECT is denied with RLS enabled, Postgres surfaces the error as `42501: new row violates row-level security policy` — making it look like the INSERT policy is broken when it isn't.
-
-**Correct client pattern for lead form submission:**
-```ts
-// ✓ works — no .select(), no RETURNING
-const { error } = await supabase.from('leads').insert({ name, email, source })
-
-// ✗ fails with 42501 even though the INSERT policy allows it
-const { data, error } = await supabase.from('leads').insert({ name, email, source }).select()
-```
-
-**Correct SQL editor test pattern (anon role):**
-```sql
--- ✓ no RETURNING
-BEGIN;
-SET LOCAL ROLE anon;
-INSERT INTO public.leads (name, email, source) VALUES ('Test', 'test@example.com', 'contact');
-ROLLBACK;
-
--- ✗ RETURNING requires SELECT — fails with 42501 as anon
-BEGIN;
-SET LOCAL ROLE anon;
-INSERT INTO public.leads (name, email, source) VALUES ('Test', 'test@example.com', 'contact')
-RETURNING id, name, email;
-ROLLBACK;
-```
-
-This applies equally to `blog_posts` and `case_studies` if the anon role ever needs INSERT on those tables.
+MongoDB via Mongoose (`src/lib/mongodb.ts` singleton connection, models in `src/models/*.ts`). Public-site reads go through `src/lib/cms.ts`; admin CMS mutations go through the Server Actions in `src/app/admin/(protected)/cms/actions.ts`. A parallel REST surface (`/api/blog`, `/api/case-studies`, `/api/faqs`, `/api/clients`, `/api/testimonials`, `/api/site-alerts`, `/api/site-stats`) is protected by the admin JWT cookie (`src/lib/auth.ts`). Public lead-capture forms and the eligibility form post through `/api/leads` and `/api/eligibility` since Mongoose can't run in the browser.
 
 ## Typography — two fonts only
 

@@ -1,12 +1,8 @@
 ﻿import type { Metadata } from "next";
-import { cookies } from "next/headers";
-import {
-  ADMIN_SESSION_COOKIE,
-  hasHardcodedAdminSession,
-} from "@/lib/admin-auth";
-import { createAdminClient } from "@/lib/supabase/admin";
-import { createClient } from "@/lib/supabase/server";
-import type { LeadSource, LeadStatus } from "@/types";
+import { connectToDatabase } from "@/lib/mongodb";
+import { toPlainArray } from "@/lib/serialize";
+import { Lead } from "@/models/Lead";
+import type { Lead as LeadType, LeadSource, LeadStatus } from "@/types";
 
 export const metadata: Metadata = { title: "Leads, Be IPO Ready Admin" };
 
@@ -30,18 +26,19 @@ const STATUS_COLORS: Record<LeadStatus, string> = {
 };
 
 export default async function AdminLeadsPage() {
-  const cookieStore = await cookies();
-  const hasAdminCookie = hasHardcodedAdminSession(
-    cookieStore.get(ADMIN_SESSION_COOKIE)?.value
-  );
-  const supabase = hasAdminCookie ? createAdminClient() : await createClient();
-
-  // Supabase admins use their session cookie; hardcoded admins use the server-only service role.
-  const { data: leads, error } = await supabase
-    .from("leads")
-    .select("id, name, email, phone, company_name, source, message, status, created_at, service_interest")
-    .order("created_at", { ascending: false })
-    .limit(100);
+  await connectToDatabase();
+  const leads = toPlainArray(
+    await Lead.find(
+      {},
+      "name email phone company_name source message status created_at service_interest"
+    )
+      .sort({ created_at: -1 })
+      .limit(100)
+      .lean()
+  ) as unknown as Pick<
+    LeadType,
+    "id" | "name" | "email" | "phone" | "company_name" | "source" | "message" | "status" | "created_at" | "service_interest"
+  >[];
 
   return (
     <div className="p-8">
@@ -49,18 +46,10 @@ export default async function AdminLeadsPage() {
         <div>
           <h1 className="font-heading text-2xl font-bold text-brand-navy">Leads</h1>
           <p className="font-sans text-sm text-slate-500 mt-1">
-            {error ? "Error loading leads." : `${leads?.length ?? 0} leads (most recent 100)`}
+            {`${leads.length} leads (most recent 100)`}
           </p>
         </div>
       </div>
-
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
-          <p className="font-sans text-sm text-red-700">
-            Failed to load leads. Make sure your Supabase RLS policy allows admin users to SELECT from leads.
-          </p>
-        </div>
-      )}
 
       {/* Table */}
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
@@ -79,7 +68,7 @@ export default async function AdminLeadsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
-              {leads && leads.length > 0 ? (
+              {leads.length > 0 ? (
                 leads.map((lead) => (
                   <tr key={lead.id} className="hover:bg-slate-50 transition-colors">
                     <td className="px-4 py-3 text-slate-500 whitespace-nowrap text-xs">
@@ -121,7 +110,7 @@ export default async function AdminLeadsPage() {
               ) : (
                 <tr>
                   <td colSpan={8} className="px-4 py-12 text-center text-slate-400 text-sm">
-                    {error ? "Could not load leads." : "No leads yet."}
+                    No leads yet.
                   </td>
                 </tr>
               )}

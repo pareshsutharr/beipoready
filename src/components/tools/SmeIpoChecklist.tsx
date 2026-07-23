@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Printer } from "lucide-react";
-import { createClient } from "@/lib/supabase/client";
+import { submitLead as postLead } from "@/lib/submit-lead";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -90,15 +90,13 @@ export default function SmeIpoChecklist() {
     if (!EMAIL_RE.test(email.trim())) { setLeadError("Enter a valid email address."); return; }
 
     setLeadStatus("loading");
-    const supabase = createClient();
-    // No .select() after .insert(); anon visitors can submit leads but cannot read them.
-    const { error } = await supabase.from("leads").insert({
+    const ok = await postLead({
       name: name.trim(),
       email: email.trim(),
       message: `Requested the SME IPO Listing Checklist (self-assessed progress: ${done}/${TOTAL_ITEMS}).`,
       source: "sme-ipo-checklist",
     });
-    if (error) {
+    if (!ok) {
       setLeadError("Something went wrong. Please try again or email us directly.");
       setLeadStatus("idle");
       return;

@@ -3,13 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { createBrowserClient } from "@supabase/ssr";
-import type { Database } from "@/types";
-
-const supabase = createBrowserClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
-);
 
 const NAV_ITEMS = [
   {
@@ -110,7 +103,6 @@ export default function AdminSidebar({ email }: { email: string }) {
 
   async function handleSignOut() {
     await fetch("/api/admin/logout", { method: "POST" });
-    await supabase.auth.signOut();
     router.push("/admin/login");
   }
 
