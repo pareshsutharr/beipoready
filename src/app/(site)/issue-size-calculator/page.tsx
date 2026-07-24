@@ -1,11 +1,14 @@
 ﻿import type { Metadata } from "next";
 import IssueSizeCalculator from "@/components/tools/IssueSizeCalculator";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "SME IPO Issue Size Calculator: Instant Estimate",
   description:
     "Get an indicative IPO issue size estimate based on your PAT, industry sector, and growth rate. Uses sector P/E benchmarks. Instant, no sign-up.",
-};
+  path: "/issue-size-calculator",
+  keywords: ["SME IPO issue size calculator", "IPO valuation estimate India"],
+});
 
 export default function IssueSizeCalculatorPage() {
   return (

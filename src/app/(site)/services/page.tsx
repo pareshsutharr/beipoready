@@ -2,12 +2,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Banknote, TrendingUp, LineChart, Scale } from "lucide-react";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Our Services",
   description:
     "Strategic capital-markets advisory, Fund Raising, Pre-IPO Advisory, SME IPO Advisory, and Valuation & Corporate Restructuring for growth-stage and listing-bound companies.",
-};
+  path: "/services",
+  keywords: ["SME IPO advisory services", "fund raising India", "pre-IPO advisory", "valuation and corporate restructuring"],
+});
 
 const SERVICES = [
   {

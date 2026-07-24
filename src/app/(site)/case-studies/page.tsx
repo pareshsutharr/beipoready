@@ -1,14 +1,17 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { getPublishedCaseStudies } from "@/lib/cms";
+import { buildMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Case Studies",
   description:
     "Real SME IPO success stories, how Be IPO Ready guided companies across manufacturing, tech, and healthcare to successful listings on NSE Emerge and BSE SME.",
-};
+  path: "/case-studies",
+  keywords: ["SME IPO case studies", "IPO success stories India", "NSE Emerge listing examples", "BSE SME listing examples"],
+});
 
 function getInitials(name: string) {
   return name.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join("");

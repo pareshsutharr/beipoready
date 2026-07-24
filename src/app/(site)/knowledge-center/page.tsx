@@ -5,14 +5,17 @@ import NewsletterForm from "@/components/forms/NewsletterForm";
 import SmeVsMainBoard from "@/components/sections/SmeVsMainBoard";
 import { articleImageUrl } from "@/lib/article-images";
 import { getPublishedArticles } from "@/lib/cms";
+import { buildMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Knowledge Center",
   description:
     "In-depth guides, regulatory updates, and practical insights on SME IPOs, SEBI compliance, and capital markets, written by Be IPO Ready advisors.",
-};
+  path: "/knowledge-center",
+  keywords: ["SME IPO guides", "SEBI compliance articles", "IPO knowledge center India"],
+});
 
 // The DB only has one regulation-flavoured category ("compliance"); it doubles
 // as the "Regulatory Updates" bucket so the two tabs stay mutually exclusive

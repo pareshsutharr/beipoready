@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Banknote, TrendingUp, LineChart, Scale, type LucideIcon } from "lucide-react";
 import ServiceDetail, { type ServiceData } from "@/components/services/ServiceDetail";
 import { getPublishedClients } from "@/lib/cms";
+import { buildMetadata, SITE_URL } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -270,10 +271,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = SERVICES[slug];
   if (!service) return {};
-  return {
+  return buildMetadata({
     title: service.title,
     description: `${service.tagline}.`,
-  };
+    path: `/services/${slug}`,
+    keywords: [service.title, "SME IPO advisory", "BEIPOREADY services"],
+  });
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
@@ -284,8 +287,22 @@ export default async function ServiceDetailPage({ params }: Props) {
   const Icon = SERVICE_ICONS[slug];
   const clients = await getPublishedClients();
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.tagline,
+    provider: { "@type": "Organization", name: "BEIPOREADY", url: SITE_URL },
+    areaServed: "IN",
+    url: `${SITE_URL}/services/${slug}`,
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       {/* ── Service name tab (fixed, left edge, vertically centered) ──── */}
       <Link
         href="/services"

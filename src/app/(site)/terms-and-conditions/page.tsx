@@ -1,9 +1,11 @@
 ﻿import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Terms & Conditions",
   description: "Terms and Conditions governing use of the Be IPO Ready website and services.",
-};
+  path: "/terms-and-conditions",
+});
 
 export default function TermsPage() {
   return (

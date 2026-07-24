@@ -2,6 +2,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCaseStudyBySlug } from "@/lib/cms";
+import { buildMetadata, isoDate, SITE_URL } from "@/lib/seo";
 
 const SECTOR_IMAGES: Record<string, string> = {
   "Agro Processing":         "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&h=700&fit=crop&q=85",
@@ -20,10 +21,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const cs = await getCaseStudyBySlug(slug);
   if (!cs) return {};
-  return {
+  return buildMetadata({
     title: `Case Study: ${cs.company}`,
     description: `${cs.company}, ${cs.issueSize} IPO on ${cs.exchange}, ${cs.subscription} oversubscribed. ${cs.summary.slice(0, 100)}...`,
-  };
+    path: `/case-studies/${slug}`,
+    keywords: [cs.company, cs.sector, cs.exchange, "SME IPO case study"],
+    image: cs.coverImageUrl ? { url: cs.coverImageUrl, alt: cs.company } : undefined,
+  });
 }
 
 export default async function CaseStudyDetailPage({ params }: Props) {
@@ -31,8 +35,24 @@ export default async function CaseStudyDetailPage({ params }: Props) {
   const cs = await getCaseStudyBySlug(slug);
   if (!cs) notFound();
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: `Case Study: ${cs.company}`,
+    description: cs.summary,
+    image: cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE,
+    datePublished: isoDate(cs.publishedAt),
+    author: { "@type": "Organization", name: "BEIPOREADY" },
+    publisher: { "@type": "Organization", name: "BEIPOREADY", logo: { "@type": "ImageObject", url: `${SITE_URL}/logo-transparent.png` } },
+    mainEntityOfPage: `${SITE_URL}/case-studies/${slug}`,
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative bg-brand-navy py-20 sm:py-24 overflow-hidden">
         <img src={cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />

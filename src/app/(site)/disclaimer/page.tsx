@@ -1,10 +1,12 @@
 ﻿import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Disclaimer",
   description:
     "Regulatory and investment disclaimers for Be IPO Ready, a SEBI-registered merchant banking advisory firm.",
-};
+  path: "/disclaimer",
+});
 
 export default function DisclaimerPage() {
   return (

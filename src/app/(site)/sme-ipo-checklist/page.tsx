@@ -1,11 +1,14 @@
 ﻿import type { Metadata } from "next";
 import SmeIpoChecklist from "@/components/tools/SmeIpoChecklist";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "SME IPO Listing Checklist: Step-by-Step Guide",
   description:
     "The step-by-step SME IPO checklist for NSE Emerge and BSE SME, eligibility, readiness, intermediaries, DRHP filing, listing and post-listing compliance.",
-};
+  path: "/sme-ipo-checklist",
+  keywords: ["SME IPO checklist", "NSE Emerge listing checklist", "BSE SME listing checklist", "DRHP filing checklist"],
+});
 
 export default function SmeIpoChecklistPage() {
   return (

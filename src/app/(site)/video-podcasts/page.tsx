@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Clapperboard } from "lucide-react";
 import NewsletterForm from "@/components/forms/NewsletterForm";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Video & Podcasts",
   description:
     "Watch and listen to advisor conversations on SME IPO readiness, SEBI compliance, and going public, from the Be IPO Ready team.",
-};
+  path: "/video-podcasts",
+  keywords: ["SME IPO podcast", "IPO advisory videos India"],
+});
 
 export default function VideoPodcastsPage() {
   return (

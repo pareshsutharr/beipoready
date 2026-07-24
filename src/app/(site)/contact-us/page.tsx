@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ContactForm from "@/components/forms/ContactForm";
 import ClientsMarquee from "@/components/sections/ClientsMarquee";
 import { getPublishedClients } from "@/lib/cms";
+import { buildMetadata } from "@/lib/seo";
 
 const CONTACT_EMAIL = "info@beipoready.com";
 const CONTACT_PHONE_DISPLAY = "+91 95377 67203";
@@ -9,11 +10,13 @@ const CONTACT_PHONE_HREF = "+919537767203";
 const CONTACT_ADDRESS =
   "2001, 20th Floor, The Junomoneta Tower, RTO, Near Rajhans Cinema, Opp. Pal, Adajan, Surat, Gujarat 395009";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Contact Us",
   description:
     "Speak with a Be IPO Ready advisor about SME IPO advisory, pre-IPO fundraising, or IPO readiness. Book a consultation today.",
-};
+  path: "/contact-us",
+  keywords: ["contact BEIPOREADY", "IPO advisor consultation", "SME IPO enquiry"],
+});
 
 export const dynamic = "force-dynamic";
 

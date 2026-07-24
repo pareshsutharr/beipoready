@@ -4,14 +4,17 @@ import FaqAccordion from "@/components/sections/FaqAccordion";
 import { getPublishedFaqGroups } from "@/lib/cms";
 import { HOME_FAQS } from "@/lib/home-faqs";
 import { SERVICES } from "@/lib/services-data";
+import { buildMetadata } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "FAQs: SME IPO Questions Answered",
   description:
     "Answers to the most common questions about SME IPOs, eligibility, process, costs, documentation, and post-listing compliance obligations.",
-};
+  path: "/faqs",
+  keywords: ["SME IPO FAQs", "SME IPO eligibility questions", "IPO process India FAQ"],
+});
 
 export default async function FAQsPage() {
   const publishedGroups = await getPublishedFaqGroups();

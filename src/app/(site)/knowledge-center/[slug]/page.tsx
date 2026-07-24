@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getArticleBySlug } from "@/lib/cms";
+import { buildMetadata, isoDate, SITE_URL } from "@/lib/seo";
 
 const CATEGORY_IMAGES: Record<string, string> = {
   Regulation:    "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&h=600&fit=crop&q=85",
@@ -22,10 +23,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = await getArticleBySlug(slug);
   if (!article) return {};
-  return {
+  return buildMetadata({
     title: article.title,
     description: article.excerpt,
-  };
+    path: `/knowledge-center/${slug}`,
+    keywords: [article.category, "SME IPO", "BEIPOREADY knowledge center"],
+    image: article.coverImageUrl
+      ? { url: article.coverImageUrl, alt: article.title }
+      : { url: CATEGORY_IMAGES[article.category] ?? DEFAULT_ARTICLE_IMAGE, alt: article.title },
+  });
 }
 
 function renderMarkdown(body: string): ReactNode[] {
@@ -70,8 +76,25 @@ export default async function ArticlePage({ params }: Props) {
 
   if (!article) notFound();
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.excerpt,
+    image: article.coverImageUrl ?? CATEGORY_IMAGES[article.category] ?? DEFAULT_ARTICLE_IMAGE,
+    datePublished: isoDate(article.publishedAt),
+    articleSection: article.category,
+    author: { "@type": "Organization", name: "BEIPOREADY" },
+    publisher: { "@type": "Organization", name: "BEIPOREADY", logo: { "@type": "ImageObject", url: `${SITE_URL}/logo-transparent.png` } },
+    mainEntityOfPage: `${SITE_URL}/knowledge-center/${slug}`,
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <section className="relative bg-brand-navy py-20 sm:py-24 overflow-hidden">
         <img src={article.coverImageUrl ?? CATEGORY_IMAGES[article.category] ?? DEFAULT_ARTICLE_IMAGE} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />

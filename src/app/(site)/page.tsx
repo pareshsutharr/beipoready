@@ -1,4 +1,6 @@
-﻿import Hero from "@/components/sections/Hero";
+﻿import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
+import Hero from "@/components/sections/Hero";
 import StatsBanner from "@/components/sections/StatsBanner";
 import WhatWeDo from "@/components/sections/WhatWeDo";
 import PositioningBanner from "@/components/sections/PositioningBanner";
@@ -19,6 +21,21 @@ import {
 } from "@/lib/cms";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = buildMetadata({
+  title: "BEIPOREADY | India's Leading SME IPO Advisor & Growth Capital Expert",
+  description:
+    "IPO advisory, pre-IPO readiness and growth-capital fundraising for Indian businesses including NSE Emerge & BSE SME listings. Book an IPO readiness call with BEIPOREADY.",
+  path: "/",
+  keywords: [
+    "SME IPO advisor India",
+    "IPO readiness assessment",
+    "NSE Emerge IPO advisory",
+    "BSE SME IPO advisory",
+    "pre-IPO fundraising",
+    "growth capital advisors India",
+  ],
+});
 
 export default async function Home() {
   const [stats, clients, caseStudies, newsAlertItems] = await Promise.all([

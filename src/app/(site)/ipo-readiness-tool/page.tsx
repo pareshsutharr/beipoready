@@ -1,11 +1,14 @@
 ﻿import type { Metadata } from "next";
 import IpoReadinessQuiz from "@/components/tools/IpoReadinessQuiz";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "IPO Readiness Tool, 20-Question Assessment",
   description:
     "Find out if your company is ready for an SME IPO. Answer 20 questions across 5 domains and get a personalised readiness score with recommendations, in under 10 minutes.",
-};
+  path: "/ipo-readiness-tool",
+  keywords: ["IPO readiness assessment", "SME IPO readiness score", "am I ready for IPO"],
+});
 
 export default function IpoReadinessToolPage() {
   return (

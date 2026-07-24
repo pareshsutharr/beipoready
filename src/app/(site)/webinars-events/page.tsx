@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendarClock } from "lucide-react";
 import NewsletterForm from "@/components/forms/NewsletterForm";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Webinars & Events",
   description:
     "Live sessions, panel discussions, and upcoming events on SME IPO readiness, SEBI compliance, and going public, hosted by Be IPO Ready advisors.",
-};
+  path: "/webinars-events",
+  keywords: ["SME IPO webinars", "IPO events India"],
+});
 
 export default function WebinarsEventsPage() {
   return (

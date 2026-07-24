@@ -1,11 +1,14 @@
 ﻿import type { Metadata } from "next";
 import GetListedForm from "@/components/forms/GetListedForm";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "Get Listed, IPO Eligibility Form",
   description:
     "Check your company's eligibility for an SME IPO. Share your incorporation details, financials and fund-raising goals, our advisors will assess your readiness to get listed.",
-};
+  path: "/get-listed",
+  keywords: ["SME IPO eligibility form", "get listed NSE Emerge", "get listed BSE SME"],
+});
 
 export default function GetListedPage() {
   return (
