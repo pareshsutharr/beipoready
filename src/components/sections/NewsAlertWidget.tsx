@@ -22,8 +22,7 @@ export default function NewsAlertWidget({ items }: { items: NewsAlertItem[] }) {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open news and alerts"
-        className="hidden sm:flex fixed bottom-6 right-6 z-40 flex-col items-center justify-center gap-3  text-white  duration-200 cursor-pointer bg-white  "
-        style={{padding:"20px 10px",borderRadius:"20px 0px 20px 0px"}}
+        className="hidden sm:flex fixed bottom-6 right-6 z-40 flex-col items-center justify-center gap-3  text-white  duration-200 cursor-pointer bg-white   px-[10px] py-5 rounded-[20px_0px_20px_0px]"
       >
         <span className="relative flex items-center justify-center w-14 h-14 rounded-full bg-brand-gold text-white animate-attention-glow">
           <Megaphone className="w-7 h-7 text-white" aria-hidden="true" />

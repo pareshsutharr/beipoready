@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from "next";
+import Image from "next/image";
 import IssueSizeCalculator from "@/components/tools/IssueSizeCalculator";
 import { buildMetadata } from "@/lib/seo";
 
@@ -14,8 +15,15 @@ export default function IssueSizeCalculatorPage() {
   return (
     <main>
       <section className="relative bg-brand-navy py-16 sm:py-20 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=600&fit=crop&q=85" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <Image
+          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=600&fit=crop&q=85"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-15"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,15,30,0.65)_0%,rgba(15,45,82,0.55)_100%)]" aria-hidden="true" />
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Online Tool

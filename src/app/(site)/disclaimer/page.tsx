@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
+import ObfuscatedEmailAnchor from "@/components/ObfuscatedEmailAnchor";
 
 export const metadata: Metadata = buildMetadata({
   title: "Disclaimer",
@@ -10,7 +11,7 @@ export const metadata: Metadata = buildMetadata({
 
 export default function DisclaimerPage() {
   return (
-    <main className="bg-brand-cream py-16 sm:py-20">
+    <div className="bg-brand-cream py-16 sm:py-20">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-2">Disclaimer</h1>
         <p className="font-sans text-sm text-slate-400 mb-10">Last updated: June 2026</p>
@@ -89,13 +90,13 @@ export default function DisclaimerPage() {
           <section>
             <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">Contact</h2>
             <p>
-              For any questions or concerns regarding this Disclaimer, please contact us at
-              info@beipoready.com.
+              For any questions or concerns regarding this Disclaimer, please contact us at{" "}
+              <ObfuscatedEmailAnchor className="underline hover:text-brand-gold transition-colors" fallbackLabel="our email" />.
             </p>
           </section>
 
         </div>
       </div>
-    </main>
+    </div>
   );
 }

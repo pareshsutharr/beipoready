@@ -15,7 +15,7 @@ function ArticleCard({ article, featured = false }: { article: ArticleCard; feat
       <div className="relative overflow-hidden">
         <Image
           src={articleImageUrl(article)}
-          alt=""
+          alt={article.title}
           fill
           sizes={featured ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 100vw"}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -63,7 +63,7 @@ export default function KnowledgeCorner({ articles }: { articles: ArticleCard[] 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-gold">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-brand-gold-ink">
               Knowledge Corner
             </p>
             <h2 id="knowledge-heading" className="font-heading text-3xl font-bold text-brand-navy sm:text-4xl">

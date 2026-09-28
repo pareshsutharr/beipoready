@@ -56,8 +56,14 @@ export default async function AdminDashboardPage() {
             View All Leads →
           </a>
           <a
-            href="/admin/blogs"
+            href="/admin/emails"
             className="inline-flex items-center gap-2 px-4 py-2 bg-brand-gold text-brand-navy text-sm font-semibold rounded-lg hover:bg-amber-400 transition-colors"
+          >
+            Email Center →
+          </a>
+          <a
+            href="/admin/blogs"
+            className="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 text-slate-600 text-sm font-semibold rounded-lg hover:bg-slate-50 transition-colors"
           >
             Blogs →
           </a>

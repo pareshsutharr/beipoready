@@ -303,7 +303,7 @@ export default function GetListedForm() {
       {/* 01 — Company */}
       <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-8">
         <div className="flex items-baseline gap-3 pb-4 mb-5 border-b border-slate-100">
-          <span className="font-sans text-xs font-bold text-brand-gold tracking-widest">01</span>
+          <span className="font-sans text-xs font-bold text-brand-gold-ink tracking-widest">01</span>
           <h2 className="font-heading text-lg font-bold text-brand-navy">The company</h2>
         </div>
 
@@ -385,7 +385,7 @@ export default function GetListedForm() {
       {/* 02 — Financials */}
       <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-8">
         <div className="flex items-baseline gap-3 pb-4 mb-5 border-b border-slate-100">
-          <span className="font-sans text-xs font-bold text-brand-gold tracking-widest">02</span>
+          <span className="font-sans text-xs font-bold text-brand-gold-ink tracking-widest">02</span>
           <h2 className="font-heading text-lg font-bold text-brand-navy">Financials</h2>
         </div>
 
@@ -448,7 +448,7 @@ export default function GetListedForm() {
       {/* 03 — Proposed issue */}
       <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-8">
         <div className="flex items-baseline gap-3 pb-4 mb-5 border-b border-slate-100">
-          <span className="font-sans text-xs font-bold text-brand-gold tracking-widest">03</span>
+          <span className="font-sans text-xs font-bold text-brand-gold-ink tracking-widest">03</span>
           <h2 className="font-heading text-lg font-bold text-brand-navy">The proposed issue</h2>
         </div>
 
@@ -493,7 +493,7 @@ export default function GetListedForm() {
       {/* 04 — Compliance */}
       <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-8">
         <div className="flex items-baseline gap-3 pb-4 mb-5 border-b border-slate-100">
-          <span className="font-sans text-xs font-bold text-brand-gold tracking-widest">04</span>
+          <span className="font-sans text-xs font-bold text-brand-gold-ink tracking-widest">04</span>
           <h2 className="font-heading text-lg font-bold text-brand-navy">Compliance and disclosures</h2>
         </div>
 
@@ -555,7 +555,7 @@ export default function GetListedForm() {
       {/* 05 — Contact */}
       <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 sm:p-8">
         <div className="flex items-baseline gap-3 pb-4 mb-5 border-b border-slate-100">
-          <span className="font-sans text-xs font-bold text-brand-gold tracking-widest">05</span>
+          <span className="font-sans text-xs font-bold text-brand-gold-ink tracking-widest">05</span>
           <h2 className="font-heading text-lg font-bold text-brand-navy">Where should we send the assessment?</h2>
         </div>
 

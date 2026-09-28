@@ -122,8 +122,7 @@ function Case({ clients }: { clients: ClientLogoCard[] }) {
           <CarouselContent className="-ml-[30px] py-8">
             {items.map((client, index) => (
               <CarouselItem
-                className="pl-[30px]"
-                style={{ flex: "0 0 244px" }}
+                className="pl-[30px] [flex:0_0_244px]"
                 key={`${client.name}-${index}`}
               >
                 <ClientLogoTile client={client} />

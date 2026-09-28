@@ -35,7 +35,7 @@ export default function SelectField({
           className={[
             "w-full appearance-none rounded-lg border bg-white px-4 py-2.5 pr-10 font-sans text-sm transition-colors duration-150",
             "focus:outline-none focus:ring-2 focus:ring-offset-1",
-            value ? "text-slate-800" : "text-slate-400",
+            value ? "text-slate-800" : "text-slate-600",
             error
               ? "border-red-400 focus:ring-red-400"
               : "border-slate-300 focus:border-brand-navy focus:ring-brand-navy/30",

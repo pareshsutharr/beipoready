@@ -35,6 +35,9 @@ export type LeadSource =
   | "services";
 
 export type LeadStatus = "new" | "contacted" | "qualified" | "closed";
+export type OutboundEmailAudienceKind = "manual" | "leads";
+export type OutboundEmailStatus = "sent" | "partial" | "failed";
+export type OutboundEmailRecipientStatus = "sent" | "failed";
 
 export type SiteAlertPlacement = "banner" | "popup";
 
@@ -93,6 +96,36 @@ export type CaseStudy = {
   status: ContentStatus;
   show_in_news_alert: boolean;
   published_at: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type ServiceStage = {
+  stage: string;
+  timeframe: string;
+  items: string[];
+  deliverables: string[];
+};
+
+export type ServiceApproachItem = { title: string; text: string };
+export type ServiceFaqItem = { q: string; a: string };
+
+export type ServiceRecord = {
+  id: string;
+  slug: string;
+  title: string;
+  tagline: string;
+  summary: string;
+  icon: string;
+  cover_image_url: string | null;
+  overview: string[];
+  who_its_for: string[];
+  process: ServiceStage[];
+  timeline: string;
+  approach: ServiceApproachItem[];
+  faq: ServiceFaqItem[];
+  status: ContentStatus;
+  sort_order: number;
   created_at: string;
   updated_at: string;
 };
@@ -162,6 +195,7 @@ export type Faq = {
 
 export type Lead = {
   id: string;
+  serial_number: string | null;
   name: string;
   email: string;
   phone: string | null;
@@ -173,6 +207,42 @@ export type Lead = {
   issue_size_estimate: string | null;
   status: LeadStatus;
   notes: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type OutboundEmailRecipient = {
+  email: string;
+  lead_source: LeadSource | string | null;
+  status: OutboundEmailRecipientStatus;
+  message_id: string | null;
+  response: string | null;
+  error: string | null;
+  tracking_token: string | null;
+  click_count: number;
+};
+
+export type OutboundEmailCampaign = {
+  id: string;
+  audience_kind: OutboundEmailAudienceKind;
+  audience_label: string;
+  source_filter: LeadSource | string | null;
+  subject: string;
+  body: string;
+  format: "text" | "html";
+  initiated_by_email: string;
+  send_copy_to_sender: boolean;
+  copy_recipient: string | null;
+  copy_status: OutboundEmailRecipientStatus | null;
+  copy_message_id: string | null;
+  copy_response: string | null;
+  copy_error: string | null;
+  attempted_count: number;
+  sent_count: number;
+  failed_count: number;
+  status: OutboundEmailStatus;
+  recipients: OutboundEmailRecipient[];
+  clicked_count: number;
   created_at: string;
   updated_at: string;
 };
@@ -217,4 +287,3 @@ export type EligibilitySubmission = {
   created_at: string;
   updated_at: string;
 };
-

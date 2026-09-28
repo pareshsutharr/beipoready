@@ -35,3 +35,19 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # beipoready
+
+## Daily IPO refresh
+
+`pnpm run scrape` fetches current IPO issue records from the NSE and BSE JSON
+endpoints and writes `data/ipos.json`. It only replaces that file when both
+exchanges return records, so a blocked or broken source cannot erase the last
+known-good data. Refresh events and failures are appended to
+`data/last-run.log`.
+
+The public tracker is available at `/ipo-market`; the same data is available at
+`/api/ipos`, with optional `?source=nse|bse` and `?status=upcoming|live|closed`
+filters.
+
+For a VPS, use the system cron example in `deploy/ipo-scrape.cron.example` for
+the daily refresh. It keeps the scraper independent of the Next/PM2 process;
+PM2 should supervise the web app, while cron invokes the short-lived scraper.

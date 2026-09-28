@@ -1,0 +1,27 @@
+# BEIPOREADY
+
+> BEIPOREADY (Jainam Capital Advisors) is an IPO advisory and growth-capital fundraising firm for Indian SMEs, helping companies get IPO-ready and list on NSE Emerge and BSE SME.
+
+BEIPOREADY guides Indian small and mid-sized businesses through the full IPO journey — pre-IPO readiness, valuation and corporate restructuring, fund raising, and SME IPO advisory — from early growth-capital raises through to a public listing on NSE Emerge or BSE SME.
+
+## Services
+
+- [Fund Raising](https://beipoready.com/services/fund-raising): Growth-capital and pre-IPO fund raising for Indian SMEs.
+- [Pre-IPO Advisory](https://beipoready.com/services/pre-ipo-advisory): Readiness assessment and preparation before an SME IPO.
+- [SME IPO Advisory](https://beipoready.com/services/sme-ipo-advisory): End-to-end advisory for listing on NSE Emerge and BSE SME.
+- [Valuation & Corporate Restructuring](https://beipoready.com/services/valuation-corporate-restructuring): Valuation and restructuring ahead of a public listing.
+
+## Tools
+
+- [IPO Readiness Tool](https://beipoready.com/ipo-readiness-tool): Self-assessment quiz for IPO readiness.
+- [Issue Size Calculator](https://beipoready.com/issue-size-calculator): Estimate IPO issue size.
+- [Issue Cost Estimator](https://beipoready.com/issue-cost-estimator): Estimate the cost of an SME IPO.
+- [SME IPO Listing Checklist](https://beipoready.com/sme-ipo-checklist): Checklist of requirements to list on NSE Emerge / BSE SME.
+
+## Company
+
+- [About Us](https://beipoready.com/about-us)
+- [Case Studies](https://beipoready.com/case-studies): Companies BEIPOREADY has taken public.
+- [Knowledge Center](https://beipoready.com/knowledge-center): Articles on SME IPOs and growth capital.
+- [FAQs](https://beipoready.com/faqs)
+- [Contact Us](https://beipoready.com/contact-us)

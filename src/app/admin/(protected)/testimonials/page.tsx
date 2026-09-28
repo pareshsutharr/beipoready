@@ -35,7 +35,7 @@ export default async function TestimonialsPage() {
             <Field label="Client Title" name="client_title" />
             <Field label="Company Name" name="company_name" />
             <Field label="Industry" name="industry" />
-            <Field label="Image URL" name="image_url" placeholder="client photo or company logo URL" />
+            <Field label="Image URL" name="image_url" placeholder="client photo or company logo URL" hint="Direct image link only, not a share/viewer page (e.g. not an ibb.co page link)." />
             <TextArea label="Quote" name="quote" required />
             <Field label="Outcome" name="outcome" />
             <Field label="Case Study Slug" name="case_study_slug" />
@@ -63,7 +63,7 @@ export default async function TestimonialsPage() {
               <Field label="Client Title" name="client_title" defaultValue={item.client_title} />
               <Field label="Company Name" name="company_name" defaultValue={item.company_name} />
               <Field label="Industry" name="industry" defaultValue={item.industry} />
-              <Field label="Image URL" name="image_url" defaultValue={item.image_url} />
+              <Field label="Image URL" name="image_url" defaultValue={item.image_url} hint="Direct image link only, not a share/viewer page (e.g. not an ibb.co page link)." />
               <TextArea label="Quote" name="quote" defaultValue={item.quote} required />
               <Field label="Outcome" name="outcome" defaultValue={item.outcome} />
               <Field label="Case Study Slug" name="case_study_slug" defaultValue={item.case_study_slug} />

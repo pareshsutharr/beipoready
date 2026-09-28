@@ -14,11 +14,10 @@ export default function SmeIpoChecklistPage() {
   return (
     <main>
       <section className="relative bg-brand-navy py-16 sm:py-20 overflow-hidden">
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.4) 0%,rgba(15,45,82,0.2) 100%)" }} aria-hidden="true" />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,15,30,0.4)_0%,rgba(15,45,82,0.2)_100%)]" aria-hidden="true" />
         <div
-          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[radial-gradient(circle,#ECB85B_1px,transparent_1px)] bg-[length:32px_32px]"
           aria-hidden="true"
-          style={{ backgroundImage: "radial-gradient(circle, #ECB85B 1px, transparent 1px)", backgroundSize: "32px 32px" }}
         />
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">

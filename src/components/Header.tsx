@@ -11,7 +11,6 @@ import {
   ClipboardCheck,
   Calculator,
   ReceiptText,
-  ListChecks,
   FileCheck2,
   NotebookPen,
   FileSearch2,
@@ -39,6 +38,7 @@ const toolLinks: { label: string; href: string; icon: LucideIcon }[] = [
   { label: "IPO Readiness Tool", href: "/ipo-readiness-tool", icon: ClipboardCheck },
   { label: "Issue Size Calculator", href: "/issue-size-calculator", icon: Calculator },
   { label: "Issue Cost Estimator", href: "/issue-cost-estimator", icon: ReceiptText },
+  // { label: "Live IPO Tracker", href: "/ipo-market", icon: LineChart },
   // { label: "SME IPO Listing Checklist", href: "/sme-ipo-checklist", icon: ListChecks },
   { label: "Get Listed: Eligibility Form", href: "/get-listed", icon: FileCheck2 },
 ];
@@ -79,8 +79,7 @@ export default function Header({ newsAlertItems = [] }: { newsAlertItems?: NewsA
 
   return (
     <header
-      className="sticky top-0 z-50"
-      style={{ background: "#ffffff", borderBottom: "1px solid #E8EDF2", boxShadow: "0 1px 8px rgba(13,74,111,0.06)" }}
+      className="sticky top-0 z-50 bg-white border-b border-b-[#E8EDF2] shadow-[0_1px_8px_rgba(13,74,111,0.06)]"
     >
       {/* ── Main nav ── */}
       <nav ref={navRef} aria-label="Main navigation" className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center h-16 gap-1">
@@ -106,10 +105,7 @@ export default function Header({ newsAlertItems = [] }: { newsAlertItems?: NewsA
                   aria-haspopup="true"
                   aria-expanded={openDropdown === link.label}
                   onClick={() => setOpenDropdown(openDropdown === link.label ? null : link.label)}
-                  className="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-md whitespace-nowrap transition-colors duration-150 cursor-pointer"
-                  style={{ color: openDropdown === link.label ? "#0D4A6F" : "#374151" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "#0D4A6F")}
-                  onMouseLeave={e => (e.currentTarget.style.color = openDropdown === link.label ? "#0D4A6F" : "#374151")}
+                  className={`flex items-center gap-1 px-2 xl:px-3 py-2 rounded-md whitespace-nowrap transition-colors duration-150 cursor-pointer hover:text-[#0D4A6F] ${openDropdown === link.label ? "text-[#0D4A6F]" : "text-[#374151]"}`}
                 >
                   {link.label}
                   <svg
@@ -122,12 +118,11 @@ export default function Header({ newsAlertItems = [] }: { newsAlertItems?: NewsA
 
                 {openDropdown === link.label && (
                   <div className="absolute top-full left-0 mt-1.5 bg-white rounded-xl shadow-xl border border-slate-100 py-1.5 z-50 min-w-[230px]">
-                    <div className="h-0.5 mb-1.5 mx-2 rounded-full" style={{ background: "linear-gradient(90deg,#0D4A6F,#ECB85B)" }} aria-hidden="true" />
+                    <div className="h-0.5 mb-1.5 mx-2 rounded-full bg-[linear-gradient(90deg,#0D4A6F,#ECB85B)]" aria-hidden="true" />
                     {link.href !== "#" && (
                       <Link
                         href={link.href}
-                        className="block px-4 py-2.5 text-[13px] font-bold border-b border-slate-100 hover:bg-blue-50 transition-colors"
-                        style={{ color: "#0D4A6F" }}
+                        className="block px-4 py-2.5 text-[13px] font-bold border-b border-slate-100 hover:bg-blue-50 transition-colors text-[#0D4A6F]"
                         onClick={() => setOpenDropdown(null)}
                       >
                         All {link.label} →
@@ -170,10 +165,7 @@ export default function Header({ newsAlertItems = [] }: { newsAlertItems?: NewsA
             aria-expanded={openDropdown === "news"}
             aria-label="News and alerts"
             onClick={() => setOpenDropdown(openDropdown === "news" ? null : "news")}
-            className="relative flex items-center justify-center w-9 h-9 rounded-md transition-colors duration-150 cursor-pointer"
-            style={{ color: openDropdown === "news" ? "#0D4A6F" : "#374151" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#0D4A6F")}
-            onMouseLeave={e => (e.currentTarget.style.color = openDropdown === "news" ? "#0D4A6F" : "#374151")}
+            className={`relative flex items-center justify-center w-9 h-9 rounded-md transition-colors duration-150 cursor-pointer hover:text-[#0D4A6F] ${openDropdown === "news" ? "text-[#0D4A6F]" : "text-[#374151]"}`}
           >
             <Bell className="w-5 h-5" aria-hidden="true" />
             {newsAlertItems.length > 0 && (
@@ -185,8 +177,8 @@ export default function Header({ newsAlertItems = [] }: { newsAlertItems?: NewsA
 
           {openDropdown === "news" && (
             <div className="absolute top-full right-0 mt-1.5 bg-white rounded-xl shadow-xl border border-slate-100 z-50 w-[340px] max-w-[90vw] max-h-[70vh] overflow-y-auto">
-              <div className="h-0.5 mb-1.5 mx-2 mt-1.5 rounded-full" style={{ background: "linear-gradient(90deg,#0D4A6F,#ECB85B)" }} aria-hidden="true" />
-              <p className="px-4 pt-1 pb-2 text-[13px] font-bold" style={{ color: "#0D4A6F" }}>
+              <div className="h-0.5 mb-1.5 mx-2 mt-1.5 rounded-full bg-[linear-gradient(90deg,#0D4A6F,#ECB85B)]" aria-hidden="true" />
+              <p className="px-4 pt-1 pb-2 text-[13px] font-bold text-[#0D4A6F]">
                 News &amp; Alerts
               </p>
               {newsAlertItems.length === 0 ? (
@@ -219,16 +211,14 @@ export default function Header({ newsAlertItems = [] }: { newsAlertItems?: NewsA
         {/* CTA button */}
         <Link
           href="/contact-us"
-          className="hidden lg:inline-flex items-center ml-2 xl:ml-3 px-3 xl:px-5 py-2.5 rounded-lg font-bold whitespace-nowrap text-[12.5px] xl:text-[13.5px] hover:opacity-90 active:scale-95 transition-all duration-150 cursor-pointer shrink-0"
-          style={{ background: "#ECB85B", color: "#0D4A6F", boxShadow: "0 2px 12px rgba(236,184,91,0.35)" }}
+          className="hidden lg:inline-flex items-center ml-2 xl:ml-3 px-3 xl:px-5 py-2.5 rounded-lg font-bold whitespace-nowrap text-[12.5px] xl:text-[13.5px] hover:opacity-90 active:scale-95 transition-all duration-150 cursor-pointer shrink-0 bg-[#ECB85B] text-[#0D4A6F] shadow-[0_2px_12px_rgba(236,184,91,0.35)]"
         >
           Book an IPO Readiness Call
         </Link>
 
         {/* Mobile burger */}
         <button
-          className="lg:hidden ml-1 p-2 rounded-md transition-colors cursor-pointer"
-          style={{ color: "#0D4A6F" }}
+          className="lg:hidden ml-1 p-2 rounded-md transition-colors cursor-pointer text-[#0D4A6F]"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
@@ -247,13 +237,7 @@ export default function Header({ newsAlertItems = [] }: { newsAlertItems?: NewsA
 
       {/* ── Mobile menu ── */}
       <div
-        className="lg:hidden overflow-hidden transition-all duration-300"
-        style={{
-          maxHeight: mobileOpen ? "90vh" : "0",
-          background: "#ffffff",
-          borderTop: mobileOpen ? "1px solid #E8EDF2" : "none",
-          overflowY: "auto",
-        }}
+        className={`lg:hidden overflow-hidden transition-all duration-300 bg-white overflow-y-auto ${mobileOpen ? "max-h-[90vh] border-t border-t-[#E8EDF2]" : "max-h-0 border-t-0"}`}
       >
         <ul className="max-w-7xl mx-auto px-4 py-3 space-y-0.5" role="list">
           {navLinks.map((link) => (
@@ -309,8 +293,7 @@ export default function Header({ newsAlertItems = [] }: { newsAlertItems?: NewsA
           <Link
             href="/contact-us"
             onClick={() => setMobileOpen(false)}
-            className="flex items-center justify-center w-full px-6 py-3.5 rounded-lg font-bold text-[#0D4A6F] text-sm cursor-pointer hover:opacity-90 transition-opacity"
-            style={{ background: "#ECB85B" }}
+            className="flex items-center justify-center w-full px-6 py-3.5 rounded-lg font-bold text-[#0D4A6F] text-sm cursor-pointer hover:opacity-90 transition-opacity bg-[#ECB85B]"
           >
             Book an IPO Readiness Call
           </Link>

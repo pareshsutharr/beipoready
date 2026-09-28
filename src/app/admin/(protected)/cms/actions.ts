@@ -1,6 +1,9 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
+import { getAdminSession } from "@/lib/auth";
+import { sendContentAnnouncement } from "@/lib/content-announcement";
 import { connectToDatabase } from "@/lib/mongodb";
 import { deletePublicUpload, saveUploadedImage } from "@/lib/upload";
 import { BlogPost } from "@/models/BlogPost";
@@ -10,6 +13,11 @@ import { Client } from "@/models/Client";
 import { SiteStat } from "@/models/SiteStat";
 import { SiteAlert } from "@/models/SiteAlert";
 import { Faq } from "@/models/Faq";
+import { Service } from "@/models/Service";
+import { NotificationSettings } from "@/models/NotificationSettings";
+import { parseEmailList } from "@/lib/notify-admin";
+import { deliverWhatsapp, parseWhatsappRecipients, type WhatsappRecipient } from "@/lib/whatsapp";
+import { unlinkWhatsapp } from "@/lib/whatsapp-link";
 import type { BlogCategory, ContentStatus, FaqCategory, SiteAlertPlacement } from "@/types";
 
 const REVALIDATE_PATHS = [
@@ -17,6 +25,7 @@ const REVALIDATE_PATHS = [
   "/faqs",
   "/knowledge-center",
   "/case-studies",
+  "/services",
   "/admin/cms",
   "/admin/blogs",
   "/admin/faqs",
@@ -25,6 +34,8 @@ const REVALIDATE_PATHS = [
   "/admin/clients",
   "/admin/alerts",
   "/admin/stats",
+  "/admin/services",
+  "/admin/notifications",
 ];
 
 function text(formData: FormData, key: string) {
@@ -43,6 +54,12 @@ function numberOrNull(formData: FormData, key: string) {
 
 function bool(formData: FormData, key: string) {
   return formData.get(key) === "on";
+}
+
+async function requireAdmin() {
+  const admin = await getAdminSession();
+  if (!admin) throw new Error("Unauthorized");
+  return admin;
 }
 
 function slugify(input: string) {
@@ -64,10 +81,93 @@ async function uploadCmsImage(formData: FormData, key: string, folder: string) {
   return saveUploadedImage(file, folder);
 }
 
+/**
+ * Rejects known "share page" links that aren't the raw image itself, since
+ * next/image fetches the URL directly and silently fails to render it
+ * otherwise (e.g. an ImgBB viewer page instead of its i.ibb.co direct link).
+ */
+function assertDirectImageUrl(url: string | null) {
+  if (url && /^https?:\/\/ibb\.co\//i.test(url)) {
+    throw new Error(
+      `"${url}" is an ImgBB share page, not the image itself, so it won't display. Open the image on ibb.co, right-click it, and copy the direct link (starts with https://i.ibb.co/...), or use the file upload field instead.`
+    );
+  }
+}
+
+/**
+ * Sending to every subscriber can take minutes (paced Gmail SMTP sends), which would leave
+ * the admin's Save button hanging with no feedback. Fire it after the response instead so the
+ * save itself confirms quickly; failures are still logged for the Email Center's campaign record.
+ */
+function announceAfterSave(input: Parameters<typeof sendContentAnnouncement>[0]) {
+  after(() =>
+    sendContentAnnouncement(input).catch((error) => {
+      console.error("Content announcement email failed:", error);
+    })
+  );
+}
+
 function refreshCms() {
   REVALIDATE_PATHS.forEach((path) => revalidatePath(path));
   revalidatePath("/knowledge-center/[slug]", "page");
   revalidatePath("/case-studies/[slug]", "page");
+  revalidatePath("/services/[slug]", "page");
+  revalidatePath("/sitemap.xml");
+}
+
+function parseLines(value: string): string[] {
+  return value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
+function parseApproachItems(value: string) {
+  return parseLines(value)
+    .map((line) => {
+      const [title, ...rest] = line.split("::");
+      return { title: title.trim(), text: rest.join("::").trim() };
+    })
+    .filter((item) => item.title);
+}
+
+function parseFaqItems(value: string) {
+  const items: { q: string; a: string }[] = [];
+  for (const rawLine of value.split("\n")) {
+    const line = rawLine.trim();
+    if (!line) continue;
+    if (/^q[:.]/i.test(line)) {
+      items.push({ q: line.replace(/^q[:.]\s*/i, ""), a: "" });
+    } else if (/^a[:.]/i.test(line) && items.length) {
+      items[items.length - 1].a = line.replace(/^a[:.]\s*/i, "");
+    }
+  }
+  return items.filter((item) => item.q);
+}
+
+function parseProcessStages(value: string) {
+  const blocks = value
+    .split(/\n\s*\n/)
+    .map((block) => block.trim())
+    .filter(Boolean);
+
+  return blocks
+    .map((block) => {
+      const stage = { stage: "", timeframe: "", items: [] as string[], deliverables: [] as string[] };
+      for (const rawLine of block.split("\n")) {
+        const line = rawLine.trim();
+        const match = line.match(/^(stage|timeframe|items|deliverables)\s*:\s*(.*)$/i);
+        if (!match) continue;
+        const key = match[1].toLowerCase();
+        const val = match[2].trim();
+        if (key === "stage") stage.stage = val;
+        else if (key === "timeframe") stage.timeframe = val;
+        else if (key === "items") stage.items = val.split("|").map((s) => s.trim()).filter(Boolean);
+        else if (key === "deliverables") stage.deliverables = val.split("|").map((s) => s.trim()).filter(Boolean);
+      }
+      return stage;
+    })
+    .filter((stage) => stage.stage);
 }
 
 export async function saveFaq(formData: FormData) {
@@ -93,12 +193,18 @@ export async function deleteFaq(formData: FormData) {
 }
 
 export async function saveBlogPost(formData: FormData) {
+  const admin = await requireAdmin();
   await connectToDatabase();
   const id = text(formData, "id");
   const title = text(formData, "title");
   const status = text(formData, "status") as ContentStatus;
+  const sendToSubscribers = bool(formData, "send_to_subscribers");
+  if (sendToSubscribers && status !== "published") {
+    throw new Error("Publish the article before sending it to subscribers.");
+  }
   const currentCoverUrl = nullableText(formData, "current_cover_image_url");
   const uploadedCoverUrl = await uploadCmsImage(formData, "cover_image_file", "blogs");
+  assertDirectImageUrl(nullableText(formData, "cover_image_url"));
   const payload = {
     title,
     slug: text(formData, "slug") || slugify(title),
@@ -120,6 +226,18 @@ export async function saveBlogPost(formData: FormData) {
     await deletePublicUpload(currentCoverUrl);
   }
 
+  if (sendToSubscribers) {
+    announceAfterSave({
+      contentType: "article",
+      title,
+      summary: payload.excerpt,
+      body: payload.body,
+      path: `/knowledge-center/${payload.slug}`,
+      initiatedByEmail: admin.email,
+      coverImageUrl: payload.cover_image_url,
+    });
+  }
+
   refreshCms();
 }
 
@@ -129,13 +247,76 @@ export async function deleteBlogPost(formData: FormData) {
   refreshCms();
 }
 
+export async function saveService(formData: FormData) {
+  const admin = await requireAdmin();
+  await connectToDatabase();
+  const id = text(formData, "id");
+  const title = text(formData, "title");
+  const status = text(formData, "status") as ContentStatus;
+  const sendToSubscribers = bool(formData, "send_to_subscribers");
+  if (sendToSubscribers && status !== "published") {
+    throw new Error("Publish the service before sending it to subscribers.");
+  }
+  const currentCoverUrl = nullableText(formData, "current_cover_image_url");
+  const uploadedCoverUrl = await uploadCmsImage(formData, "cover_image_file", "services");
+  assertDirectImageUrl(nullableText(formData, "cover_image_url"));
+  const payload = {
+    title,
+    slug: text(formData, "slug") || slugify(title),
+    tagline: text(formData, "tagline"),
+    summary: text(formData, "summary"),
+    icon: text(formData, "icon") || "Banknote",
+    cover_image_url: uploadedCoverUrl ?? nullableText(formData, "cover_image_url") ?? currentCoverUrl,
+    overview: parseLines(text(formData, "overview")),
+    who_its_for: parseLines(text(formData, "who_its_for")),
+    process: parseProcessStages(text(formData, "process")),
+    timeline: text(formData, "timeline"),
+    approach: parseApproachItems(text(formData, "approach")),
+    faq: parseFaqItems(text(formData, "faq")),
+    status,
+    sort_order: Number(text(formData, "sort_order") || 0),
+  };
+
+  if (id) await Service.findByIdAndUpdate(id, payload);
+  else await Service.create(payload);
+
+  if (uploadedCoverUrl && currentCoverUrl) {
+    await deletePublicUpload(currentCoverUrl);
+  }
+
+  if (sendToSubscribers) {
+    announceAfterSave({
+      contentType: "service",
+      title,
+      summary: payload.summary,
+      path: `/services/${payload.slug}`,
+      initiatedByEmail: admin.email,
+      coverImageUrl: payload.cover_image_url,
+    });
+  }
+
+  refreshCms();
+}
+
+export async function deleteService(formData: FormData) {
+  await connectToDatabase();
+  await Service.findByIdAndDelete(text(formData, "id"));
+  refreshCms();
+}
+
 export async function saveCaseStudy(formData: FormData) {
+  const admin = await requireAdmin();
   await connectToDatabase();
   const id = text(formData, "id");
   const companyName = text(formData, "company_name");
   const status = text(formData, "status") as ContentStatus;
+  const sendToSubscribers = bool(formData, "send_to_subscribers");
+  if (sendToSubscribers && status !== "published") {
+    throw new Error("Publish the case study before sending it to subscribers.");
+  }
   const currentCoverUrl = nullableText(formData, "current_cover_image_url");
   const uploadedCoverUrl = await uploadCmsImage(formData, "cover_image_file", "case-studies");
+  assertDirectImageUrl(nullableText(formData, "cover_image_url"));
   const payload = {
     company_name: companyName,
     slug: text(formData, "slug") || slugify(companyName),
@@ -164,6 +345,17 @@ export async function saveCaseStudy(formData: FormData) {
     await deletePublicUpload(currentCoverUrl);
   }
 
+  if (sendToSubscribers) {
+    announceAfterSave({
+      contentType: "case study",
+      title: companyName,
+      summary: payload.summary ?? payload.outcome,
+      path: `/case-studies/${payload.slug}`,
+      initiatedByEmail: admin.email,
+      coverImageUrl: payload.cover_image_url,
+    });
+  }
+
   refreshCms();
 }
 
@@ -176,6 +368,7 @@ export async function deleteCaseStudy(formData: FormData) {
 export async function saveTestimonial(formData: FormData) {
   await connectToDatabase();
   const id = text(formData, "id");
+  assertDirectImageUrl(nullableText(formData, "image_url"));
   const payload = {
     client_name: text(formData, "client_name"),
     client_title: nullableText(formData, "client_title"),
@@ -282,4 +475,53 @@ export async function deleteSiteAlert(formData: FormData) {
   await connectToDatabase();
   await SiteAlert.findByIdAndDelete(text(formData, "id"));
   refreshCms();
+}
+
+export async function updateNotificationSettings(formData: FormData) {
+  await requireAdmin();
+  await connectToDatabase();
+
+  await NotificationSettings.findOneAndUpdate(
+    {},
+    {
+      $set: {
+        notification_emails: parseEmailList(text(formData, "notification_emails")),
+        whatsapp_recipients: parseWhatsappRecipients(text(formData, "whatsapp_recipients")),
+        notify_on_lead: bool(formData, "notify_on_lead"),
+        notify_on_newsletter: bool(formData, "notify_on_newsletter"),
+        notify_on_eligibility: bool(formData, "notify_on_eligibility"),
+      },
+    },
+    { upsert: true }
+  );
+
+  refreshCms();
+}
+
+export type WhatsappSendState = { ok: boolean; message: string | null };
+
+/** Sends an admin-written WhatsApp message to the chosen saved numbers. */
+export async function sendCustomWhatsapp(_prev: WhatsappSendState, formData: FormData): Promise<WhatsappSendState> {
+  await requireAdmin();
+  const message = text(formData, "message");
+  const selected = new Set(formData.getAll("phones").map(String));
+  if (!message) return { ok: false, message: "Type a message first." };
+  if (selected.size === 0) return { ok: false, message: "Pick at least one number." };
+
+  await connectToDatabase();
+  const settings = await NotificationSettings.findOne().lean<{ whatsapp_recipients?: WhatsappRecipient[] }>();
+  const recipients = (settings?.whatsapp_recipients ?? []).filter((r) => selected.has(r.phone));
+  if (recipients.length === 0) return { ok: false, message: "None of the chosen numbers are saved anymore." };
+
+  const { sent, failed } = await deliverWhatsapp(recipients, message);
+  if (failed.length === 0) return { ok: true, message: `Sent to ${sent} number(s).` };
+  return {
+    ok: false,
+    message: `Sent to ${sent}. Failed: ${failed.map((f) => `${f.phone} (${f.error})`).join("; ")}`,
+  };
+}
+
+export async function unlinkWhatsappAction() {
+  await requireAdmin();
+  await unlinkWhatsapp();
 }

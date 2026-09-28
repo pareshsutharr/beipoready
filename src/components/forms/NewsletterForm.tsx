@@ -1,16 +1,16 @@
 ﻿"use client";
 
 import { useState } from "react";
-import { submitLead } from "@/lib/submit-lead";
 import Button from "@/components/ui/Button";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export default function NewsletterForm() {
+export default function NewsletterForm({ variant = "light" }: { variant?: "light" | "dark" }) {
   const [email, setEmail]     = useState("");
   const [error, setError]     = useState<string | null>(null);
   const [status, setStatus]   = useState<"idle" | "loading" | "success">("idle");
   const [apiError, setApiError] = useState<string | null>(null);
+  const [alreadySubscribed, setAlreadySubscribed] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -24,25 +24,27 @@ export default function NewsletterForm() {
     setStatus("loading");
 
     // name is required; placeholder used for newsletter signups.
-    const ok = await submitLead({
-      name:   "Newsletter Subscriber",
-      email:  trimmed,
-      source: "newsletter",
-    });
+    const response = await fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: "Newsletter Subscriber", email: trimmed, source: "newsletter" }),
+    }).catch(() => null);
+    const data = (await response?.json().catch(() => null)) as { ok?: boolean; alreadySubscribed?: boolean } | null;
 
-    if (!ok) {
+    if (!response?.ok || !data?.ok) {
       setApiError("Could not subscribe. Please try again.");
       setStatus("idle");
       return;
     }
 
+    setAlreadySubscribed(Boolean(data.alreadySubscribed));
     setStatus("success");
   }
 
   if (status === "success") {
     return (
-      <p className="font-sans text-sm font-semibold text-brand-gold">
-        ✓ You&rsquo;re subscribed, thanks!
+      <p className={`font-sans text-sm font-semibold ${variant === "dark" ? "text-brand-gold" : "text-brand-gold-ink"}`}>
+        {alreadySubscribed ? "✓ You're already subscribed!" : "✓ You're subscribed, thanks!"}
       </p>
     );
   }

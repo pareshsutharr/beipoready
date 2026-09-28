@@ -1,0 +1,4 @@
+# Run at 07:00 Asia/Kolkata daily. Replace this path with the deployed project path.
+# The login shell loads the service user's Node/pnpm environment.
+CRON_TZ=Asia/Kolkata
+0 7 * * * /usr/bin/env bash -lc 'cd /home/beipoready/htdocs/beipoready.com/beipoready && pnpm run scrape >> data/cron.log 2>&1'

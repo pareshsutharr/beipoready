@@ -126,13 +126,11 @@ export default function ReadinessJourney() {
   }, []);
 
   return (
-    <section ref={secRef} className="w-full py-24 sm:py-32 relative overflow-hidden" style={{ background: "white"}} aria-labelledby="journey-heading">
+    <section ref={secRef} className="w-full py-24 sm:py-32 relative overflow-hidden bg-white" aria-labelledby="journey-heading">
 
       {/* Decorative blobs */}
-      <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%)" }} aria-hidden="true" />
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(15,45,82,0.06) 0%, transparent 70%)" }} aria-hidden="true" />
+      <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full pointer-events-none bg-[radial-gradient(circle,rgba(245,158,11,0.08)_0%,transparent_70%)]" aria-hidden="true" />
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full pointer-events-none bg-[radial-gradient(circle,rgba(15,45,82,0.06)_0%,transparent_70%)]" aria-hidden="true" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -145,7 +143,7 @@ export default function ReadinessJourney() {
         {/* ── Desktop timeline ── */}
         <div className="jrn-desktop hidden lg:block relative mb-16">
           {/* Animated SVG connecting line */}
-          <svg className="absolute top-[22px] left-[8.333%] pointer-events-none" style={{ width: "83.334%", overflow: "visible" }} viewBox="0 0 800 4" preserveAspectRatio="none" aria-hidden="true">
+          <svg className="absolute top-[22px] left-[8.333%] pointer-events-none w-[83.334%] overflow-visible" viewBox="0 0 800 4" preserveAspectRatio="none" aria-hidden="true">
             <path ref={lineRef} d="M0 2 L800 2" fill="none" stroke="url(#lineGrad)" strokeWidth="2.5" strokeLinecap="round" />
             <defs>
               <linearGradient id="lineGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="800" y2="0">
@@ -168,8 +166,7 @@ export default function ReadinessJourney() {
               >
                 {/* Node */}
                 <div
-                  className="jrn-node relative w-11 h-11 rounded-full flex items-center justify-center mb-4 z-10 border-2 border-brand-gold group-hover:border-brand-gold-light group-focus-visible:border-brand-gold-light"
-                  style={{ background: "linear-gradient(135deg,#0F2D52,#1E3A5F)", boxShadow: "0 0 0 4px rgba(245,158,11,0.15), 0 4px 16px rgba(245,158,11,0.3)" }}
+                  className="jrn-node relative w-11 h-11 rounded-full flex items-center justify-center mb-4 z-10 border-2 border-brand-gold group-hover:border-brand-gold-light group-focus-visible:border-brand-gold-light bg-[linear-gradient(135deg,#0F2D52,#1E3A5F)] shadow-[0_0_0_4px_rgba(245,158,11,0.15),0_4px_16px_rgba(245,158,11,0.3)]"
                 >
                   <span className="font-heading text-base font-bold text-brand-gold">{step.number}</span>
                 </div>
@@ -194,13 +191,12 @@ export default function ReadinessJourney() {
             <div key={step.number} className="jrn-mob-step flex gap-5">
               <div className="flex flex-col items-center shrink-0">
                 <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center border-2 border-brand-gold shrink-0 z-10"
-                  style={{ background: "linear-gradient(135deg,#0F2D52,#1E3A5F)", boxShadow: "0 0 0 3px rgba(245,158,11,0.15)" }}
+                  className="w-10 h-10 rounded-full flex items-center justify-center border-2 border-brand-gold shrink-0 z-10 bg-[linear-gradient(135deg,#0F2D52,#1E3A5F)] shadow-[0_0_0_3px_rgba(245,158,11,0.15)]"
                 >
                   <span className="font-heading text-sm font-bold text-brand-gold">{step.number}</span>
                 </div>
                 {i < STEPS.length - 1 && (
-                  <div className="w-px flex-1 mt-2" style={{ background: "linear-gradient(to bottom, rgba(245,158,11,0.5), transparent)", minHeight: "32px" }} aria-hidden="true" />
+                  <div className="w-px flex-1 mt-2 min-h-[32px] bg-[linear-gradient(to_bottom,rgba(245,158,11,0.5),transparent)]" aria-hidden="true" />
                 )}
               </div>
               <div className="pb-10">
@@ -225,10 +221,7 @@ export default function ReadinessJourney() {
         <div className="jrn-cta text-center">
           <Link
             href="/ipo-readiness-tool"
-            className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-bold text-brand-navy-dark cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
-            style={{ background: "linear-gradient(135deg,#F59E0B,#FCD34D)", boxShadow: "0 0 28px rgba(245,158,11,0.4), 0 4px 16px rgba(0,0,0,0.12)", transition: "box-shadow 0.3s" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 0 40px rgba(245,158,11,0.6), 0 8px 24px rgba(0,0,0,0.15)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 0 28px rgba(245,158,11,0.4), 0 4px 16px rgba(0,0,0,0.12)"; }}
+            className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-bold text-brand-navy-dark cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold bg-[linear-gradient(135deg,#F59E0B,#FCD34D)] shadow-[0_0_28px_rgba(245,158,11,0.4),0_4px_16px_rgba(0,0,0,0.12)] transition-shadow duration-300 hover:shadow-[0_0_40px_rgba(245,158,11,0.6),0_8px_24px_rgba(0,0,0,0.15)]"
           >
             Check Your Readiness Score
             <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
@@ -246,8 +239,7 @@ export default function ReadinessJourney() {
         >
           {/* Backdrop */}
           <div
-            className="absolute inset-0"
-            style={{ background: "rgba(7,15,30,0.6)", backdropFilter: "blur(3px)" }}
+            className="absolute inset-0 bg-[rgba(7,15,30,0.6)] backdrop-blur-[3px]"
             onClick={closePopup}
             aria-hidden="true"
           />
@@ -255,12 +247,10 @@ export default function ReadinessJourney() {
           {/* Card */}
           <div className="relative w-full max-w-md rounded-2xl bg-white shadow-2xl overflow-hidden">
             <div
-              className="flex items-center gap-4 px-6 py-5"
-              style={{ background: "linear-gradient(135deg,#0F2D52,#1E3A5F)" }}
+              className="flex items-center gap-4 px-6 py-5 bg-[linear-gradient(135deg,#0F2D52,#1E3A5F)]"
             >
               <div
-                className="shrink-0 w-11 h-11 rounded-full flex items-center justify-center border-2 border-brand-gold"
-                style={{ boxShadow: "0 0 0 4px rgba(245,158,11,0.15)" }}
+                className="shrink-0 w-11 h-11 rounded-full flex items-center justify-center border-2 border-brand-gold shadow-[0_0_0_4px_rgba(245,158,11,0.15)]"
               >
                 <span className="font-heading text-base font-bold text-brand-gold">{activeStep.number}</span>
               </div>

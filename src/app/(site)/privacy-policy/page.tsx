@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
+import ObfuscatedEmailAnchor from "@/components/ObfuscatedEmailAnchor";
 
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy",
@@ -9,7 +10,7 @@ export const metadata: Metadata = buildMetadata({
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="bg-brand-cream py-16 sm:py-20">
+    <div className="bg-brand-cream py-16 sm:py-20">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-2">Privacy Policy</h1>
         <p className="font-sans text-sm text-slate-400 mb-10">Last updated: June 2026</p>
@@ -61,7 +62,8 @@ export default function PrivacyPolicyPage() {
             <p>
               We retain personal information for as long as is necessary to provide our services and
               comply with our legal obligations. You may request deletion of your personal data at any
-              time by contacting us at info@beipoready.com.
+              time by contacting us at{" "}
+              <ObfuscatedEmailAnchor className="underline hover:text-brand-gold transition-colors" fallbackLabel="our email" />.
             </p>
           </section>
 
@@ -79,8 +81,8 @@ export default function PrivacyPolicyPage() {
             <p>
               Under applicable data protection laws, you have the right to access, correct, or delete
               your personal data; to object to or restrict processing; and to lodge a complaint with the
-              relevant supervisory authority. To exercise any of these rights, please email us at
-              info@beipoready.com.
+              relevant supervisory authority. To exercise any of these rights, please email us at{" "}
+              <ObfuscatedEmailAnchor className="underline hover:text-brand-gold transition-colors" fallbackLabel="our email" />.
             </p>
           </section>
 
@@ -88,13 +90,13 @@ export default function PrivacyPolicyPage() {
             <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">8. Contact</h2>
             <p>
               If you have questions about this Privacy Policy, please contact us at:<br />
-              <strong>Email:</strong> info@beipoready.com<br />
-              <strong>Address:</strong> Mumbai / Jaipur, India
+              <strong>Email:</strong> <ObfuscatedEmailAnchor className="underline hover:text-brand-gold transition-colors" fallbackLabel="our email" /><br />
+              <strong>Address:</strong> 2001, 20th Floor, The Junomoneta Tower, RTO, Near Rajhans Cinema, Opp. Pal, Adajan, Surat, Gujarat 395009
             </p>
           </section>
 
         </div>
       </div>
-    </main>
+    </div>
   );
 }

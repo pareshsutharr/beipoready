@@ -11,10 +11,9 @@ import {
   SubmitRow,
   TextArea,
   cardClass,
-  inputClass,
-  labelClass,
   statuses,
 } from "@/components/admin/cms/FormControls";
+import { ImageUploadField } from "@/components/admin/cms/ImageUploadField";
 import { deleteCaseStudy, saveCaseStudy } from "../cms/actions";
 
 export const metadata: Metadata = { title: "Case Studies - Be IPO Ready Admin" };
@@ -38,11 +37,8 @@ export default async function CaseStudiesPage() {
             <Field label="Company" name="company_name" required />
             <Field label="Slug" name="slug" placeholder="auto-created if blank" />
             <Field label="Industry" name="industry" />
-            <Field label="Cover Image URL" name="cover_image_url" placeholder="https://... (or upload below)" />
-            <label className="block">
-              <span className={labelClass}>Or Upload Cover Image</span>
-              <input name="cover_image_file" type="file" accept="image/*" className={inputClass} />
-            </label>
+            <Field label="Cover Image URL" name="cover_image_url" placeholder="https://... (or upload below)" hint="Direct image link only, not a share/viewer page (e.g. not an ibb.co page link)." />
+            <ImageUploadField label="Or Upload Cover Image" name="cover_image_file" />
             <Field label="Exchange" name="exchange" />
             <Field label="Issue Size" name="ipo_size" />
             <Field label="Subscription" name="subscription" />
@@ -58,6 +54,7 @@ export default async function CaseStudiesPage() {
             <TextArea label="Testimonial Quote" name="testimonial_quote" rows={2} />
             <Field label="Testimonial Author" name="testimonial_author" />
             <Checkbox label="Add to News & Alerts popup" name="show_in_news_alert" />
+            <Checkbox label="Email this published case study to all active subscribers" name="send_to_subscribers" />
           </div>
           <SubmitRow />
         </form>
@@ -80,11 +77,8 @@ export default async function CaseStudiesPage() {
               <Field label="Company" name="company_name" defaultValue={cs.company_name} required />
               <Field label="Slug" name="slug" defaultValue={cs.slug} />
               <Field label="Industry" name="industry" defaultValue={cs.industry} />
-              <Field label="Cover Image URL" name="cover_image_url" defaultValue={cs.cover_image_url} />
-              <label className="block">
-                <span className={labelClass}>Replace Cover Image</span>
-                <input name="cover_image_file" type="file" accept="image/*" className={inputClass} />
-              </label>
+              <Field label="Cover Image URL" name="cover_image_url" defaultValue={cs.cover_image_url} hint="Direct image link only, not a share/viewer page (e.g. not an ibb.co page link)." />
+              <ImageUploadField label="Replace Cover Image" name="cover_image_file" />
               <Field label="Exchange" name="exchange" defaultValue={cs.exchange} />
               <Field label="Issue Size" name="ipo_size" defaultValue={cs.ipo_size} />
               <Field label="Subscription" name="subscription" defaultValue={cs.subscription} />
@@ -100,6 +94,7 @@ export default async function CaseStudiesPage() {
               <TextArea label="Testimonial Quote" name="testimonial_quote" defaultValue={cs.testimonial_quote} rows={2} />
               <Field label="Testimonial Author" name="testimonial_author" defaultValue={cs.testimonial_author} />
               <Checkbox label="Add to News & Alerts popup" name="show_in_news_alert" defaultChecked={cs.show_in_news_alert} />
+              <Checkbox label="Email this published case study to all active subscribers" name="send_to_subscribers" />
             </div>
             <SubmitRow deleteAction={deleteCaseStudy} id={cs.id} />
           </form>

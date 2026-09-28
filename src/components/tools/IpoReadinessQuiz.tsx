@@ -342,7 +342,7 @@ export default function IpoReadinessQuiz() {
             {section.questions.map((q, qi) => (
               <div key={q.id}>
                 <p className="font-sans text-sm font-semibold text-slate-800 mb-3">
-                  <span className="text-brand-gold mr-2">{currentSection * 4 + qi + 1}.</span>
+                  <span className="text-brand-gold-ink mr-2">{currentSection * 4 + qi + 1}.</span>
                   {q.text}
                 </p>
                 <div className="grid grid-cols-1 gap-2">

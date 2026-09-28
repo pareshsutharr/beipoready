@@ -33,7 +33,7 @@ export default function FaqAccordion({ categories }: { categories: FaqCategory[]
                     }`}
                   >
                     <span
-                      className="font-heading text-sm font-bold text-brand-gold tabular-nums shrink-0"
+                      className="font-heading text-sm font-bold text-brand-gold-ink tabular-nums shrink-0"
                       aria-hidden="true"
                     >
                       {number}

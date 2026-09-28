@@ -76,13 +76,11 @@ export default function ServicesOverview() {
           {SERVICES.map(({ icon: Icon, title, brief, detailed, deliverables, href }) => (
             <li key={title}>
               <div
-                className="flex flex-col h-full rounded-2xl bg-white border border-slate-200 p-7"
-                style={{ boxShadow: "0 2px 12px rgba(13,74,111,0.05)" }}
+                className="flex flex-col h-full rounded-2xl bg-white border border-slate-200 p-7 shadow-[0_2px_12px_rgba(13,74,111,0.05)]"
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div
-                    className="shrink-0 w-12 h-12 flex items-center justify-center rounded-xl"
-                    style={{ background: "rgba(13,74,111,0.07)" }}
+                    className="shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-[rgba(13,74,111,0.07)]"
                   >
                     <Icon className="w-6 h-6 text-[#0D4A6F]" aria-hidden="true" />
                   </div>
@@ -103,8 +101,7 @@ export default function ServicesOverview() {
                       {deliverables.map((d) => (
                         <li
                           key={d}
-                          className="text-xs font-medium text-[#0D4A6F] rounded-full px-3 py-1.5"
-                          style={{ background: "#FEF3C7" }}
+                          className="text-xs font-medium text-[#0D4A6F] rounded-full px-3 py-1.5 bg-[#FEF3C7]"
                         >
                           {d}
                         </li>

@@ -1,5 +1,3 @@
-"use client";
-
 import { LogoCloud } from "@/components/ui/logo-cloud-3";
 import type { ClientLogoCard } from "@/lib/cms";
 
@@ -21,7 +19,7 @@ export default function ClientsMarquee({ clients }: { clients: ClientLogoCard[] 
     >
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold-ink mb-3">
             Proof, Not Promises
           </p>
           <h2

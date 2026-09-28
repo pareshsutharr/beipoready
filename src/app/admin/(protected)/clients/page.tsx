@@ -9,9 +9,8 @@ import {
   PageHeader,
   SubmitRow,
   cardClass,
-  inputClass,
-  labelClass,
 } from "@/components/admin/cms/FormControls";
+import { ImageUploadField } from "@/components/admin/cms/ImageUploadField";
 import { deleteClient, saveClient } from "../cms/actions";
 
 export const metadata: Metadata = { title: "Our Clients - Be IPO Ready Admin" };
@@ -53,10 +52,7 @@ export default async function ClientsPage() {
           <div className="grid gap-4">
             <Field label="Client / Company Name" name="name" required />
             <Field label="Nature of Business" name="nature_of_business" placeholder="e.g. Stock Broker" />
-            <label className="block">
-              <span className={labelClass}>Logo Image</span>
-              <input name="logo_file" type="file" accept="image/*" required className={inputClass} />
-            </label>
+            <ImageUploadField label="Logo Image" name="logo_file" required />
             <Field label="Website Link" name="website_url" placeholder="optional" />
             <Field label="Sort Order" name="sort_order" type="number" defaultValue={0} />
             <Checkbox label="Published" name="is_published" defaultChecked />
@@ -100,10 +96,7 @@ export default async function ClientsPage() {
               <div className="mt-4 grid gap-4">
                 <Field label="Client / Company Name" name="name" defaultValue={client.name} required />
                 <Field label="Nature of Business" name="nature_of_business" defaultValue={client.nature_of_business} />
-                <label className="block">
-                  <span className={labelClass}>Replace Logo Image</span>
-                  <input name="logo_file" type="file" accept="image/*" className={inputClass} />
-                </label>
+                <ImageUploadField label="Replace Logo Image" name="logo_file" />
                 <Field label="Website Link" name="website_url" defaultValue={client.website_url} />
                 <Field label="Sort Order" name="sort_order" type="number" defaultValue={client.sort_order} />
                 <Checkbox label="Published" name="is_published" defaultChecked={client.is_published} />

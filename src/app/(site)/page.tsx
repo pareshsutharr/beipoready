@@ -20,12 +20,10 @@ import {
   getSiteStats,
 } from "@/lib/cms";
 
-export const dynamic = "force-dynamic";
-
 export const metadata: Metadata = buildMetadata({
-  title: "BEIPOREADY | India's Leading SME IPO Advisor & Growth Capital Expert",
+  title: "SME IPO Advisor & Growth Capital Fundraising",
   description:
-    "IPO advisory, pre-IPO readiness and growth-capital fundraising for Indian businesses including NSE Emerge & BSE SME listings. Book an IPO readiness call with BEIPOREADY.",
+    "IPO advisory, pre-IPO readiness, and growth-capital fundraising for Indian businesses targeting NSE Emerge, BSE SME, or Main Board listings.",
   path: "/",
   keywords: [
     "SME IPO advisor India",

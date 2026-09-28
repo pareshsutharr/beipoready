@@ -1,14 +1,14 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import ShareButton from "@/components/ShareButton";
 import { getPublishedCaseStudies } from "@/lib/cms";
-import { buildMetadata } from "@/lib/seo";
-
-export const dynamic = "force-dynamic";
+import { buildMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
   title: "Case Studies",
   description:
-    "Real SME IPO success stories, how Be IPO Ready guided companies across manufacturing, tech, and healthcare to successful listings on NSE Emerge and BSE SME.",
+    "Read SME IPO case studies showing how BEIPOREADY guided companies from readiness gaps to successful NSE Emerge and BSE SME listings.",
   path: "/case-studies",
   keywords: ["SME IPO case studies", "IPO success stories India", "NSE Emerge listing examples", "BSE SME listing examples"],
 });
@@ -32,8 +32,15 @@ export default async function CaseStudiesPage() {
   return (
     <>
       <section className="relative bg-brand-navy py-20 sm:py-24 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=700&fit=crop&q=85" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <Image
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=700&fit=crop&q=85"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-15"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,15,30,0.65)_0%,rgba(15,45,82,0.55)_100%)]" aria-hidden="true" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-4">
             Track Record
@@ -56,49 +63,55 @@ export default async function CaseStudiesPage() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {caseStudies.map((cs) => (
-              <Link
+              <div
                 key={cs.slug}
-                href={`/case-studies/${cs.slug}`}
-                className="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-brand-gold hover:shadow-md transition-all duration-200"
+                className="group relative flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-brand-gold hover:shadow-md transition-all duration-200"
               >
-                <div
-                  className={`relative h-44 bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-105 origin-center ${
-                    cs.coverImageUrl ? "bg-white" : "bg-slate-200 bg-cover"
-                  }`}
-                  style={{
-                    backgroundImage: `url("${cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}")`,
-                    backgroundSize: cs.coverImageUrl ? "contain" : undefined,
-                  }}
-                  role="img"
-                  aria-label={`${cs.company} cover image`}
-                >
+                <Link href={`/case-studies/${cs.slug}`} className="absolute inset-0 z-0" aria-label={cs.company} />
+                <div className="relative h-44 overflow-hidden bg-slate-200 pointer-events-none">
+                  <Image
+                    src={cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}
+                    alt={`${cs.company} cover image`}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className={`transition-transform duration-500 group-hover:scale-105 ${
+                      cs.coverImageUrl ? "object-contain bg-white" : "object-cover"
+                    }`}
+                  />
                   {!cs.coverImageUrl && (
                     <div className="absolute inset-0 flex items-center justify-center bg-brand-navy/50">
                       <span className="font-heading text-3xl font-bold text-white">{getInitials(cs.company)}</span>
                     </div>
                   )}
                 </div>
-                <div className="px-6 pt-6 pb-4 flex items-center justify-between">
+                <div className="px-6 pt-6 pb-4 flex items-center justify-between pointer-events-none">
                   <span className="font-sans text-xs font-semibold border rounded-full px-3 py-1 bg-brand-navy/5 text-brand-navy border-brand-navy/10">
                     Case Studies
                   </span>
                   <span className="font-sans text-xs text-slate-400">{cs.sector}</span>
                 </div>
                 <div className="px-6 pb-6 flex-1 flex flex-col">
-                  <h2 className="font-heading text-base font-bold text-brand-navy mb-3 leading-snug group-hover:text-brand-gold transition-colors">
+                  <h2 className="font-heading text-base font-bold text-brand-navy mb-3 leading-snug group-hover:text-brand-gold transition-colors pointer-events-none">
                     {cs.company}
                   </h2>
-                  <p className="font-sans text-sm text-slate-600 leading-relaxed flex-1">
+                  <p className="font-sans text-sm text-slate-600 leading-relaxed flex-1 pointer-events-none">
                     {cs.outcome}
                   </p>
-                  <div className="mt-4 flex items-center justify-between">
-                    <span className="font-sans text-xs text-slate-400">{cs.publishedAt}</span>
-                    <span className="font-sans text-sm font-semibold text-brand-gold group-hover:underline">
-                      Read →
-                    </span>
+                  <div className="mt-4 flex items-center justify-between gap-2">
+                    <span className="font-sans text-xs text-slate-400 pointer-events-none">{cs.publishedAt}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-sans text-sm font-semibold text-brand-gold group-hover:underline pointer-events-none">
+                        Read →
+                      </span>
+                      <ShareButton
+                        url={`${SITE_URL}/case-studies/${cs.slug}`}
+                        title={cs.company}
+                        className="relative z-10"
+                      />
+                    </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>

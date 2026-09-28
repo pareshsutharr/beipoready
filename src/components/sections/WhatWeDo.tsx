@@ -61,12 +61,7 @@ export default function WhatWeDo() {
             <div key={stage} className="flex items-center gap-3 sm:gap-5">
               {i > 0 && <ArrowRight className="w-5 h-5 text-brand-gold" aria-hidden="true" />}
               <span
-                className="inline-flex items-center rounded-full px-5 py-2 text-sm font-bold"
-                style={{
-                  color: "#0D4A6F",
-                  background: "#FEF3C7",
-                  border: "1px solid rgba(217,119,6,0.25)",
-                }}
+                className="inline-flex items-center rounded-full px-5 py-2 text-sm font-bold text-[#0D4A6F] bg-[#FEF3C7] border border-[rgba(217,119,6,0.25)]"
               >
                 {stage}
               </span>
@@ -79,8 +74,7 @@ export default function WhatWeDo() {
             <li key={title} className="flex">
               <Link
                 href={href}
-                className="group flex flex-col w-full rounded-2xl bg-white overflow-hidden border border-slate-200 hover:border-brand-gold/50 transition-colors duration-200 cursor-pointer"
-                style={{ boxShadow: "0 2px 12px rgba(13,74,111,0.05)" }}
+                className="group flex flex-col w-full rounded-2xl bg-white overflow-hidden border border-slate-200 hover:border-brand-gold/50 transition-colors duration-200 cursor-pointer shadow-[0_2px_12px_rgba(13,74,111,0.05)]"
               >
                 <div className="relative aspect-[16/9] w-full overflow-hidden">
                   <Image

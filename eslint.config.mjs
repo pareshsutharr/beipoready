@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Standalone Node operational scripts use CommonJS so they can run without
+    // changing the application's module mode.
+    "scraper/**",
   ]),
 ]);
 

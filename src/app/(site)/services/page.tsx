@@ -7,7 +7,7 @@ import { buildMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildMetadata({
   title: "Our Services",
   description:
-    "Strategic capital-markets advisory, Fund Raising, Pre-IPO Advisory, SME IPO Advisory, and Valuation & Corporate Restructuring for growth-stage and listing-bound companies.",
+    "Explore fund raising, pre-IPO advisory, SME IPO advisory, and valuation services for growth-stage and listing-bound Indian companies.",
   path: "/services",
   keywords: ["SME IPO advisory services", "fund raising India", "pre-IPO advisory", "valuation and corporate restructuring"],
 });
@@ -56,8 +56,15 @@ export default function ServicesPage() {
     <>
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative bg-brand-navy py-20 sm:py-24 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=700&fit=crop&q=85" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <Image
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=700&fit=crop&q=85"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-15"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,15,30,0.65)_0%,rgba(15,45,82,0.55)_100%)]" aria-hidden="true" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-4">
             What We Do
@@ -70,7 +77,7 @@ export default function ServicesPage() {
             stage so you never have to stitch together multiple advisors mid-journey.
           </p>
           <br />
-           <p className="font-sans text-lg max-w-2xl mx-auto leading-relaxed" style={{color:"orange"}}>
+           <p className="font-sans text-lg max-w-2xl mx-auto leading-relaxed text-orange-500">
             We are Good advisors because we are good investors, we are good investors because we are good advisors
           </p>
         </div>
@@ -96,7 +103,7 @@ export default function ServicesPage() {
                     sizes="(min-width: 640px) 220px, 100vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to right, transparent 60%, rgba(255,255,255,0.08))" }} aria-hidden="true" />
+                  <div className="absolute inset-0 bg-[linear-gradient(to_right,transparent_60%,rgba(255,255,255,0.08))]" aria-hidden="true" />
                 </div>
 
                 {/* Number + icon + content */}

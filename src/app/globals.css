@@ -5,6 +5,9 @@
   /* ── Brand tokens ── */
   --color-brand-gold:       #F59E0B;
   --color-brand-gold-light: #FCD34D;
+  /* AA-compliant (4.5:1+) gold for small text on white/cream; brand-gold itself
+     only clears WCAG AA as text on the dark navy backgrounds. */
+  --color-brand-gold-ink:   #B45309;
   --color-brand-navy:       #0F2D52;
   --color-brand-navy-dark:  #070F1E;
   --color-brand-cream:      #F0F6FF;
@@ -82,6 +85,148 @@ body {
   animation: attention-glow 2.2s ease-out infinite;
 }
 
+/* ─── Service hero entrance (letter-in title + fade-up supporting elements) ─── */
+@keyframes svc-title-in {
+  from { opacity: 0; transform: translateY(0.35em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.svc-title-letter {
+  opacity: 0;
+  animation: svc-title-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes svc-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.svc-fade-up {
+  opacity: 0;
+  animation: svc-fade-up 0.6s ease-out both;
+}
+
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-copy-in {
+  opacity: 0;
+  animation: hero-fade-up 0.6s ease-out both;
+}
+
+.hero-delay-1 { animation-delay: 0.1s; }
+.hero-delay-2 { animation-delay: 0.2s; }
+.hero-delay-3 { animation-delay: 0.35s; }
+.hero-delay-4 { animation-delay: 0.5s; }
+
+.hero-img-merge {
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, black 7%, black 68%, transparent 97%);
+          mask-image: linear-gradient(to left, transparent 0%, black 7%, black 68%, transparent 97%);
+  left: 45%;
+  right: 0;
+}
+
+.hero-img-merge-mobile {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 28%, black 82%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0%, black 28%, black 82%, transparent 100%);
+}
+
+@keyframes logo-cloud-marquee {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+
+.logo-cloud-track {
+  display: flex;
+  width: max-content;
+  gap: 64px;
+  animation: logo-cloud-marquee 30s linear infinite reverse;
+  will-change: transform;
+}
+
+.logo-cloud-track:hover {
+  animation-duration: 90s;
+}
+
+@keyframes case-study-spotlight-in-right {
+  from { opacity: 0; transform: translateX(42px) scale(0.985); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes case-study-spotlight-in-left {
+  from { opacity: 0; transform: translateX(-42px) scale(0.985); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.case-study-spotlight-in-right {
+  animation: case-study-spotlight-in-right 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.case-study-spotlight-in-left {
+  animation: case-study-spotlight-in-left 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes case-study-ghost-in-left {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes case-study-ghost-in-left-soft {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes case-study-ghost-in-right {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes case-study-ghost-in-right-soft {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.case-study-ghost-in-left {
+  animation: case-study-ghost-in-left 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.case-study-ghost-in-left-soft {
+  animation: case-study-ghost-in-left-soft 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.case-study-ghost-in-right {
+  animation: case-study-ghost-in-right 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.case-study-ghost-in-right-soft {
+  animation: case-study-ghost-in-right-soft 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.stats-card-in {
+  opacity: 0;
+  transform: translateY(26px) scale(0.985);
+}
+
+.stats-card-visible {
+  animation: stats-card-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.stats-delay-1 { animation-delay: 0.06s; }
+.stats-delay-2 { animation-delay: 0.14s; }
+.stats-delay-3 { animation-delay: 0.22s; }
+.stats-delay-4 { animation-delay: 0.3s; }
+
+@keyframes stats-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* ─── Respect reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -89,4 +234,13 @@ body {
     transition-duration: 0.01ms !important;
   }
   .text-shimmer { animation: none; -webkit-text-fill-color: #F59E0B; }
+  .hero-copy-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .stats-card-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

@@ -36,17 +36,15 @@ const TOOLS = [
 export default function ToolsPreview() {
   return (
     <section
-      className="relative w-full py-20 sm:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(135deg,#070F1E 0%,#0F2D52 100%)" }}
+      className="relative w-full py-20 sm:py-28 overflow-hidden bg-[linear-gradient(135deg,#070F1E_0%,#0F2D52_100%)]"
       aria-labelledby="tools-heading"
     >
       {/* Dot grid texture */}
       <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
+        className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[radial-gradient(circle,#ECB85B_1px,transparent_1px)] bg-[length:32px_32px]"
         aria-hidden="true"
-        style={{ backgroundImage: "radial-gradient(circle, #ECB85B 1px, transparent 1px)", backgroundSize: "32px 32px" }}
       />
-      <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(90deg,transparent,rgba(236,184,91,0.3),transparent)" }} aria-hidden="true" />
+      <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(236,184,91,0.3),transparent)]" aria-hidden="true" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
@@ -63,25 +61,19 @@ export default function ToolsPreview() {
           {TOOLS.map(({ icon: Icon, title, description, cta, href }) => (
             <li key={title}>
               <div
-                className="flex flex-col h-full rounded-2xl p-6"
-                style={{
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                }}
+                className="flex flex-col h-full rounded-2xl p-6 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)]"
               >
                 <div
-                  className="mb-5 w-11 h-11 flex items-center justify-center rounded-xl"
-                  style={{ background: "rgba(236,184,91,0.15)", border: "1px solid rgba(236,184,91,0.3)" }}
+                  className="mb-5 w-11 h-11 flex items-center justify-center rounded-xl bg-[rgba(236,184,91,0.15)] border border-[rgba(236,184,91,0.3)]"
                 >
-                  <Icon className="w-5 h-5" style={{ color: "#ECB85B" }} aria-hidden="true" />
+                  <Icon className="w-5 h-5 text-[#ECB85B]" aria-hidden="true" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-white mb-2 leading-snug">{title}</h3>
                 <p className="text-sm text-white/60 leading-relaxed flex-1 mb-6">{description}</p>
                 {href ? (
                   <Link
                     href={href}
-                    className="inline-flex items-center gap-1.5 text-sm font-bold transition-colors duration-150 hover:text-white"
-                    style={{ color: "#ECB85B" }}
+                    className="inline-flex items-center gap-1.5 text-sm font-bold transition-colors duration-150 hover:text-white text-[#ECB85B]"
                   >
                     {cta}
                     <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -97,11 +89,7 @@ export default function ToolsPreview() {
         <div className="text-center">
           <Link
             href="/ipo-readiness-tool"
-            className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-bold text-brand-navy-dark cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
-            style={{
-              background: "linear-gradient(135deg,#ECB85B,#FCD34D)",
-              boxShadow: "0 0 28px rgba(236,184,91,0.4), 0 4px 16px rgba(0,0,0,0.12)",
-            }}
+            className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-xl font-bold text-brand-navy-dark cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold bg-[linear-gradient(135deg,#ECB85B,#FCD34D)] shadow-[0_0_28px_rgba(236,184,91,0.4),0_4px_16px_rgba(0,0,0,0.12)]"
           >
             Take the IPO Readiness Check
             <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />

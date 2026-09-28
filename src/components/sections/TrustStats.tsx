@@ -52,38 +52,14 @@ function StatCard({ value, label, index }: { value: string; label: string; index
   return (
     <div
       ref={cardRef}
-      className="relative flex flex-col items-center text-center p-7 rounded-2xl group cursor-default"
-      style={{
-        background: "rgba(255,255,255,0.05)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        transition: "background 0.3s, border-color 0.3s, box-shadow 0.3s",
-      }}
-      onMouseEnter={(e) => {
-        const el = e.currentTarget as HTMLDivElement;
-        el.style.background = "rgba(245,158,11,0.08)";
-        el.style.borderColor = "rgba(245,158,11,0.3)";
-        el.style.boxShadow = "0 8px 32px rgba(245,158,11,0.12)";
-      }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget as HTMLDivElement;
-        el.style.background = "rgba(255,255,255,0.05)";
-        el.style.borderColor = "rgba(255,255,255,0.08)";
-        el.style.boxShadow = "none";
-      }}
+      className="relative flex flex-col items-center text-center p-7 rounded-2xl group cursor-default bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.08)] shadow-none transition-[background,border-color,box-shadow] duration-300 hover:bg-[rgba(245,158,11,0.08)] hover:border-[rgba(245,158,11,0.3)] hover:shadow-[0_8px_32px_rgba(245,158,11,0.12)]"
     >
       {/* Top accent line */}
-      <div className="absolute top-0 inset-x-8 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-        style={{ background: "linear-gradient(90deg,transparent,#F59E0B,transparent)" }} aria-hidden="true" />
+      <div className="absolute top-0 inset-x-8 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[linear-gradient(90deg,transparent,#F59E0B,transparent)]" aria-hidden="true" />
 
       <span
         ref={numRef}
-        className="font-heading text-4xl sm:text-5xl font-bold tracking-tight leading-none mb-3"
-        style={{
-          background: "linear-gradient(135deg, #F59E0B, #FCD34D)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-        }}
+        className="font-heading text-4xl sm:text-5xl font-bold tracking-tight leading-none mb-3 bg-[linear-gradient(135deg,#F59E0B,#FCD34D)] bg-clip-text text-transparent [-webkit-text-fill-color:transparent]"
       >
         {parsed ? parsed.pre + "0" + parsed.suf : value}
       </span>
@@ -118,14 +94,12 @@ export default function TrustStats({ stats }: { stats: Stat[] }) {
 
   return (
     <section
-      className="relative w-full py-24 sm:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #070F1E 0%, #0F2D52 100%)" }}
+      className="relative w-full py-24 sm:py-28 overflow-hidden bg-[linear-gradient(180deg,#070F1E_0%,#0F2D52_100%)]"
       aria-label="Key statistics"
     >
       {/* Radial glow */}
-      <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(90deg,transparent,rgba(245,158,11,0.4),transparent)" }} aria-hidden="true" />
-      <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[600px] h-[200px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(245,158,11,0.1) 0%, transparent 70%)" }} aria-hidden="true" />
+      <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(245,158,11,0.4),transparent)]" aria-hidden="true" />
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[600px] h-[200px] pointer-events-none bg-[radial-gradient(ellipse,rgba(245,158,11,0.1)_0%,transparent_70%)]" aria-hidden="true" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={headRef} className="text-center mb-14">
@@ -138,7 +112,7 @@ export default function TrustStats({ stats }: { stats: Stat[] }) {
         </dl>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-px" style={{ background: "linear-gradient(90deg,transparent,rgba(245,158,11,0.2),transparent)" }} aria-hidden="true" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,transparent,rgba(245,158,11,0.2),transparent)]" aria-hidden="true" />
     </section>
   );
 }

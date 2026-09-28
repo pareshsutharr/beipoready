@@ -2,22 +2,30 @@
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getArticleBySlug } from "@/lib/cms";
+import Image from "next/image";
+import ShareButtons from "@/components/ShareButtons";
+import FaqAccordion from "@/components/sections/FaqAccordion";
+import { getArticleBySlug, getPublishedArticles } from "@/lib/cms";
 import { buildMetadata, isoDate, SITE_URL } from "@/lib/seo";
 
+// Keys must match the Title Case label getPublishedArticles()/getArticleBySlug()
+// derives from the BlogCategory enum (e.g. "pre-ipo-fundraising" -> "Pre Ipo Fundraising").
 const CATEGORY_IMAGES: Record<string, string> = {
-  Regulation:    "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&h=600&fit=crop&q=85",
-  Documentation: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&h=600&fit=crop&q=85",
-  Fundraising:   "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1600&h=600&fit=crop&q=85",
-  Valuation:     "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&h=600&fit=crop&q=85",
-  Governance:    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&h=600&fit=crop&q=85",
-  Compliance:    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=600&fit=crop&q=85",
+  "Sme Ipo":             "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1600&h=600&fit=crop&q=85",
+  "Pre Ipo Fundraising": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=1600&h=600&fit=crop&q=85",
+  "Ipo Readiness":       "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&h=600&fit=crop&q=85",
+  Valuation:             "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1600&h=600&fit=crop&q=85",
+  Compliance:            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&h=600&fit=crop&q=85",
+  "Capital Markets":     "https://images.unsplash.com/photo-1560221328-12fe60f83ab8?w=1600&h=600&fit=crop&q=85",
 };
 const DEFAULT_ARTICLE_IMAGE = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&h=600&fit=crop&q=85";
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamic = "force-dynamic";
+export async function generateStaticParams() {
+  const articles = await getPublishedArticles();
+  return articles.map((article) => ({ slug: article.slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -38,9 +46,42 @@ function renderMarkdown(body: string): ReactNode[] {
   const lines = body.split("\n");
   const elements: ReactNode[] = [];
   let key = 0;
+  let faqItems: { q: string; a: string }[] = [];
 
-  for (const line of lines) {
+  const flushFaq = () => {
+    if (faqItems.length === 0) return;
+    elements.push(
+      <div key={key++} className="mt-10 pt-10 border-t border-slate-200">
+        <p className="text-center text-xs font-bold uppercase tracking-[0.2em] text-brand-gold-ink mb-6">
+          Frequently Asked Questions
+        </p>
+        <FaqAccordion categories={[{ category: "", items: faqItems }]} />
+      </div>
+    );
+    faqItems = [];
+  };
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.startsWith("Q: ")) {
+      faqItems.push({ q: line.slice(3).trim(), a: "" });
+      continue;
+    }
+    if (line.startsWith("A: ") && faqItems.length > 0) {
+      faqItems[faqItems.length - 1].a = line.slice(3).trim();
+      continue;
+    }
+    if (line.trim() === "") continue;
+    flushFaq();
+
     if (line.startsWith("## ")) {
+      let next = i + 1;
+      while (next < lines.length && lines[next].trim() === "") next++;
+      if (next < lines.length && lines[next].startsWith("Q: ")) {
+        // The FAQ block gets its own "Frequently Asked Questions" eyebrow label
+        // in flushFaq(), so skip rendering this heading line as a plain <h2>.
+        continue;
+      }
       elements.push(
         <h2 key={key++} className="font-heading text-xl font-bold text-brand-navy mt-10 mb-3">
           {line.slice(3)}
@@ -66,6 +107,7 @@ function renderMarkdown(body: string): ReactNode[] {
       );
     }
   }
+  flushFaq();
 
   return elements;
 }
@@ -96,8 +138,15 @@ export default async function ArticlePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
       <section className="relative bg-brand-navy py-20 sm:py-24 overflow-hidden">
-        <img src={article.coverImageUrl ?? CATEGORY_IMAGES[article.category] ?? DEFAULT_ARTICLE_IMAGE} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <Image
+          src={article.coverImageUrl ?? CATEGORY_IMAGES[article.category] ?? DEFAULT_ARTICLE_IMAGE}
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-15"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,15,30,0.65)_0%,rgba(15,45,82,0.55)_100%)]" aria-hidden="true" />
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/knowledge-center"
@@ -123,17 +172,30 @@ export default async function ArticlePage({ params }: Props) {
 
       <section className="bg-brand-cream py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ShareButtons
+            url={`${SITE_URL}/knowledge-center/${slug}`}
+            title={article.title}
+            className="mb-8 pb-8 border-b border-slate-200"
+          />
           {article.coverImageUrl && (
-            <div
-              className="mb-10 h-72 rounded-2xl border border-slate-200 bg-slate-200 bg-cover bg-center shadow-sm"
-              style={{ backgroundImage: `url("${article.coverImageUrl}")` }}
-              role="img"
-              aria-label={`${article.title} cover image`}
-            />
+            <div className="relative mb-10 h-72 rounded-2xl border border-slate-200 bg-slate-200 shadow-sm overflow-hidden">
+              <Image
+                src={article.coverImageUrl}
+                alt={`${article.title} cover image`}
+                fill
+                sizes="(min-width: 1024px) 768px, 100vw"
+                className="object-cover"
+              />
+            </div>
           )}
           <div className="space-y-4">
             {renderMarkdown(article.body)}
           </div>
+          <ShareButtons
+            url={`${SITE_URL}/knowledge-center/${slug}`}
+            title={article.title}
+            className="mt-10 pt-8 border-t border-slate-200"
+          />
         </div>
       </section>
 

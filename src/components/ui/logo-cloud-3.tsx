@@ -1,4 +1,4 @@
-import { InfiniteSlider } from "@/components/ui/infinite-slider";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 type Logo = {
@@ -14,6 +14,8 @@ type LogoCloudProps = React.ComponentProps<"div"> & {
 };
 
 export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
+  const loopedLogos = [...logos, ...logos];
+
   return (
     <div
       {...props}
@@ -22,19 +24,19 @@ export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
         className
       )}
     >
-      <InfiniteSlider gap={64} reverse duration={30} durationOnHover={90}>
-        {logos.map((logo) => (
+      <div className="logo-cloud-track">
+        {loopedLogos.map((logo, index) => (
           <figure
             className="flex flex-col items-center justify-start gap-3"
-            key={`logo-${logo.alt}`}
+            key={`logo-${logo.alt}-${index}`}
           >
-            <img
+            <Image
               alt={logo.alt}
               className="pointer-events-none h-[66px] w-[148px] select-none object-contain md:h-[74px] md:w-[165px]"
-              height={logo.height || "auto"}
+              height={logo.height || 66}
               loading="lazy"
               src={logo.src}
-              width={logo.width || "auto"}
+              width={logo.width || 148}
             />
             {logo.label && (
               <figcaption className="max-w-36 select-none text-center font-sans text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -43,7 +45,7 @@ export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
             )}
           </figure>
         ))}
-      </InfiniteSlider>
+      </div>
     </div>
   );
 }

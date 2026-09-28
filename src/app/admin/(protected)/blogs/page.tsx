@@ -12,10 +12,9 @@ import {
   TextArea,
   blogCategories,
   cardClass,
-  inputClass,
-  labelClass,
   statuses,
 } from "@/components/admin/cms/FormControls";
+import { ImageUploadField } from "@/components/admin/cms/ImageUploadField";
 import { deleteBlogPost, saveBlogPost } from "../cms/actions";
 
 export const metadata: Metadata = { title: "Blogs - Be IPO Ready Admin" };
@@ -59,11 +58,8 @@ export default async function BlogsPage() {
             <Field label="Slug" name="slug" placeholder="auto-created if blank" />
             <Select label="Category" name="category" options={blogCategories} />
             <Select label="Status" name="status" options={statuses} />
-            <Field label="Cover Image URL" name="cover_image_url" placeholder="https://... (or upload below)" />
-            <label className="block">
-              <span className={labelClass}>Or Upload Cover Image</span>
-              <input name="cover_image_file" type="file" accept="image/*" className={inputClass} />
-            </label>
+            <Field label="Cover Image URL" name="cover_image_url" placeholder="https://... (or upload below)" hint="Direct image link only, not a share/viewer page (e.g. not an ibb.co page link)." />
+            <ImageUploadField label="Or Upload Cover Image" name="cover_image_file" />
             <Field label="SEO Title" name="seo_title" />
             <Field label="SEO Description" name="seo_description" />
           </div>
@@ -71,6 +67,7 @@ export default async function BlogsPage() {
             <TextArea label="Excerpt" name="excerpt" rows={2} />
             <TextArea label="Body" name="body" rows={10} placeholder="Markdown-style headings and bullets supported" />
             <Checkbox label="Add to News & Alerts popup" name="show_in_news_alert" />
+            <Checkbox label="Email this published article to all active subscribers" name="send_to_subscribers" />
           </div>
           <SubmitRow saveLabel="Publish / Save" />
         </form>
@@ -94,11 +91,8 @@ export default async function BlogsPage() {
               <Field label="Slug" name="slug" defaultValue={post.slug} />
               <Select label="Category" name="category" defaultValue={post.category} options={blogCategories} />
               <Select label="Status" name="status" defaultValue={post.status} options={statuses} />
-              <Field label="Cover Image URL" name="cover_image_url" defaultValue={post.cover_image_url} />
-              <label className="block">
-                <span className={labelClass}>Replace Cover Image</span>
-                <input name="cover_image_file" type="file" accept="image/*" className={inputClass} />
-              </label>
+              <Field label="Cover Image URL" name="cover_image_url" defaultValue={post.cover_image_url} hint="Direct image link only, not a share/viewer page (e.g. not an ibb.co page link)." />
+              <ImageUploadField label="Replace Cover Image" name="cover_image_file" />
               <Field label="SEO Title" name="seo_title" defaultValue={post.seo_title} />
               <Field label="SEO Description" name="seo_description" defaultValue={post.seo_description} />
             </div>
@@ -106,6 +100,7 @@ export default async function BlogsPage() {
               <TextArea label="Excerpt" name="excerpt" defaultValue={post.excerpt} rows={2} />
               <TextArea label="Body" name="body" defaultValue={post.body} rows={10} />
               <Checkbox label="Add to News & Alerts popup" name="show_in_news_alert" defaultChecked={post.show_in_news_alert} />
+              <Checkbox label="Email this published article to all active subscribers" name="send_to_subscribers" />
             </div>
             <SubmitRow deleteAction={deleteBlogPost} id={post.id} />
           </form>

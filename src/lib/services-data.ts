@@ -4,15 +4,15 @@ export const SERVICES: Record<string, ServiceData> = {
   "fund-raising": {
     slug: "fund-raising",
     title: "Fund Raising",
-    tagline: "Structured equity and Equity Related Instruments solutions engineered to facilitate corporate expansion",
+    tagline: "Structured equity and debt capitalization solutions engineered to facilitate corporate expansion",
     overview: [
-      "Raising capital is not just about finding money, it's about finding the right money, at the right valuation, on the right terms. Our Fund Raising service helps growth-stage businesses secure equity and Equity Related Instruments capital from a curated network of investors, including venture capital funds, private equity firms, family offices, HNIs, NBFCs, and banks.",
+      "Raising capital is not just about finding money, it's about finding the right money, at the right valuation, on the right terms. Our Fund Raising service helps growth-stage businesses secure equity and debt capital from a curated network of investors, including venture capital funds, private equity firms, family offices, HNIs, NBFCs, and banks.",
       "We manage the entire process, from preparing your investment story and financial model to negotiating term sheets and closing the transaction, so you can stay focused on running your business.",
     ],
     whoItsFor: [
       "Growth-stage companies seeking growth capital",
       "Promoters looking for equity dilution at a fair valuation",
-      "Businesses needing working-capital lines, or mezzanine funding",
+      "Businesses needing structured debt, working-capital lines, or mezzanine funding",
       "Family-run businesses professionalising and raising institutional capital for the first time",
       "Companies preparing for expansion, acquisition, or new capacity",
     ],
@@ -52,7 +52,7 @@ export const SERVICES: Record<string, ServiceData> = {
     ],
     faq: [
       { q: "Equity or debt, which is right for my business?", a: "It depends on your cash flows, growth plans, and how much dilution you are comfortable with. Our first step is always a capital structuring review to recommend the optimal mix." },
-      { q: "How do you charge for fund raising?", a: "Our fee structure generally combines a modest fixed fees with a success fee payable only on closing. Exact terms are shared after an initial assessment." },
+      { q: "How do you charge for fund raising?", a: "Our fee structure generally combines a modest retainer with a success fee payable only on closing. Exact terms are shared after an initial assessment." },
       { q: "Will my information remain confidential?", a: "Yes. All investor outreach happens under NDA, and we share detailed information only with shortlisted, serious investors after your approval." },
       { q: "My financials are not audited/organised. Can you still help?", a: "Absolutely, cleaning up and presenting your financials investor-ready is part of our Stage 1 work." },
     ],
@@ -195,6 +195,7 @@ export const SERVICES: Record<string, ServiceData> = {
       "Companies requiring valuations for regulatory or transaction purposes (in coordination with registered valuers where statutorily required)",
       "Family businesses planning succession, restructuring, or shareholder buyouts",
       "We do Business Valuation, ESOP Valuation, Share Valuation, and Fairness Opinions",
+
     ],
     process: [
       {
@@ -218,7 +219,7 @@ export const SERVICES: Record<string, ServiceData> = {
       {
         stage: "Implementation Support",
         timeframe: "Ongoing",
-        items: ["Cap table cleanup, instrument structuring (equity, CCPS, CCDs, mezzanine)"],
+        items: ["Debt refinancing/restructuring support", "Cap table cleanup, instrument structuring (equity, CCPS, CCDs, mezzanine)"],
         deliverables: ["Execution roadmap and transaction support"],
       },
     ],
@@ -235,6 +236,7 @@ export const SERVICES: Record<string, ServiceData> = {
       { q: "Which valuation method will you use for my company?", a: "It depends on your business model, stage, and industry. We typically apply DCF alongside market-based methods (listed peer multiples, transaction comparables) and reconcile them into a value range." },
       { q: "Are your valuations valid for regulatory filings?", a: "Certain regulatory purposes require valuations from specifically registered/qualified valuers. We coordinate with empanelled registered valuers wherever statutorily required, so you receive a compliant report." },
       { q: "What is capital structuring, in simple terms?", a: "It's deciding the right mix of equity, debt, and hybrid instruments to fund your business, balancing cost, control, risk, and flexibility. The right structure can lower your cost of capital and increase promoter value significantly." },
+      { q: "Can you help reduce our interest cost or refinance debt?", a: "Yes. Debt profiling and refinancing/restructuring support is part of our implementation stage, we help negotiate better terms with existing or new lenders." },
     ],
   },
 };

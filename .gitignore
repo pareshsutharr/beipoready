@@ -44,3 +44,10 @@ public/heroteamimg.png
 # user-uploaded content (runtime data, not source)
 /private-uploads/
 /public/uploads/
+
+# Generated IPO refresh data. The scraper preserves the last known-good file.
+/data/*.json
+/data/*.log
+
+# linked WhatsApp session (acts as a login to the WhatsApp account)
+/whatsapp/.auth

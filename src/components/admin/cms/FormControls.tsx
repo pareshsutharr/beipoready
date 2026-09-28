@@ -1,3 +1,7 @@
+"use client";
+
+import { useFormStatus } from "react-dom";
+
 export const inputClass =
   "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-brand-gold focus:outline-none focus:ring-2 focus:ring-brand-gold/30";
 
@@ -42,6 +46,7 @@ export function Field({
   required,
   type = "text",
   placeholder,
+  hint,
 }: {
   label: string;
   name: string;
@@ -49,6 +54,7 @@ export function Field({
   required?: boolean;
   type?: string;
   placeholder?: string;
+  hint?: string;
 }) {
   return (
     <label className="block">
@@ -61,6 +67,7 @@ export function Field({
         defaultValue={defaultValue ?? ""}
         className={inputClass}
       />
+      {hint && <span className="mt-1 block text-xs text-slate-400">{hint}</span>}
     </label>
   );
 }
@@ -124,15 +131,18 @@ export function Checkbox({
   label,
   name,
   defaultChecked,
+  value,
 }: {
   label: string;
   name: string;
   defaultChecked?: boolean;
+  value?: string;
 }) {
   return (
     <label className="flex items-center gap-2 text-sm font-medium text-slate-700">
       <input
         name={name}
+        value={value}
         type="checkbox"
         defaultChecked={defaultChecked}
         className="h-4 w-4 rounded border-slate-300 text-brand-gold"
@@ -151,18 +161,22 @@ export function SubmitRow({
   id?: string;
   saveLabel?: string;
 }) {
+  const { pending } = useFormStatus();
+
   return (
     <div className="flex items-center gap-3 pt-2">
       <button
         type="submit"
-        className="rounded-lg bg-brand-navy px-4 py-2 text-sm font-semibold text-white hover:bg-brand-navy/90"
+        disabled={pending}
+        className="rounded-lg bg-brand-navy px-4 py-2 text-sm font-semibold text-white hover:bg-brand-navy/90 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {saveLabel}
+        {pending ? "Saving…" : saveLabel}
       </button>
       {deleteAction && id && (
         <button
           formAction={deleteAction}
-          className="rounded-lg border border-red-200 px-4 py-2 text-sm font-semibold text-red-600 hover:bg-red-50"
+          disabled={pending}
+          className="rounded-lg border border-red-200 px-4 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-60"
         >
           Delete
         </button>

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, BarChart3 } from "lucide-react";
 import type { CaseStudyCard as CaseStudyCardType } from "@/lib/cms";
 
@@ -35,11 +34,10 @@ function CaseStudySpotlightCard({ study }: { study: CaseStudyCardType }) {
       <div className="relative mx-2 mt-2 aspect-[1.45] overflow-hidden rounded-xl bg-brand-cream">
         <Image
           src={coverImage}
-          alt=""
+          alt={`${study.company} SME IPO case study`}
           fill
           sizes="430px"
           className="object-cover"
-          priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/40 via-transparent to-transparent" aria-hidden="true" />
         <div className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-lg bg-white/95 font-heading text-xs font-bold text-brand-navy shadow-sm">
@@ -48,7 +46,7 @@ function CaseStudySpotlightCard({ study }: { study: CaseStudyCardType }) {
       </div>
 
       <div className="flex flex-1 flex-col px-6 pb-6 pt-5">
-        <div className="mb-3 flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
+        <div className="mb-3 flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-600">
           <span>{study.sector}</span>
           {study.readinessScore > 0 && (
             <>
@@ -101,7 +99,7 @@ function GhostCard({ study, side }: { study: CaseStudyCardType; side: "left" | "
         <div className="absolute inset-0 bg-white/25" aria-hidden="true" />
       </div>
       <div className="p-6">
-        <div className="mb-3 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400">
+        <div className="mb-3 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-600">
           <span className="line-clamp-1">{study.sector}</span>
           {study.readinessScore > 0 && (
             <>
@@ -187,22 +185,18 @@ export default function CaseStudiesHighlights({ caseStudies }: { caseStudies: Ca
         >
           {featured.length > 1 && (
             <>
-              <motion.div
+              <div
                 key={`left-${previousStudy.slug}`}
-                initial={{ opacity: 0, x: direction > 0 ? -28 : -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className={direction > 0 ? "case-study-ghost-in-left" : "case-study-ghost-in-left-soft"}
               >
                 <GhostCard study={previousStudy} side="left" />
-              </motion.div>
-              <motion.div
+              </div>
+              <div
                 key={`right-${nextStudy.slug}`}
-                initial={{ opacity: 0, x: direction > 0 ? 8 : 28 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className={direction > 0 ? "case-study-ghost-in-right-soft" : "case-study-ghost-in-right"}
               >
                 <GhostCard study={nextStudy} side="right" />
-              </motion.div>
+              </div>
             </>
           )}
 
@@ -234,14 +228,12 @@ export default function CaseStudiesHighlights({ caseStudies }: { caseStudies: Ca
             <ArrowRight className="h-5 w-5" aria-hidden="true" />
           </button>
 
-          <motion.div
+          <div
             key={activeStudy.slug}
-            initial={{ opacity: 0, x: direction * 42, scale: 0.985 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className={direction > 0 ? "case-study-spotlight-in-right" : "case-study-spotlight-in-left"}
           >
             <CaseStudySpotlightCard study={activeStudy} />
-          </motion.div>
+          </div>
 
           <div className="mt-10 flex items-center justify-center gap-3">
             {featured.map((study, index) => (

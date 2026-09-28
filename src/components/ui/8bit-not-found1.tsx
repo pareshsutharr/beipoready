@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/8bit-button";
@@ -32,7 +34,7 @@ export default function NotFound1({
 
       {imageSrc && (
         <div className="flex justify-center -mt-10">
-          <img
+          <Image
             alt="404"
             className="pixelated"
             height={200}

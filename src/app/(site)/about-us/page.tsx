@@ -4,9 +4,9 @@ import { getPublishedClients } from "@/lib/cms";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "About BEIPOREADY | India's Leading SME IPO Advisor & Growth Capital Experts",
+  title: "About Our SME IPO Advisors",
   description:
-    "Meet the team behind BEIPOREADY India's IPO advisory and growth-capital specialists helping businesses raise capital, get IPO-ready, and list on NSE Emerge & BSE SME.",
+    "Meet the BEIPOREADY team helping Indian businesses raise capital, improve IPO readiness, and list on NSE Emerge, BSE SME, and the Main Board.",
   path: "/about-us",
   keywords: [
     "about BEIPOREADY",
@@ -17,8 +17,6 @@ export const metadata: Metadata = buildMetadata({
     "our journey",
   ],
 });
-
-export const dynamic = "force-dynamic";
 
 export default async function AboutUsPage() {
   const clients = await getPublishedClients();

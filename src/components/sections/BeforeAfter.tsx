@@ -25,7 +25,7 @@ const ROWS = [
 
 export default function BeforeAfter() {
   return (
-    <section className="w-full py-20 sm:py-28" style={{ background: "#FFF" }} aria-labelledby="before-after-heading">
+    <section className="w-full py-20 sm:py-28 bg-white" aria-labelledby="before-after-heading">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">
@@ -62,20 +62,16 @@ export default function BeforeAfter() {
 
           {/* After, brand colour */}
           <div
-            className="rounded-2xl p-7 sm:p-8 text-white"
-            style={{
-              background: "linear-gradient(160deg, #0D4A6F 0%, #0F2D52 100%)",
-              boxShadow: "0 16px 48px rgba(13,74,111,0.28)",
-            }}
+            className="rounded-2xl p-7 sm:p-8 text-white bg-[linear-gradient(160deg,#0D4A6F_0%,#0F2D52_100%)] shadow-[0_16px_48px_rgba(13,74,111,0.28)]"
           >
-            <h3 className="font-heading text-lg font-bold mb-6" style={{ color: "#ECB85B" }}>
+            <h3 className="font-heading text-lg font-bold mb-6 text-[#ECB85B]">
               Being IPO Ready
             </h3>
             <ul className="space-y-4" role="list">
               {ROWS.map((row) => (
                 <li key={row.after} className="flex items-start gap-3">
-                  <span className="mt-0.5 shrink-0 flex items-center justify-center w-5 h-5 rounded-full" style={{ background: "rgba(236,184,91,0.2)" }}>
-                    <Check className="w-3 h-3" style={{ color: "#ECB85B" }} aria-hidden="true" />
+                  <span className="mt-0.5 shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-[rgba(236,184,91,0.2)]">
+                    <Check className="w-3 h-3 text-[#ECB85B]" aria-hidden="true" />
                   </span>
                   <span className="text-sm sm:text-[0.95rem] text-white/85 leading-relaxed">{row.after}</span>
                 </li>

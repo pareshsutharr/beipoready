@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import ContactForm from "@/components/forms/ContactForm";
+import ObfuscatedEmailAnchor from "@/components/ObfuscatedEmailAnchor";
 import ClientsMarquee from "@/components/sections/ClientsMarquee";
 import { getPublishedClients } from "@/lib/cms";
 import { buildMetadata } from "@/lib/seo";
 
-const CONTACT_EMAIL = "info@beipoready.com";
 const CONTACT_PHONE_DISPLAY = "+91 95377 67203";
 const CONTACT_PHONE_HREF = "+919537767203";
 const CONTACT_ADDRESS =
@@ -18,8 +19,6 @@ export const metadata: Metadata = buildMetadata({
   keywords: ["contact BEIPOREADY", "IPO advisor consultation", "SME IPO enquiry"],
 });
 
-export const dynamic = "force-dynamic";
-
 export default async function ContactUsPage() {
   const clients = await getPublishedClients();
 
@@ -27,8 +26,15 @@ export default async function ContactUsPage() {
     <>
       {/* ── Page hero ─────────────────────────────────────────────────── */}
       <section className="relative bg-brand-navy py-16 sm:py-20 overflow-hidden">
-        <img src="/heroaboutimg.png" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover object-top opacity-15" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <Image
+          src="/heroaboutimg.png"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover object-top opacity-15"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,15,30,0.65)_0%,rgba(15,45,82,0.55)_100%)]" aria-hidden="true" />
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Get in Touch
@@ -60,9 +66,10 @@ export default async function ContactUsPage() {
                     <svg className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-brand-gold transition-colors">
-                      {CONTACT_EMAIL}
-                    </a>
+                    <ObfuscatedEmailAnchor
+                      className="hover:text-brand-gold transition-colors"
+                      fallbackLabel="Email us"
+                    />
                   </li>
                   <li className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -95,8 +102,14 @@ export default async function ContactUsPage() {
 
               {/* Office photo */}
               <div className="relative rounded-xl overflow-hidden h-40 shadow-sm">
-                <img src="/heroaboutimg.png" alt="Be IPO Ready office" className="w-full h-full object-cover object-top" />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, transparent 40%, rgba(15,45,82,0.6))" }} aria-hidden="true" />
+                <Image
+                  src="/heroaboutimg.png"
+                  alt="Be IPO Ready office"
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover object-top"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_40%,rgba(15,45,82,0.6))]" aria-hidden="true" />
                 <span className="absolute bottom-3 left-4 text-xs font-semibold text-white/90">Surat office</span>
               </div>
 

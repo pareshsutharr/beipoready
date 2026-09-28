@@ -1,12 +1,11 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import FaqAccordion from "@/components/sections/FaqAccordion";
 import { getPublishedFaqGroups } from "@/lib/cms";
 import { HOME_FAQS } from "@/lib/home-faqs";
 import { SERVICES } from "@/lib/services-data";
 import { buildMetadata } from "@/lib/seo";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = buildMetadata({
   title: "FAQs: SME IPO Questions Answered",
@@ -27,8 +26,15 @@ export default async function FAQsPage() {
   return (
     <>
       <section className="relative bg-brand-navy py-16 sm:py-20 overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1600&h=600&fit=crop&q=85" alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.65) 0%,rgba(15,45,82,0.55) 100%)" }} aria-hidden="true" />
+        <Image
+          src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1600&h=600&fit=crop&q=85"
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-15"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,15,30,0.65)_0%,rgba(15,45,82,0.55)_100%)]" aria-hidden="true" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="font-sans text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Knowledge Base

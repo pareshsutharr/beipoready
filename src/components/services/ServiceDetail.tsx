@@ -166,12 +166,11 @@ export default function ServiceDetail({
 
       {/* ── Enquire ──────────────────────────────────────────────────── */}
       <section
-        className="relative py-16 sm:py-20 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #0F2D52 0%, #0D4A6F 100%)" }}
+        className="relative py-16 sm:py-20 overflow-hidden bg-[linear-gradient(135deg,#0F2D52_0%,#0D4A6F_100%)]"
       >
-        <div className="absolute top-0 inset-x-0 h-[2px]" style={{ background: "linear-gradient(90deg,transparent,#ECB85B,transparent)" }} aria-hidden="true" />
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-[linear-gradient(90deg,transparent,#ECB85B,transparent)]" aria-hidden="true" />
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl bg-white p-6 sm:p-8" style={{ boxShadow: "0 24px 64px rgba(0,0,0,0.25)" }}>
+          <div className="rounded-2xl bg-white p-6 sm:p-8 shadow-[0_24px_64px_rgba(0,0,0,0.25)]">
             <LeadCaptureForm
               source="services"
               heading="Enquire About This Service"

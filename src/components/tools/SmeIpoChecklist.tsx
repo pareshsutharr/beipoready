@@ -125,8 +125,8 @@ export default function SmeIpoChecklist() {
           </div>
           <div className="h-2.5 rounded-full bg-slate-100 overflow-hidden">
             <div
-              className="h-full rounded-full transition-all duration-300"
-              style={{ width: `${pct}%`, background: "linear-gradient(90deg,#ECB85B,#FCD34D)" }}
+              className="h-full rounded-full transition-all duration-300 bg-[linear-gradient(90deg,#ECB85B,#FCD34D)]"
+              style={{ width: `${pct}%` }}
             />
           </div>
         </div>

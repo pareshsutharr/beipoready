@@ -1,7 +1,9 @@
 ﻿import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getCaseStudyBySlug } from "@/lib/cms";
+import Image from "next/image";
+import ShareButtons from "@/components/ShareButtons";
+import { getCaseStudyBySlug, getPublishedCaseStudies } from "@/lib/cms";
 import { buildMetadata, isoDate, SITE_URL } from "@/lib/seo";
 
 const SECTOR_IMAGES: Record<string, string> = {
@@ -15,7 +17,10 @@ const DEFAULT_SECTOR_IMAGE = "https://images.unsplash.com/photo-1542744173-8e7e5
 
 type Props = { params: Promise<{ slug: string }> };
 
-export const dynamic = "force-dynamic";
+export async function generateStaticParams() {
+  const caseStudies = await getPublishedCaseStudies();
+  return caseStudies.map((caseStudy) => ({ slug: caseStudy.slug }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -55,8 +60,15 @@ export default async function CaseStudyDetailPage({ params }: Props) {
       />
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative bg-brand-navy py-20 sm:py-24 overflow-hidden">
-        <img src={cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE} alt="" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover opacity-15" />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(135deg,rgba(7,15,30,0.7) 0%,rgba(15,45,82,0.6) 100%)" }} aria-hidden="true" />
+        <Image
+          src={cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}
+          alt=""
+          aria-hidden="true"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-15"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(7,15,30,0.7)_0%,rgba(15,45,82,0.6)_100%)]" aria-hidden="true" />
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/case-studies"
@@ -70,9 +82,8 @@ export default async function CaseStudyDetailPage({ params }: Props) {
 
           {/* Company monogram + name row */}
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 shadow-xl"
-              style={{ background: "rgba(15,45,82,0.9)", border: "1.5px solid rgba(245,158,11,0.5)", backdropFilter: "blur(8px)" }}>
-              <span className="font-heading text-base font-bold" style={{ color: "#F59E0B" }}>
+            <div className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 shadow-xl bg-[rgba(15,45,82,0.9)] border-[1.5px] border-[rgba(245,158,11,0.5)] backdrop-blur-[8px]">
+              <span className="font-heading text-base font-bold text-brand-gold">
                 {cs.company.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join("")}
               </span>
             </div>
@@ -104,17 +115,19 @@ export default async function CaseStudyDetailPage({ params }: Props) {
       {/* ── Body ─────────────────────────────────────────────────────── */}
       <section className="bg-brand-cream py-16 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-          <div
-            className={`h-72 rounded-2xl border border-slate-200 bg-center bg-no-repeat shadow-sm overflow-hidden ${
-              cs.coverImageUrl ? "bg-white" : "bg-slate-200 bg-cover"
-            }`}
-            style={{
-              backgroundImage: `url("${cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}")`,
-              backgroundSize: cs.coverImageUrl ? "contain" : undefined,
-            }}
-            role="img"
-            aria-label={`${cs.company} cover image`}
+          <ShareButtons
+            url={`${SITE_URL}/case-studies/${slug}`}
+            title={`Case Study: ${cs.company}`}
           />
+          <div className="relative h-72 rounded-2xl border border-slate-200 shadow-sm overflow-hidden bg-slate-200">
+            <Image
+              src={cs.coverImageUrl ?? SECTOR_IMAGES[cs.sector] ?? DEFAULT_SECTOR_IMAGE}
+              alt={`${cs.company} cover image`}
+              fill
+              sizes="(min-width: 1024px) 768px, 100vw"
+              className={cs.coverImageUrl ? "object-contain bg-white" : "object-cover"}
+            />
+          </div>
 
           <div>
             <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">Overview</h2>
@@ -149,6 +162,11 @@ export default async function CaseStudyDetailPage({ params }: Props) {
             <cite className="font-sans text-sm text-brand-gold not-italic">{cs.quotePerson}</cite>
           </blockquote>
 
+          <ShareButtons
+            url={`${SITE_URL}/case-studies/${slug}`}
+            title={`Case Study: ${cs.company}`}
+            className="pt-8 border-t border-slate-200"
+          />
         </div>
       </section>
 

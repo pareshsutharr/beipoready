@@ -137,20 +137,20 @@ export default function IssueCostEstimator() {
               </thead>
               <tbody>
                 {rows.map((r, i) => (
-                  <tr key={r.label} style={{ background: i % 2 ? "#FEFBF2" : "#fff" }}>
+                  <tr key={r.label} className={i % 2 ? "bg-[#FEFBF2]" : "bg-white"}>
                     <td className="px-4 py-3 text-slate-600">{r.label}</td>
                     <td className="px-4 py-3 text-right text-slate-700 font-medium whitespace-nowrap">
                       {fmtLakhs(r.low)} – {fmtLakhs(r.high)}
                     </td>
                   </tr>
                 ))}
-                <tr className="border-t-2 border-brand-gold/40" style={{ background: "#FEF3C7" }}>
+                <tr className="border-t-2 border-brand-gold/40 bg-[#FEF3C7]">
                   <td className="px-4 py-3 font-bold text-brand-navy">Estimated total</td>
                   <td className="px-4 py-3 text-right font-bold text-brand-navy whitespace-nowrap">
                     {fmtLakhs(totalLow)} – {fmtLakhs(totalHigh)}
                   </td>
                 </tr>
-                <tr style={{ background: "#FEF3C7" }}>
+                <tr className="bg-[#FEF3C7]">
                   <td className="px-4 py-3 text-slate-600">As a share of issue size</td>
                   <td className="px-4 py-3 text-right text-slate-700 font-medium whitespace-nowrap">
                     {costSharePct(size).low}% – {costSharePct(size).high}%

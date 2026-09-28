@@ -77,34 +77,27 @@ export default function BellAnimation({
       {/* Bell, transform-origin: center top so it pivots at the chain */}
       <div
         ref={bellRef}
-        className="w-full h-full flex justify-center items-start"
-        style={{ transformOrigin: "center top" }}
+        className="w-full h-full flex justify-center items-start origin-top"
       >
         <Image
           src="/bellimage.png"
           alt="IPO Bell"
           width={520}
           height={520}
-          className="h-full w-auto object-contain"
-          style={{
-            maxWidth: "500px",
-            filter: "drop-shadow(0 18px 36px rgba(236,184,91,0.38))",
-          }}
+          className="h-full w-auto object-contain max-w-[500px] drop-shadow-[0_18px_36px_rgba(236,184,91,0.38)]"
           priority
         />
       </div>
 
       {/* Spark particles, centered at bell body */}
       <div
-        className="absolute pointer-events-none"
-        style={{ top: "55%", left: "50%", transform: "translate(-50%, -50%)" }}
+        className="absolute pointer-events-none top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"
       >
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
             ref={(el) => { sparkRefs.current[i] = el; }}
-            className="absolute rounded-full opacity-0"
-            style={{ width: 8, height: 8, background: "#ECB85B", top: 0, left: 0 }}
+            className="absolute rounded-full opacity-0 w-2 h-2 bg-[#ECB85B] top-0 left-0"
           />
         ))}
       </div>

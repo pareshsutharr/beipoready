@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import { MapPin, Mail, Phone, ArrowRight } from "lucide-react";
 import LeadCaptureForm from "@/components/forms/LeadCaptureForm";
+import ObfuscatedEmailAnchor from "@/components/ObfuscatedEmailAnchor";
 
 const ADDRESS =
   "2001, 20th Floor, The Junomoneta Tower, RTO, Near Rajhans Cinema, Opp. Pal, Adajan, Surat, Gujarat 395009";
@@ -8,11 +9,10 @@ const ADDRESS =
 export default function FinalCta() {
   return (
     <section
-      className="relative w-full py-20 sm:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #0F2D52 0%, #0D4A6F 100%)" }}
+      className="relative w-full py-20 sm:py-28 overflow-hidden bg-[linear-gradient(135deg,#0F2D52_0%,#0D4A6F_100%)]"
       aria-labelledby="final-cta-heading"
     >
-      <div className="absolute top-0 inset-x-0 h-[2px]" style={{ background: "linear-gradient(90deg,transparent,#ECB85B,transparent)" }} aria-hidden="true" />
+      <div className="absolute top-0 inset-x-0 h-[2px] bg-[linear-gradient(90deg,transparent,#ECB85B,transparent)]" aria-hidden="true" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
         {/* Left, pitch + contact strip */}
@@ -27,8 +27,7 @@ export default function FinalCta() {
 
           <Link
             href="/ipo-readiness-tool"
-            className="group inline-flex items-center gap-2 text-sm font-bold mb-10 transition-colors duration-150 hover:text-white"
-            style={{ color: "#ECB85B" }}
+            className="group inline-flex items-center gap-2 text-sm font-bold mb-10 transition-colors duration-150 hover:text-white text-[#ECB85B]"
           >
             Are You IPO Ready?, Take the Check
             <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
@@ -36,22 +35,23 @@ export default function FinalCta() {
 
           <address className="not-italic space-y-4 text-sm text-white/70">
             <p className="flex items-start gap-3">
-              <MapPin className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#ECB85B" }} aria-hidden="true" />
+              <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-[#ECB85B]" aria-hidden="true" />
               {ADDRESS}
             </p>
-            <a href="mailto:info@beipoready.com" className="flex items-start gap-3 hover:text-white transition-colors duration-150">
-              <Mail className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#ECB85B" }} aria-hidden="true" />
-              info@beipoready.com
-            </a>
+            <ObfuscatedEmailAnchor
+              className="flex items-start gap-3 hover:text-white transition-colors duration-150"
+              fallbackLabel="Email us"
+              icon={<Mail className="w-4 h-4 mt-0.5 shrink-0 text-[#ECB85B]" aria-hidden="true" />}
+            />
             <a href="tel:+919537767203" className="flex items-start gap-3 hover:text-white transition-colors duration-150">
-              <Phone className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#ECB85B" }} aria-hidden="true" />
+              <Phone className="w-4 h-4 mt-0.5 shrink-0 text-[#ECB85B]" aria-hidden="true" />
               +91 95377 67203
             </a>
           </address>
         </div>
 
         {/* Right, embedded lead-capture form */}
-        <div className="rounded-2xl bg-white p-6 sm:p-8" style={{ boxShadow: "0 24px 64px rgba(0,0,0,0.25)" }}>
+        <div className="rounded-2xl bg-white p-6 sm:p-8 shadow-[0_24px_64px_rgba(0,0,0,0.25)]">
           <LeadCaptureForm
             source="home-cta"
             heading="Book an IPO Readiness Call"

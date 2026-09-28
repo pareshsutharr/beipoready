@@ -41,7 +41,7 @@ export default function SmeVsMainBoard() {
         <div className="overflow-x-auto rounded-2xl border border-slate-200">
           <table className="w-full text-sm text-left">
             <thead>
-              <tr style={{ background: "#0D4A6F" }}>
+              <tr className="bg-[#0D4A6F]">
                 <th scope="col" className="px-5 py-3.5 font-bold text-white/70 w-[26%]"></th>
                 <th scope="col" className="px-5 py-3.5 font-bold text-white">
                   SME IPO <span className="font-medium text-white/60">(NSE Emerge / BSE SME)</span>
@@ -51,7 +51,7 @@ export default function SmeVsMainBoard() {
             </thead>
             <tbody>
               {COMPARISON.map((row, i) => (
-                <tr key={row.label} style={{ background: i % 2 ? "#FEFBF2" : "#fff" }}>
+                <tr key={row.label} className={i % 2 ? "bg-[#FEFBF2]" : "bg-white"}>
                   <th scope="row" className="px-5 py-4 font-bold text-[#0D4A6F] align-top">{row.label}</th>
                   <td className="px-5 py-4 text-slate-600 align-top">{row.sme}</td>
                   <td className="px-5 py-4 text-slate-600 align-top">{row.main}</td>

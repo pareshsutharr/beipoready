@@ -1,7 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextResponse, after } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 import { EligibilitySubmission } from "@/models/EligibilitySubmission";
 import { saveEligibilityFile } from "@/lib/upload";
+import { notifyAdmin } from "@/lib/notify-admin";
 import type { EligibilityCheckResult, RuleStatus } from "@/types";
 
 const ACCEPTED_EXTENSIONS = [".pdf", ".xls", ".xlsx", ".jpg", ".jpeg", ".png", ".zip"];
@@ -93,6 +94,18 @@ export async function POST(request: Request) {
       answers: payload.answers ?? {},
       checks: Array.isArray(payload.checks) ? (payload.checks as EligibilityCheckResult[]) : [],
     });
+
+    after(() =>
+      notifyAdmin("eligibility", `New eligibility submission: ${organizationName}`, {
+        Organization: organizationName,
+        Email: email,
+        Website: stringOrNull(payload.website),
+        Industry: stringOrNull(payload.industry),
+        Designation: stringOrNull(payload.designation),
+        "Contact details": stringOrNull(payload.contact_details),
+        Notes: stringOrNull(payload.notes),
+      })
+    );
 
     return NextResponse.json({ ok: true });
   } catch {

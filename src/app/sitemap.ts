@@ -1,13 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
-import { getPublishedArticles, getPublishedCaseStudies } from "@/lib/cms";
-
-const SERVICE_SLUGS = [
-  "fund-raising",
-  "pre-ipo-advisory",
-  "sme-ipo-advisory",
-  "valuation-corporate-restructuring",
-];
+import { getPublishedArticles, getPublishedCaseStudies, getPublishedServices } from "@/lib/cms";
 
 const STATIC_ROUTES: { path: string; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]; priority: number }[] = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
@@ -21,6 +14,7 @@ const STATIC_ROUTES: { path: string; changeFrequency: MetadataRoute.Sitemap[numb
   { path: "/ipo-readiness-tool", changeFrequency: "monthly", priority: 0.7 },
   { path: "/issue-size-calculator", changeFrequency: "monthly", priority: 0.6 },
   { path: "/issue-cost-estimator", changeFrequency: "monthly", priority: 0.6 },
+  // { path: "/ipo-market", changeFrequency: "daily", priority: 0.7 },
   { path: "/sme-ipo-checklist", changeFrequency: "monthly", priority: 0.6 },
   { path: "/webinars-events", changeFrequency: "weekly", priority: 0.5 },
   { path: "/video-podcasts", changeFrequency: "weekly", priority: 0.5 },
@@ -35,9 +29,10 @@ function safeLastModified(publishedAt: string): Date | undefined {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [caseStudies, articles] = await Promise.all([
+  const [caseStudies, articles, services] = await Promise.all([
     getPublishedCaseStudies(),
     getPublishedArticles(),
+    getPublishedServices(),
   ]);
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
@@ -46,8 +41,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route.priority,
   }));
 
-  const serviceEntries: MetadataRoute.Sitemap = SERVICE_SLUGS.map((slug) => ({
-    url: `${SITE_URL}/services/${slug}`,
+  const serviceEntries: MetadataRoute.Sitemap = services.map((service) => ({
+    url: `${SITE_URL}/services/${service.slug}`,
     changeFrequency: "monthly",
     priority: 0.8,
   }));

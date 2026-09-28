@@ -39,11 +39,8 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
 
   return (
     <div
-      style={{
-        transform: `translate(-40%,-60%) skewX(-48deg) skewY(14deg) scale(0.675) rotate(0deg) translateZ(0)`,
-      }}
       className={cn(
-        "absolute left-1/4 p-4 -top-1/4 flex -translate-x-1/2 -translate-y-1/2 w-full h-full z-0",
+        "absolute left-1/4 p-4 -top-1/4 flex w-full h-full z-0 [transform:translate(-40%,-60%)_skewX(-48deg)_skewY(14deg)_scale(0.675)_rotate(0deg)_translateZ(0)]",
         className
       )}
       {...rest}
@@ -83,7 +80,6 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
                     alt=""
                     aria-hidden="true"
                     className="w-20 h-12 object-contain"
-                    style={{  }}
                   />
                 </div>
               </motion.div>

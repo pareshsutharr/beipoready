@@ -3,6 +3,8 @@ import Footer from "@/components/Footer";
 import SiteAlert from "@/components/sections/SiteAlert";
 import { getActiveSiteAlert, getNewsAlertItems } from "@/lib/cms";
 
+export const revalidate = 3600;
+
 export default async function SiteLayout({
   children,
 }: {

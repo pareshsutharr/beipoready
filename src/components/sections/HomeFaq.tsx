@@ -21,7 +21,7 @@ export default function HomeFaq() {
       />
       <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold mb-3">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-gold-ink mb-3">
             Frequently Asked Questions
           </p>
           <h2 id="faq-heading" className="font-heading text-3xl sm:text-4xl font-bold text-[#0D4A6F]">
@@ -33,11 +33,11 @@ export default function HomeFaq() {
 
         <p className="text-center text-sm text-slate-500 mt-10">
           Have a different question?{" "}
-          <Link href="/faqs" className="font-bold text-brand-gold hover:underline">
+          <Link href="/faqs" className="font-bold text-brand-gold-ink hover:underline">
             Browse all FAQs
           </Link>{" "}
           or{" "}
-          <Link href="/contact-us" className="font-bold text-brand-gold hover:underline">
+          <Link href="/contact-us" className="font-bold text-brand-gold-ink hover:underline">
             talk to us
           </Link>
           .

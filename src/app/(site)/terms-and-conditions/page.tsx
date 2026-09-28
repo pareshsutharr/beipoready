@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
+import ObfuscatedEmailAnchor from "@/components/ObfuscatedEmailAnchor";
 
 export const metadata: Metadata = buildMetadata({
   title: "Terms & Conditions",
@@ -9,7 +10,7 @@ export const metadata: Metadata = buildMetadata({
 
 export default function TermsPage() {
   return (
-    <main className="bg-brand-cream py-16 sm:py-20">
+    <div className="bg-brand-cream py-16 sm:py-20">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="font-heading text-3xl sm:text-4xl font-bold text-brand-navy mb-2">Terms &amp; Conditions</h1>
         <p className="font-sans text-sm text-slate-400 mb-10">Last updated: June 2026</p>
@@ -92,12 +93,13 @@ export default function TermsPage() {
           <section>
             <h2 className="font-heading text-xl font-bold text-brand-navy mb-3">9. Contact</h2>
             <p>
-              For questions about these Terms, contact us at info@beipoready.com.
+              For questions about these Terms, contact us at{" "}
+              <ObfuscatedEmailAnchor className="underline hover:text-brand-gold transition-colors" fallbackLabel="our email" />.
             </p>
           </section>
 
         </div>
       </div>
-    </main>
+    </div>
   );
 }

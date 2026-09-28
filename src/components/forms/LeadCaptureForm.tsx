@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { submitLead } from "@/lib/submit-lead";
 import type { LeadSource } from "@/types";
 import Input from "@/components/ui/Input";
@@ -9,6 +9,9 @@ import Button from "@/components/ui/Button";
 import SelectField from "./_SelectField";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const RESEND_COOLDOWN_SECONDS = 45;
+
+type OtpStatus = "idle" | "sending" | "sent" | "verifying" | "verified";
 
 function isValidPhone(phone: string) {
   const digits = phone.replace(/\D/g, "");
@@ -91,9 +94,98 @@ export default function LeadCaptureForm({
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
   const [apiError, setApiError] = useState<string | null>(null);
 
+  const requiresOtp = source === "services";
+
+  const [otpStatus, setOtpStatus] = useState<OtpStatus>("idle");
+  const [otpCode, setOtpCode] = useState("");
+  const [otpToken, setOtpToken] = useState<string | null>(null);
+  const [otpError, setOtpError] = useState<string | null>(null);
+  const [verifiedEmail, setVerifiedEmail] = useState<string | null>(null);
+  const [resendIn, setResendIn] = useState(0);
+
+  useEffect(() => {
+    if (resendIn <= 0) return;
+    const timer = setInterval(() => setResendIn((s) => Math.max(0, s - 1)), 1000);
+    return () => clearInterval(timer);
+  }, [resendIn]);
+
   function set(field: keyof FormValues, value: string) {
     setValues((v) => ({ ...v, [field]: value }));
     if (errors[field]) setErrors((e) => ({ ...e, [field]: undefined }));
+
+    if (field === "email" && requiresOtp && otpStatus !== "idle") {
+      // Any edit after verifying invalidates the previous verification.
+      setOtpStatus("idle");
+      setOtpCode("");
+      setOtpToken(null);
+      setOtpError(null);
+      setVerifiedEmail(null);
+    }
+  }
+
+  async function handleSendOtp() {
+    const email = values.email.trim();
+    if (!email || !EMAIL_RE.test(email)) {
+      setErrors((e) => ({ ...e, email: "Enter a valid email address." }));
+      return;
+    }
+
+    setOtpError(null);
+    setOtpStatus("sending");
+
+    try {
+      const response = await fetch("/api/contact/otp/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        setOtpError(data.error || "Could not send a verification code. Please try again.");
+        setOtpStatus("idle");
+        return;
+      }
+
+      setOtpStatus("sent");
+      setResendIn(RESEND_COOLDOWN_SECONDS);
+    } catch {
+      setOtpError("Could not send a verification code. Please try again.");
+      setOtpStatus("idle");
+    }
+  }
+
+  async function handleVerifyOtp() {
+    const email = values.email.trim();
+    if (!/^\d{6}$/.test(otpCode)) {
+      setOtpError("Enter the 6-digit code sent to your email.");
+      return;
+    }
+
+    setOtpError(null);
+    setOtpStatus("verifying");
+
+    try {
+      const response = await fetch("/api/contact/otp/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, code: otpCode }),
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        setOtpError(data.error || "Could not verify the code. Please try again.");
+        setOtpStatus("sent");
+        return;
+      }
+
+      setOtpToken(data.token);
+      setVerifiedEmail(email);
+      setOtpStatus("verified");
+    } catch {
+      setOtpError("Could not verify the code. Please try again.");
+      setOtpStatus("sent");
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -106,6 +198,11 @@ export default function LeadCaptureForm({
       return;
     }
 
+    if (requiresOtp && (otpStatus !== "verified" || !otpToken || verifiedEmail !== values.email.trim())) {
+      setOtpError((current) => current ?? "Please verify your email before submitting.");
+      return;
+    }
+
     setStatus("loading");
 
     const ok = await submitLead({
@@ -115,6 +212,7 @@ export default function LeadCaptureForm({
       service_interest: values.service_interest        || null,
       message:          values.message.trim()          || null,
       source,
+      ...(requiresOtp ? { otp_token: otpToken } : {}),
     });
 
     if (!ok) {
@@ -163,6 +261,68 @@ export default function LeadCaptureForm({
         />
       </div>
 
+      {/* Email OTP verification */}
+      {requiresOtp && (
+        <div className="flex flex-col gap-2 -mt-2">
+          {otpStatus === "verified" ? (
+            <p className="font-sans text-sm text-emerald-600 flex items-center gap-1.5">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8.5l3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Email verified
+            </p>
+          ) : otpStatus === "sent" || otpStatus === "verifying" ? (
+            <div className="flex flex-col sm:flex-row sm:items-end gap-3">
+              <div className="flex-1">
+                <Input
+                  id="lcf-otp"
+                  label="Enter the 6-digit code we emailed you *"
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="123456"
+                  maxLength={6}
+                  value={otpCode}
+                  onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                />
+              </div>
+              <Button
+                type="button"
+                variant="secondary"
+                size="md"
+                onClick={handleVerifyOtp}
+                disabled={otpStatus === "verifying" || otpCode.length !== 6}
+              >
+                {otpStatus === "verifying" ? "Verifying…" : "Verify"}
+              </Button>
+              <button
+                type="button"
+                onClick={handleSendOtp}
+                disabled={resendIn > 0 || otpStatus === "verifying"}
+                className="font-sans text-sm text-brand-navy underline-offset-4 hover:underline disabled:opacity-50 disabled:no-underline whitespace-nowrap pb-2.5"
+              >
+                {resendIn > 0 ? `Resend code (${resendIn}s)` : "Resend code"}
+              </button>
+            </div>
+          ) : (
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              onClick={handleSendOtp}
+              disabled={otpStatus === "sending" || !values.email.trim()}
+              className="self-start"
+            >
+              {otpStatus === "sending" ? "Sending code…" : "Verify Email"}
+            </Button>
+          )}
+          {otpError && (
+            <p className="font-sans text-xs text-red-500" role="alert">
+              {otpError}
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Row 2, Phone + Service Interest */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <Input
@@ -206,10 +366,14 @@ export default function LeadCaptureForm({
         type="submit"
         variant="primary"
         size="md"
-        disabled={status === "loading"}
+        disabled={status === "loading" || (requiresOtp && otpStatus !== "verified")}
         className="self-start"
       >
-        {status === "loading" ? "Submitting…" : submitLabel}
+        {status === "loading"
+          ? "Submitting…"
+          : requiresOtp && otpStatus !== "verified"
+          ? "Verify your email to continue"
+          : submitLabel}
       </Button>
     </form>
   );

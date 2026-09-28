@@ -17,6 +17,7 @@ const LEAD_STATUSES: LeadStatus[] = ["new", "contacted", "qualified", "closed"];
 
 const leadSchema = new Schema(
   {
+    serial_number: { type: String, default: null },
     name: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String, default: null },
@@ -32,6 +33,7 @@ const leadSchema = new Schema(
   { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
+leadSchema.index({ serial_number: 1 }, { unique: true, partialFilterExpression: { serial_number: { $type: "string" } } });
 leadSchema.index({ email: 1 });
 leadSchema.index({ source: 1 });
 leadSchema.index({ status: 1 });
